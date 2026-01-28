@@ -1,0 +1,83 @@
+Fonctions supplémentaires
+
+// on fait SDL2 et amélioration SDL3
+
+0 vide
+1 marron
+-1 eau
+une valeur par dino
+
+// Fonction qui initialise SDL
+
+int initialisationCorrecte();
+
+// Fonction qui ouvre une image dans SDL
+
+void chargerImage(SDL_Renderer *zoneDessin, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
+
+void creerFenetre(SDL_Window **fenetre, char * nomFenetre, int longueur, int hauteur);
+void creerBouton(...);
+
+// Choisir une police d'écriture pour le texte, les boutons et vérifier que l'initialisation s'est bien passée
+void initialiserPolice(TTF_Font **police);
+void creerZoneTexte(SDL_Renderer *zoneAffichage, SDL_Suface **zoneTexte, char *contenuTexte, SDL_color * couleurTexte);
+
+// Types
+
+typedef enum {FUSIL, REVOLVER} t_pistolet;
+typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_dino;
+
+typedef struct {
+	t_dino d;
+	int etat;
+	int pv;
+} t_dino;
+
+typedef struct {
+	t_dino * tab;
+	int n; // taille du tableau
+} t_joueur;
+
+typedef struct {
+	int x;
+	int y;
+} t_coordonnee;
+
+// Fonctions
+
+int tirer(t_pistolet *p, t_coordonnee *c);
+// Renvoyer si le tir a atteint sa cible ?
+
+int lancerBombe(t_coordonnee *c);
+// Renvoyer si la bombe a atteint sa cible ?
+
+int calculRebond(t_coordonnee *c);
+
+action();
+
+cgtObjet();
+
+// Solène :)
+deplacer(t_dino *d, t_coordonnee *c);
+
+- saut();
+- gravite();
+
+menu();
+
+miseAjourTerrain(int matrice[N][M]);
+
+// Romane :)
+frontiere(t_coordonnee *c, int matrice[N][M]);
+
+- sortirTerrain();
+
+- noyade();
+
+- resterSurTerre();
+
+cgtJoueur();
+cgtDino();
+cgtTours();
+
+//séparer les fonctions par thème
