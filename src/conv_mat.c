@@ -1,5 +1,5 @@
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "../lib/stb_image.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,14 +7,14 @@ int main() {
     int largeur, hauteur, canaux;
 
     //Charge l'image (force 3 canaux : RGB)
-    unsigned char *img = stbi_load("../image/test1_a.jpg", &largeur, &hauteur, &canaux, 3);
+    unsigned char *img = stbi_load("../img/test1_a.jpg", &largeur, &hauteur, &canaux, 3);
     
     if (img == NULL) {
         printf("Erreur : Impossible de charger l'image. Verifiez le chemin.\n");
         return 1;
     }
 
-    FILE *sortie = fopen("matrice.txt", "w");
+    FILE *sortie = fopen("../res/matrice.txt", "w");
     if (!sortie) {
         stbi_image_free(img);
         return 1;
@@ -49,7 +49,7 @@ int main() {
     // Nettoyage
     fclose(sortie);
     stbi_image_free(img);
-    printf("Succes ! Matrice %dx%d generee dans 'matrice.txt'.\n", largeur, hauteur);
+    printf("Succes ! Matrice %dx%d generee dans '../res/matrice.txt'.\n", largeur, hauteur);
 
     return 0;
 }
