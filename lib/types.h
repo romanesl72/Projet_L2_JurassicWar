@@ -4,6 +4,8 @@
 typedef enum {FUSIL, REVOLVER} t_pistolet;
 typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;
 
+typedef enum {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6,BOMBE} t_case; //représentation de chaque élément sur la matrice 
+
 typedef struct {
 	t_numDino d;
 	int etat;
@@ -19,5 +21,11 @@ typedef struct {
 	int x;
 	int y;
 } t_coordonnee;
+
+
+typedef struct {
+	float u;
+	float v;
+} t_vect;
 
 #endif
