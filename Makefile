@@ -3,7 +3,7 @@ SDL_DIR = "C:\Users\roman\Documents\Developpement\Librairies\SDL2-2.32.10\x86_64
 
 # Dossiers d'inclusion et de librairies
 SDL_INC = -I$(SDL_DIR)\include
-SDL_LIB = -L$(SDL_DIR)\lib -lmingw32 -lSDL2main -lSDL2
+SDL_LIB = -L$(SDL_DIR)\lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 # Compilation
 CC = gcc
