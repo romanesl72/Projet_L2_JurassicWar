@@ -7,7 +7,7 @@
  * Paramètres : aucun
  * Valeur de retour : 1 si tout c'est bien passé et 0 sinon 
 */
-/*
+
 int initialisationCorrecte() {
 
     // Initialisation de SDL
@@ -33,7 +33,7 @@ int initialisationCorrecte() {
 
     return 1;
 
-}*/
+}
 
 /* Fonction chargerImage
  * Rôle : charge une image comme une texture
@@ -41,7 +41,7 @@ int initialisationCorrecte() {
  * et deux pointeurs sur la longueur et la hauteur de l'image
  * Valeur de retour : aucune, mais imgLargeur contient la largeur de l'image et imgHauteur sa hauteur
 */
-/*
+
 void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLargeur, int *imgHauteur) {
     
     *img = IMG_LoadTexture(zoneAffichage, nomFichier);
@@ -53,14 +53,14 @@ void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichi
 	// Récupérer la taille de l'image
     SDL_QueryTexture(*img, NULL, NULL, imgLargeur, imgHauteur);
 
-}*/
+}
 
 /* Fonction creerFenetre
  * Rôle : créer une fenêtre centrée sur l'écran
  * Paramètres : un pointeur sur un pointeur de la fenêtre, le nom de la fenêtre, sa longueur et sa hauteur
  * Valeur de retour : aucune
 */
-/*
+
 void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fenHauteur) {
 
         *fenetre = SDL_CreateWindow(nomFenetre, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, fenLargeur, fenHauteur, 0);
@@ -68,14 +68,14 @@ void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fe
         if (!*fenetre) {
             printf("Erreur lors de la création de la fenêtre : %s \n", SDL_GetError());
         }
-}*/
+}
 
 /* Fonction initialiserPolice
  * Rôle : charge une police
  * Paramètres : un pointeur sur un pointeur de la police, le nom du fichier contenant la police et la taille de la police
  * Valeur de retour : aucune
 */
-/*
+
 void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice) {
     
     *police = TTF_OpenFont(nomFichier, taillePolice);
@@ -84,4 +84,4 @@ void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice) {
         printf("Erreur lors du chargement de la police : %s \n", TTF_GetError());
     }
 
-}*/
+}

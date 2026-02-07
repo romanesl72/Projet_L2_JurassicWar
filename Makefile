@@ -27,3 +27,6 @@ $(EXEC_TEST): $(OBJ_TEST)
 
 clean:
 	@del /f /q src\*.o test\*.o bin\*.exe 2>nul
+
+
+#J'ai fait un makefile avec mes fichiers donc il n'est pas completement fini

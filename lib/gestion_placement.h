@@ -13,8 +13,6 @@
  * @brief Définit une zone contenant plusieurs points de spawn.
  */
 
-
-
 typedef struct {
     t_coordonnee points[10];
     int nb_points;

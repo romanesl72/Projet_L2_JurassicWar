@@ -7,8 +7,8 @@
 #define _FONCTIONSVERIFICATION_H_
 
 #include <SDL2/SDL.h>
-//#include <SDL2/SDL_image.h>
-//#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 /**
  * @brief Initialise les modules SDL2, IMG et TTF.
@@ -43,6 +43,6 @@ void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fe
  * @param nomFichier Chemin vers le fichier de police.
  * @param taillePolice Taille de la police.
  */
-//void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice);
+void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice);
 
 #endif
