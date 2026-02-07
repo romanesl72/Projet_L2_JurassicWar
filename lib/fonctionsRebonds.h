@@ -1,5 +1,10 @@
-#ifndef _FONCTIONSVERIFICATION_H_
-#define _FONCTIONSVERFICATION_H_
+/**
+ * @file fonctionsRebonds.h
+ * @brief Fonctions de dessin pour les rebonds de la bombe.
+ */
+
+#ifndef _FONCTIONSREBONDS_H_
+#define _FONCTIONSREBONDS_H_
 
 #include <SDL2/SDL.h>
 

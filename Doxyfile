@@ -1,0 +1,9 @@
+PROJECT_NAME           = "Jurassic Wars"
+OUTPUT_DIRECTORY       = doc
+INPUT                  = src lib
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
