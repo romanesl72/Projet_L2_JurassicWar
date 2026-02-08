@@ -6,9 +6,7 @@
  * Valeur de retour : aucune
 */
 
-// Remarque : utiliser type coordonnées
-
-void tracerBombe(SDL_Renderer *zoneAffichage, int coorX, int coorY, int rayon){
+void tracerBombe(SDL_Renderer *zoneAffichage, t_coordonnee * coor, int rayon){
     int largeur;
     int hauteur;
 
@@ -19,8 +17,34 @@ void tracerBombe(SDL_Renderer *zoneAffichage, int coorX, int coorY, int rayon){
         for(hauteur = -rayon; hauteur <= rayon; hauteur++){
 
             if (largeur*largeur + hauteur*hauteur <= rayon*rayon) {
-                SDL_RenderDrawPoint(zoneAffichage, coorX + largeur, coorY + hauteur);
+                SDL_RenderDrawPoint(zoneAffichage, coor->x + largeur, coor->y + hauteur);
             }
         }
     }
 }
+
+int rebondFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_coordonnee *coor, int rayon){
+    return ((coor->x + rayon > largeurFenetre) || (coor->x - rayon < 0) || (coor->y + rayon > hauteurFenetre) || (coor->y - rayon < 0));
+}
+
+/*
+void rebondirFrontiere(int largeurFenetre, int hauteurFenetre, t_coordonnee *coor, int rayon, float *vitesseX, float *vitesseY){
+    if (coor->x + rayon > largeurFenetre) {
+        coor->x = largeurFenetre - rayon;
+        *vitesseX = -*vitesseX;
+    }
+    if (coor->x - rayon < 0) {
+        coor->x = rayon;
+        *vitesseX = -*vitesseX;
+    }
+    if (coor->y + rayon > hauteurFenetre) {
+        coor->y = hauteurFenetre - rayon;
+        *vitesseY = -*vitesseY;
+    }
+    if (coor->y - rayon < 0) {
+        coor->y = rayon;
+        *vitesseY = -*vitesseY;
+    }
+
+}
+*/

@@ -11,37 +11,46 @@
 #include <SDL2/SDL_ttf.h>
 
 /**
- * @brief Initialise les modules SDL2, IMG et TTF.
- * @return 1 si succès, 0 si erreur.
+ * @file fonctionsVerification.h
+ * @brief Définition de fonctions pour initialiser différents objets SDL
  */
+ 
+ /** 
+ * @fn int initialisationCorrecte();
+ * @brief la fonction initialise SDL2, SDL2_image et SDL_ttf
+ * @return 1 si tout s'est bien passé et 0 sinon
+ */
+
 int initialisationCorrecte();
 
 /**
- * @brief Charge une image en texture SDL.
- * @param zoneAffichage Le renderer où la texture sera utilisée.
- * @param img Pointeur sur le pointeur de texture à charger.
- * @param nomFichier Chemin vers le fichier image.
- * @param imgLongueur Pointeur pour stocker la largeur de l'image chargée.
- * @param imgHauteur Pointeur pour stocker la hauteur de l'image chargée.
+ * @fn void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
+ * @brief La fonction charge une image comme texture SDL
+ * @param zoneAffichage pointeur sur la zone d'affichage
+ * @param img pointeur sur un pointeur de la texture image à charger
+ * @param nomFichier nom du fichier contenant l'image
+ * @param imgLongueur pointeur recevant la largeur de l'image
+ * @param imgHauteur pointeur recevant la hauteur de l'image
  */
 void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
 
 
 /**
- * @brief Crée une fenêtre SDL centrée.
- * @param fenetre Pointeur sur le pointeur de fenêtre à créer.
- * @param nomFenetre Titre de la fenêtre.
- * @param fenLargeur Largeur en pixels.
- * @param fenHauteur Hauteur en pixels.
+ * @fn void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fenHauteur);
+ * @brief La fonction crée une fenêtre centrée sur l'écran
+ * @param fenetre pointeur sur un pointeur de la fenêtre
+ * @param nomFenetre titre de la fenêtre
+ * @param fenLargeur largeur de la fenêtre
+ * @param fenHauteur hauteur de la fenêtre
  */
 void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fenHauteur);
 
-
 /**
- * @brief Initialise une police TTF.
- * @param police Pointeur sur le pointeur de police à initialiser.
- * @param nomFichier Chemin vers le fichier de police.
- * @param taillePolice Taille de la police.
+ * @fn void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice);
+ * @brief La fonction charge une police
+ * @param police pointeur sur le pointeur de police à initialiser
+ * @param nomFichier nom du fichier contenant la police
+ * @param taillePolice taille de la police
  */
 void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice);
 
