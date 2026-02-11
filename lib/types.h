@@ -41,4 +41,9 @@ typedef struct {
 	float v;
 } t_vect;
 
+typedef struct {
+    t_coordonnee coor;
+    int rayon;
+} t_bombe;
+
 #endif
