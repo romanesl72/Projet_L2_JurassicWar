@@ -3,6 +3,13 @@
 #include "../lib/fonctionsRebonds.h"
 #include <stdio.h>
 
+/** 
+ * @file testFonctionsRebonds.c
+ * @brief test des fonctions crées dans le fichier fonctionsRebonds.c
+ * @author Hannah Sergent
+ * @date Crée le 5/02/2026
+ */
+
 #define LARGEUR_FEN_JEU 1050
 #define HAUTEUR_FEN_JEU 650
 
@@ -11,29 +18,32 @@
 
 #define RAYON 20
 
-#define COOR_X LARGEUR_FEN_JEU/2
+#define COOR_X LARGEUR_FEN_JEU/4
 #define COOR_Y HAUTEUR_FEN_JEU/2
 
-// Transformer en fonctions
+#define VITESSE_X 200
+#define VITESSE_Y -200
+
+// Transformer vitesseX et vitesseY en vecteur
 
 int main(int argc, char * argv[]){
 
     if (initialisationCorrecte()) {
 
         Uint32 tempsPrecedent;
-        Uint32 tempsCourant;
         float tempsEcoule;
         const Uint8 *etatClavier;
 
+        t_bombe bombe;
+
         const float vitesse = 1.0f/60.0f;
         float accumulateur;
-        float vitesseX = 500;
-        float vitesseY = -400;
-        float gravite = 800;
+        float vitesseX;
+        float vitesseY;
+        float gravite = 300;
 
-        t_coordonnee coor;
-        coor.x = COOR_X;
-        coor.y = COOR_Y;
+        initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
+        initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
 
         int enCours = 1;
         int bombeLancee = 0;
@@ -44,7 +54,7 @@ int main(int argc, char * argv[]){
 
         SDL_Renderer* zoneAffichage = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
         SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
-        tracerBombe(zoneAffichage, &coor, RAYON);
+        tracerBombe(zoneAffichage, &bombe);
         SDL_RenderPresent(zoneAffichage);
 
         tempsPrecedent = SDL_GetTicks();
@@ -61,28 +71,30 @@ int main(int argc, char * argv[]){
 
             if (etatClavier[SDL_SCANCODE_B]){
                 bombeLancee = 1;
+                choixHauteurLancer(zoneAffichage, &etatClavier, &bombe, &vitesseX, &vitesseY, gravite);
             }
-
-            tempsCourant = SDL_GetTicks();
-            tempsEcoule = (tempsCourant - tempsPrecedent)/1000.0f;
-            tempsPrecedent = tempsCourant;
-
+            
+            miseAjourTemps(&tempsPrecedent, &tempsEcoule);
             accumulateur += tempsEcoule;
 
             while (accumulateur >= vitesse) {
                 if (bombeLancee) {
 
                     vitesseY += gravite*vitesse;
-                    coor.x += vitesse*vitesseX;
-                    coor.y += vitesse*vitesseY;
+                    bombe.coor.x += vitesse*vitesseX;
+                    bombe.coor.y += vitesse*vitesseY;
 
-                    if (rebondFrontiereBombe(LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU, &coor, RAYON) ) {
+                    if (rebondFrontiereBombe(LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU, &bombe)) {
                         bombeLancee = 0;
+                        /* 
+                        initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
+                        initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
+                        */
                     }
 
                     SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
                     SDL_RenderClear(zoneAffichage);
-                    tracerBombe(zoneAffichage, &coor, RAYON);
+                    tracerBombe(zoneAffichage, &bombe);
                     SDL_RenderPresent(zoneAffichage);
                 }
                 accumulateur -= vitesse;

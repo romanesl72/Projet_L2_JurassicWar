@@ -2,6 +2,13 @@
 
 #include "../lib/fonctionsVerification.h"
 
+/**
+ * @file fonctionsVerification.c
+ * @brief Corps des fonctions pour initialiser différents objets SDL
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
+ */
+
 /* Fonction initialisationCorrecte
  * Rôle : initialiser SDL2, SDL2_image et SDL_ttf
  * Paramètres : aucun

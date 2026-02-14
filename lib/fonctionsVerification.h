@@ -1,8 +1,3 @@
-/**
- * @file fonctionsVerification.h
- * @brief Fonctions d'initialisation de la bibliothèque SDL2.
- */
-
 #ifndef _FONCTIONSVERIFICATION_H_
 #define _FONCTIONSVERIFICATION_H_
 
@@ -13,11 +8,15 @@
 /**
  * @file fonctionsVerification.h
  * @brief Définition de fonctions pour initialiser différents objets SDL
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
  */
  
  /** 
  * @fn int initialisationCorrecte();
  * @brief la fonction initialise SDL2, SDL2_image et SDL_ttf
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
  * @return 1 si tout s'est bien passé et 0 sinon
  */
 
@@ -26,6 +25,8 @@ int initialisationCorrecte();
 /**
  * @fn void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
  * @brief La fonction charge une image comme texture SDL
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param img pointeur sur un pointeur de la texture image à charger
  * @param nomFichier nom du fichier contenant l'image
@@ -38,6 +39,8 @@ void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichi
 /**
  * @fn void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fenHauteur);
  * @brief La fonction crée une fenêtre centrée sur l'écran
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
  * @param fenetre pointeur sur un pointeur de la fenêtre
  * @param nomFenetre titre de la fenêtre
  * @param fenLargeur largeur de la fenêtre
@@ -48,6 +51,8 @@ void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fe
 /**
  * @fn void initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice);
  * @brief La fonction charge une police
+ * @author Hannah Sergent
+ * @date Crée le 27/01/2026
  * @param police pointeur sur le pointeur de police à initialiser
  * @param nomFichier nom du fichier contenant la police
  * @param taillePolice taille de la police
