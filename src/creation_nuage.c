@@ -96,7 +96,7 @@ int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
 
 int main() {
     // code à modifier si le nombre d'image est différent de 2
-    //pour compiler: gcc -Wall mat_to_fonction.c -Ilib -o nuage -lSDL2 -lm
+    //pour compiler dans bin: gcc -Wall ../src/creation_nuage.c -Ilib -o nuage -lSDL2 -lm
     int n1,n2;
     char img1[25];
     char img2[25];

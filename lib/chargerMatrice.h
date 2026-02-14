@@ -7,6 +7,8 @@
 #define _CHARGER_MATRICE_H_
 
 
+
+
 /**
  * @brief Charge une matrice depuis un fichier.
  * @param nomFichier Le nom du fichier à lire.
