@@ -3,7 +3,7 @@
  * @brief Placement des dinosaures sur la matrice.
  */
 
-#include "../lib/gestion_placement.h"
+#include "../lib/placer_dinos.h"
 #include <stdlib.h>
 
 /**
@@ -12,47 +12,35 @@
  * @param zones Structure contenant les coordonnées des zones possibles.
  * @param matrice La matrice à mettre à jour avec l'ID du dino.
  */
-void placer_dino(t_dino *dino, t_zone_depart zone, int matrice[MAT_H][MAT_L]) {
-    int i,j;
-    
-    // Sécurité : vérifier si la zone a des points
-    if (zone.nb_points <= 0){
-        return;
-    }
 
-    int r = rand() % zone.nb_points;
-    
-    dino->pos.x = zone.points[r].x;
-    dino->pos.y = zone.points[r].y;
 
-    int val_dino = dino->d + 3; 
-    
-    for(i = 0; i < dino->hauteur; i++) {
-        for(j = 0; j < dino->largeur; j++) {
-            // Vérification des limites de la matrice
-            int py = dino->pos.y + i;
-            int px = dino->pos.x + j;
-            
+void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]) {
+    int i,j,px,py;
+    // On calcule l'ID réel pour la matrice (3, 4, 5...)
+    // Si dino->d vaut DINO1 (0), alors l'ID est 3.
+    int id_final = dino->d + 3; 
+
+    dino->pos.x = p_sol.x;
+    dino->pos.y = p_sol.y - 19; // On remonte pour que les pieds soient au sol
+
+    for(i = 0; i < 20; i++) {
+        for(j = 0; j < 20; j++) {
+            py = dino->pos.y + i;
+            px = dino->pos.x + j;
             if (py >= 0 && py < MAT_H && px >= 0 && px < MAT_L) {
-                matrice[py][px] = val_dino;
+                matrice[py][px] = id_final;
             }
         }
     }
 }
 
-void placer_equipe(t_joueur *joueur, t_zone_depart catalogue[5], int matrice[MAT_H][MAT_L]) {
-    int indices_utilises[5] = {0}; // Pour éviter de placer deux dinos dans la même zone
-    int dinos_places = 0;
-
-    while (dinos_places < joueur->n) { // joueur->n vaut 3 selon ton projet
-        int r = rand() % 5; // On choisit une zone parmi les 5 du catalogue
+void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[5], int matrice[MAT_H][MAT_L], int id_depart) {
+    int i;
+    for(i = 0; i < joueur->n; i++) {
+        // On attribue un type de dino différent pour tester les IDs (0, 1, 2...)
+        joueur->tab[i].d = (t_numDino)(id_depart + i); 
         
-        if (indices_utilises[r] == 0) {
-            // On appelle ta fonction initiale
-            placer_dino(&(joueur->tab[dinos_places]), catalogue[r], matrice);
-            
-            indices_utilises[r] = 1;
-            dinos_places++;
-        }
+        // On place le dino sur l'un des 5 points du catalogue
+        remplir_matrice_dino(&(joueur->tab[i]), points_spawn[i].bas_gauche, matrice);
     }
 }

@@ -7,6 +7,7 @@
 #define _CHARGER_MATRICE_H_
 
 
+#include "types.h"
 
 
 /**
@@ -15,7 +16,7 @@
  * @param matrice La matrice à remplir avec les données du fichier.
  * @return int Retourne 1 si le chargement a réussi, 0 sinon.
  */
-int chargerMatriceDepuisFichier(const char* nomFichier, int matrice[800][1500]);
+void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_L]);
 
 
 

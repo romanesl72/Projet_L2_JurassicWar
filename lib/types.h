@@ -2,8 +2,8 @@
 #define _TYPES_H_
 
 
-#define MAT_H 800  
-#define MAT_L 1500
+#define MAT_H 700  
+#define MAT_L 1300
 #define VIDE 0
 
 
@@ -23,7 +23,7 @@ typedef struct {
 } t_coordonnee;
 
 typedef struct {
-    t_numDino d;
+    t_numDino d; //Numéro de 0 à 5
     int etat;
     int pv;
     t_coordonnee pos;
@@ -34,6 +34,17 @@ typedef struct {
 	t_dino * tab;
 	int n; // taille du tableau
 } t_joueur;
+
+
+typedef struct {
+    t_coordonnee bas_gauche; // Le point de contact avec le sol (issu du nuage de Solène)
+    int id_equipe;           // 1 ou 2
+} t_zone_depart;
+
+typedef struct {
+    t_zone_depart zones_E1[5]; // 5 zones pour équipe 1
+    t_zone_depart zones_E2[5]; // 5 zones pour équipe 2
+} t_catalogue_zones;
 
 
 typedef struct {

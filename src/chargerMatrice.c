@@ -5,10 +5,11 @@
  * @brief Lit le fichier texte pour remplir la matrice en mémoire.
  */
 
+ #include "../lib/chargerMatrice.h"
 
 // Aux dimensions de ton fichier .txt
 
-void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[800][1500]) {
+void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_L]) {
     int i, j;
     
     FILE* file = fopen(nomFichier, "r");
@@ -16,8 +17,8 @@ void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[800][1500])
         perror("Erreur ouverture matrice.txt");
         return;
     }
-    for (i = 0; i < 800; i++) {
-        for (j = 0; j < 1500; j++) {
+    for (i = 0; i < MAT_H; i++) {
+        for (j = 0; j < MAT_L; j++) {
             if (fscanf(file, "%d", &matrice[i][j]) != 1) break;
         }
     }
