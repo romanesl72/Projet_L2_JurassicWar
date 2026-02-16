@@ -20,6 +20,8 @@ int main(int argc, char * argv[]){
     int matrice[MAT_H][MAT_L];
     int nb_pts;
     int w, h;
+    int trouvés_E1 = 0;
+    int trouvés_E2 = 0;
 
 
     t_coordonnee *nuage;
@@ -45,13 +47,15 @@ int main(int argc, char * argv[]){
         chargerMatriceDepuisFichier("res/matrice.txt", matrice);
         printf("Chargement du nuage de points...\n");
         /* Récupérer les zones via le nuage de points */
-        nuage = nuage_de_points(&nb_pts, "img/test2_c.jpg");
-        if (nuage == NULL || nb_pts == 0) {
-            printf("Erreur fatale : Le nuage de points est vide. Verifiez le chemin de l'image.\n");
-            return 1; // On arrête le programme proprement avant le crash
-        }
-        printf("Points trouves : %d\n", nb_pts);
+        nuage = nuage_de_points(&nb_pts, "img/test1_a.jpg");
+        generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
+        free(nuage);
 
+        nuage = nuage_de_points(&nb_pts, "img/test1_b.jpg");
+        generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
+        free(nuage);
+
+        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
 
         printf("Chargement de la texture map...\n");
         SDL_Texture *texMap;
@@ -61,8 +65,6 @@ int main(int argc, char * argv[]){
         } else {
             printf("Texture map chargee avec succes !\n");
         }
-
-        generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue);
 
         /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
         equipe1.n = 3;
@@ -117,7 +119,6 @@ int main(int argc, char * argv[]){
         }
 
         /* --- NETTOYAGE --- */
-        free(nuage);
         free(equipe1.tab);
         free(equipe2.tab);
         for(i=0; i<6; i++) SDL_DestroyTexture(texDinos[i]);
