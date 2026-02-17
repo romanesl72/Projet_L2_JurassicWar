@@ -24,10 +24,10 @@ typedef struct {
 
 typedef struct {
     t_numDino d; //Numéro de 0 à 5
-    int etat;
-    int pv;
     t_coordonnee pos;
     int largeur, hauteur;
+    int etat;
+    int pv;
 } t_dino;
 
 typedef struct {
@@ -37,13 +37,13 @@ typedef struct {
 
 
 typedef struct {
-    t_coordonnee bas_gauche; // Le point de contact avec le sol (issu du nuage de Solène)
+    t_coordonnee bas_centre; // Le point de contact avec le sol (issu du nuage de Solène)
     int id_equipe;           // 1 ou 2
 } t_zone_depart;
 
 typedef struct {
-    t_zone_depart zones_E1[5]; // 5 zones pour équipe 1
-    t_zone_depart zones_E2[5]; // 5 zones pour équipe 2
+    t_zone_depart zones_E1[10]; // 10 zones pour équipe 1
+    t_zone_depart zones_E2[10]; // 10 zones pour équipe 2
 } t_catalogue_zones;
 
 

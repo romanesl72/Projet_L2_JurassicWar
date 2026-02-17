@@ -20,7 +20,7 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
     // Si dino->d vaut DINO1 (0), alors l'ID est 3.
     int id_final = dino->d + 3; 
 
-    dino->pos.x = p_sol.x;
+    dino->pos.x = p_sol.x - 9;
     dino->pos.y = p_sol.y - 19; // On remonte pour que les pieds soient au sol
 
     for(i = 0; i < 20; i++) {
@@ -34,13 +34,13 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
     }
 }
 
-void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[5], int matrice[MAT_H][MAT_L], int id_depart) {
+void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart) {
     int i;
     for(i = 0; i < joueur->n; i++) {
         // On attribue un type de dino différent pour tester les IDs (0, 1, 2...)
         joueur->tab[i].d = (t_numDino)(id_depart + i); 
         
         // On place le dino sur l'un des 5 points du catalogue
-        remplir_matrice_dino(&(joueur->tab[i]), points_spawn[i].bas_gauche, matrice);
+        remplir_matrice_dino(&(joueur->tab[i]), points_spawn[i].bas_centre, matrice);
     }
 }

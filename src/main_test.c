@@ -46,12 +46,13 @@ int main(int argc, char * argv[]){
         /* Charger la matrice du décor */
         chargerMatriceDepuisFichier("res/matrice.txt", matrice);
         printf("Chargement du nuage de points...\n");
+
         /* Récupérer les zones via le nuage de points */
-        nuage = nuage_de_points(&nb_pts, "img/test1_a.jpg");
+        nuage = nuage_de_points(&nb_pts, "img/test1_c.jpg");
         generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
         free(nuage);
 
-        nuage = nuage_de_points(&nb_pts, "img/test1_b.jpg");
+        nuage = nuage_de_points(&nb_pts, "img/test2_c.jpg");
         generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
         free(nuage);
 
@@ -121,7 +122,10 @@ int main(int argc, char * argv[]){
         /* --- NETTOYAGE --- */
         free(equipe1.tab);
         free(equipe2.tab);
-        for(i=0; i<6; i++) SDL_DestroyTexture(texDinos[i]);
+        for(i=0; i<6; i++) {
+            SDL_DestroyTexture(texDinos[i]);
+        }
+        SDL_DestroyTexture(texMap);
         
         SDL_DestroyRenderer(rendu);
         SDL_DestroyWindow(menuPrincipal);

@@ -19,7 +19,7 @@ void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_
     }
     for (i = 0; i < MAT_H; i++) {
         for (j = 0; j < MAT_L; j++) {
-            if (fscanf(file, "%d", &matrice[i][j]) != 1) break;
+            fscanf(file, "%d", &matrice[i][j]);
         }
     }
     fclose(file);

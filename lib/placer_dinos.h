@@ -12,6 +12,6 @@
 void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]);
 
 // Place TOUS les dinos d'une équipe
-void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[5], int matrice[MAT_H][MAT_L], int id_depart);
+void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart);
 
 #endif
