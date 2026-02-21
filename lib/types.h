@@ -25,6 +25,8 @@ typedef struct {
 typedef struct {
     t_numDino d; //Numéro de 0 à 5
     t_coordonnee pos;
+    int indice_nuage;
+    int id_nuage;
     int largeur, hauteur;
     int etat;
     int pv;
@@ -39,6 +41,8 @@ typedef struct {
 typedef struct {
     t_coordonnee bas_centre; // Le point de contact avec le sol (issu du nuage de Solène)
     int id_equipe;           // 1 ou 2
+    int indice_nuage;   // Retrouver le point dans le tableau
+    int id_nuage;    // Savoir quel fichier JPG a généré ce point
 } t_zone_depart;
 
 typedef struct {
@@ -56,5 +60,12 @@ typedef struct {
     t_coordonnee coor;
     int rayon;
 } t_bombe;
+
+
+/*Pour utiliser les nuages de points :
+Soit faire un tableau soit une structure, voici le tableau
+t_coordonnee *tous_les_nuages[3];
+tous_les_nuages[1] = nuage_de_points(..., "img/test1_c.jpg");
+tous_les_nuages[2] = nuage_de_points(..., "img/test2_c.jpg");*/
 
 #endif

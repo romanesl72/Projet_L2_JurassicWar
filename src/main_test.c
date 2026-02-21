@@ -23,8 +23,7 @@ int main(int argc, char * argv[]){
     int trouvés_E1 = 0;
     int trouvés_E2 = 0;
 
-
-    t_coordonnee *nuage;
+    t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
     t_joueur equipe1, equipe2;
 
@@ -48,13 +47,11 @@ int main(int argc, char * argv[]){
         printf("Chargement du nuage de points...\n");
 
         /* Récupérer les zones via le nuage de points */
-        nuage = nuage_de_points(&nb_pts, "img/test1_c.jpg");
-        generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
-        free(nuage);
+        nuages_stockes[1] = nuage_de_points(&nb_pts, "img/test1_c.jpg");
+        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
 
-        nuage = nuage_de_points(&nb_pts, "img/test2_c.jpg");
-        generer_catalogue_depuis_nuage(nuage, nb_pts, &catalogue, &trouvés_E1, &trouvés_E2);
-        free(nuage);
+        nuages_stockes[2] = nuage_de_points(&nb_pts, "img/test2_c.jpg");
+        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
 
         printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
 
@@ -107,12 +104,12 @@ int main(int argc, char * argv[]){
             /* --- AFFICHAGE DES DINOS --- */
             /* Équipe 1 */
             for(i = 0; i < equipe1.n; i++) {
-                SDL_Rect r = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y, 20, 20};
+                SDL_Rect r = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y, 30, 30};
                 SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d], NULL, &r);
             }
             /* Équipe 2 */
             for(i = 0; i < equipe2.n; i++) {
-                SDL_Rect r = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y, 20, 20};
+                SDL_Rect r = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y, 30, 30};
                 SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d], NULL, &r);
             }
 
@@ -124,6 +121,9 @@ int main(int argc, char * argv[]){
         free(equipe2.tab);
         for(i=0; i<6; i++) {
             SDL_DestroyTexture(texDinos[i]);
+        }
+        for(i=1; i<3; i++) {
+            free(nuages_stockes[i]);
         }
         SDL_DestroyTexture(texMap);
         

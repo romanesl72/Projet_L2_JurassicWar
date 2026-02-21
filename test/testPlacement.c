@@ -9,15 +9,25 @@ extern int matrice_test[MAT_H][MAT_L];
 
 void test_placement_multi_zones() {
     printf("\n--- Test Placement Multi-Zones ---\n");
-    t_dino d = {DINO1, 1, 100, {0,0}, 2, 2};
-    t_zone_depart mes_zones[2] = {
-        {{{10, 10}, {15, 10}}, 2, "Zone Depart Gauche"},
-        {{{500, 10}, {510, 10}}, 2, "Zone Depart Droite"}
-    };
+    t_dino d; 
+    d.d = DINO1;
+    
+    t_zone_depart mes_zones[2];
+    
+    // Zone 1
+    mes_zones[0].bas_centre.x = 100;
+    mes_zones[0].bas_centre.y = 500;
+    mes_zones[0].id_equipe = 1;
+
+    // Zone 2
+    mes_zones[1].bas_centre.x = 1000;
+    mes_zones[1].bas_centre.y = 450;
+    mes_zones[1].id_equipe = 2;
 
     int z = rand() % 2;
-    placer_dino(&d, mes_zones[z], matrice_test);
+    remplir_matrice_dino(&d, mes_zones[z].bas_centre, 0, 0, matrice_test);
 
-    printf("Dino place dans '%s' aux coordonnees x=%d, y=%d\n", 
-            mes_zones[z].nom_zone, d.pos.x, d.pos.y);
+    printf("Dino place sur le point (%d, %d). Sa tete est en y=%d\n", 
+            mes_zones[z].bas_centre.x, mes_zones[z].bas_centre.y, d.pos.y);
+        
 }

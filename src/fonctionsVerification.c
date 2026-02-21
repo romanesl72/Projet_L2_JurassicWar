@@ -62,6 +62,29 @@ void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichi
 
 }
 
+/*void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLargeur, int *imgHauteur) {
+    
+    SDL_Surface *surfaceTemp = IMG_Load(nomFichier);
+
+    if (!surfaceTemp) {
+        printf("Erreur lors du chargement de la surface : %s \n", IMG_GetError());
+        return;
+    }
+    
+    Uint32 cleCouleur = SDL_MapRGB(surfaceTemp->format, 255, 255, 255);
+    SDL_SetColorKey(surfaceTemp, SDL_TRUE, cleCouleur);
+
+    *img = SDL_CreateTextureFromSurface(zoneAffichage, surfaceTemp);
+
+    if (!*img) {
+        printf("Erreur lors de la création de la texture : %s \n", SDL_GetError());
+    } else {
+        SDL_QueryTexture(*img, NULL, NULL, imgLargeur, imgHauteur);
+    }
+
+    SDL_FreeSurface(surfaceTemp);
+}*/
+
 /* Fonction creerFenetre
  * Rôle : créer une fenêtre centrée sur l'écran
  * Paramètres : un pointeur sur un pointeur de la fenêtre, le nom de la fenêtre, sa longueur et sa hauteur
