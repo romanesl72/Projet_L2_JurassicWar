@@ -25,15 +25,16 @@
 var NAVTREE =
 [
   [ "JurassicWar", "index.html", [
+    [ "Projet_L2_JurassicWar", "index.html", null ],
     [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ]
+      [ "Liste des classes", "annotated.html", "annotated_dup" ],
+      [ "Index des classes", "classes.html", null ]
     ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+    [ "Fichiers", "files.html", [
+      [ "Liste des fichiers", "files.html", "files_dup" ],
+      [ "Membres de fichier", "globals.html", [
+        [ "Tout", "globals.html", null ],
+        [ "Fonctions", "globals_func.html", null ]
       ] ]
     ] ]
   ] ]
@@ -44,6 +45,6 @@ var NAVTREEINDEX =
 "annotated.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
-var LISTOFALLMEMBERS = 'List of all members';
+var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';
+var SYNCOFFMSG = 'cliquez pour activer la synchronisation du panel';
+var LISTOFALLMEMBERS = 'Liste de tous les membres';

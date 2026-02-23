@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/gestion_placement.h</title>
+<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/placer_dinos.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('gestion__placement_8h_source.html','',''); });
+$(function(){initNavTree('placer__dinos_8h_source.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,32 +88,24 @@ $(function(){initNavTree('gestion__placement_8h_source.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">gestion_placement.h</div></div>
+  <div class="headertitle"><div class="title">placer_dinos.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="gestion__placement_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<a href="placer__dinos_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef _GESTION_PLACEMENT_H_</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define _GESTION_PLACEMENT_H_</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef _PLACER_DINOS_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define _PLACER_DINOS_H_</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structt__zone__depart.html">   16</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> points[10];</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">int</span> nb_points;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">char</span> nom_zone[30];</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>} <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a>;</div>
-</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// Ta fonction d&#39;origine reste inchangée</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">void</span> placer_dino(<a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> zone, <span class="keywordtype">int</span> matrice[MAT_H][MAT_L]);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Nouvelle fonction qui appelle placer_dino</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> placer_equipe(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *joueur, <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> catalogue[5], <span class="keywordtype">int</span> matrice[MAT_H][MAT_L]);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// Place UN dino précis</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a>(<a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p_sol, <span class="keywordtype">int</span> matrice[MAT_H][MAT_L]);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Place TOUS les dinos d&#39;une équipe</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keywordtype">void</span> placer_une_equipe(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *joueur, <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], <span class="keywordtype">int</span> matrice[MAT_H][MAT_L], <span class="keywordtype">int</span> id_depart);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aplacer__dinos_8h_html_a113c74cd5b5ccdadf7b8772bb086adb9"><div class="ttname"><a href="placer__dinos_8h.html#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a></div><div class="ttdeci">void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L])</div><div class="ttdoc">Place un dinosaure aléatoirement dans une zone de spawn valide.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:17</div></div>
 <div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdef"><b>Definition</b> types.h:23</div></div>
 <div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdef"><b>Definition</b> types.h:28</div></div>
 <div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdef"><b>Definition</b> types.h:38</div></div>
@@ -125,7 +117,7 @@ $(function(){initNavTree('gestion__placement_8h_source.html','',''); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="gestion__placement_8h.html">gestion_placement.h</a></li>
+    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="placer__dinos_8h.html">placer_dinos.h</a></li>
     <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

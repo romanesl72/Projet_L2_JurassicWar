@@ -30,8 +30,6 @@ HAUTEUR_FEN_JEU 650 */
 #define VITESSE_X 200
 #define VITESSE_Y -200
 
-// Transformer vitesseX et vitesseY en vecteur
-
 int main(int argc, char * argv[]){
 
     if (initialisationCorrecte()) {
@@ -40,8 +38,13 @@ int main(int argc, char * argv[]){
         float tempsEcoule;
         const Uint8 *etatClavier;
 
-        t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
+        t_case (*matriceTerrain)[LARGEUR_TERRAIN] = malloc(sizeof(t_case) * HAUTEUR_TERRAIN * LARGEUR_TERRAIN);
+
         chargerMatriceDepuisFichier("../res/matrice.txt", matriceTerrain);
+
+        if (!matriceTerrain){
+            printf("erreur d'allocation !\n");
+        }
 
         t_bombe bombe;
 
@@ -99,7 +102,7 @@ int main(int argc, char * argv[]){
             accumulateur += tempsEcoule;
 
             while (accumulateur >= vitesse) {
-                if (bombeLancee) {
+                if (bombeLancee == 1) {
 
                     vectVitesse.v += gravite*vitesse;
                     bombe.coor.x += vitesse*vectVitesse.u;
@@ -112,21 +115,25 @@ int main(int argc, char * argv[]){
                         initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
                         */
                     }
-
-                    if (rebondTerrainBombe(matriceTerrain, &bombe)) {
-                        bombeLancee = 0;
+                    if (collisionTerrainBombe(matriceTerrain, &bombe)) {
+                        bombeLancee = 2;
+                    }
+                    if (collisionEauBombe(matriceTerrain, &bombe)) {
+                        bombeLancee = 2;
                     }
 
-
-                    SDL_RenderClear(zoneAffichage);
-                    SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
-                    tracerBombe(zoneAffichage, &bombe);
-                    SDL_RenderPresent(zoneAffichage);
+                    if (bombeLancee) {
+                        SDL_RenderClear(zoneAffichage);
+                        SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
+                        tracerBombe(zoneAffichage, &bombe);
+                        SDL_RenderPresent(zoneAffichage);
+                    }
                 }
                 accumulateur -= vitesse;
             }
         }
 
+        free(matriceTerrain);
         SDL_DestroyTexture(texMap);
         SDL_DestroyRenderer(zoneAffichage);
 

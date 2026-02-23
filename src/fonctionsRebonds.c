@@ -51,8 +51,12 @@ void rebondirFrontiere(int largeurFenetre, int hauteurFenetre, t_coordonnee *coo
 }
 */
 
-int rebondTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
+int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
     return ((matriceTerrain[bombe->coor.y][bombe->coor.x + bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.y][bombe->coor.x - bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.y + bombe->rayon][bombe->coor.x] == TERRE) || (matriceTerrain[bombe->coor.y - bombe->rayon][bombe->coor.x] == TERRE));
+}
+
+int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
+    return ((matriceTerrain[bombe->coor.y][bombe->coor.x + bombe->rayon] == EAU) || (matriceTerrain[bombe->coor.y][bombe->coor.x - bombe->rayon] == EAU) || (matriceTerrain[bombe->coor.y + bombe->rayon][bombe->coor.x] == EAU) || (matriceTerrain[bombe->coor.y - bombe->rayon][bombe->coor.x] == EAU));
 }
 
 /* Fonction tracerBombe

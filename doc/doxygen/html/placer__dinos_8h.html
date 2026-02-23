@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/src/collision_decor.c</title>
+<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/placer_dinos.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('collision__decor_8c.html','',''); });
+$(function(){initNavTree('placer__dinos_8h.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,37 +88,41 @@ $(function(){initNavTree('collision__decor_8c.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Référence du fichier collision_decor.c</div></div>
+  <div class="headertitle"><div class="title">Référence du fichier placer_dinos.h</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Gestion des collisions sur la matrice.  
+<p>Fonctions de placement des dinosaures sur la matrice.  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="collision__decor_8h_source.html">../lib/collision_decor.h</a>&quot;</code><br />
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">types.h</a>&quot;</code><br />
+</div>
+<p><a href="placer__dinos_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a1a4b84fa380bd882be6e8a25bed68fbc" id="r_a1a4b84fa380bd882be6e8a25bed68fbc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1a4b84fa380bd882be6e8a25bed68fbc">collision_decor</a> (int tab_res[4], <a class="el" href="structt__dino.html">t_dino</a> dino, int matrice[MAT_H][MAT_L])</td></tr>
-<tr class="memdesc:a1a4b84fa380bd882be6e8a25bed68fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie les collisions autour du dinosaure. SUD : 1 (Terre), -1 (Eau). OUEST/EST/NORD : 1 (Terre).  <br /></td></tr>
+<tr class="memitem:a113c74cd5b5ccdadf7b8772bb086adb9" id="r_a113c74cd5b5ccdadf7b8772bb086adb9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> p_sol, int matrice[MAT_H][MAT_L])</td></tr>
+<tr class="memdesc:a113c74cd5b5ccdadf7b8772bb086adb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place un dinosaure aléatoirement dans une zone de spawn valide.  <br /></td></tr>
+<tr class="memitem:af8387d13967aa5e9c2ddc8d29679eb4b" id="r_af8387d13967aa5e9c2ddc8d29679eb4b"><td class="memItemLeft"><a id="af8387d13967aa5e9c2ddc8d29679eb4b" name="af8387d13967aa5e9c2ddc8d29679eb4b"></a>
+void&#160;</td><td class="memItemRight"><b>placer_une_equipe</b> (<a class="el" href="structt__joueur.html">t_joueur</a> *joueur, <a class="el" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
-<div class="textblock"><p>Gestion des collisions sur la matrice. </p>
+<div class="textblock"><p>Fonctions de placement des dinosaures sur la matrice. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
-<a id="a1a4b84fa380bd882be6e8a25bed68fbc" name="a1a4b84fa380bd882be6e8a25bed68fbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a4b84fa380bd882be6e8a25bed68fbc">&#9670;&#160;</a></span>collision_decor()</h2>
+<a id="a113c74cd5b5ccdadf7b8772bb086adb9" name="a113c74cd5b5ccdadf7b8772bb086adb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a113c74cd5b5ccdadf7b8772bb086adb9">&#9670;&#160;</a></span>remplir_matrice_dino()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int collision_decor </td>
+          <td class="memname">void remplir_matrice_dino </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>tab_res</em></span>[4], </td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a> *</td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a></td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a></td>          <td class="paramname"><span class="paramname"><em>p_sol</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -128,17 +132,15 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Vérifie les collisions autour du dinosaure. SUD : 1 (Terre), -1 (Eau). OUEST/EST/NORD : 1 (Terre). </p>
-<p>Vérifie les collisions autour du dinosaure.</p>
+<p>Place un dinosaure aléatoirement dans une zone de spawn valide. </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab_collision</td><td>Tableau de 4 entiers (0:SUD, 1:OUEST, 2:EST, 3:NORD). </td></tr>
-    <tr><td class="paramname">dino</td><td>Structure contenant les données du dinosaure (pos, taille). </td></tr>
-    <tr><td class="paramname">matrice</td><td>La matrice du terrain chargée en mémoire. </td></tr>
+    <tr><td class="paramname">dino</td><td>Pointeur vers le dino à placer. </td></tr>
+    <tr><td class="paramname">zones</td><td>Structure contenant les coordonnées des zones possibles. </td></tr>
+    <tr><td class="paramname">matrice</td><td>La matrice à mettre à jour avec l'ID du dino. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 1 si une collision avec la terre est détectée, 0 sinon. </dd></dl>
 
 </div>
 </div>
@@ -155,7 +157,7 @@ Fonctions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>src</b></li><li class="navelem"><a href="collision__decor_8c.html">collision_decor.c</a></li>
+    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="placer__dinos_8h.html">placer_dinos.h</a></li>
     <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

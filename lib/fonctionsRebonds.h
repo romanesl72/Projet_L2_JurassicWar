@@ -4,9 +4,6 @@
 #include <SDL2/SDL.h>
 #include "types.h"
 
-#define LARGEUR_TERRAIN 1300
-#define HAUTEUR_TERRAIN 700
-
 /** 
  * @file fonctionsRebonds.h
  * @brief Définition des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe
@@ -79,15 +76,26 @@ void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);
 int rebondFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe);
 
 /**
- * @fn int rebondTerrainBombe(t_case *matriceTerrain, t_bombe *bombe)
- * @brief la fonction vérifie si la bombe tape la terre
+ * @fn collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
+ * @brief la fonction vérifie si la bombe percute la terre
  * @author Hannah Sergent
  * @date Crée le 17/02/2026
  * @param matriceTerrain matrice contenant les informations sur le terrain
  * @param bombe pointeur sur une structure de type bombe 
  */
 
-int rebondTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
+int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
+
+/**
+ * @fn int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
+ * @brief la fonction vérifie si la bombe plonge
+ * @author Hannah Sergent
+ * @date Crée le 23/02/2026
+ * @param matriceTerrain matrice contenant les informations sur le terrain
+ * @param bombe pointeur sur une structure de type bombe 
+ */
+
+int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
 
 /** 
  * @fn void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe);

@@ -1,6 +1,9 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+/* Variables globales communes à la matrice et aux fenetres à utiliser*/
+#define LARGEUR_TERRAIN 1300
+#define HAUTEUR_TERRAIN 700
 
 #define MAT_H 700  
 #define MAT_L 1300
