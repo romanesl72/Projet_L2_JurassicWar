@@ -14,9 +14,9 @@ void initialiserBombe(t_bombe *bombe, int coorChoisieX, int coorChoisieY, int ra
     bombe->rayon = rayon;
 }
 
-void initialiserVitesse(float *vitesseX, float *vitesseY, float vitesseChoisieX, float vitesseChoisieY){
-    *vitesseX = vitesseChoisieX;
-    *vitesseY = vitesseChoisieY;
+void initialiserVitesse(t_vect *vectVitesse, float vitesseChoisieX, float vitesseChoisieY){
+    vectVitesse->u = vitesseChoisieX;
+    vectVitesse->v = vitesseChoisieY;
 }
 
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
@@ -51,6 +51,10 @@ void rebondirFrontiere(int largeurFenetre, int hauteurFenetre, t_coordonnee *coo
 }
 */
 
+int rebondTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
+    return ((matriceTerrain[bombe->coor.y][bombe->coor.x + bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.y][bombe->coor.x - bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.y + bombe->rayon][bombe->coor.x] == TERRE) || (matriceTerrain[bombe->coor.y - bombe->rayon][bombe->coor.x] == TERRE));
+}
+
 /* Fonction tracerBombe
  * Rôle : tracer un cercle dans une fenêtre représentant une bombe
  * Paramètres : un pointeur sur la zone d'affichage, les coordonnées où tracer la bombe et son rayon
@@ -74,17 +78,7 @@ void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
     }
 }
 
-/* La fonction trace un trait rouge indiquant la direction de la bombe */
-/*
-void tracerDirectionLancer(SDL_Renderer *zoneAffichage, t_coordonnee *coor, float vitesseX, float vitesseY){
-    int x2 = coor->x + vitesseX * 5;
-    int y2 = coor->y + vitesseY * 5;
-
-    SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
-    SDL_RenderDrawLine(zoneAffichage, coor->x, coor->y, x2, y2);
-} */
-
-void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee *coor, float vitesseX, float vitesseY, float gravite){
+void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee *coor, t_vect *vectVitesse, float gravite){
     float temps = 0;
     float dt = 0.02;
     int precedentX = coor->x;
@@ -96,8 +90,8 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee *coor, fl
 
     while(temps < 2.0){
 
-        courantX = coor->x + vitesseX * temps;
-        courantY = coor->y + vitesseY * temps + 0.5 * gravite * temps*temps;
+        courantX = coor->x + vectVitesse->u * temps;
+        courantY = coor->y + vectVitesse->v * temps + 0.5 * gravite * temps*temps;
         SDL_RenderDrawLine(zoneAffichage, precedentX, precedentY, courantX, courantY);
 
         precedentX = courantX;
@@ -106,7 +100,7 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee *coor, fl
     }
 }
 
-void choixHauteurLancer(SDL_Renderer* zoneAffichage, const Uint8 **etatClavier, t_bombe *bombe, float *vitesseX, float *vitesseY, float gravite){
+void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite){
     
     SDL_PumpEvents();
     *etatClavier = SDL_GetKeyboardState(NULL);
@@ -117,17 +111,17 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, const Uint8 **etatClavier, 
         *etatClavier = SDL_GetKeyboardState(NULL);
 
         if ((*etatClavier)[SDL_SCANCODE_UP]){
-            *vitesseY -= 0.3;
+            vectVitesse->v -= 0.3;
         }
         if ((*etatClavier)[SDL_SCANCODE_DOWN]){
-            *vitesseY += 0.3;
+            vectVitesse->v += 0.3;
         }
 
-        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
         SDL_RenderClear(zoneAffichage);
+        SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
 
         tracerBombe(zoneAffichage, bombe);
-        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), *vitesseX, *vitesseY, gravite);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
 
