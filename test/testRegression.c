@@ -24,7 +24,7 @@ int main() {
     nuage2=nuage_de_points(&n2,img2);
 
     tracerCourbe(nuage1,n1);//permet de vérifier que le nuage de points est correct
-
+    
     free(nuage1);
     nuage1=NULL;
     free(nuage2);

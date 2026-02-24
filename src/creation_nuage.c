@@ -2,6 +2,8 @@
 #include "../lib/stb_image.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
 #include "../lib/types.h"
 #include "../lib/regression.h"
 
@@ -59,7 +61,49 @@ t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]) {
     return nuage;
 }
 
+void moyenne(t_coordonnee *T, int n, float *x, float *y){
+    (*x)=0.0, (*y)=0.0;
+    int i;
+    for (i=0; i<n; i++){
+        *x+=T[i].x;
+        *y+=T[i].y;
+    }
+    (*x)/=n;
+    (*y)/=n;
+}
+
+void calculPente(t_coordonnee *T, int n, float *a, float x, float y){
+    *a=0;
+    int i;
+    int d=0;//dénominateur
+    for(i=0;i<n;i++){
+        (*a)+=(T[i].x-x)*(T[i].y-y);
+        d+=pow(T[i].x-x,2);
+    }
+    (*a)/=d;
+}
+
+void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point){
+    t_coordonnee tab[10];
+    int i,n=10;
+    float m_x,m_y;
+    int depart=indice-5;
+
+    if(depart<0)depart=0;
+    if((depart+n)>nb_point)depart=nb_point-n;
+    
+    for ( i=0; i<n ; i++){
+        tab[i] = nuage[depart + i];
+    }
+
+    moyenne(tab,n,&m_x,&m_y);
+    calculPente(tab, n, a, m_x, m_y);
+    *b=m_y-((*a)*m_x);
+}
+
 int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
+     float a,b;
+     int i=0,j=0;
     // permet de visualiser graphiquement le nuage de point
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -85,12 +129,25 @@ int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
 
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         // Dessiner la courbe
-        for (int i = 0; i < nbPoints - 1; i++) {
+        for (i = 0; i < nbPoints - 1; i++) {
             SDL_RenderDrawPoint(renderer, nuage[i].x, nuage[i].y);
         }
+
+
+        regression(nuage[j], nuage, &a, &b, j, nbPoints);
+        ++j;
+        // Calcul des extrémités
+        int x_debut = nuage[0].x;
+        int y_debut = (int)(a * x_debut + b);
+        
+        int x_fin = nuage[nbPoints - 1].x;
+        int y_fin = (int)(a * x_fin + b);
+
+        // Dessiner la droite
+        SDL_RenderDrawLine(renderer, x_debut, y_debut, x_fin, y_fin);       
         // Afficher le résultat
         SDL_RenderPresent(renderer);
-
+        
     }
     return 0;
 }
