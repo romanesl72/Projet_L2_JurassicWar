@@ -29,6 +29,7 @@ typedef struct {
     t_numDino d; //Numéro de 0 à 5
     t_coordonnee pos;
     int indice_nuage;
+    float indice_reel; //pour le déplacement
     int id_nuage;
     int largeur, hauteur;
     int etat;
