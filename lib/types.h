@@ -34,6 +34,7 @@ typedef struct {
     int largeur, hauteur;
     int etat;
     int pv;
+    int memoire[30][30];
 } t_dino;
 
 typedef struct {
@@ -64,6 +65,7 @@ typedef struct {
     t_coordonnee coor;
     int rayon;
 } t_bombe;
+
 
 
 /*Pour utiliser les nuages de points :
