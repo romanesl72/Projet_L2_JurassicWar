@@ -5,12 +5,10 @@
 
 #include "../lib/deplacement.h"
 
-
 #define VITESSE_BASE 0.15
 
 
-
-void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts) {
+void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L]) {
     float a, b, angle;
     
     // Calculer la pente locale via la régression
@@ -39,10 +37,11 @@ void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts) {
 
     // Mise à jour des coordonnées
     dino->indice_nuage = (int)dino->indice_reel;
-    dino->pos = nuage[dino->indice_nuage];
+    dino->pos=nuage[dino->indice_nuage];
+    remplir_matrice_dino(dino, dino->pos, matrice);
 }
 
-void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts) {
+void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L]) {
     float a, b, angle;
     
     // Calculer la pente locale
@@ -70,5 +69,6 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts) {
     // Mise à jour des coordonnées
     dino->indice_nuage = (int)dino->indice_reel;
     dino->pos = nuage[dino->indice_nuage];
+    remplir_matrice_dino(dino, dino->pos, matrice);
 }
 

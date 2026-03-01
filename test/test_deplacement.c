@@ -37,6 +37,7 @@ int main(){
     dino->pos=nuage[150];
     dino->indice_nuage=150;
     dino->indice_reel=(float)dino->indice_nuage;
+    remplir_matrice_dino(dino, dino->pos, matrice);
 
 
     if (initialisationCorrecte()) {
@@ -88,11 +89,11 @@ int main(){
             // 2. Gérer les entrées clavier pour le mouvement
             const Uint8 *state = SDL_GetKeyboardState(NULL);
             if (state[SDL_SCANCODE_LEFT]){
-                gauche(dino,nuage,nb_pts);
+                gauche(dino,nuage,nb_pts,matrice);
             }  
 
             if (state[SDL_SCANCODE_RIGHT]){
-                droite(dino,nuage,nb_pts);
+                droite(dino,nuage,nb_pts,matrice);
             } 
 
             SDL_RenderPresent(rendu);
