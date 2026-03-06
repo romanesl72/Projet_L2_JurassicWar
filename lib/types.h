@@ -1,6 +1,12 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+/**
+ * @file types.h
+ * @brief Définition des structures de données pour Jurassic War.
+ * @author Solène Orieux Romane Saint-Léger Hannah Sergent
+ */
+
 /* Variables globales communes à la matrice et aux fenetres à utiliser*/
 #define LARGEUR_TERRAIN 1300
 #define HAUTEUR_TERRAIN 700
@@ -10,10 +16,6 @@
 #define VIDE 0
 
 
-/**
- * @file types.h
- * @brief Définition des structures de données pour Jurassic War.
- */
 
 typedef enum {FUSIL, REVOLVER} t_pistolet;
 typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;
@@ -24,6 +26,19 @@ typedef struct {
 	int x;
 	int y;
 } t_coordonnee;
+
+/**
+ * @struct t_coordonnee_calcul
+ * @brief Structure qui contient des coordonnées flottantes pour ne pas perdre de précision dans les calculs
+ * @author Hannah Sergent
+ * @date Crée le 2/03/2026
+ * @version 1.0
+ */
+
+typedef struct {
+	float x;
+	float y;
+} t_coordonnee_calcul;
 
 typedef struct {
     t_numDino d; //Numéro de 0 à 5
@@ -61,12 +76,18 @@ typedef struct {
 	float v;
 } t_vect;
 
+/**
+ * @struct t_bombe
+ * @brief Structure qui contient les coordonnées et le rayon d'une bombe
+ * @author Hannah Sergent
+ * @date Crée le 17/02/2026
+ * @version 2.0
+ */
+
 typedef struct {
-    t_coordonnee coor;
+    t_coordonnee_calcul coor;
     int rayon;
 } t_bombe;
-
-
 
 /*Pour utiliser les nuages de points :
 Soit faire un tableau soit une structure, voici le tableau
