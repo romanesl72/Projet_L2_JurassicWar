@@ -12,6 +12,13 @@
  */
 
 /**
+ * @def COEF_RESTITUTION
+ * @brief Coefficient utilisé pour faire ralentir la bombe lorsqu'elle rebondit sur le terrain
+*/
+
+#define COEF_RESTITUTION 0.9
+
+/**
  * @fn void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
  * @brief la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur
  * @author Hannah Sergent
@@ -28,7 +35,7 @@
 void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
 
 /**
- * @fn void initialiserBombe(t_bombe *bombe, int coorChoisieX, int coorChoisieY, int rayon);
+ * @fn void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon);
  * @brief la fonction initialise les valeurs d'une bombe
  * @author Hannah Sergent
  * @date Crée le 11/02/2026
@@ -38,7 +45,7 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
  * @param rayon rayon de la bombe
  */
 
-void initialiserBombe(t_bombe *bombe, int coorChoisieX, int coorChoisieY, int rayon);
+void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon);
 
 /**
  * @fn void initialiserVitesse(float *vitesseX, float *vitesseY, float vitesseChoisieX, float vitesseChoisieY);
@@ -64,7 +71,7 @@ void initialiserVitesse(t_vect *vectVitesse, float vitesseChoisieX, float vitess
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);
 
 /**
- * @fn int rebondFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe)
+ * @fn int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe)
  * @brief la fonction vérifie si la bombe tape une extrémité de la fenêtre
  * @author Hannah Sergent
  * @date Crée le 6/02/2026
@@ -73,7 +80,7 @@ void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);
  * @param bombe pointeur sur une structure de type bombe 
  */
 
-int rebondFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe);
+int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe);
 
 /**
  * @fn collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
@@ -84,7 +91,7 @@ int rebondFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe)
  * @param bombe pointeur sur une structure de type bombe 
  */
 
-int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);
+int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse);
 
 /**
  * @fn int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);

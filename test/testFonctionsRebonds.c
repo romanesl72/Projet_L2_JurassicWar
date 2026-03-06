@@ -27,8 +27,13 @@ HAUTEUR_FEN_JEU 650 */
 #define COOR_X LARGEUR_TERRAIN/4
 #define COOR_Y HAUTEUR_TERRAIN/2
 
-#define VITESSE_X 200
-#define VITESSE_Y -200
+
+#define VITESSE_X 170
+#define VITESSE_Y -170
+
+/*
+VITESSE_X 200
+VITESSE_Y -200 */
 
 int main(int argc, char * argv[]){
 
@@ -52,7 +57,8 @@ int main(int argc, char * argv[]){
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        float gravite = 300;
+        /* float gravite = 300; */
+        float gravite = 270;
 
         int largeurFenetre;
         int hauteurFenetre;
@@ -62,6 +68,7 @@ int main(int argc, char * argv[]){
 
         int enCours = 1;
         int bombeLancee = 0;
+        int nombreRebonds = 0;
 
         SDL_Event evenement;
 
@@ -94,6 +101,7 @@ int main(int argc, char * argv[]){
 
             if (etatClavier[SDL_SCANCODE_B]){
                 bombeLancee = 1;
+                nombreRebonds = 0;
 
                 choixHauteurLancer(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite);
             }
@@ -102,24 +110,33 @@ int main(int argc, char * argv[]){
             accumulateur += tempsEcoule;
 
             while (accumulateur >= vitesse) {
-                if (bombeLancee == 1) {
+                if (bombeLancee) {
 
-                    vectVitesse.v += gravite*vitesse;
                     bombe.coor.x += vitesse*vectVitesse.u;
                     bombe.coor.y += vitesse*vectVitesse.v;
+                    vectVitesse.v += gravite*vitesse;
 
-                    if (rebondFrontiereBombe(LARGEUR_TERRAIN, HAUTEUR_TERRAIN, &bombe)) {
+                    if (collisionFrontiereBombe(LARGEUR_TERRAIN, HAUTEUR_TERRAIN, &bombe)) {
                         bombeLancee = 0;
                         /* 
                         initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
                         initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
                         */
                     }
-                    if (collisionTerrainBombe(matriceTerrain, &bombe)) {
-                        bombeLancee = 2;
+                    if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
+                        nombreRebonds ++;
+
+                        /* bombe.coor.x += vectVitesse.u *vitesse;
+                        bombe.coor.y += vectVitesse.v * vitesse; */
+                        if (nombreRebonds > 1){
+                            bombeLancee = 0;
+                        }
                     }
                     if (collisionEauBombe(matriceTerrain, &bombe)) {
-                        bombeLancee = 2;
+                        bombeLancee = 0;
+                        SDL_RenderClear(zoneAffichage);
+                        SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
+                        SDL_RenderPresent(zoneAffichage);
                     }
 
                     if (bombeLancee) {
