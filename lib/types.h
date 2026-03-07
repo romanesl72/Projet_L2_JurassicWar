@@ -43,6 +43,9 @@ typedef struct {
 typedef struct {
     t_numDino d; //Numéro de 0 à 5
     t_coordonnee pos;
+    t_coordonnee saut;//coordonnée initial du saut
+    int sautBooleen;
+    int maxAtteint;
     int indice_nuage;
     float indice_reel; //pour le déplacement
     int id_nuage;
@@ -50,7 +53,7 @@ typedef struct {
     int etat;
     int pv;
     int tab_res[4];//pour les colisions
-    int v_y;//pour les sauts
+    float v_y;//pour les sauts
     int memoire[30][30];
 } t_dino;
 
