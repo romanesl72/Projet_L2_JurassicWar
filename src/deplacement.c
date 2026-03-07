@@ -98,27 +98,43 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
 
 void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state) {
     int tab_res[4];
-
-    if (state[SDL_SCANCODE_UP] && (!dino->sautBooleen)){
-        dino->v_y=FORCE_SAUT;
-        dino->sautBooleen=1;
-        // Récupérer le sol théorique sous le dino (via son indice nuage actuel)
-        dino->sol=nuage[dino->indice_nuage];
-    }
-    // Appliquer la vélocité
-    if(dino->sautBooleen){
-        dino->v_y += GRAVITE;
-        dino->pos.y += (int)dino->v_y;
-
-        // Test de collision avec le sol
-        if (dino->pos.y >= dino->sol.y) {
-            dino->pos.y = dino->sol.y;
-            dino->sautBooleen = 0;
-            dino->v_y = 0;
+    if(dino->wait==0){
+        if (state[SDL_SCANCODE_UP] && (dino->pos.x == nuage[dino->indice_nuage].x) && (dino->pos.y == nuage[dino->indice_nuage].y)){
+            dino->v_y=FORCE_SAUT;
+            dino->sautBooleen=1;
         }
-        // Réécrire dans la matrice à la nouvelle position
-        remplir_matrice_dino(dino, dino->pos, matrice);
+        // Appliquer la vélocité
+        if(dino->sautBooleen){
+
+            if (state[SDL_SCANCODE_RIGHT]){
+                dino->indice_nuage +=1;
+                dino->pos.x=nuage[dino->indice_nuage].x;
+                dino->indice_reel = (float)dino->indice_nuage;
+            }
+
+            if (state[SDL_SCANCODE_LEFT]){
+                dino->indice_nuage -=1;
+                dino->pos.x=nuage[dino->indice_nuage].x;
+                dino->indice_reel = (float)dino->indice_nuage;
+            }
+
+            supprimer_matrice_dino(dino, dino->pos, matrice);
+            dino->v_y += GRAVITE;
+            dino->pos.y += (int)dino->v_y;
+
+            // Test de collision avec le sol
+            if (dino->pos.y >= nuage[dino->indice_nuage].y) {
+                dino->pos = nuage[dino->indice_nuage];
+                dino->sautBooleen = 0;
+                dino->v_y = 0;
+                dino->wait=250; //petite pause pour ne pas sauter deux fois d'un coup
+            }
+            // Réécrire dans la matrice à la nouvelle position
+            remplir_matrice_dino(dino, dino->pos, matrice);
+            SDL_Delay(16);
+        }
     }
+    
 }
 
 
