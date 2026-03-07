@@ -10,9 +10,8 @@
 #include "fonctionsVerification.h"
 
 #define VITESSE_BASE 0.05
-#define GRAVITE 0.6
-#define FORCE_SAUT 3
-#define MAX_HAUT 20
+#define GRAVITE 0.8
+#define FORCE_SAUT -12.0
 
 void supprimer_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]);
 void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);

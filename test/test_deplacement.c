@@ -90,7 +90,9 @@ int main(){
 
             // 2. Gérer les entrées clavier pour le mouvement
             const Uint8 *state = SDL_GetKeyboardState(NULL);
-            
+
+            saut(dino,nuage,nb_pts,matrice,state);
+
             gauche(dino,nuage,nb_pts,matrice,state);
 
             droite(dino,nuage,nb_pts,matrice,state);

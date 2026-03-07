@@ -74,6 +74,7 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
         // Calcul du pas
         float pas = VITESSE_BASE * (1.0f + (a * 0.5f));
 
+
         // Mise à jour de l'indice réel
         dino->indice_reel += pas;
 
@@ -97,35 +98,26 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
 
 void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state) {
     int tab_res[4];
-    if(dino->sautBooleen){
-        saut(dino,nuage,nb_pts,matrice);
-    }
+
     if (state[SDL_SCANCODE_UP] && (!dino->sautBooleen)){
         dino->v_y=FORCE_SAUT;
-        dino->saut=nuage[dino->id_nuage];
         dino->sautBooleen=1;
+        // Récupérer le sol théorique sous le dino (via son indice nuage actuel)
+        dino->sol=nuage[dino->indice_nuage];
     }
-    else if (dino->sautBooleen){
-        if((dino->pos.y<=dino->saut.y+MAX_HAUT) && (!dino->maxAtteint)){
-            supprimer_matrice_dino(dino, dino->pos, matrice);
-            dino->pos.y-=(int)dino->v_y;
-            remplir_matrice_dino(dino, dino->pos, matrice);
-            dino->v_y-=GRAVITE;
+    // Appliquer la vélocité
+    if(dino->sautBooleen){
+        dino->v_y += GRAVITE;
+        dino->pos.y += (int)dino->v_y;
 
+        // Test de collision avec le sol
+        if (dino->pos.y >= dino->sol.y) {
+            dino->pos.y = dino->sol.y;
+            dino->sautBooleen = 0;
+            dino->v_y = 0;
         }
-
-        else if(!collision_decor(tab_res, *dino, matrice)){
-            dino->maxAtteint=1;
-            supprimer_matrice_dino(dino, dino->pos, matrice);
-            dino->pos.y+=(int)dino->v_y;
-            remplir_matrice_dino(dino, dino->pos, matrice);
-            dino->v_y+=GRAVITE;
-        }
-
-        else if(collision_decor(tab_res, *dino, matrice)&&dino->maxAtteint){
-            dino->sautBooleen=0;
-            dino->maxAtteint=0;
-        }
+        // Réécrire dans la matrice à la nouvelle position
+        remplir_matrice_dino(dino, dino->pos, matrice);
     }
 }
 

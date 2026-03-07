@@ -43,9 +43,8 @@ typedef struct {
 typedef struct {
     t_numDino d; //Numéro de 0 à 5
     t_coordonnee pos;
-    t_coordonnee saut;//coordonnée initial du saut
+    t_coordonnee sol;//enregistre coordonnée où le dino doit atterrir quand il saute
     int sautBooleen;
-    int maxAtteint;
     int indice_nuage;
     float indice_reel; //pour le déplacement
     int id_nuage;
