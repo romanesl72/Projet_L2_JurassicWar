@@ -14,13 +14,16 @@ int main(){
 
     int enCours;
     int matrice[MAT_H][MAT_L];
-    int w, h;
+    int w, h, i;
 
     t_dino *dino=malloc(sizeof(t_dino));
     int nb_pts;
     float a,b,angle;
     float pas;
     t_coordonnee *nuage=NULL; 
+
+    dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
+    dino->hauteur = 30;
 
     printf("tapez 1 ou 0 pour choisir le nuage");
     scanf("%d",&dino->id_nuage);
@@ -33,7 +36,8 @@ int main(){
     }
 
     if(nuage==NULL)return 1;
-
+    /* Charger la matrice du décor */
+    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
     dino->pos=nuage[150];
     dino->indice_nuage=150;
     dino->indice_reel=(float)dino->indice_nuage;
@@ -51,8 +55,7 @@ int main(){
         //rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
         rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_SOFTWARE);
 
-        /* Charger la matrice du décor */
-        chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
+        
 
         printf("Chargement de la texture map...\n");
         SDL_Texture *texMap;
@@ -74,7 +77,6 @@ int main(){
                     enCours = 0;
                 }
             }
-
             SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
             SDL_RenderClear(rendu);
 
@@ -88,13 +90,10 @@ int main(){
 
             // 2. Gérer les entrées clavier pour le mouvement
             const Uint8 *state = SDL_GetKeyboardState(NULL);
-            if (state[SDL_SCANCODE_LEFT]){
-                gauche(dino,nuage,nb_pts,matrice);
-            }  
+            
+            gauche(dino,nuage,nb_pts,matrice,state);
 
-            if (state[SDL_SCANCODE_RIGHT]){
-                droite(dino,nuage,nb_pts,matrice);
-            } 
+            droite(dino,nuage,nb_pts,matrice,state);
 
             SDL_RenderPresent(rendu);
         }

@@ -51,8 +51,8 @@ t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]) {
         if (compte>0){
             // Logique de conversion (avec une petite tolerance) pour reperer la courbe noir
 
-            nuage[(*nb_points)].x=j;
-            nuage[(*nb_points)++].y=(int)(sommeY/compte); //on enregistre les coordonnées de chaque pixel noir puis on incrémente l'indice
+            nuage[(*nb_points)].x=j-15;
+            nuage[(*nb_points)++].y=(int)(sommeY/compte)-30; //on enregistre les coordonnées de chaque pixel noir puis on incrémente l'indice
             
         } 
         
@@ -129,6 +129,7 @@ int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
 
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         // Dessiner la courbe
+
         for (i = 0; i < nbPoints - 1; i++) {
             SDL_RenderDrawPoint(renderer, nuage[i].x, nuage[i].y);
         }
