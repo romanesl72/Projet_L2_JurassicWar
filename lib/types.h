@@ -49,6 +49,8 @@ typedef struct {
     int largeur, hauteur;
     int etat;
     int pv;
+    int tab_res[4];//pour les colisions
+    int v_y;//pour les sauts
     int memoire[30][30];
 } t_dino;
 
