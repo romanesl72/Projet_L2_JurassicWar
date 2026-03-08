@@ -28,6 +28,7 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
             py = dino->pos.y + i;
             px = dino->pos.x + j;
             if (py >= 0 && py < MAT_H && px >= 0 && px < MAT_L) {
+                dino->memoire[i][j]=matrice[py][px];
                 matrice[py][px] = id_final;
             }
         }
