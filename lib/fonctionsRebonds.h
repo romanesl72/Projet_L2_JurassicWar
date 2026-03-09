@@ -13,10 +13,17 @@
 
 /**
  * @def COEF_RESTITUTION
- * @brief Coefficient utilisé pour faire ralentir la bombe lorsqu'elle rebondit sur le terrain
+ * @brief Coefficient de restitution (0 pas de rebond, 1 rebond parfait)
 */
 
-#define COEF_RESTITUTION 0.9
+#define COEF_RESTITUTION 0.8
+
+/**
+ * @def PI
+ * @brief Valeur remarquable pi
+*/
+
+#define PI 3.1415
 
 /**
  * @fn void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);

@@ -9,8 +9,6 @@
  * @date Crée le 5/02/2026
  */
 
-#define PI 3.1415
-
 void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon) {
     bombe->coor.x = coorChoisieX;
     bombe->coor.y = coorChoisieY;
@@ -167,6 +165,9 @@ int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN
 } */
 
 /* Noyau de Sobel*/
+/* v' = v - 2<v,n>n*/
+
+/*
 void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_coordonnee_calcul *extremiteBombe, t_vect *normal) {
 
     t_vect gradient = {0, 0};
@@ -183,7 +184,7 @@ void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_
     for (i = -1; i <=1; i++){
         for (j = -1; j <= 1; j++){
             if (dansLimites(posBombe.x + j, posBombe.y + i)){
-                val = estTerrain(matriceTerrain[posBombe.y + j][posBombe.x + i]);
+                val = estTerrain(matriceTerrain[posBombe.y + i][posBombe.x + j]);
             }
             poidsX = (i == 0) ? 2 * j : i;
             poidsY = (j == 0) ? 2 * i : j;
@@ -193,8 +194,10 @@ void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_
         }
     }
 
+     norme 2 du gradient
     longueur = sqrt(gradient.u * gradient.u + gradient.v * gradient.v);
 
+    Pour éviter une division par 0 ou une valeur trop faible 
     if (longueur > 0.001){
         normal->u = -gradient.u/longueur;
         normal->v = -gradient.v/longueur;
@@ -204,47 +207,256 @@ void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_
         normal->v = -1;
     }
 
+} */
+
+/*
+int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse) {
+
+    int nombrePoints = 32;
+    int i;
+    float angle;
+    float produitScalaire;
+    float penetration;
+    t_coordonnee_calcul extremiteBombe;
+    t_coordonnee extremiteBombeMat;
+    t_vect normal;
+    t_vect normaleMoyenne = {0, 0};
+    t_vect profondeurEnfoncement;
+    int collision = 1;
+    int nbIter;
+    int collisionDetectee = 0;
+    int nbNormales = 0;
+
+    for (nbIter = 0; (nbIter < 20) && (collision); nbIter++){
+
+        collision = 0;
+
+        for(i = 0; i < nombrePoints; i++){
+
+             Representation de la bombe comme un cercle trigonométrique 
+
+            angle = i * (PI * 2 / nombrePoints);
+            extremiteBombe.x = bombe->coor.x + cos(angle)*bombe->rayon;
+            extremiteBombe.y = bombe->coor.y + sin(angle)*bombe->rayon;
+
+            extremiteBombeMat.x = roundf(extremiteBombe.x);
+            extremiteBombeMat.y = roundf(extremiteBombe.y);
+
+            if (matriceTerrain[extremiteBombeMat.y][extremiteBombeMat.x] == TERRE){
+
+                collision = 1;
+                collisionDetectee = 1;
+                calculerNormale(matriceTerrain, &extremiteBombe, &normal);
+
+                normaleMoyenne.u += normal.u;
+                normaleMoyenne.v += normal.v;
+                nbNormales ++;
+
+                profondeurEnfoncement.u = extremiteBombe.x - bombe->coor.x;
+                profondeurEnfoncement.v = extremiteBombe.y - bombe->coor.y;
+                penetration = bombe->rayon - sqrt(profondeurEnfoncement.u*profondeurEnfoncement.u + profondeurEnfoncement.v*profondeurEnfoncement.v);
+
+                if (penetration < 0){
+                    penetration = 0;
+                }
+
+                la
+                bombe->coor.x += normal.u*15;
+                bombe->coor.y += normal.v*15; 
+
+                bombe->coor.x += normal.u*penetration;
+                bombe->coor.y += normal.v*penetration;
+
+            }
+
+        }
+    }
+
+    if (collisionDetectee){
+
+        if (nbNormales > 0){
+
+            float longueur = sqrt(normaleMoyenne.u * normaleMoyenne.u + normaleMoyenne.v * normaleMoyenne.v);
+
+             Pour éviter une division par 0 ou une valeur trop faible 
+            if (longueur > 0.001){
+                normaleMoyenne.u /= longueur;
+                normaleMoyenne.v /= longueur;
+            }
+            else {
+                normaleMoyenne.u = 0;
+                normaleMoyenne.v = -1;
+            }
+
+        }
+
+        produitScalaire = vectVitesse->u*normaleMoyenne.u + vectVitesse->v*normaleMoyenne.v;
+
+        if (produitScalaire < 0){
+
+            vectVitesse->u -= 2*produitScalaire*normaleMoyenne.u;
+            vectVitesse->v -= 2*produitScalaire*normaleMoyenne.v;
+        }
+
+        if (collision){
+            printf("ici \n");
+        }
+        return 1;
+    }
+    return 0;
+} */
+
+void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_coordonnee_calcul *extremiteBombe, t_vect *normal) {
+
+    t_vect gradient = {0.0f, 0.0f};
+    t_coordonnee extremite;
+    t_coordonnee voisin;
+
+    int i;
+    int j;
+    float normeGradient;
+    float distExtremiteVoisin;
+    float poids;
+
+    extremite.x = (int)roundf(extremiteBombe->x);
+    extremite.y = (int)roundf(extremiteBombe->y);
+
+    /* Choisir un rayon de 3 à 4 pour les terrains accidentés, une valeur plus faible suffit sinon*/
+    int rayon = 4; 
+
+    /* Exploration de toutes les cases dans un carré centré autour de l'extremité de la bombe */
+    for (i = -rayon; i <= rayon; i++) {
+
+        for (j = -rayon; j <= rayon; j++) {
+
+            voisin.x = extremite.x + j;
+            voisin.y = extremite.y + i;
+
+            if (dansLimites(voisin.x, voisin.y)) {
+                if (matriceTerrain[voisin.y][voisin.x] == TERRE) {
+
+                    /* Calcul de la norme au carré */
+                    distExtremiteVoisin = (float)(i*i + j*j);
+
+                    /* Plus la case est loin du centre, plus le poids est faible
+                    C'est un poids quadritique inverse qui donne plus d'importance aux cases proches et évite des angles abruptes dans la normale */
+                    poids = 1.0f / (1.0f + distExtremiteVoisin); 
+                    
+                    /* Construction d'un vecteur gradient qui pointe vers la zone où il y a le plus de terre autour du point */
+
+                    gradient.u += (float)j * poids;
+                    gradient.v += (float)i * poids;
+                }
+            }
+        }
+    }
+
+    /* On calcule la norme 2 du gradient */
+    normeGradient = sqrtf(gradient.u * gradient.u + gradient.v * gradient.v);
+
+    /* Si le gradient est trop faible, on est soit en plein vide, 
+    soit totalement enterré. On utilise la direction verticale par défaut. */
+    if (normeGradient > 0.1f) {
+
+        /* La normale est l'opposé du gradient, puisque le gradient pointe la terre */
+
+        normal->u = -gradient.u / normeGradient;
+        normal->v = -gradient.v / normeGradient;
+    } 
+
+    /* On pointe vers le haut sinon */
+
+    else {
+        normal->u = 0.0f;
+        normal->v = -1.0f;
+    }
 }
 
 int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse) {
 
-    int nombrePoints = 16;
-    int i;
-    float angle;
+    /* nombre de points échantillonnés sur le contour de la bombe*/
+    int nombrePoints = 32;
+    /* nombre de points du contour de la bombe qui sont dans la terre */
+    int nbPointsEnCollision = 1;
+
+    int i; 
+    int nbIter;
+    int collisionDetectee = 0;
     float produitScalaire;
+    float angle;
+
     t_coordonnee_calcul extremiteBombe;
-    t_coordonnee extremiteBombeMat;
-    t_vect normal;
+    t_coordonnee extremite;
 
-    for(i = 0; i < nombrePoints; i++){
+    /* Moyenne des normales calculées*/
+    t_vect normalCumul;
+    t_vect normaleLocale;
+    float normeNormalCumul;
+    
+    /* Itérations pour "extraire" la bombe du terrain */
 
-        /* Representation de la bombe comme un cercle trigonométrique */
+    for (nbIter = 0; (nbIter < 10) && (nbPointsEnCollision); nbIter++) {
 
-        angle = i * (PI * 2 / nombrePoints);
-        extremiteBombe.x = bombe->coor.x + cos(angle)*bombe->rayon;
-        extremiteBombe.y = bombe->coor.y + sin(angle)*bombe->rayon;
+        normalCumul.u = 0;
+        normalCumul.v = 0;
+        nbPointsEnCollision = 0;
 
-        extremiteBombeMat.x = roundf(extremiteBombe.x);
-        extremiteBombeMat.y = roundf(extremiteBombe.y);
+        for (i = 0; i < nombrePoints; i++) {
 
-        if (matriceTerrain[extremiteBombeMat.y][extremiteBombeMat.x] == TERRE){
+            /* Voir le contour de la bombe comme un cercle trigonométrique */
+            angle = i * (PI * 2 / nombrePoints);
 
-            calculerNormale(matriceTerrain, &extremiteBombe, &normal);
-            bombe->coor.x += normal.u*15;
-            bombe->coor.y += normal.v*15;
+            /* Utilisation des formules polaires */
+            extremiteBombe.x = bombe->coor.x + cos(angle) * bombe->rayon;
+            extremiteBombe.y = bombe->coor.y + sin(angle) * bombe->rayon;
 
-            produitScalaire = vectVitesse->u*normal.u + vectVitesse->v*normal.v;
+            extremite.x = (int)roundf(extremiteBombe.x);
+            extremite.y = (int)roundf(extremiteBombe.y);
 
-            if (produitScalaire < 0){
+            // Vérification des limites pour éviter un crash
+            if (dansLimites(extremite.x, extremite.y)) {
+                if (matriceTerrain[extremite.y][extremite.x] == TERRE) {
 
-                vectVitesse->u -= 2*produitScalaire*normal.u;
-                vectVitesse->v -= 2*produitScalaire*normal.v;
+                    collisionDetectee = 1;
+
+                    calculerNormale(matriceTerrain, &extremiteBombe, &normaleLocale);
+                    
+                    normalCumul.u += normaleLocale.u;
+                    normalCumul.v += normaleLocale.v;
+                    nbPointsEnCollision++;
+
+                    // Correction immédiate de la position (anti-enfoncement)
+                    // On pousse très légèrement la bombe vers l'extérieur
+                    bombe->coor.x += normaleLocale.u * 0.5f; 
+                    bombe->coor.y += normaleLocale.v * 0.5f;
+                }
             }
-            return 1;
         }
 
+        // Si on a accumulé des normales, on calcule le rebond sur la normale moyenne
+        if (nbPointsEnCollision > 0) {
+            normeNormalCumul = sqrt(normalCumul.u * normalCumul.u + normalCumul.v * normalCumul.v);
+            if (normeNormalCumul > 0.001f) {
+                normalCumul.u /= normeNormalCumul;
+                normalCumul.v /= normeNormalCumul;
+
+                produitScalaire = vectVitesse->u * normalCumul.u + vectVitesse->v * normalCumul.v;
+                
+                // On ne rebondit que si la vitesse va VERS le terrain
+                if (produitScalaire < 0) {
+                    
+                    vectVitesse->u -= (1.0f + COEF_RESTITUTION) * produitScalaire * normalCumul.u;
+                    vectVitesse->v -= (1.0f + COEF_RESTITUTION) * produitScalaire * normalCumul.v;
+                    
+                    // Friction optionnelle pour éviter que ça glisse indéfiniment (simulation d'une perte d'énergie)
+                    vectVitesse->u *= 0.98f;
+                    vectVitesse->v *= 0.98f;
+                }
+            }
+        }
     }
-    return 0;
+
+    return collisionDetectee;
 }
 
 int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {

@@ -11,10 +11,6 @@
  * @date Crée le 5/02/2026
  */
 
- /*
- LARGEUR_FEN_JEU 1300
- HAUTEUR_FEN_JEU 700 */
-
 /*
 LARGEUR_FEN_JEU 1050
 HAUTEUR_FEN_JEU 650 */
@@ -22,18 +18,18 @@ HAUTEUR_FEN_JEU 650 */
 #define LARGEUR_FEN_MENU 400
 #define HAUTEUR_FEN_MENU 650
 
-#define RAYON 20
+#define RAYON 15
 
-#define COOR_X LARGEUR_TERRAIN/4
+#define COOR_X LARGEUR_TERRAIN/3
 #define COOR_Y HAUTEUR_TERRAIN/2
 
 
-#define VITESSE_X 170
-#define VITESSE_Y -170
+#define VITESSE_X 90
+#define VITESSE_Y -90
 
 /*
-VITESSE_X 200
-VITESSE_Y -200 */
+VITESSE_X 170 / 90
+VITESSE_Y -170 /-90 */
 
 int main(int argc, char * argv[]){
 
@@ -57,8 +53,8 @@ int main(int argc, char * argv[]){
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        /* float gravite = 300; */
-        float gravite = 270;
+        /* float gravite = 270; */
+        float gravite = 180;
 
         int largeurFenetre;
         int hauteurFenetre;
