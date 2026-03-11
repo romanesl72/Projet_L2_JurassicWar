@@ -52,6 +52,7 @@ typedef struct {
     int pv;
     int tab_res[4];//pour les colisions
     float v_y;//pour les sauts
+    int hors_nuage;
     int wait; //petite pause pour ne pas sauter deux fois d'un coup
     int memoire[30][30];
 } t_dino;
