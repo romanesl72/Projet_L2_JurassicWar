@@ -20,8 +20,8 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
     // Si dino->d vaut DINO1 (0), alors l'ID est 3.
     int id_final = dino->d + 3;
 
-    dino->pos.x = p_sol.x - 15;
-    dino->pos.y = p_sol.y - 30; // On remonte pour que les pieds soient au sol
+    dino->pos.x = p_sol.x;
+    dino->pos.y = p_sol.y; // On remonte pour que les pieds soient au sol
 
     for(i = 0; i < 30; i++) {
         for(j = 0; j < 30; j++) {
