@@ -3,14 +3,81 @@
 
 #include "types.h"
 
+/**
+ * @file regression.h
+ * @brief
+ * @author Solène Orieux
+ * @date
+ */
+
+
+/**
+ * @fn t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]);
+ * @author Solène Orieux
+ * @date 
+ * @brief
+ * @param nb_points
+ * @param nomFichier
+ */
+
+
 t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]);
 
+/**
+ * @fn void moyenne(t_coordonnee *T, int n, float *x, float *y);
+ * @author Solène Orieux
+ * @date 
+ * @brief
+ * @param T
+ * @param n
+ * @param x
+ * @param y
+ */
 
 void moyenne(t_coordonnee *T, int n, float *x, float *y);
 
+
+/**
+ * @fn void calculPente(t_coordonnee *T, int n, float *a, float x, float y);
+ * @author Solène Orieux
+ * @date 
+ * @brief
+ * @param T
+ * @param n
+ * @param a
+ * @param x
+ * @param y
+ */
+
 void calculPente(t_coordonnee *T, int n, float *a, float x, float y);
 
+
+/**
+ * @fn void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point);
+ * @author Solène Orieux
+ * @date 
+ * @brief
+ * @param dino
+ * @param nuage
+ * @param a
+ * @param b
+ * @param indice
+ * @param nb_points
+ */
+
+
 void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point);
+
+
+/**
+ * @fn int tracerCourbe( t_coordonnee *nuage, int nbPoints);
+ * @author Solène Orieux
+ * @date 
+ * @brief
+ * @param nuage
+ * @param nbPoints
+ */
+
 
 int tracerCourbe( t_coordonnee *nuage, int nbPoints);
 
