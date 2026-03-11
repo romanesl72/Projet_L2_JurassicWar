@@ -1,7 +1,7 @@
 # Non encore achevé
 
 FLAGS_COMPILATION = -Wall `sdl2-config --cflags`
-FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf
+FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
 
 REP_SRC = ../src
 REP_TEST = ../test
@@ -12,15 +12,19 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 # Edition de liens
 
-EXECUTABLES = ./testFonctionsRebonds
+EXECUTABLES = ./testFonctionsRebonds ./main_test
 OBJETS_REBONDS = testFonctionsRebonds.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
+OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o creation_nuage.o fonctionsVerification.o chargerMatrice.o
 
 all: $(EXECUTABLES)
 
 # faire une ligne par exécutable
 
+./main_test: $(OBJETS_PLACEMENT_DINOS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
-	gcc $^ $(FLAGS_EDITION) -o $@
+	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # Compilation
 
@@ -33,4 +37,5 @@ all: $(EXECUTABLES)
 # Suppression
 
 clean:
-	rm -f $(FIC_OBJETS)
+	rm -f $(FIC_OBJETS) $(EXECUTABLES)
+

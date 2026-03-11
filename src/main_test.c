@@ -43,21 +43,21 @@ int main(int argc, char * argv[]){
         /* --- PRÉPARATION DU JEU --- */
         printf("Lancement du chargement de la matrice...\n");
         /* Charger la matrice du décor */
-        chargerMatriceDepuisFichier("res/matrice.txt", matrice);
+        chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
         printf("Chargement du nuage de points...\n");
 
         /* Récupérer les zones via le nuage de points */
-        nuages_stockes[1] = nuage_de_points(&nb_pts, "img/test1_c.jpg");
+        nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
         generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
 
-        nuages_stockes[2] = nuage_de_points(&nb_pts, "img/test2_c.jpg");
+        nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
         generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
 
         printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
 
         printf("Chargement de la texture map...\n");
         SDL_Texture *texMap;
-        chargerImage(rendu, &texMap, "img/test1_b.jpg", &w, &h);
+        chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
         if (texMap == NULL) {
             printf("ERREUR : Impossible de charger l'image de la map\n");
         } else {
@@ -78,12 +78,12 @@ int main(int argc, char * argv[]){
 
         /* Charger les images (Textures) */
         SDL_Texture *texDinos[6];
-        chargerImage(rendu, &texDinos[0], "img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[1], "img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[2], "img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[3], "img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[4], "img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[5], "img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[0], "../img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[1], "../img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[2], "../img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[3], "../img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[4], "../img/dino_test.png", &w, &h);
+        chargerImage(rendu, &texDinos[5], "../img/dino_test.png", &w, &h);
 
         
         
