@@ -24,3 +24,22 @@ void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_
     }
     fclose(file);
 }
+
+int initialiserMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
+
+    *matriceTerrain = malloc(sizeof(t_case) * HAUTEUR_TERRAIN * LARGEUR_TERRAIN);
+
+    if (!*matriceTerrain){
+        printf("Erreur d'allocation de la matrice.\n");
+        return 0;
+    }
+
+    chargerMatriceDepuisFichier("../res/matrice.txt", *matriceTerrain);
+
+    return 1;
+}
+
+void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
+    free(*matriceTerrain);
+    *matriceTerrain = NULL;
+}
