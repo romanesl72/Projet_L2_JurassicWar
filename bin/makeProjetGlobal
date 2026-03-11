@@ -12,9 +12,10 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 # Edition de liens
 
-EXECUTABLES = ./testFonctionsRebonds ./main_test
-OBJETS_REBONDS = testFonctionsRebonds.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
+EXECUTABLES = ./testFonctionsRebonds ./testFonctionsTuerDinos ./main_test
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o creation_nuage.o fonctionsVerification.o chargerMatrice.o
+OBJETS_REBONDS = testFonctionsRebonds.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
+OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o creation_nuage.o fonctionsRebonds.o fonctionsVerification.o chargerMatrice.o
 
 all: $(EXECUTABLES)
 
@@ -24,6 +25,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # Compilation
