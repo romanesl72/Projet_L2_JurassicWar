@@ -41,6 +41,8 @@ int main(){
     dino->pos=nuage[150];
     dino->indice_nuage=150;
     dino->indice_reel=(float)dino->indice_nuage;
+    dino->wait=0;
+    dino->pv=100;
     remplir_matrice_dino(dino, dino->pos, matrice);
 
 
@@ -93,10 +95,20 @@ int main(){
 
             saut(dino,nuage,nb_pts,matrice,state);
 
-            gauche(dino,nuage,nb_pts,matrice,state);
-
-            droite(dino,nuage,nb_pts,matrice,state);
-
+            if (!dino->sautBooleen)
+            {
+                gauche(dino,nuage,nb_pts,matrice,state);
+                droite(dino,nuage,nb_pts,matrice,state);
+            }
+            
+            if (dino->wait>0){
+                dino->wait-=1;
+            }
+            
+            if (dino->pv<=0){
+                enCours=0;
+            }
+            
             SDL_RenderPresent(rendu);
         }
 

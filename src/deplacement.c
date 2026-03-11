@@ -6,7 +6,7 @@
 #include "../lib/deplacement.h"
 #include <SDL2/SDL.h>
 
-void supprimer_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]) {
+void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]) {
     /*permet de remetre à jour les anciennes zones comportant un dino*/
     int i,j,px,py;
 
@@ -22,6 +22,56 @@ void supprimer_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H]
     }
 }
 
+int chercherNouveauIndiceNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]){
+    if(dino->id_nuage==0){
+        dino->id_nuage=1;
+        nuage=nuage_de_points(nb_pts,"../img/test2_c.jpg");
+    }
+    else{
+        dino->id_nuage=0;
+        nuage=nuage_de_points(nb_pts,"../img/test1_c.jpg");
+    }
+    dino->id_nuage=dino->pos.x-nuage[0].x;
+    if(nuage[dino->id_nuage].x==dino->pos.x){
+        dino->pos=nuage[dino->id_nuage];
+        return 1;
+    }
+    return 0;
+}
+
+int horsNuage(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],int mvt){
+    int tab_res[4]={1,1,1,1};
+    int booleen=collision_decor(tab_res,*dino,matrice);
+    if(tab_res[0]==EAU){
+        supprimer_matrice_dino(dino,matrice);
+        dino->pv=0;
+        return 1;
+    }
+    else if((!booleen) && (dino->indice_nuage<0 || dino->indice_nuage>=nb_pts)){
+        if(nuage!=NULL){
+            free(nuage);
+            nuage=NULL;
+        }
+        supprimer_matrice_dino(dino,matrice);
+        dino->pos.x+=mvt;
+        dino->v_y += GRAVITE;
+        dino->pos.y += (int)dino->v_y;
+        remplir_matrice_dino(dino,dino->pos,matrice);
+        return 1;
+    }
+    else if(booleen && (dino->indice_nuage<0 || dino->indice_nuage>=nb_pts)){
+        if(nuage!=NULL){
+            free(nuage);
+            nuage=NULL;
+        }
+        supprimer_matrice_dino(dino,matrice);
+        if(chercherNouveauIndiceNuage(dino, nuage, &nb_pts, matrice)){
+            remplir_matrice_dino(dino,dino->pos,matrice);
+        }
+    }
+    return 0; 
+}
+
 void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state) {
 
     /* Le code utilise une fonction regression pour obtenir la pente locale (a) 
@@ -31,6 +81,7 @@ void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
     Si a = 0 : Le terrain est plat. */
 
     float a, b, angle;
+    int mvt =0;
     int colision[4];
     if (state[SDL_SCANCODE_LEFT]){
         // Calculer la pente locale via la régression
@@ -40,20 +91,14 @@ void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
         
         // Mise à jour de l'indice réel
         dino->indice_reel -= pas;
-
-        // Sécurité : Empêcher de sortir du tableau (bord gauche)
-        if (dino->indice_reel < 0) {
-            dino->indice_reel = 0;
-        }
-        if (dino->indice_reel >=nb_pts) {
-            dino->indice_reel = nb_pts-1;
-        }
         
         // Mise à jour des coordonnées
-        supprimer_matrice_dino(dino, dino->pos, matrice);
+        supprimer_matrice_dino(dino, matrice);
         dino->indice_nuage = (int)dino->indice_reel;
-        dino->pos=nuage[dino->indice_nuage];
-        remplir_matrice_dino(dino, dino->pos, matrice);
+        if(!horsNuage(dino, nuage, nb_pts, matrice,mvt)){
+            dino->pos=nuage[dino->indice_nuage];
+            remplir_matrice_dino(dino, dino->pos, matrice);
+        }
     }
 }
 
@@ -66,6 +111,7 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
     Si a = 0 : Le terrain est plat. */
 
     float a, b;
+    int mvt=0;
     int colision[4];
     if (state[SDL_SCANCODE_RIGHT]){    
         // Calculer la pente locale
@@ -78,26 +124,19 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
         // Mise à jour de l'indice réel
         dino->indice_reel += pas;
 
-        // Sécurité : Empêcher de sortir du tableau (bord droit)
-        // On s'arrête à nb_pts - 1 pour éviter un accès mémoire invalide
-        if (dino->indice_reel >= nb_pts) {
-            dino->indice_reel = (float)(nb_pts - 1);
-        }
-        
-        if (dino->indice_reel >=nb_pts) {
-            dino->indice_reel = nb_pts-1;
-        }
-        
         // Mise à jour des coordonnées
-        supprimer_matrice_dino(dino, dino->pos, matrice);
+        supprimer_matrice_dino(dino, matrice);
         dino->indice_nuage = (int)dino->indice_reel;
-        dino->pos=nuage[dino->indice_nuage];
-        remplir_matrice_dino(dino, dino->pos, matrice);
+        if(!horsNuage(dino, nuage, nb_pts, matrice,mvt)){
+            dino->pos=nuage[dino->indice_nuage];
+            remplir_matrice_dino(dino, dino->pos, matrice);
+        }
     }
 }
 
 void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state) {
     int tab_res[4];
+    int mvt;
     if(dino->wait==0){
         if (state[SDL_SCANCODE_UP] && (dino->pos.x == nuage[dino->indice_nuage].x) && (dino->pos.y == nuage[dino->indice_nuage].y)){
             dino->v_y=FORCE_SAUT;
@@ -108,17 +147,29 @@ void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_
 
             if (state[SDL_SCANCODE_RIGHT]){
                 dino->indice_nuage +=1;
-                dino->pos.x=nuage[dino->indice_nuage].x;
-                dino->indice_reel = (float)dino->indice_nuage;
+                mvt=1;
+                if(!horsNuage(dino, nuage, nb_pts, matrice,mvt)){
+                    dino->pos.x=nuage[dino->indice_nuage].x;
+                    dino->indice_reel = (float)dino->indice_nuage;
+                }
+                else{
+                    dino->pos.x+=1;
+                }
             }
 
             if (state[SDL_SCANCODE_LEFT]){
                 dino->indice_nuage -=1;
-                dino->pos.x=nuage[dino->indice_nuage].x;
-                dino->indice_reel = (float)dino->indice_nuage;
+                mvt=-1;
+                if(!horsNuage(dino, nuage, nb_pts, matrice,mvt)){
+                    dino->pos.x=nuage[dino->indice_nuage].x;
+                    dino->indice_reel = (float)dino->indice_nuage;
+                }
+                else{
+                    dino->pos.x-=1;
+                }
             }
 
-            supprimer_matrice_dino(dino, dino->pos, matrice);
+            supprimer_matrice_dino(dino, matrice);
             dino->v_y += GRAVITE;
             dino->pos.y += (int)dino->v_y;
 
@@ -131,6 +182,7 @@ void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_
             }
             // Réécrire dans la matrice à la nouvelle position
             remplir_matrice_dino(dino, dino->pos, matrice);
+
             SDL_Delay(16);
         }
     }
