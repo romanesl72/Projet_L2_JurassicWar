@@ -58,32 +58,43 @@ typedef struct {
 	float y;
 } t_coordonnee_calcul;
 
+/**
+ * @struct t_deplacement
+ * @brief Structure regroupant toutes les informations de déplacement d'un dinosaure
+ * @author Solène Orieux
+ * @date Crée le 14/03/2026
+ * @version 1.0
+*/
+
+typedef struct {
+    int sautBooleen;        /**< Vaut 1 si le dinosaure est en cours de saut */
+    int indice_nuage;       /**< Position dans le nuage */
+    int indice_nuage_temp;       /**< Position temporaire dans le prochain nuage */
+    float indice_reel;      /**< Pour le déplacement */
+    int tab_res[4];         /**< pour les colisions */
+    float v_y;              /**< pour les sauts */
+    int hors_nuage;         /**<  */
+    int wait;               /**< Petite pause pour ne pas sauter deux fois d'un coup*/
+} t_deplacement;
 
 /**
  * @struct t_dino
  * @brief Structure regroupant toutes les informations d'un dinosaure
  * @author Solène Orieux Romane Saint-Léger Hannah Sergent
  * @date Crée le 27/01/2026
- * @version 2.3
+ * @version 3.0
 */
 
 typedef struct {
     t_numDino d;            /**< Numéro du dinosaure de 0 à 5 */
     t_coordonnee pos;       /**< Position actuelle */
-    int sautBooleen;        /**< Vaut 1 si le dinosaure est en cours de saut */
-    int indice_nuage;       /**< Position dans le nuage */
-    float indice_reel;      /**< Pour le déplacement */
     int id_nuage;           /**< Numéro du nuage */
     int largeur, hauteur;   /**< Dimensions du dinosaure */
     int etat;               /**< Vivant ou Mort */
     int pv;                 /**< Points de vie restant */
-    int tab_res[4];         /**< pour les colisions */
-    float v_y;              /**< pour les sauts */
-    int hors_nuage;         /**<  */
-    int wait;               /**< Petite pause pour ne pas sauter deux fois d'un coup*/
-    int memoire[30][30];    /**<  */
+    int memoire[30][30];    /**< Permet de mémoriser Ce qu'il y avait dans la matrice avant le dino */
+    t_deplacement *deplacement;
 } t_dino;
-
 
 /**
  * @struct t_joueur
