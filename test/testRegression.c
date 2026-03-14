@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/types.h"
+#include "../lib/tda_nuage.h"
 #include "../lib/regression.h"
 
 int main() {

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "regression.h"
+#include "tda_nuage.h"
 #include "chargerMatrice.h"
 #include "placer_dinos.h"
 #include "creation_nuage.h"

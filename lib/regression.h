@@ -2,6 +2,7 @@
 #define _REGRESSION_H_
 
 #include "types.h"
+#include "tda_nuage.h"
 
 /**
  * @file regression.h
@@ -67,38 +68,6 @@ void calculPente(t_coordonnee *T, int n, float *a, float x, float y);
 
 
 void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point);
-
-/**
- * @fn int nuageExiste( t_coordonnee * const nuage );
- * @author Solène Orieux
- * @date 14/03/2026
- * @brief
- * @param nuage
- */
-
-int nuageExiste( t_coordonnee * const nuage );
-
-/**
- * @fn int nuageDetruire( t_coordonnee ** nuage)
- * @author Solène Orieux
- * @date 14/03/2026
- * @brief
- * @param nuage
- */
-
-int nuageDetruire( t_coordonnee ** nuage);
-
-/**
- * @fn int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points);
- * @author Solène Orieux
- * @date 14/03/2026
- * @brief
- * @param nuage_cible
- * @param nuage_source
- * @param nb_points
- */
-
-int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points);
 
 /**
  * @fn int tracerCourbe( t_coordonnee *nuage, int nbPoints);

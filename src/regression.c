@@ -1,5 +1,3 @@
-#define STB_IMAGE_IMPLEMENTATION
-#include "../lib/stb_image.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -12,54 +10,6 @@
 #define LARGEUR 1300
 #define HAUTEUR 700
 
-
-t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]) {
-    int largeur, hauteur, canaux, r, g, b, sommeY,compte, index, i, j;
-    *nb_points=0; //indice du premier élement de nuage
-
-    //Charge l'image (force 3 canaux : RGB)
-    unsigned char *img = stbi_load(nomFichier, &largeur, &hauteur, &canaux, 3);
-    
-    if (img == NULL) {
-        printf("Erreur : Impossible de charger l'image. Verifiez le chemin.\n");
-        return NULL;
-    }
-    
-    t_coordonnee *nuage=malloc(sizeof(t_coordonnee)*largeur);
-    if (nuage == NULL) {
-        stbi_image_free(img);
-        return NULL;
-    }
-    
-    // Parcourir les colonnes (j) puis les lignes (i)
-    for (j = 0; j < largeur; j++){
-        sommeY = 0;
-        compte = 0;
-
-        for (i = 0; i < hauteur; i++) {
-            index = (i * largeur + j) * 3;
-            r = img[index];
-            g = img[index + 1];
-            b = img[index + 2];
-
-            //moyenne des point sur la hauteur pour affiner le résultat
-            if (r < 25 && g < 25 && b < 25) {
-                sommeY += i;
-                compte++;
-            }
-        }
-        if (compte>0){
-            // Logique de conversion (avec une petite tolerance) pour reperer la courbe noir
-
-            nuage[(*nb_points)].x=j-15;
-            nuage[(*nb_points)++].y=(int)(sommeY/compte)-30; //on enregistre les coordonnées de chaque pixel noir puis on incrémente l'indice
-            
-        } 
-        
-    }
-    stbi_image_free(img);
-    return nuage;
-}
 
 void moyenne(t_coordonnee *T, int n, float *x, float *y){
     (*x)=0.0, (*y)=0.0;
@@ -99,55 +49,6 @@ void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int
     moyenne(tab,n,&m_x,&m_y);
     calculPente(tab, n, a, m_x, m_y);
     *b=m_y-((*a)*m_x);
-}
-
-/*
- * Test d'existance 
- */
-
-int nuageExiste( t_coordonnee * const nuage ){
-    if( nuage == NULL ) return(0);
-    return(1) ; 
-}
-
-/*
- * fonction de destruction 
- */
-
-int nuageDetruire( t_coordonnee ** nuage) {
-    /* Liberation attributs */
-    /* Liberation memoire de l'objet */
-    free((*nuage)) ;
-    /* Pour eviter les pointeurs fous */
-    (*nuage) = NULL ;
-    return 1;
-}
-
-/*
- * Affectation d'un nuage par copie
- */
-
-/*
- * Affectation d'un nuage par copie
- */
-
-int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points) {
-
-    //Si la cible existe déjà, on la libère pour éviter les fuites mémoire
-    if (nuageExiste(*nuage_cible)) {
-        if (!nuageDetruire(nuage_cible)) return 0;
-    }
-
-    // Vérification que la source existe
-    if (!nuageExiste(nuage_source)) return 0;
-
-    // Allocation de la nouvelle mémoire pour la cible
-    *nuage_cible = malloc(sizeof(t_coordonnee) * nb_points);
-    if (!nuageExiste(*nuage_cible)) return 0;
-
-    memcpy(*nuage_cible, nuage_source, sizeof(t_coordonnee) * nb_points);
-
-    return 1;
 }
 
 int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
