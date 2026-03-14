@@ -10,46 +10,28 @@
 #define LARGEUR_FEN_MENU 400
 #define HAUTEUR_FEN_MENU 650
 
+
 int main(){
 
     int enCours;
     int matrice[MAT_H][MAT_L];
-    int w, h, i;
+    int w, h;
 
-    t_dino *dino=malloc(sizeof(t_dino));
-    dino->deplacement=malloc(sizeof(t_deplacement));
     int nb_pts;
-    float a,b,angle;
-    float pas;
+    
+    t_dino *dino=NULL;
+
+    char *nomNuage[] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
+
     t_coordonnee *nuage1=NULL; 
     t_coordonnee *nuage2=NULL;
+    t_coordonnee *nuage=NULL;
 
+    if(!init_deplacement(&dino, &nb_pts, matrice, nomNuage, &nuage, 2, &nuage1, &nuage2))return 1;
+
+    
     dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
     dino->hauteur = 30;
-
-    printf("tapez 1 ou 0 pour choisir le nuage");
-    scanf("%d",&dino->id_nuage);
-
-    if(dino->id_nuage==0){
-        nuage1=nuage_de_points(&nb_pts,"../img/test1_c.jpg");
-        nuage2=nuage_de_points(&nb_pts,"../img/test2_c.jpg");
-    }
-    else{
-        nuage1=nuage_de_points(&nb_pts,"../img/test2_c.jpg");
-        nuage2=nuage_de_points(&nb_pts,"../img/test1_c.jpg");
-    }
-
-    if((nuage1==NULL) && (nuage2==NULL))return 1;
-    /* Charger la matrice du décor */
-    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
-    dino->pos=nuage1[150];
-    dino->deplacement->indice_nuage=150;
-    dino->deplacement->indice_reel=(float)dino->deplacement->indice_nuage;
-    dino->deplacement->wait=0;
-    dino->pv=100;
-    dino->deplacement->hors_nuage=0;
-    remplir_matrice_dino(dino, dino->pos, matrice);
-
 
     if (initialisationCorrecte()) {
 
@@ -98,19 +80,19 @@ int main(){
             // 2. Gérer les entrées clavier pour le mouvement
             const Uint8 *state = SDL_GetKeyboardState(NULL);
 
-            saut(dino,nuage1,nb_pts,matrice,state);
+            saut(dino,nuage,nb_pts,matrice,state);
 
             if ((!dino->deplacement->sautBooleen) && (!dino->deplacement->hors_nuage))
             {
-                gauche(dino,nuage1,nb_pts,matrice,state);
-                droite(dino,nuage1,nb_pts,matrice,state);
+                gauche(dino,nuage,nb_pts,matrice,state);
+                droite(dino,nuage,nb_pts,matrice,state);
             }
             
             if (dino->deplacement->wait>0){
                 dino->deplacement->wait-=1;
             }
             
-            if ((dino->pv<=0) || (nuage1==NULL)){
+            if ((dino->pv<=0) || (nuage==NULL)){
                 enCours=0;
             }
             
@@ -119,12 +101,10 @@ int main(){
 
         /* --- NETTOYAGE --- */
         SDL_DestroyTexture(texDino);
-        if(nuage1!=NULL){
-            free(nuage1);
-        }
-        if(nuage2!=NULL){
-            free(nuage2);
-        }
+        if(nuageExiste(nuage))nuageDetruire(&nuage);
+        if(nuageExiste(nuage1))nuageDetruire(&nuage1);
+        if(nuageExiste(nuage2))nuageDetruire(&nuage2);
+
         free(dino->deplacement);
         dino->deplacement=NULL;
         free(dino);

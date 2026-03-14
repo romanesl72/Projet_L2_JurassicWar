@@ -39,6 +39,24 @@
 #define FORCE_SAUT -12.0
 
 /**
+ * @fn int init_deplacement(t_dino **dino, int matrice[MAT_H][MAT_L], char *nomNuage[], int nb_nuage, ...);
+ * @author Solène Orieux
+ * @date 14/03/2026
+ * @brief
+ * @param dino
+ * @param nb_pts
+ * @param matrice
+ * @param dino
+ * @param matrice
+ * @param nomNuage
+ * @param nb_nuage
+ * @param nuage
+ */
+
+int init_deplacement(t_dino **dino, int *nb_pts,int matrice[MAT_H][MAT_L], char *nomNuage[], t_coordonnee **nuage_principal, int nb_nuage, ...);
+
+
+/**
  * @fn void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
  * @author Solène Orieux
  * @date 

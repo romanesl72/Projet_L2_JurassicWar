@@ -6,6 +6,51 @@
 #include "../lib/deplacement.h"
 #include <SDL2/SDL.h>
 
+int init_deplacement(t_dino **dino, int *nb_pts, int matrice[MAT_H][MAT_L], char *nomNuage[], t_coordonnee **nuage_principal,int nb_nuage, ...){
+    *dino=malloc(sizeof(t_dino));
+    int nb_pts_retenu;
+    if(*dino==NULL)return 0;
+
+    (*dino)->deplacement=malloc(sizeof(t_deplacement));
+
+    if((*dino)->deplacement==NULL)return 0;
+
+    /*à enlever plus tard*/
+    printf("tapez 1 ou 0 pour choisir le nuage"); 
+    scanf("%d",&(*dino)->id_nuage);
+
+    va_list args;          // 1. Déclare une liste d'arguments
+    va_start(args, nb_nuage);    // 2. Initialise la liste à partir du dernier paramètre fixe
+
+    for (int i = 0; i < nb_nuage; i++) {
+        // 1. On récupère le POINTEUR de POINTEUR pour pouvoir modifier l'original
+        t_coordonnee **ptr_sur_nuage = va_arg(args, t_coordonnee **);
+        *ptr_sur_nuage = nuage_de_points(nb_pts, nomNuage[i]);
+        if(!nuageExiste(*ptr_sur_nuage))return 0;
+
+        /*à modifier plus tard*/
+        if((*dino)->id_nuage==i){
+            (*dino)->deplacement->indice_nuage=150;
+            (*dino)->pos=(*ptr_sur_nuage)[(*dino)->deplacement->indice_nuage];
+            nb_pts_retenu=*nb_pts;
+            *nuage_principal=malloc(sizeof(t_coordonnee));
+            nuageCopier(nuage_principal, *ptr_sur_nuage , *nb_pts);
+        }
+    }
+    va_end(args);
+    *nb_pts=nb_pts_retenu;
+
+
+    /* Charger la matrice du décor */
+    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
+    (*dino)->deplacement->indice_reel=(float)(*dino)->deplacement->indice_nuage;
+    (*dino)->deplacement->wait=0;
+    (*dino)->pv=100;
+    (*dino)->deplacement->hors_nuage=0;
+    remplir_matrice_dino(*dino, (*dino)->pos, matrice);
+    return 1;
+}
+
 void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]) {
     /*permet de remetre à jour les anciennes zones comportant un dino*/
     int i,j,px,py;
