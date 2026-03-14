@@ -17,10 +17,12 @@ int main(){
     int w, h, i;
 
     t_dino *dino=malloc(sizeof(t_dino));
+    dino->deplacement=malloc(sizeof(t_deplacement));
     int nb_pts;
     float a,b,angle;
     float pas;
-    t_coordonnee *nuage=NULL; 
+    t_coordonnee *nuage1=NULL; 
+    t_coordonnee *nuage2=NULL;
 
     dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
     dino->hauteur = 30;
@@ -29,20 +31,23 @@ int main(){
     scanf("%d",&dino->id_nuage);
 
     if(dino->id_nuage==0){
-        nuage=nuage_de_points(&nb_pts,"../img/test1_c.jpg");
+        nuage1=nuage_de_points(&nb_pts,"../img/test1_c.jpg");
+        nuage2=nuage_de_points(&nb_pts,"../img/test2_c.jpg");
     }
     else{
-        nuage=nuage_de_points(&nb_pts,"../img/test2_c.jpg");
+        nuage1=nuage_de_points(&nb_pts,"../img/test2_c.jpg");
+        nuage2=nuage_de_points(&nb_pts,"../img/test1_c.jpg");
     }
 
-    if(nuage==NULL)return 1;
+    if((nuage1==NULL) && (nuage2==NULL))return 1;
     /* Charger la matrice du décor */
     chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
-    dino->pos=nuage[150];
-    dino->indice_nuage=150;
-    dino->indice_reel=(float)dino->indice_nuage;
-    dino->wait=0;
+    dino->pos=nuage1[150];
+    dino->deplacement->indice_nuage=150;
+    dino->deplacement->indice_reel=(float)dino->deplacement->indice_nuage;
+    dino->deplacement->wait=0;
     dino->pv=100;
+    dino->deplacement->hors_nuage=0;
     remplir_matrice_dino(dino, dino->pos, matrice);
 
 
@@ -89,23 +94,23 @@ int main(){
             /* --- AFFICHAGE DU DINO*/
             SDL_Rect r = {dino->pos.x,dino->pos.y, 30, 30};
             SDL_RenderCopy(rendu, texDino, NULL, &r);
-
+            
             // 2. Gérer les entrées clavier pour le mouvement
             const Uint8 *state = SDL_GetKeyboardState(NULL);
 
-            saut(dino,nuage,nb_pts,matrice,state);
+            saut(dino,nuage1,nb_pts,matrice,state);
 
-            if (!dino->sautBooleen)
+            if ((!dino->deplacement->sautBooleen) && (!dino->deplacement->hors_nuage))
             {
-                gauche(dino,nuage,nb_pts,matrice,state);
-                droite(dino,nuage,nb_pts,matrice,state);
+                gauche(dino,nuage1,nb_pts,matrice,state);
+                droite(dino,nuage1,nb_pts,matrice,state);
             }
             
-            if (dino->wait>0){
-                dino->wait-=1;
+            if (dino->deplacement->wait>0){
+                dino->deplacement->wait-=1;
             }
             
-            if (dino->pv<=0){
+            if ((dino->pv<=0) || (nuage1==NULL)){
                 enCours=0;
             }
             
@@ -114,7 +119,14 @@ int main(){
 
         /* --- NETTOYAGE --- */
         SDL_DestroyTexture(texDino);
-        free(nuage);
+        if(nuage1!=NULL){
+            free(nuage1);
+        }
+        if(nuage2!=NULL){
+            free(nuage2);
+        }
+        free(dino->deplacement);
+        dino->deplacement=NULL;
         free(dino);
         SDL_DestroyTexture(texMap);
         
