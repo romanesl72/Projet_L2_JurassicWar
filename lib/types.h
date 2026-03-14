@@ -75,7 +75,7 @@ typedef struct {
     float v_y;              /**< pour les sauts */
     int hors_nuage;         /**<  */
     int wait;               /**< Petite pause pour ne pas sauter deux fois d'un coup*/
-    int coteProche[5];      /**< donne le premier x le plus poche du nuage d'à coté */
+    t_coordonnee *coteProche[5];      /**< donne le premier et le dernier x de chaque nuage */
 } t_deplacement;
 
 /**
