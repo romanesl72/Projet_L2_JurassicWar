@@ -68,7 +68,6 @@ typedef struct {
 
 typedef struct {
     int sautBooleen;        /**< Vaut 1 si le dinosaure est en cours de saut */
-    int indice_nuage;       /**< Position dans le nuage */
     int indice_nuage_temp;  /**< Position temporaire dans le prochain nuage */
     float indice_reel;      /**< Pour le déplacement */
     int tab_res[4];         /**< pour les colisions */
@@ -90,6 +89,7 @@ typedef struct {
     t_numDino d;            /**< Numéro du dinosaure de 0 à 5 */
     t_coordonnee pos;       /**< Position actuelle */
     int id_nuage;           /**< Numéro du nuage */
+    int indice_nuage;       /**< Position dans le nuage */
     int largeur, hauteur;   /**< Dimensions du dinosaure */
     int etat;               /**< Vivant ou Mort */
     int pv;                 /**< Points de vie restant */
