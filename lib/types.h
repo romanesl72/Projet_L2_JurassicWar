@@ -14,6 +14,7 @@
 #define MAT_H 700  
 #define MAT_L 1300
 #define VIDE 0
+#define TAILLE_DINO 30
 
 /**
  * @enum t_numDino
@@ -166,5 +167,13 @@ typedef struct {
     t_coordonnee_calcul coor;   /**< */
     int rayon;                  /**< */
 } t_bombe;
+
+
+typedef struct {
+    t_coordonnee_calcul pos;
+    t_vect velo;
+    int actif;
+    t_arme arme_source;
+}t_tir;
 
 #endif
