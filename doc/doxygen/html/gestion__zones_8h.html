@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/gestion_zones.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('gestion__zones_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier gestion_zones.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fonctions qui génère les zones de placement pour les dinosaures.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">types.h</a>&quot;</code><br />
+</div>
+<p><a href="gestion__zones_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a51da42dfa86bc63d669da7d312a49e05" id="r_a51da42dfa86bc63d669da7d312a49e05"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51da42dfa86bc63d669da7d312a49e05">distance</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> p1, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> p2)</td></tr>
+<tr class="memdesc:a51da42dfa86bc63d669da7d312a49e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui calcule la distance entre deux points.  <br /></td></tr>
+<tr class="memitem:adcfffe72ec09e5ad98b2998b21e6c97d" id="r_adcfffe72ec09e5ad98b2998b21e6c97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcfffe72ec09e5ad98b2998b21e6c97d">generer_catalogue_depuis_nuage</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> *nuage, int nb_points, <a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, int *nb_E1, int *nb_E2, int id_n)</td></tr>
+<tr class="memdesc:adcfffe72ec09e5ad98b2998b21e6c97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction pour remplir le catalogue de points de spawn sans chevauchement.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fonctions qui génère les zones de placement pour les dinosaures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a51da42dfa86bc63d669da7d312a49e05" name="a51da42dfa86bc63d669da7d312a49e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51da42dfa86bc63d669da7d312a49e05">&#9670;&#160;</a></span>distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float distance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a></td>          <td class="paramname"><span class="paramname"><em>p1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a></td>          <td class="paramname"><span class="paramname"><em>p2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui calcule la distance entre deux points. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>Première coordonnée </td></tr>
+    <tr><td class="paramname">p2</td><td>Seconde coordonnée </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adcfffe72ec09e5ad98b2998b21e6c97d" name="adcfffe72ec09e5ad98b2998b21e6c97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcfffe72ec09e5ad98b2998b21e6c97d">&#9670;&#160;</a></span>generer_catalogue_depuis_nuage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generer_catalogue_depuis_nuage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>nuage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nb_points</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a> *</td>          <td class="paramname"><span class="paramname"><em>catalogue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>nb_E1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>nb_E2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id_n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction pour remplir le catalogue de points de spawn sans chevauchement. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nuage</td><td>nuage de points afin d'avoir le "sol" pour les dinosaures </td></tr>
+    <tr><td class="paramname">nb_points</td><td></td></tr>
+    <tr><td class="paramname">catalogue</td><td>une structure qui contient les zones de spawn </td></tr>
+    <tr><td class="paramname">nb_E1</td><td>nombre de zones de spawn pour l'équipe 1 </td></tr>
+    <tr><td class="paramname">nb_E2</td><td>nombre de zones de spawn pour l'équipe 2 </td></tr>
+    <tr><td class="paramname">id_n</td><td>numéro du nuage de point utilisé</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Cette fonction prend le nuage de points (tous les points du sol) et choisit 10 points au hasard à gauche et 10 à droite. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="gestion__zones_8h.html">gestion_zones.h</a></li>
+    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

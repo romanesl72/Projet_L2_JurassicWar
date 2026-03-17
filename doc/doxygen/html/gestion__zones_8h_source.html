@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/gestion_zones.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/gestion_zones.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -34,7 +34,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Généré par Doxygen 1.16.1 -->
+<!-- Généré par Doxygen 1.14.0 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 </script>
@@ -91,19 +91,22 @@ $(function(){initNavTree('gestion__zones_8h_source.html','',''); });
   <div class="headertitle"><div class="title">gestion_zones.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _GESTION_ZONES_H_</span></div>
+<a href="gestion__zones_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _GESTION_ZONES_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _GESTION_ZONES_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// Fonction qui calcule la distance entre deux points</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">float</span> distance(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p1, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p2);</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Fonction pour remplir le catalogue sans chevauchement</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keywordtype">void</span> generer_catalogue_depuis_nuage(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> nb_points, <a class="code hl_struct" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, <span class="keywordtype">int</span> *nb_E1, <span class="keywordtype">int</span> *nb_E2, <span class="keywordtype">int</span> id_n);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructt__catalogue__zones_html"><div class="ttname"><a href="structt__catalogue__zones.html">t_catalogue_zones</a></div><div class="ttdef"><b>Definition</b> types.h:51</div></div>
-<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdef"><b>Definition</b> types.h:23</div></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">float</span> <a class="code hl_function" href="gestion__zones_8h.html#a51da42dfa86bc63d669da7d312a49e05">distance</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p1, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p2);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">void</span> <a class="code hl_function" href="gestion__zones_8h.html#adcfffe72ec09e5ad98b2998b21e6c97d">generer_catalogue_depuis_nuage</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> nb_points, <a class="code hl_struct" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, <span class="keywordtype">int</span> *nb_E1, <span class="keywordtype">int</span> *nb_E2, <span class="keywordtype">int</span> id_n);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agestion__zones_8h_html_a51da42dfa86bc63d669da7d312a49e05"><div class="ttname"><a href="gestion__zones_8h.html#a51da42dfa86bc63d669da7d312a49e05">distance</a></div><div class="ttdeci">float distance(t_coordonnee p1, t_coordonnee p2)</div><div class="ttdoc">Fonction qui calcule la distance entre deux points.</div><div class="ttdef"><b>Definition</b> gestion_zones.c:8</div></div>
+<div class="ttc" id="agestion__zones_8h_html_adcfffe72ec09e5ad98b2998b21e6c97d"><div class="ttname"><a href="gestion__zones_8h.html#adcfffe72ec09e5ad98b2998b21e6c97d">generer_catalogue_depuis_nuage</a></div><div class="ttdeci">void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalogue_zones *catalogue, int *nb_E1, int *nb_E2, int id_n)</div><div class="ttdoc">Fonction pour remplir le catalogue de points de spawn sans chevauchement.</div><div class="ttdef"><b>Definition</b> gestion_zones.c:16</div></div>
+<div class="ttc" id="astructt__catalogue__zones_html"><div class="ttname"><a href="structt__catalogue__zones.html">t_catalogue_zones</a></div><div class="ttdoc">Structures qui contient les zones des différentes équipes.</div><div class="ttdef"><b>Definition</b> types.h:139</div></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels)</div><div class="ttdef"><b>Definition</b> types.h:44</div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour Jurassic War.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -111,8 +114,8 @@ $(function(){initNavTree('gestion__zones_8h_source.html','',''); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>lib</b></li><li class="navelem"><b>gestion_zones.h</b></li>
-    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="gestion__zones_8h.html">gestion_zones.h</a></li>
+    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

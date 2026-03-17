@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['miseajourtemps_0',['miseAjourTemps',['../fonctions_rebonds_8h.html#a27a9523bcc977ed4680f99edd73cb413',1,'miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule):&#160;fonctionsRebonds.c'],['../fonctions_rebonds_8c.html#a27a9523bcc977ed4680f99edd73cb413',1,'miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule):&#160;fonctionsRebonds.c']]]
+  ['detruirematrice_0',['detruireMatrice',['../chargerMatrice_8h.html#a3f59ed037c288c35667f07c1c0021df4',1,'chargerMatrice.c']]],
+  ['distance_1',['distance',['../gestion__zones_8h.html#a51da42dfa86bc63d669da7d312a49e05',1,'gestion_zones.c']]],
+  ['droite_2',['droite',['../deplacement_8h.html#aecebc8ac3f3705c944656a1ea4a2f618',1,'deplacement.c']]]
 ];

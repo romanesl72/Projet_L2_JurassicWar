@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/chargerMatrice.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('chargerMatrice_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">chargerMatrice.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="chargerMatrice_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _CHARGER_MATRICE_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _CHARGER_MATRICE_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="chargerMatrice_8h.html#ab43474c0a63208267d1971f82a9fa1b6">chargerMatriceDepuisFichier</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* nomFichier, <span class="keywordtype">int</span> matrice[MAT_H][MAT_L]);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">int</span> <a class="code hl_function" href="chargerMatrice_8h.html#a470e0b6e2396ad95b63b68d4b5a9ca58">initialiserMatrice</a>(<a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> (**matriceTerrain)[LARGEUR_TERRAIN]);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="chargerMatrice_8h.html#a3f59ed037c288c35667f07c1c0021df4">detruireMatrice</a>(<a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> (**matriceTerrain)[LARGEUR_TERRAIN]);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="achargerMatrice_8h_html_a3f59ed037c288c35667f07c1c0021df4"><div class="ttname"><a href="chargerMatrice_8h.html#a3f59ed037c288c35667f07c1c0021df4">detruireMatrice</a></div><div class="ttdeci">void detruireMatrice(t_case(**matriceTerrain)[LARGEUR_TERRAIN])</div><div class="ttdoc">la fonction détruit la matrice du terrain</div><div class="ttdef"><b>Definition</b> chargerMatrice.c:42</div></div>
+<div class="ttc" id="achargerMatrice_8h_html_a470e0b6e2396ad95b63b68d4b5a9ca58"><div class="ttname"><a href="chargerMatrice_8h.html#a470e0b6e2396ad95b63b68d4b5a9ca58">initialiserMatrice</a></div><div class="ttdeci">int initialiserMatrice(t_case(**matriceTerrain)[LARGEUR_TERRAIN])</div><div class="ttdoc">la fonction initialise la matrice du terrain</div><div class="ttdef"><b>Definition</b> chargerMatrice.c:28</div></div>
+<div class="ttc" id="achargerMatrice_8h_html_ab43474c0a63208267d1971f82a9fa1b6"><div class="ttname"><a href="chargerMatrice_8h.html#ab43474c0a63208267d1971f82a9fa1b6">chargerMatriceDepuisFichier</a></div><div class="ttdeci">void chargerMatriceDepuisFichier(const char *nomFichier, int matrice[MAT_H][MAT_L])</div><div class="ttdoc">Charge une matrice depuis un fichier.</div><div class="ttdef"><b>Definition</b> chargerMatrice.c:12</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour Jurassic War.</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:31</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="chargerMatrice_8h.html">chargerMatrice.h</a></li>
+    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

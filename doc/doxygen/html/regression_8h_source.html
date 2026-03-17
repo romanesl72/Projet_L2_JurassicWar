@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/regression.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/regression.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -34,7 +34,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Généré par Doxygen 1.16.1 -->
+<!-- Généré par Doxygen 1.14.0 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 </script>
@@ -91,16 +91,41 @@ $(function(){initNavTree('regression_8h_source.html','',''); });
   <div class="headertitle"><div class="title">regression.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _REGRESSION_H_</span></div>
+<a href="regression_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _REGRESSION_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _REGRESSION_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage_de_points(<span class="keywordtype">int</span> *nb_points,<span class="keywordtype">char</span> nomFichier[]);</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">int</span> tracerCourbe( <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> nbPoints);</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdef"><b>Definition</b> types.h:23</div></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="tda__nuage_8h.html">tda_nuage.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *<a class="code hl_function" href="regression_8h.html#a7df22140a7211b37935299a3b169de52">nuage_de_points</a>(<span class="keywordtype">int</span> *nb_points,<span class="keywordtype">char</span> nomFichier[]);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> <a class="code hl_function" href="regression_8h.html#a290258177c71bb169025761eead72a52">moyenne</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *T, <span class="keywordtype">int</span> n, <span class="keywordtype">float</span> *x, <span class="keywordtype">float</span> *y);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> <a class="code hl_function" href="regression_8h.html#a56c0975876a4121c6fbaaf36f0944ed6">calculPente</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *T, <span class="keywordtype">int</span> n, <span class="keywordtype">float</span> *a, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">void</span> <a class="code hl_function" href="regression_8h.html#a1bf75b794426eab58f96aecebe69076b">regression</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> dino, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> * nuage, <span class="keywordtype">float</span> *a, <span class="keywordtype">float</span> *b, <span class="keywordtype">int</span> indice, <span class="keywordtype">int</span> nb_point);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">int</span> <a class="code hl_function" href="regression_8h.html#a9fbb7dccc4707458b941770fb776bf1f">tracerCourbe</a>( <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> nbPoints);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aregression_8h_html_a1bf75b794426eab58f96aecebe69076b"><div class="ttname"><a href="regression_8h.html#a1bf75b794426eab58f96aecebe69076b">regression</a></div><div class="ttdeci">void regression(t_coordonnee dino, t_coordonnee *nuage, float *a, float *b, int indice, int nb_point)</div><div class="ttdef"><b>Definition</b> regression.c:36</div></div>
+<div class="ttc" id="aregression_8h_html_a290258177c71bb169025761eead72a52"><div class="ttname"><a href="regression_8h.html#a290258177c71bb169025761eead72a52">moyenne</a></div><div class="ttdeci">void moyenne(t_coordonnee *T, int n, float *x, float *y)</div><div class="ttdef"><b>Definition</b> regression.c:14</div></div>
+<div class="ttc" id="aregression_8h_html_a56c0975876a4121c6fbaaf36f0944ed6"><div class="ttname"><a href="regression_8h.html#a56c0975876a4121c6fbaaf36f0944ed6">calculPente</a></div><div class="ttdeci">void calculPente(t_coordonnee *T, int n, float *a, float x, float y)</div><div class="ttdef"><b>Definition</b> regression.c:25</div></div>
+<div class="ttc" id="aregression_8h_html_a7df22140a7211b37935299a3b169de52"><div class="ttname"><a href="regression_8h.html#a7df22140a7211b37935299a3b169de52">nuage_de_points</a></div><div class="ttdeci">t_coordonnee * nuage_de_points(int *nb_points, char nomFichier[])</div><div class="ttdef"><b>Definition</b> tda_nuage.c:14</div></div>
+<div class="ttc" id="aregression_8h_html_a9fbb7dccc4707458b941770fb776bf1f"><div class="ttname"><a href="regression_8h.html#a9fbb7dccc4707458b941770fb776bf1f">tracerCourbe</a></div><div class="ttdeci">int tracerCourbe(t_coordonnee *nuage, int nbPoints)</div><div class="ttdef"><b>Definition</b> regression.c:54</div></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels)</div><div class="ttdef"><b>Definition</b> types.h:44</div></div>
+<div class="ttc" id="atda__nuage_8h_html"><div class="ttname"><a href="tda__nuage_8h.html">tda_nuage.h</a></div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour Jurassic War.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -108,8 +133,8 @@ $(function(){initNavTree('regression_8h_source.html','',''); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>lib</b></li><li class="navelem"><b>regression.h</b></li>
-    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="regression_8h.html">regression.h</a></li>
+    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

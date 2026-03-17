@@ -1,4 +1,5 @@
 #include "../lib/fonctionsRebonds.h"
+#include "../lib/placer_dinos.h"
 #include <stdio.h>
 #include <math.h>
 
@@ -29,28 +30,6 @@ void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
 int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe){
     return ((bombe->coor.x + bombe->rayon > largeurFenetre) || (bombe->coor.x - bombe->rayon < 0) || (bombe->coor.y + bombe->rayon > hauteurFenetre) || (bombe->coor.y - bombe->rayon < 0));
 }
-
-/*
-void rebondirFrontiere(int largeurFenetre, int hauteurFenetre, t_coordonnee *coor, int rayon, float *vitesseX, float *vitesseY){
-    if (coor->x + rayon > largeurFenetre) {
-        coor->x = largeurFenetre - rayon;
-        *vitesseX = -*vitesseX;
-    }
-    if (coor->x - rayon < 0) {
-        coor->x = rayon;
-        *vitesseX = -*vitesseX;
-    }
-    if (coor->y + rayon > hauteurFenetre) {
-        coor->y = hauteurFenetre - rayon;
-        *vitesseY = -*vitesseY;
-    }
-    if (coor->y - rayon < 0) {
-        coor->y = rayon;
-        *vitesseY = -*vitesseY;
-    }
-
-}
-*/
 
 int dansLimites(int x, int y){
     return ((x >= 0) && (x < LARGEUR_TERRAIN) && (y < HAUTEUR_TERRAIN) && (y >= 0));
@@ -495,7 +474,7 @@ void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
 void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse, float gravite){
 
     float temps = 0;
-    float dt = 1.0f/60.0f;
+    float dt = 1.0f/120.0f;
     t_vect precedent;
     t_vect courant;
     float vitY = vectVitesse->v;
@@ -549,8 +528,46 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
+        /* SDL_Delay(16);*/
+        SDL_Delay(8);
 
-        SDL_Delay(16);
+    } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
+}
+
+void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, SDL_Texture * texDinos[6], t_joueur * equipe1, t_joueur * equipe2){
+    
+    do {
+
+        SDL_PumpEvents();
+        *etatClavier = SDL_GetKeyboardState(NULL);
+
+        if ((*etatClavier)[SDL_SCANCODE_UP]){
+            vectVitesse->v -= 0.8;
+        }
+        if ((*etatClavier)[SDL_SCANCODE_DOWN]){
+            vectVitesse->v += 0.8;
+        }
+
+        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+        if ((*etatClavier)[SDL_SCANCODE_LEFT]){
+            vectVitesse->u = -fabs(vectVitesse->u);
+        }
+
+        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
+            vectVitesse->u = fabs(vectVitesse->u);
+        }
+
+        SDL_RenderClear(zoneAffichage);
+        SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
+
+        tracerBombe(zoneAffichage, bombe);
+        afficherDinos(zoneAffichage, texDinos, equipe1);
+        afficherDinos(zoneAffichage, texDinos, equipe2);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
+
+        SDL_RenderPresent(zoneAffichage);
+        SDL_Delay(8);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }

@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar/lib/types.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/types.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -34,7 +34,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Généré par Doxygen 1.16.1 -->
+<!-- Généré par Doxygen 1.14.0 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 </script>
@@ -93,101 +93,172 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="contents">
 <a href="types_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _TYPES_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _TYPES_H_</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">/* Variables globales communes à la matrice et aux fenetres à utiliser*/</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#define LARGEUR_TERRAIN 1300</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define HAUTEUR_TERRAIN 700</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define MAT_H 700  </span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define MAT_L 1300</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define VIDE 0</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {FUSIL, REVOLVER} t_pistolet;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6,BOMBE} t_case; <span class="comment">//représentation de chaque élément sur la matrice </span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structt__coordonnee.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> x;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> y;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a>;</div>
-</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structt__dino.html">   28</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    t_numDino d; <span class="comment">//Numéro de 0 à 5</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> pos;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">int</span> indice_nuage;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">int</span> id_nuage;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">int</span> largeur, hauteur;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> etat;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> pv;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>} <a class="code hl_struct" href="structt__dino.html">t_dino</a>;</div>
-</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structt__joueur.html">   38</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_struct" href="structt__dino.html">t_dino</a> * tab;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> n; <span class="comment">// taille du tableau</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <a class="code hl_struct" href="structt__joueur.html">t_joueur</a>;</div>
-</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/* Variables globales communes à la matrice et aux fenetres à utiliser*/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define LARGEUR_TERRAIN 1300</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define HAUTEUR_TERRAIN 700</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define MAT_H 700  </span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define MAT_L 1300</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define VIDE 0</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define TAILLE_DINO 30</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="types_8h.html#a1892fa62fed162459425c9a576c75ba3">   24</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} <a class="code hl_enumeration" href="types_8h.html#a1892fa62fed162459425c9a576c75ba3">t_numDino</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">   31</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6,BOMBE} <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a>; </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {FUSIL, REVOLVER} t_pistolet;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> bas_centre; <span class="comment">// Le point de contact avec le sol (issu du nuage de Solène)</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">int</span> id_equipe;           <span class="comment">// 1 ou 2</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">int</span> indice_nuage;   <span class="comment">// Retrouver le point dans le tableau</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> id_nuage;    <span class="comment">// Savoir quel fichier JPG a généré ce point</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>} <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structt__catalogue__zones.html">   51</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> zones_E1[10]; <span class="comment">// 10 zones pour équipe 1</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> zones_E2[10]; <span class="comment">// 10 zones pour équipe 2</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <a class="code hl_struct" href="structt__catalogue__zones.html">t_catalogue_zones</a>;</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structt__coordonnee.html">   44</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structt__coordonnee.html#adc43d2ee9bc8331939123bf7f019a5f6">   45</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__coordonnee.html#adc43d2ee9bc8331939123bf7f019a5f6">x</a>; </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structt__coordonnee.html#a59976d5ac64eac95bdbe12b4453f1af3">   46</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__coordonnee.html#a59976d5ac64eac95bdbe12b4453f1af3">y</a>; </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a>;</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structt__vect.html">   57</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">float</span> u;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">float</span> v;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <a class="code hl_struct" href="structt__vect.html">t_vect</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structt__coordonnee__calcul.html">   57</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">float</span> x;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">float</span> y;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <a class="code hl_struct" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a>;</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structt__bombe.html">   62</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> coor;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> rayon;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>} <a class="code hl_struct" href="structt__bombe.html">t_bombe</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structt__deplacement.html">   70</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a213d7637135df709dec1ba026ba94253">   71</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__deplacement.html#a213d7637135df709dec1ba026ba94253">sautBooleen</a>;        </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a369cb7a23a73822d663618af621e72e0">   72</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__deplacement.html#a369cb7a23a73822d663618af621e72e0">indice_nuage_temp</a>;  </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a04bd84a9145eb3f19770ae0a7ad9887e">   73</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structt__deplacement.html#a04bd84a9145eb3f19770ae0a7ad9887e">indice_reel</a>;      </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structt__deplacement.html#af84c55c85f96d64578b514d4e7a42d17">   74</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__deplacement.html#af84c55c85f96d64578b514d4e7a42d17">tab_res</a>[4];         </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a29f32c7b2973b69d4ca31ebc3a7259cf">   75</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structt__deplacement.html#a29f32c7b2973b69d4ca31ebc3a7259cf">v_y</a>;              </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">int</span> hors_nuage;         </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a9327db94f531063799fd67e6ee3b50bb">   77</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__deplacement.html#a9327db94f531063799fd67e6ee3b50bb">wait</a>;               </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structt__deplacement.html#a6e70c9c57ab41e6f4bcc13dc35c4694a">   78</a></span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> <a class="code hl_variable" href="structt__deplacement.html#a6e70c9c57ab41e6f4bcc13dc35c4694a">coteProche</a>[5];      </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>} <a class="code hl_struct" href="structt__deplacement.html">t_deplacement</a>;</div>
 </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">/*Pour utiliser les nuages de points :</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">Soit faire un tableau soit une structure, voici le tableau</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">t_coordonnee *tous_les_nuages[3];</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">tous_les_nuages[1] = nuage_de_points(..., &quot;img/test1_c.jpg&quot;);</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">tous_les_nuages[2] = nuage_de_points(..., &quot;img/test2_c.jpg&quot;);*/</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructt__bombe_html"><div class="ttname"><a href="structt__bombe.html">t_bombe</a></div><div class="ttdef"><b>Definition</b> types.h:62</div></div>
-<div class="ttc" id="astructt__catalogue__zones_html"><div class="ttname"><a href="structt__catalogue__zones.html">t_catalogue_zones</a></div><div class="ttdef"><b>Definition</b> types.h:51</div></div>
-<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdef"><b>Definition</b> types.h:23</div></div>
-<div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdef"><b>Definition</b> types.h:28</div></div>
-<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdef"><b>Definition</b> types.h:38</div></div>
-<div class="ttc" id="astructt__vect_html"><div class="ttname"><a href="structt__vect.html">t_vect</a></div><div class="ttdef"><b>Definition</b> types.h:57</div></div>
-<div class="ttc" id="astructt__zone__depart_html"><div class="ttname"><a href="structt__zone__depart.html">t_zone_depart</a></div><div class="ttdoc">Définit une zone contenant plusieurs points de spawn.</div><div class="ttdef"><b>Definition</b> gestion_placement.h:16</div></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structt__dino.html">   89</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structt__dino.html#a5411b687d2caa769e496ee247f06608d">   90</a></span>    <a class="code hl_enumeration" href="types_8h.html#a1892fa62fed162459425c9a576c75ba3">t_numDino</a> <a class="code hl_variable" href="structt__dino.html#a5411b687d2caa769e496ee247f06608d">d</a>;            </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structt__dino.html#a932742af938293644fc10d3c1b731ca2">   91</a></span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> <a class="code hl_variable" href="structt__dino.html#a932742af938293644fc10d3c1b731ca2">pos</a>;       </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541">   92</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541">id_nuage</a>;           </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structt__dino.html#ad26b303d94945e7159a0945b25aac5e6">   93</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__dino.html#ad26b303d94945e7159a0945b25aac5e6">indice_nuage</a>;       </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structt__dino.html#a49c197e223fb613b204e34a30740d562">   94</a></span>    <span class="keywordtype">int</span> largeur, <a class="code hl_variable" href="structt__dino.html#a49c197e223fb613b204e34a30740d562">hauteur</a>;   </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structt__dino.html#a2eb3cf269b0a6976c0ccab79140bc967">   95</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__dino.html#a2eb3cf269b0a6976c0ccab79140bc967">etat</a>;               </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structt__dino.html#a583b3f9b6e28b33a9b7077e2eafc5876">   96</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__dino.html#a583b3f9b6e28b33a9b7077e2eafc5876">pv</a>;                 </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structt__dino.html#af42d99f3e0462cf38d9fde55d881f9b8">   97</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__dino.html#af42d99f3e0462cf38d9fde55d881f9b8">memoire</a>[30][30];    </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_struct" href="structt__deplacement.html">t_deplacement</a> *deplacement;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>} <a class="code hl_struct" href="structt__dino.html">t_dino</a>;</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="};">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structt__joueur.html">  109</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structt__joueur.html#a9ba041bbbbbe9a5f83fe182720b8c1fb">  110</a></span>    <a class="code hl_struct" href="structt__dino.html">t_dino</a> * <a class="code hl_variable" href="structt__joueur.html#a9ba041bbbbbe9a5f83fe182720b8c1fb">tab</a>;   </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="structt__joueur.html#ad19b27999959a0b55db58872c6a4ff27">  111</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__joueur.html#ad19b27999959a0b55db58872c6a4ff27">n</a>;           </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>} <a class="code hl_struct" href="structt__joueur.html">t_joueur</a>;</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="};">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structt__zone__depart.html">  123</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structt__zone__depart.html#a2d66f918d381bc0f9192d2d36781f1f8">  124</a></span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> <a class="code hl_variable" href="structt__zone__depart.html#a2d66f918d381bc0f9192d2d36781f1f8">bas_centre</a>;    </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structt__zone__depart.html#a5a80a6ce8dc7f448dd31d8c00a1c0cbb">  125</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__zone__depart.html#a5a80a6ce8dc7f448dd31d8c00a1c0cbb">id_equipe</a>;              </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structt__zone__depart.html#aeaf9e5494fc059d9b4c6ccf349d93321">  126</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__zone__depart.html#aeaf9e5494fc059d9b4c6ccf349d93321">indice_nuage</a>;           </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structt__zone__depart.html#acb56008ba27158deec34fb53e58a400b">  127</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__zone__depart.html#acb56008ba27158deec34fb53e58a400b">id_nuage</a>;               </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>} <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a>;</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="};">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structt__catalogue__zones.html">  139</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structt__catalogue__zones.html#ad10c976114eee5869fa3a8be866c25a0">  140</a></span>    <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> <a class="code hl_variable" href="structt__catalogue__zones.html#ad10c976114eee5869fa3a8be866c25a0">zones_E1</a>[10]; </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structt__catalogue__zones.html#a27c420e6b0ecbd58c1cb9f44457fc83d">  141</a></span>    <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> <a class="code hl_variable" href="structt__catalogue__zones.html#a27c420e6b0ecbd58c1cb9f44457fc83d">zones_E2</a>[10]; </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>} <a class="code hl_struct" href="structt__catalogue__zones.html">t_catalogue_zones</a>;</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="};">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="structt__vect.html">  153</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">float</span> u;    </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">float</span> v;    </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>} <a class="code hl_struct" href="structt__vect.html">t_vect</a>;</div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="};">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structt__bombe.html">  166</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_struct" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> coor;   </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">int</span> rayon;                  </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>} <a class="code hl_struct" href="structt__bombe.html">t_bombe</a>;</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="foldopen" id="foldopen00172" data-start="{" data-end="};">
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="structt__tir.html">  172</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_struct" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> pos;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_struct" href="structt__vect.html">t_vect</a> velo;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">int</span> actif;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    t_arme arme_source;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}<a class="code hl_struct" href="structt__tir.html">t_tir</a>;</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructt__bombe_html"><div class="ttname"><a href="structt__bombe.html">t_bombe</a></div><div class="ttdoc">Structure qui contient les coordonnées et le rayon d&#39;une bombe.</div><div class="ttdef"><b>Definition</b> types.h:166</div></div>
+<div class="ttc" id="astructt__catalogue__zones_html"><div class="ttname"><a href="structt__catalogue__zones.html">t_catalogue_zones</a></div><div class="ttdoc">Structures qui contient les zones des différentes équipes.</div><div class="ttdef"><b>Definition</b> types.h:139</div></div>
+<div class="ttc" id="astructt__catalogue__zones_html_a27c420e6b0ecbd58c1cb9f44457fc83d"><div class="ttname"><a href="structt__catalogue__zones.html#a27c420e6b0ecbd58c1cb9f44457fc83d">t_catalogue_zones::zones_E2</a></div><div class="ttdeci">t_zone_depart zones_E2[10]</div><div class="ttdef"><b>Definition</b> types.h:141</div></div>
+<div class="ttc" id="astructt__catalogue__zones_html_ad10c976114eee5869fa3a8be866c25a0"><div class="ttname"><a href="structt__catalogue__zones.html#ad10c976114eee5869fa3a8be866c25a0">t_catalogue_zones::zones_E1</a></div><div class="ttdeci">t_zone_depart zones_E1[10]</div><div class="ttdef"><b>Definition</b> types.h:140</div></div>
+<div class="ttc" id="astructt__coordonnee__calcul_html"><div class="ttname"><a href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a></div><div class="ttdoc">Structure qui contient des coordonnées flottantes pour ne pas perdre de précision dans les calculs.</div><div class="ttdef"><b>Definition</b> types.h:57</div></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels)</div><div class="ttdef"><b>Definition</b> types.h:44</div></div>
+<div class="ttc" id="astructt__coordonnee_html_a59976d5ac64eac95bdbe12b4453f1af3"><div class="ttname"><a href="structt__coordonnee.html#a59976d5ac64eac95bdbe12b4453f1af3">t_coordonnee::y</a></div><div class="ttdeci">int y</div><div class="ttdef"><b>Definition</b> types.h:46</div></div>
+<div class="ttc" id="astructt__coordonnee_html_adc43d2ee9bc8331939123bf7f019a5f6"><div class="ttname"><a href="structt__coordonnee.html#adc43d2ee9bc8331939123bf7f019a5f6">t_coordonnee::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition</b> types.h:45</div></div>
+<div class="ttc" id="astructt__deplacement_html"><div class="ttname"><a href="structt__deplacement.html">t_deplacement</a></div><div class="ttdoc">Structure regroupant toutes les informations de déplacement d&#39;un dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:70</div></div>
+<div class="ttc" id="astructt__deplacement_html_a04bd84a9145eb3f19770ae0a7ad9887e"><div class="ttname"><a href="structt__deplacement.html#a04bd84a9145eb3f19770ae0a7ad9887e">t_deplacement::indice_reel</a></div><div class="ttdeci">float indice_reel</div><div class="ttdef"><b>Definition</b> types.h:73</div></div>
+<div class="ttc" id="astructt__deplacement_html_a213d7637135df709dec1ba026ba94253"><div class="ttname"><a href="structt__deplacement.html#a213d7637135df709dec1ba026ba94253">t_deplacement::sautBooleen</a></div><div class="ttdeci">int sautBooleen</div><div class="ttdef"><b>Definition</b> types.h:71</div></div>
+<div class="ttc" id="astructt__deplacement_html_a29f32c7b2973b69d4ca31ebc3a7259cf"><div class="ttname"><a href="structt__deplacement.html#a29f32c7b2973b69d4ca31ebc3a7259cf">t_deplacement::v_y</a></div><div class="ttdeci">float v_y</div><div class="ttdef"><b>Definition</b> types.h:75</div></div>
+<div class="ttc" id="astructt__deplacement_html_a369cb7a23a73822d663618af621e72e0"><div class="ttname"><a href="structt__deplacement.html#a369cb7a23a73822d663618af621e72e0">t_deplacement::indice_nuage_temp</a></div><div class="ttdeci">int indice_nuage_temp</div><div class="ttdef"><b>Definition</b> types.h:72</div></div>
+<div class="ttc" id="astructt__deplacement_html_a6e70c9c57ab41e6f4bcc13dc35c4694a"><div class="ttname"><a href="structt__deplacement.html#a6e70c9c57ab41e6f4bcc13dc35c4694a">t_deplacement::coteProche</a></div><div class="ttdeci">t_coordonnee coteProche[5]</div><div class="ttdef"><b>Definition</b> types.h:78</div></div>
+<div class="ttc" id="astructt__deplacement_html_a9327db94f531063799fd67e6ee3b50bb"><div class="ttname"><a href="structt__deplacement.html#a9327db94f531063799fd67e6ee3b50bb">t_deplacement::wait</a></div><div class="ttdeci">int wait</div><div class="ttdef"><b>Definition</b> types.h:77</div></div>
+<div class="ttc" id="astructt__deplacement_html_af84c55c85f96d64578b514d4e7a42d17"><div class="ttname"><a href="structt__deplacement.html#af84c55c85f96d64578b514d4e7a42d17">t_deplacement::tab_res</a></div><div class="ttdeci">int tab_res[4]</div><div class="ttdef"><b>Definition</b> types.h:74</div></div>
+<div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdoc">Structure regroupant toutes les informations d&#39;un dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:89</div></div>
+<div class="ttc" id="astructt__dino_html_a2eb3cf269b0a6976c0ccab79140bc967"><div class="ttname"><a href="structt__dino.html#a2eb3cf269b0a6976c0ccab79140bc967">t_dino::etat</a></div><div class="ttdeci">int etat</div><div class="ttdef"><b>Definition</b> types.h:95</div></div>
+<div class="ttc" id="astructt__dino_html_a49c197e223fb613b204e34a30740d562"><div class="ttname"><a href="structt__dino.html#a49c197e223fb613b204e34a30740d562">t_dino::hauteur</a></div><div class="ttdeci">int hauteur</div><div class="ttdef"><b>Definition</b> types.h:94</div></div>
+<div class="ttc" id="astructt__dino_html_a5411b687d2caa769e496ee247f06608d"><div class="ttname"><a href="structt__dino.html#a5411b687d2caa769e496ee247f06608d">t_dino::d</a></div><div class="ttdeci">t_numDino d</div><div class="ttdef"><b>Definition</b> types.h:90</div></div>
+<div class="ttc" id="astructt__dino_html_a583b3f9b6e28b33a9b7077e2eafc5876"><div class="ttname"><a href="structt__dino.html#a583b3f9b6e28b33a9b7077e2eafc5876">t_dino::pv</a></div><div class="ttdeci">int pv</div><div class="ttdef"><b>Definition</b> types.h:96</div></div>
+<div class="ttc" id="astructt__dino_html_a932742af938293644fc10d3c1b731ca2"><div class="ttname"><a href="structt__dino.html#a932742af938293644fc10d3c1b731ca2">t_dino::pos</a></div><div class="ttdeci">t_coordonnee pos</div><div class="ttdef"><b>Definition</b> types.h:91</div></div>
+<div class="ttc" id="astructt__dino_html_ad26b303d94945e7159a0945b25aac5e6"><div class="ttname"><a href="structt__dino.html#ad26b303d94945e7159a0945b25aac5e6">t_dino::indice_nuage</a></div><div class="ttdeci">int indice_nuage</div><div class="ttdef"><b>Definition</b> types.h:93</div></div>
+<div class="ttc" id="astructt__dino_html_aed10470cf809bcb6b7f60ee8161b9541"><div class="ttname"><a href="structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541">t_dino::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdef"><b>Definition</b> types.h:92</div></div>
+<div class="ttc" id="astructt__dino_html_af42d99f3e0462cf38d9fde55d881f9b8"><div class="ttname"><a href="structt__dino.html#af42d99f3e0462cf38d9fde55d881f9b8">t_dino::memoire</a></div><div class="ttdeci">int memoire[30][30]</div><div class="ttdef"><b>Definition</b> types.h:97</div></div>
+<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:109</div></div>
+<div class="ttc" id="astructt__joueur_html_a9ba041bbbbbe9a5f83fe182720b8c1fb"><div class="ttname"><a href="structt__joueur.html#a9ba041bbbbbe9a5f83fe182720b8c1fb">t_joueur::tab</a></div><div class="ttdeci">t_dino * tab</div><div class="ttdef"><b>Definition</b> types.h:110</div></div>
+<div class="ttc" id="astructt__joueur_html_ad19b27999959a0b55db58872c6a4ff27"><div class="ttname"><a href="structt__joueur.html#ad19b27999959a0b55db58872c6a4ff27">t_joueur::n</a></div><div class="ttdeci">int n</div><div class="ttdef"><b>Definition</b> types.h:111</div></div>
+<div class="ttc" id="astructt__tir_html"><div class="ttname"><a href="structt__tir.html">t_tir</a></div><div class="ttdef"><b>Definition</b> types.h:172</div></div>
+<div class="ttc" id="astructt__vect_html"><div class="ttname"><a href="structt__vect.html">t_vect</a></div><div class="ttdef"><b>Definition</b> types.h:153</div></div>
+<div class="ttc" id="astructt__zone__depart_html"><div class="ttname"><a href="structt__zone__depart.html">t_zone_depart</a></div><div class="ttdoc">Zone où un dinosaure peut apparaitre.</div><div class="ttdef"><b>Definition</b> types.h:123</div></div>
+<div class="ttc" id="astructt__zone__depart_html_a2d66f918d381bc0f9192d2d36781f1f8"><div class="ttname"><a href="structt__zone__depart.html#a2d66f918d381bc0f9192d2d36781f1f8">t_zone_depart::bas_centre</a></div><div class="ttdeci">t_coordonnee bas_centre</div><div class="ttdef"><b>Definition</b> types.h:124</div></div>
+<div class="ttc" id="astructt__zone__depart_html_a5a80a6ce8dc7f448dd31d8c00a1c0cbb"><div class="ttname"><a href="structt__zone__depart.html#a5a80a6ce8dc7f448dd31d8c00a1c0cbb">t_zone_depart::id_equipe</a></div><div class="ttdeci">int id_equipe</div><div class="ttdef"><b>Definition</b> types.h:125</div></div>
+<div class="ttc" id="astructt__zone__depart_html_acb56008ba27158deec34fb53e58a400b"><div class="ttname"><a href="structt__zone__depart.html#acb56008ba27158deec34fb53e58a400b">t_zone_depart::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdef"><b>Definition</b> types.h:127</div></div>
+<div class="ttc" id="astructt__zone__depart_html_aeaf9e5494fc059d9b4c6ccf349d93321"><div class="ttname"><a href="structt__zone__depart.html#aeaf9e5494fc059d9b4c6ccf349d93321">t_zone_depart::indice_nuage</a></div><div class="ttdeci">int indice_nuage</div><div class="ttdef"><b>Definition</b> types.h:126</div></div>
+<div class="ttc" id="atypes_8h_html_a1892fa62fed162459425c9a576c75ba3"><div class="ttname"><a href="types_8h.html#a1892fa62fed162459425c9a576c75ba3">t_numDino</a></div><div class="ttdeci">t_numDino</div><div class="ttdoc">Enumération des différents dinosaures disponibles.</div><div class="ttdef"><b>Definition</b> types.h:24</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
-    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
+    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

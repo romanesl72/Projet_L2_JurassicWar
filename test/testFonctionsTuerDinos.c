@@ -131,12 +131,11 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancer(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite);
+                choixHauteurLancerAvecDinos(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, texDinos, &equipe1, &equipe2);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);
             accumulateur += tempsEcoule;
-            /* ffgkjfjklgjklgjklgkghlk */
 
             while (accumulateur >= vitesse) {
                 if (bombeLancee) {

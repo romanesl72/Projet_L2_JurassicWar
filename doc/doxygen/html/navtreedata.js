@@ -28,13 +28,19 @@ var NAVTREE =
     [ "Projet_L2_JurassicWar", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Liste des classes", "annotated.html", "annotated_dup" ],
-      [ "Index des classes", "classes.html", null ]
+      [ "Index des classes", "classes.html", null ],
+      [ "Membres de classe", "functions.html", [
+        [ "Tout", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Fichiers", "files.html", [
       [ "Liste des fichiers", "files.html", "files_dup" ],
       [ "Membres de fichier", "globals.html", [
         [ "Tout", "globals.html", null ],
-        [ "Fonctions", "globals_func.html", null ]
+        [ "Fonctions", "globals_func.html", null ],
+        [ "Énumérations", "globals_enum.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]

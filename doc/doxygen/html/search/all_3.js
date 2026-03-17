@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['initialisationcorrecte_0',['initialisationCorrecte',['../fonctions_verification_8h.html#a0ee8dc64de65632c26bc31d06b688b73',1,'initialisationCorrecte():&#160;fonctionsVerification.c'],['../fonctions_verification_8c.html#a0ee8dc64de65632c26bc31d06b688b73',1,'initialisationCorrecte():&#160;fonctionsVerification.c']]],
-  ['initialiserbombe_1',['initialiserBombe',['../fonctions_rebonds_8h.html#afa390f89e8e91366da0e7def31d45f5d',1,'initialiserBombe(t_bombe *bombe, int coorChoisieX, int coorChoisieY, int rayon):&#160;fonctionsRebonds.c'],['../fonctions_rebonds_8c.html#afa390f89e8e91366da0e7def31d45f5d',1,'initialiserBombe(t_bombe *bombe, int coorChoisieX, int coorChoisieY, int rayon):&#160;fonctionsRebonds.c']]],
-  ['initialiserpolice_2',['initialiserPolice',['../fonctions_verification_8h.html#a6b4a1426cca0b57be9b9435b0ea1b5b8',1,'initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice):&#160;fonctionsVerification.c'],['../fonctions_verification_8c.html#a6b4a1426cca0b57be9b9435b0ea1b5b8',1,'initialiserPolice(TTF_Font **police, char *nomFichier, int taillePolice):&#160;fonctionsVerification.c']]]
+  ['d_0',['d',['../structt__dino.html#a5411b687d2caa769e496ee247f06608d',1,'t_dino']]],
+  ['deplacement_2eh_1',['deplacement.h',['../deplacement_8h.html',1,'']]],
+  ['detruirematrice_2',['detruireMatrice',['../chargerMatrice_8h.html#a3f59ed037c288c35667f07c1c0021df4',1,'chargerMatrice.c']]],
+  ['distance_3',['distance',['../gestion__zones_8h.html#a51da42dfa86bc63d669da7d312a49e05',1,'gestion_zones.c']]],
+  ['droite_4',['droite',['../deplacement_8h.html#aecebc8ac3f3705c944656a1ea4a2f618',1,'deplacement.c']]]
 ];
