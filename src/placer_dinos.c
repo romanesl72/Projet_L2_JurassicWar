@@ -48,3 +48,17 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
         remplir_matrice_dino(&(joueur->tab[i]), points_spawn[i].bas_centre, matrice);
     }
 }
+
+void afficherDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texDinos[6], t_joueur * equipe){
+
+    int i;
+    SDL_Rect rectEquipe;
+    rectEquipe.w = TAILLE_DINO;
+    rectEquipe.h = TAILLE_DINO;
+
+    for(i = 0; i < equipe->n; i++) {
+        rectEquipe.x = equipe->tab[i].pos.x;
+        rectEquipe.y = equipe->tab[i].pos.y;
+        SDL_RenderCopy(zoneAffichage, texDinos[equipe->tab[i].d], NULL, &rectEquipe);
+    }
+}
