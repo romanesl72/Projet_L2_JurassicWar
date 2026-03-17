@@ -13,7 +13,7 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 # Edition de liens
 
 EXECUTABLES = ./testFonctionsRebonds ./testFonctionsTuerDinos ./main_test
-OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o creation_nuage.o fonctionsVerification.o chargerMatrice.o
+OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_REBONDS = testFonctionsRebonds.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o creation_nuage.o fonctionsRebonds.o fonctionsVerification.o chargerMatrice.o
 
