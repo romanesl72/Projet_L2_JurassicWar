@@ -30,7 +30,9 @@ typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;
 
 typedef enum {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6,BOMBE} t_case; 
 
-typedef enum {FUSIL, REVOLVER} t_pistolet;
+typedef enum {ARC, ARBALETE } t_arme_archer;
+typedef enum {FUSIL, REVOLVER } t_arme_feu;
+typedef enum {ARME_FEU, ARME_ARCHER} t_type_arme;
 
 
 /**
@@ -168,6 +170,15 @@ typedef struct {
     int rayon;                  /**< */
 } t_bombe;
 
+typedef struct {
+    t_type_arme type_general;
+    union {
+        t_arme_archer archer;
+        t_arme_feu feu;
+    }sous_type;
+    int degats;
+    float poids_projectile;
+}t_arme;
 
 typedef struct {
     t_coordonnee_calcul pos;
@@ -175,5 +186,7 @@ typedef struct {
     int actif;
     t_arme arme_source;
 }t_tir;
+
+
 
 #endif

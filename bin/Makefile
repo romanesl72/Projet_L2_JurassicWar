@@ -1,32 +1,46 @@
-# Chemin racine de la bibliothèque SDL2
-SDL_DIR = "C:\Users\roman\Documents\Developpement\Librairies\SDL2-2.32.10\x86_64-w64-mingw32"
+# Non encore achevé
 
-# Dossiers d'inclusion et de librairies
-SDL_INC = -I$(SDL_DIR)\include
-SDL_LIB = -L$(SDL_DIR)\lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+FLAGS_COMPILATION = -Wall `sdl2-config --cflags`
+FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
+
+REP_SRC = ../src
+REP_TEST = ../test
+
+FIC_SRC = $(wildcard $(REP_SRC)/*.c)
+FIC_TEST = $(wildcard $(REP_TEST)/*.c)
+FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
+
+# Edition de liens
+
+EXECUTABLES = ./testFonctionsRebonds ./main_test ./test_archer
+OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
+OBJETS_REBONDS = testFonctionsRebonds.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
+OBJETS_ARCHER = test_archer.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o tirer_archer.o
+
+
+all: $(EXECUTABLES)
+
+# faire une ligne par exécutable
+
+./main_test: $(OBJETS_PLACEMENT_DINOS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsRebonds: $(OBJETS_REBONDS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./test_archer: $(OBJETS_ARCHER)
+	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # Compilation
-CC = gcc
-CFLAGS = -Wall -Wextra -g $(SDL_INC)
 
-# Fichiers sources pour le programme de test
-SRC_TEST = test/testCollisions.c test/testPlacement.c src/collision_decor.c src/placer_dinos.c
-OBJ_TEST = $(SRC_TEST:.c=.o)
-EXEC_TEST = bin/test_physique.exe
+%.o: $(REP_SRC)/%.c
+	gcc $(FLAGS_COMPILATION) -c $< -o $@
 
-# Règle par défaut : compile et lance le test
-test: $(EXEC_TEST)
-	./$(EXEC_TEST)
+%.o: $(REP_TEST)/%.c
+	gcc $(FLAGS_COMPILATION) -c $< -o $@
 
-$(EXEC_TEST): $(OBJ_TEST)
-	@if not exist bin mkdir bin
-	$(CC) $(OBJ_TEST) -o $(EXEC_TEST) $(SDL_LIB)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Suppression
 
 clean:
-	@del /f /q src\*.o test\*.o bin\*.exe 2>nul
+	rm -f $(FIC_OBJETS) $(EXECUTABLES)
 
-
-#J'ai fait un makefile avec mes fichiers donc il n'est pas completement fini
