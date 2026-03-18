@@ -77,7 +77,7 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
     /* Couleur blanche pour la flèche */
     SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
     
-    longueur = 15.0f; /* Longueur du trait */
+    longueur = 20.0; /* Longueur du trait */
     norme = sqrt(tir->velo.u * tir->velo.u + tir->velo.v * tir->velo.v);
     
     if (norme > 0.1f) {
@@ -90,7 +90,7 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
 
 void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase) {
     float temps = 0;
-    float dt = 1.0f/60.0f;
+    float dt = 1.0f/120.0f;
     float g_effet;
 
     t_vect courant;
@@ -121,25 +121,40 @@ void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float grav
     }
 }
 
-void viserArcher(SDL_Renderer* rendu, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite) {
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite) {
     SDL_Rect rectMap = {0, 0, 1300, 700};
 
     do {
+
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
 
-        if ((*etatClavier)[SDL_SCANCODE_UP])    tir->velo.v -= 0.5f;
-        if ((*etatClavier)[SDL_SCANCODE_DOWN])  tir->velo.v += 0.5f;
-        if ((*etatClavier)[SDL_SCANCODE_LEFT])  tir->velo.u -= 0.5f;
-        if ((*etatClavier)[SDL_SCANCODE_RIGHT]) tir->velo.u += 0.5f;
+        if ((*etatClavier)[SDL_SCANCODE_UP]){
+            tir->velo.v -= 0.5;
+        }
+        if ((*etatClavier)[SDL_SCANCODE_DOWN]){
+            tir->velo.v += 0.5;
+        }
 
-        SDL_RenderClear(rendu);
-        SDL_RenderCopy(rendu, texMap, NULL, &rectMap);
+        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+        if ((*etatClavier)[SDL_SCANCODE_LEFT]){
+            tir->velo.u = -fabs(tir->velo.u);
+        }
+
+        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
+            tir->velo.u = fabs(tir->velo.u);
+        }
+
+        SDL_RenderClear(zoneAffichage);
+        SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
+
+        tracerFleche(zoneAffichage, tir);
 
         float g_effet = gravite * tir->arme_source.poids_projectile;
-        tracerTrajectoireArcher(rendu, tir, g_effet);
+        tracerTrajectoireArcher(zoneAffichage, tir, g_effet);
 
-        SDL_RenderPresent(rendu);
+        SDL_RenderPresent(zoneAffichage);
         SDL_Delay(16);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);

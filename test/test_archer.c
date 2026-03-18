@@ -28,7 +28,7 @@ int main(int argc, char * argv[]){
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
     t_joueur equipe1, equipe2;
-    t_arme arc = {ARME_ARCHER, .sous_type.archer = ARC, .degats = 20, .poids_projectile = 0.6f};
+    t_arme arc = {ARME_ARCHER, .sous_type.archer = ARC, .degats = 20, .poids_projectile = 1};
     t_tir tirEncours;
     tirEncours.actif = 0;
 
