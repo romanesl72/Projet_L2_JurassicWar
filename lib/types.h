@@ -18,6 +18,8 @@
 #define VIDE 0
 #define TAILLE_DINO 30
 
+#define NOMBRE_DINOS 6
+
 /**
  * @enum t_numDino
  * @brief Enumération des différents dinosaures disponibles
@@ -30,7 +32,7 @@ typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;
  * @brief Représentation de chaque élément sur la matrice 
 */
 
-typedef enum {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6,BOMBE} t_case; 
+typedef enum {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6} t_case; 
 
 typedef enum {ARC, ARBALETE } t_arme_archer;
 typedef enum {FUSIL, REVOLVER } t_arme_feu;
