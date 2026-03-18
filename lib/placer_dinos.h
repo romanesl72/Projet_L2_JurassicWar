@@ -39,7 +39,7 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
 void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart);
 
 /**
- * @fn void afficherDinos(SDL_Renderer* zoneAffichage, SDL_Texture * texDinos[6], t_joueur * equipe);
+ * @fn void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe);
  * @author Hannah Sergent
  * @date Crée le 17/03/2026
  * @brief La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain
@@ -48,6 +48,6 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
  * @param equipe l'équipe dont on veut afficher les dinosaures
  */
 
-void afficherDinos(SDL_Renderer* zoneAffichage, SDL_Texture * texDinos[6], t_joueur * equipe);
+void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe);
 
 #endif

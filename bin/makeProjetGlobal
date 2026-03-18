@@ -15,7 +15,7 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 EXECUTABLES = ./testFonctionsRebonds ./testFonctionsTuerDinos ./main_test
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
-OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsRebonds.o fonctionsVerification.o chargerMatrice.o
+OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsRebonds.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
 
 all: $(EXECUTABLES)
 

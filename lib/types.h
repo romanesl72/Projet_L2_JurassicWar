@@ -1,6 +1,8 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+#include <SDL2/SDL.h>
+
 /**
  * @file types.h
  * @brief Définition des structures de données pour Jurassic War.
@@ -112,6 +114,7 @@ typedef struct {
 
 typedef struct {
 	t_dino * tab;   /**< Tableau de dinosaure */
+    SDL_Texture **texDinos; /**< Tableau contenant les images de dinosaure */
 	int n;          /**< Taille du tableau*/ 
 } t_joueur;
 

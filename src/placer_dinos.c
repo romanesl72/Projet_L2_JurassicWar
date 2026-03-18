@@ -5,6 +5,7 @@
 
 #include "../lib/placer_dinos.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * @brief Place un dinosaure aléatoirement dans une zone de spawn valide.
@@ -49,7 +50,7 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
     }
 }
 
-void afficherDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texDinos[6], t_joueur * equipe){
+void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe){
 
     int i;
     SDL_Rect rectEquipe;
@@ -59,6 +60,6 @@ void afficherDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texDinos[6], t_joue
     for(i = 0; i < equipe->n; i++) {
         rectEquipe.x = equipe->tab[i].pos.x;
         rectEquipe.y = equipe->tab[i].pos.y;
-        SDL_RenderCopy(zoneAffichage, texDinos[equipe->tab[i].d], NULL, &rectEquipe);
+        SDL_RenderCopy(zoneAffichage, equipe->texDinos[i], NULL, &rectEquipe);
     }
 }

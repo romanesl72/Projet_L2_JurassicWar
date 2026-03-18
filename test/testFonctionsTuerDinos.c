@@ -2,6 +2,7 @@
 #include "../lib/tda_nuage.h"
 #include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionsVerification.h"
+#include "../lib/fonctionsTuerDinos.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
 #include <time.h>
@@ -101,19 +102,22 @@ int main(int argc, char * argv[]){
         placer_une_equipe(&equipe2, catalogue.zones_E2, matriceTerrain, 3);
 
         /* Charger les images (Textures) */
-        SDL_Texture *texDinos[6];
-        chargerImage(zoneAffichage, &texDinos[0], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &texDinos[1], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &texDinos[2], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &texDinos[3], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &texDinos[4], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &texDinos[5], "../img/dinoTransparent.png", &w, &h);
+
+        equipe1.texDinos = malloc(sizeof(SDL_Texture *) * equipe1.n);
+        equipe2.texDinos = malloc(sizeof(SDL_Texture *) * equipe2.n);
+
+        chargerImage(zoneAffichage, &(equipe1.texDinos[0]), "../img/dinoTransparent.png", &w, &h);
+        chargerImage(zoneAffichage, &(equipe1.texDinos[1]), "../img/dinoTransparent.png", &w, &h);
+        chargerImage(zoneAffichage, &(equipe1.texDinos[2]), "../img/dinoTransparent.png", &w, &h);
+
+        chargerImage(zoneAffichage, &(equipe2.texDinos[0]), "../img/dinoTransparent.png", &w, &h);
+        chargerImage(zoneAffichage, &(equipe2.texDinos[1]), "../img/dinoTransparent.png", &w, &h);
+        chargerImage(zoneAffichage, &(equipe2.texDinos[2]), "../img/dinoTransparent.png", &w, &h);
 
         /* --- AFFICHAGE DES DINOS --- */
 
-        afficherDinos(zoneAffichage, texDinos, &equipe1);
-        afficherDinos(zoneAffichage, texDinos, &equipe2);
-
+        afficherDinos(zoneAffichage, &equipe1);
+        afficherDinos(zoneAffichage, &equipe2);
 
         SDL_RenderPresent(zoneAffichage);
         
@@ -131,7 +135,7 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancerAvecDinos(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, texDinos, &equipe1, &equipe2);
+                choixHauteurLancerAvecDinos(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);
@@ -151,6 +155,11 @@ int main(int argc, char * argv[]){
                         initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
                         */
                     }
+                    if (collisionDinoBombe(matriceTerrain, &bombe)) {
+                        bombeLancee = 0;
+                        printf("Dino touché \n");
+                        
+                    }
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
                         nombreRebonds ++;
 
@@ -167,8 +176,9 @@ int main(int argc, char * argv[]){
 
                         /* --- AFFICHAGE DES DINOS --- */
 
-                        afficherDinos(zoneAffichage, texDinos, &equipe1);
-                        afficherDinos(zoneAffichage, texDinos, &equipe2);
+                        afficherDinos(zoneAffichage, &equipe1);
+                        afficherDinos(zoneAffichage, &equipe2);
+
 
                         SDL_RenderPresent(zoneAffichage);
                     }
@@ -181,9 +191,8 @@ int main(int argc, char * argv[]){
 
                         /* --- AFFICHAGE DES DINOS --- */
 
-                        afficherDinos(zoneAffichage, texDinos, &equipe1);
-                        afficherDinos(zoneAffichage, texDinos, &equipe2);
-
+                        afficherDinos(zoneAffichage, &equipe1);
+                        afficherDinos(zoneAffichage, &equipe2);
 
                         SDL_RenderPresent(zoneAffichage);
                     }
@@ -197,8 +206,11 @@ int main(int argc, char * argv[]){
         /* --- NETTOYAGE --- */
         free(equipe1.tab);
         free(equipe2.tab);
-        for(i=0; i<6; i++) {
-            SDL_DestroyTexture(texDinos[i]);
+        for(i=0; i<3; i++) {
+            SDL_DestroyTexture(equipe1.texDinos[i]);
+        }
+        for(i=0; i<3; i++) {
+            SDL_DestroyTexture(equipe2.texDinos[i]);
         }
         for(i=1; i<3; i++) {
             free(nuages_stockes[i]);

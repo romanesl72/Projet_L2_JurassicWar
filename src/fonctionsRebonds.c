@@ -534,7 +534,7 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
-void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, SDL_Texture * texDinos[6], t_joueur * equipe1, t_joueur * equipe2){
+void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2){
     
     do {
 
@@ -562,8 +562,8 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
         SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
 
         tracerBombe(zoneAffichage, bombe);
-        afficherDinos(zoneAffichage, texDinos, equipe1);
-        afficherDinos(zoneAffichage, texDinos, equipe2);
+        afficherDinos(zoneAffichage, equipe1);
+        afficherDinos(zoneAffichage, equipe2);
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
