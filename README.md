@@ -14,11 +14,11 @@ janvier 2026 --> mars 2026
 
 ## Description du Projet:
 
-Ce jeu inspiré de Hedgewars est un Worms. 
+Ce jeu inspiré de Hedgewars est un Worms.
 
 [Lien vers le jeu hedgewars](https://www.hedgewars.org/fr)
 
-Notre jeu est composée de 2 équipes, chacune contenant 3 dinosaures. Tour par tour nous pouvons nous deplacer sur une certaine distance et tirer une seule fois avec l'arme de notre choix dans un certain temps donné.
+Notre jeu est composé de 2 équipes, chacune contenant 3 dinosaures. Tour par tour nous pouvons nous deplacer sur une certaine distance et tirer une seule fois avec l'arme de notre choix dans un certain temps donné.
 
 
 ***Principales règles du jeu :***
@@ -30,7 +30,7 @@ Notre jeu est composée de 2 équipes, chacune contenant 3 dinosaures. Tour par 
 - Tuer l'équipe adverse
 
 ***Objectifs :***
-Le but est de tuer toute l'équipe adverse en perdant le moins de point de vie possible avec différentes armes.
+Le but est de tuer toute l'équipe adverse en perdant le moins de points de vie possible avec différentes armes.
 
 
 ## Documentation/GANTT :
