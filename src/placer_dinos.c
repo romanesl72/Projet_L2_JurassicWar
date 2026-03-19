@@ -40,7 +40,7 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
     int i;
     for(i = 0; i < joueur->n; i++) {
         // On attribue un type de dino différent pour tester les IDs (0, 1, 2...)
-        joueur->tab[i].d = (t_numDino)(id_depart + i); 
+        joueur->tab[i].d = (t_case)(id_depart + i); 
         
         joueur->tab[i].id_nuage = points_spawn[i].id_nuage;
         joueur->tab[i].indice_nuage = points_spawn[i].indice_nuage;

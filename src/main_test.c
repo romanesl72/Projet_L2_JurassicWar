@@ -1,10 +1,11 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/tda_nuage.h"
+#include "../lib/creation_nuage.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
 #include "../lib/types.h"
 #include <time.h>
+#include <stdio.h>
 
 #define LARGEUR_FEN_JEU 1300
 #define HAUTEUR_FEN_JEU 700
@@ -20,8 +21,8 @@ int main(int argc, char * argv[]){
     int matrice[MAT_H][MAT_L];
     int nb_pts;
     int w, h;
-    int trouvés_E1 = 0;
-    int trouvés_E2 = 0;
+    int trouves_E1 = 0;
+    int trouves_E2 = 0;
 
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
@@ -48,12 +49,12 @@ int main(int argc, char * argv[]){
 
         /* Récupérer les zones via le nuage de points */
         nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
 
         nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
-        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
+        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);
 
         printf("Chargement de la texture map...\n");
         SDL_Texture *texMap;
