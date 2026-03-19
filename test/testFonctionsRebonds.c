@@ -1,7 +1,8 @@
-#include "../lib/types.h"
-#include "../lib/fonctionsVerification.h"
-#include "../lib/fonctionsRebonds.h"
 #include "../lib/chargerMatrice.h"
+#include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsVerification.h"
+#include "../lib/types.h"
+
 #include <stdio.h>
 
 /** 
@@ -39,17 +40,14 @@ int main(int argc, char * argv[]){
         float tempsEcoule;
         const Uint8 *etatClavier;
 
-        t_case (*matriceTerrain)[LARGEUR_TERRAIN] = malloc(sizeof(t_case) * HAUTEUR_TERRAIN * LARGEUR_TERRAIN);
+        t_case (*matriceTerrain)[LARGEUR_TERRAIN] = NULL;
+        initialiserMatrice(&matriceTerrain);
 
         chargerMatriceDepuisFichier("../res/matrice.txt", matriceTerrain);
 
-        if (!matriceTerrain){
-            printf("erreur d'allocation !\n");
-        }
-
         t_bombe bombe;
 
-        const float vitesse = 1.0f/60.0f;
+        const float vitesse = 1.0f/120.0f;
         float accumulateur = 0;
         t_vect vectVitesse;
 
@@ -112,7 +110,7 @@ int main(int argc, char * argv[]){
                     bombe.coor.y += vitesse*vectVitesse.v;
                     vectVitesse.v += gravite*vitesse;
 
-                    if (collisionFrontiereBombe(LARGEUR_TERRAIN, HAUTEUR_TERRAIN, &bombe)) {
+                    if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = 0;
                         /* 
                         initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
@@ -146,7 +144,7 @@ int main(int argc, char * argv[]){
             }
         }
 
-        free(matriceTerrain);
+        detruireMatrice(&matriceTerrain);
         SDL_DestroyTexture(texMap);
         SDL_DestroyRenderer(zoneAffichage);
 
