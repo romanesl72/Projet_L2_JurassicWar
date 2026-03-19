@@ -15,11 +15,8 @@
  */
 
 
-void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]) {
+void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     int i,j,px,py;
-    // On calcule l'ID réel pour la matrice (3, 4, 5...)
-    // Si dino->d vaut DINO1 (0), alors l'ID est 3.
-    int id_final = dino->d + 3;
 
     dino->pos.x = p_sol.x;
     dino->pos.y = p_sol.y; // On remonte pour que les pieds soient au sol
@@ -28,19 +25,19 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
         for(j = 0; j < 30; j++) {
             py = dino->pos.y + i;
             px = dino->pos.x + j;
-            if (py >= 0 && py < MAT_H && px >= 0 && px < MAT_L) {
+            if (py >= 0 && py < HAUTEUR_TERRAIN && px >= 0 && px < LARGEUR_TERRAIN) {
                 dino->memoire[i][j]=matrice[py][px];
-                matrice[py][px] = id_final;
+                matrice[py][px] = dino->d;
             }
         }
     }
 }
 
-void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart) {
+void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart) {
     int i;
     for(i = 0; i < joueur->n; i++) {
-        // On attribue un type de dino différent pour tester les IDs (0, 1, 2...)
-        joueur->tab[i].d = (t_case)(id_depart + i); 
+        // On attribue un type de dino différent pour tester les IDs (3, 4, 5...)
+        joueur->tab[i].d = id_depart + i; 
         
         joueur->tab[i].id_nuage = points_spawn[i].id_nuage;
         joueur->tab[i].indice_nuage = points_spawn[i].indice_nuage;

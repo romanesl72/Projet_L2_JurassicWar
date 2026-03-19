@@ -1,7 +1,6 @@
 #ifndef _PLACER_DINOS_H_
 #define _PLACER_DINOS_H_
 
-#include <SDL2/SDL.h>
 #include "types.h"
 
 /** 
@@ -12,7 +11,7 @@
  */
 
 /**
- * @fn void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]);
+ * @fn void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @author Romane Saint-Léger
  * @date Crée le 17/02/2026
  * @brief Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.
@@ -21,11 +20,11 @@
  * @param matrice La matrice (terrain) à mettre à jour avec l'ID du dino.
  */
 
-void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L]);
+void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 
 /**
- * @fn void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart);
+ * @fn void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart);
  * @author Romane Saint-Léger
  * @date Crée le 17/02/2026
  * @brief Initialise et place tous les dinosaures d'une équipe sur le terrain.
@@ -36,7 +35,7 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][M
  */
 
 
-void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart);
+void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart);
 
 /**
  * @fn void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe);
