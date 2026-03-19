@@ -8,7 +8,7 @@
  * @date Crée le 11/03/2026
  */
 
- int collisionDinoBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
+t_case collisionDinoBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
 
     t_coordonnee posBombe;
 
@@ -32,5 +32,5 @@
     if ((extremiteBasse >= D1) && (extremiteBasse <= D6)){
         return extremiteBasse;
     }
-    return 0;
+    return AIR;
 }

@@ -43,7 +43,6 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
  * @date Crée le 17/03/2026
  * @brief La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain
  * @param zoneAffichage pointeur sur la zone d'affichage
- * @param textDinos tableau contenant l'image à afficher pour chaque dinosaure
  * @param equipe l'équipe dont on veut afficher les dinosaures
  */
 

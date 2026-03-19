@@ -27,8 +27,8 @@ void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
     *tempsPrecedent = tempsCourant;
 }
 
-int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe){
-    return ((bombe->coor.x + bombe->rayon > largeurFenetre) || (bombe->coor.x - bombe->rayon < 0) || (bombe->coor.y + bombe->rayon > hauteurFenetre) || (bombe->coor.y - bombe->rayon < 0));
+int collisionFrontiereBombe(t_bombe *bombe){
+    return ((bombe->coor.x + bombe->rayon > LARGEUR_TERRAIN) || (bombe->coor.x - bombe->rayon < 0) || (bombe->coor.y + bombe->rayon > HAUTEUR_TERRAIN) || (bombe->coor.y - bombe->rayon < 0));
 }
 
 int dansLimites(int x, int y){

@@ -98,16 +98,14 @@ void initialiserVitesse(t_vect *vectVitesse, float vitesseChoisieX, float vitess
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);
 
 /**
- * @fn int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe)
+ * @fn int collisionFrontiereBombe(t_bombe *bombe);
  * @brief la fonction vérifie si la bombe tape une extrémité de la fenêtre
  * @author Hannah Sergent
  * @date Crée le 6/02/2026
- * @param largeurFenetre largeur de la fenetre
- * @param hauteurFenetre hauteur de la fenetre
  * @param bombe pointeur sur une structure de type bombe 
  */
 
-int collisionFrontiereBombe(int largeurFenetre, int hauteurFenetre, t_bombe *bombe);
+int collisionFrontiereBombe(t_bombe *bombe);
 
 /**
  * @fn collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe);

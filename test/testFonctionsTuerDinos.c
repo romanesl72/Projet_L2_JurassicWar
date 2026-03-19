@@ -1,10 +1,12 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/tda_nuage.h"
 #include "../lib/fonctionsRebonds.h"
-#include "../lib/fonctionsVerification.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTuerDinos.h"
+#include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
+#include "../lib/tda_nuage.h"
+
 #include <time.h>
 #include <stdio.h>
 
@@ -28,12 +30,14 @@ int main(int argc, char * argv[]){
         int enCours = 1;
         int nb_pts;
         int w, h;
-        int trouvés_E1 = 0;
-        int trouvés_E2 = 0;
+        int trouves_E1 = 0;
+        int trouves_E2 = 0;
 
         t_coordonnee *nuages_stockes[5];
         t_catalogue_zones catalogue;
+
         t_joueur equipe1, equipe2;
+        t_case dinoTouche;
 
         t_bombe bombe;
 
@@ -75,12 +79,12 @@ int main(int argc, char * argv[]){
 
         /* Récupérer les zones via le nuage de points */
         nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
 
         nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
-        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
+        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);
 
 
         if (texMap == NULL) {
@@ -90,21 +94,17 @@ int main(int argc, char * argv[]){
         }
 
         /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
-        equipe1.n = 3;
-        equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-        equipe2.n = 3;
-        equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
+
+        initialiserContenuJoueur(&equipe1);
+        initialiserContenuJoueur(&equipe2);
 
         /* Placer les dinos sur la matrice */
         /* Équipe 1 (IDs matrice 3, 4, 5) */
-        placer_une_equipe(&equipe1, catalogue.zones_E1, matriceTerrain, 0);
+        placer_une_equipe(&equipe1, catalogue.zones_E1, matriceTerrain, D1);
         /* Équipe 2 (IDs matrice 6, 7, 8) */
-        placer_une_equipe(&equipe2, catalogue.zones_E2, matriceTerrain, 3);
+        placer_une_equipe(&equipe2, catalogue.zones_E2, matriceTerrain, D4);
 
         /* Charger les images (Textures) */
-
-        equipe1.texDinos = malloc(sizeof(SDL_Texture *) * equipe1.n);
-        equipe2.texDinos = malloc(sizeof(SDL_Texture *) * equipe2.n);
 
         chargerImage(zoneAffichage, &(equipe1.texDinos[0]), "../img/dinoTransparent.png", &w, &h);
         chargerImage(zoneAffichage, &(equipe1.texDinos[1]), "../img/dinoTransparent.png", &w, &h);
@@ -148,16 +148,33 @@ int main(int argc, char * argv[]){
                     bombe.coor.y += vitesse*vectVitesse.v;
                     vectVitesse.v += gravite*vitesse;
 
-                    if (collisionFrontiereBombe(LARGEUR_TERRAIN, HAUTEUR_TERRAIN, &bombe)) {
+                    if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = 0;
                         /* 
                         initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
                         initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
                         */
                     }
-                    if (collisionDinoBombe(matriceTerrain, &bombe)) {
+
+                    dinoTouche = collisionDinoBombe(matriceTerrain, &bombe);
+
+                    if (dinoTouche || collisionEauBombe(matriceTerrain, &bombe)) {
                         bombeLancee = 0;
-                        printf("Dino touché \n");
+
+                        SDL_RenderClear(zoneAffichage);
+                        SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
+
+                        if (dinoTouche){
+                            supprimerDinoJoueur(&equipe1, &equipe2, dinoTouche);
+                        }
+
+                        /* --- AFFICHAGE DES DINOS --- */
+
+                        afficherDinos(zoneAffichage, &equipe1);
+                        afficherDinos(zoneAffichage, &equipe2);
+
+
+                        SDL_RenderPresent(zoneAffichage);
                         
                     }
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
@@ -168,19 +185,6 @@ int main(int argc, char * argv[]){
                         if (nombreRebonds > 1){
                             bombeLancee = 0;
                         }
-                    }
-                    if (collisionEauBombe(matriceTerrain, &bombe)) {
-                        bombeLancee = 0;
-                        SDL_RenderClear(zoneAffichage);
-                        SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
-
-                        /* --- AFFICHAGE DES DINOS --- */
-
-                        afficherDinos(zoneAffichage, &equipe1);
-                        afficherDinos(zoneAffichage, &equipe2);
-
-
-                        SDL_RenderPresent(zoneAffichage);
                     }
 
                     if (bombeLancee) {
@@ -204,6 +208,8 @@ int main(int argc, char * argv[]){
         }
 
         /* --- NETTOYAGE --- */
+
+        /*
         free(equipe1.tab);
         free(equipe2.tab);
         for(i=0; i<3; i++) {
@@ -211,7 +217,10 @@ int main(int argc, char * argv[]){
         }
         for(i=0; i<3; i++) {
             SDL_DestroyTexture(equipe2.texDinos[i]);
-        }
+        } */
+        detruireContenuJoueur(&equipe1);
+        detruireContenuJoueur(&equipe2);
+
         for(i=1; i<3; i++) {
             free(nuages_stockes[i]);
         }

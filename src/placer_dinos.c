@@ -42,7 +42,7 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
         joueur->tab[i].id_nuage = points_spawn[i].id_nuage;
         joueur->tab[i].indice_nuage = points_spawn[i].indice_nuage;
 
-        // On place le dino sur l'un des 5 points du catalogue
+        // On place le dino sur l'un des 6 points du catalogue
         remplir_matrice_dino(&(joueur->tab[i]), points_spawn[i].bas_centre, matrice);
     }
 }
