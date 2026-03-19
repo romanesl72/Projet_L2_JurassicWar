@@ -21,13 +21,6 @@
 #define NOMBRE_DINOS 6
 
 /**
- * @enum t_numDino
- * @brief Enumération des différents dinosaures disponibles
-*/
-
-typedef enum {DINO1, DINO2, DINO3, DINO4, DINO5, DINO6} t_numDino;
-
-/**
  * @enum t_case
  * @brief Représentation de chaque élément sur la matrice 
 */
@@ -95,7 +88,7 @@ typedef struct {
 */
 
 typedef struct {
-    t_numDino d;            /**< Numéro du dinosaure de 0 à 5 */
+    t_case d;            /**< Numéro du dinosaure de 0 à 5 */
     t_coordonnee pos;       /**< Position actuelle */
     int id_nuage;           /**< Numéro du nuage */
     int indice_nuage;       /**< Position dans le nuage */
