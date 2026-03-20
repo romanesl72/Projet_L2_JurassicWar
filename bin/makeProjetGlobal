@@ -12,7 +12,8 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 # Edition de liens
 
-EXECUTABLES = ./testFonctionsRebonds ./testFonctionsTuerDinos ./main_test
+EXECUTABLES = ./testFonctionsChangementTour ./testFonctionsRebonds ./testFonctionsTuerDinos ./main_test
+OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
@@ -22,6 +23,9 @@ all: $(EXECUTABLES)
 # faire une ligne par exécutable
 
 ./main_test: $(OBJETS_PLACEMENT_DINOS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
