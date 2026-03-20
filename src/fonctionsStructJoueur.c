@@ -31,7 +31,7 @@ int rechercherDino(t_joueur * equipe, t_case numero){
 }
 
 t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
-    /* Le numéro du dinosaure est compris entre 3 et 8 */
+    /* Le numéro du dinosaure est compris entre 2 et 7 */
 
     int indiceDino = rechercherDino(equipe1, numero);
 

@@ -10,6 +10,13 @@
 #include <time.h>
 #include <stdio.h>
 
+/** 
+ * @file testFonctionsTuerDinos.c
+ * @brief test des fonctions crées dans le fichier fonctionsTuerDinos.c
+ * @author Hannah Sergent
+ * @date Crée le 11/03/2026
+ */
+
 #define RAYON 15
 
 #define COOR_X LARGEUR_TERRAIN/3

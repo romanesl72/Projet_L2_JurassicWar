@@ -7,14 +7,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/**
- * @brief Place un dinosaure aléatoirement dans une zone de spawn valide.
- * @param dino Pointeur vers le dino à placer.
- * @param zones Structure contenant les coordonnées des zones possibles.
- * @param matrice La matrice à mettre à jour avec l'ID du dino.
- */
-
-
 void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     int i,j,px,py;
 
@@ -36,7 +28,7 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_
 void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart) {
     int i;
     for(i = 0; i < joueur->n; i++) {
-        // On attribue un type de dino différent pour tester les IDs (3, 4, 5...)
+        // On attribue un type de dino différent pour tester les IDs (2, 3, 4...)
         joueur->tab[i].d = id_depart + i; 
         
         joueur->tab[i].id_nuage = points_spawn[i].id_nuage;

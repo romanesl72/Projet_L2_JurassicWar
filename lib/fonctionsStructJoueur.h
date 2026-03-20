@@ -55,4 +55,4 @@ void initialiserContenuJoueur(t_joueur *joueur);
 
 void detruireContenuJoueur(t_joueur *joueur);
 
- #endif
+#endif
