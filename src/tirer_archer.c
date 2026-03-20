@@ -5,8 +5,8 @@
 void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme) {
     tir->pos.x = departX;
     tir->pos.y = departY;
-    tir->velo.u = 10.0f;
-    tir->velo.v = -10.0f;
+    tir->velo.u = 5.0f;
+    tir->velo.v = -5.0f;
     tir->actif = 0;
     tir->arme_source = arme;
 }
@@ -89,35 +89,33 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
 }
 
 void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase) {
-    float temps = 0;
-    float dt = 1.0f/120.0f;
+    int i;
     float g_effet;
+    float precX;
+    float precY;
 
-    t_vect courant;
-
-    float vitY = tir->velo.v;
-    float vitX = tir->velo.u;
+    float simuX = tir->pos.x;
+    float simuY = tir->pos.y;
+    float simuVitY = tir->velo.v;
+    float simuVitX = tir->velo.u;
 
     g_effet  = graviteBase * tir->arme_source.poids_projectile;
-    courant.u = tir->pos.x;
-    courant.v = tir->pos.y;
 
     /* Trajectoire de couleur rouges */
     SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
 
-    while(temps < 2.0) {
-        courant.u += dt*vitX;
-        courant.v += dt*vitY;
-        vitY += g_effet*dt;
-        /*
-        courant.u += vitX;
-        courant.v += vitY;
-        vitY += g_effet;
-        */
+    for (i = 0; i < 50; i++) {
+        precX = simuX;
+        precY = simuY;
 
-        SDL_RenderDrawPoint(zoneAffichage, (int)roundf(courant.u), (int)roundf(courant.v));
+        simuX += simuVitX;
+        simuY += simuVitY;
+        simuVitY += g_effet;
 
-        temps += dt;
+        /* On dessine un trait entre chaque point simulé pour une belle courbe */
+        SDL_RenderDrawLine(zoneAffichage, (int)roundf(precX), (int)roundf(precY), (int)roundf(simuX), (int)roundf(simuY));
+        
+
     }
 }
 
@@ -130,21 +128,22 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
         *etatClavier = SDL_GetKeyboardState(NULL);
 
         if ((*etatClavier)[SDL_SCANCODE_UP]){
-            tir->velo.v -= 0.5;
+            tir->velo.v -= 0.1;
         }
         if ((*etatClavier)[SDL_SCANCODE_DOWN]){
-            tir->velo.v += 0.5;
+            tir->velo.v += 0.1;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
-            tir->velo.u = -fabs(tir->velo.u);
+            tir->velo.u -= 0.1;
+        }
+        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
+            tir->velo.u += 0.1;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
-        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
-            tir->velo.u = fabs(tir->velo.u);
-        }
+        /*
+        if (tir->velo.u > 15.0f) tir->velo.u = 15.0f;
+        if (tir->velo.u < -15.0f) tir->velo.u = -15.0f;*/
 
         SDL_RenderClear(zoneAffichage);
         SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
