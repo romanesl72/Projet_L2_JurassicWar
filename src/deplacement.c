@@ -4,7 +4,13 @@
 #include <math.h>
 
 #include "../lib/deplacement.h"
-#include <SDL2/SDL.h>
+#include "../lib/fonctionsVerification.h"
+#include "../lib/regression.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/chargerMatrice.h"
+#include "../lib/placer_dinos.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/collision_decor.h"
 
 int init_deplacement(t_dino **dino, int *nb_pts, int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...) {
     *dino = malloc(sizeof(t_dino));

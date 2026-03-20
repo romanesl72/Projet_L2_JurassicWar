@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../lib/fonctionsVerification.h"
 #include "../lib/deplacement.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/chargerMatrice.h"
 //utile pour l'affichage de la fenêtre
 #include <SDL2/SDL.h>
 

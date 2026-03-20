@@ -2,13 +2,6 @@
 #define _DEPLACEMENT_H_
 
 #include "types.h"
-#include "regression.h"
-#include "tda_nuage.h"
-#include "chargerMatrice.h"
-#include "placer_dinos.h"
-#include "tda_nuage.h"
-#include "collision_decor.h"
-#include "fonctionsVerification.h"
 
 /** 
  * @file deplacement.h
@@ -30,14 +23,18 @@
  * @brief
 */
 
-#define GRAVITE 0.8
+// Diminue la vitesse de chute (ex: de 0.8 à 0.4)
+#undef GRAVITE
+#define GRAVITE 0.4 
 
 /**
  * @def FORCE_SAUT
  * @brief
 */
 
-#define FORCE_SAUT -12.0
+// Diminue la puissance de l'impulsion (ex: de -10.0 à -7.0)
+#undef FORCE_SAUT
+#define FORCE_SAUT -7.0
 
 /**
  * @fn int init_deplacement(t_dino **dino, int matrice[MAT_H][MAT_L], char *nomNuage[], int nb_nuage, ...);
