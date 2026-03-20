@@ -12,7 +12,7 @@ int main(){
     int matrice_test[MAT_H][MAT_L];
     int i,j;
     t_dino d; 
-    d.d = DINO1;
+    d.d = D1;
     t_coordonnee p_sol={50,50};
 
     for(i=0; i<100;i++){
@@ -29,7 +29,7 @@ int main(){
         printf("\n");
     }
 
-    supprimer_matrice_dino(&d, p_sol, matrice_test);
+    supprimer_matrice_dino(&d, matrice_test);
     printf("----------matrice2---------------------");
     for(i=0; i<100;i++){
         for(j=0; j<100;j++){

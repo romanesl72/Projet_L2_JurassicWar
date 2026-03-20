@@ -97,6 +97,7 @@ int main(int argc, char * argv[]){
         
         
         while(enCours) {
+
             while (SDL_PollEvent(&evenement)){
                 if (evenement.type == SDL_QUIT){
                     enCours = 0;
@@ -109,18 +110,7 @@ int main(int argc, char * argv[]){
                 }
             }
 
-            const Uint8 *clavier = SDL_GetKeyboardState(NULL);
-            if (!tirEncours.actif) {
-                if (clavier[SDL_SCANCODE_UP])    tirEncours.velo.v -= 0.2f;
-                if (clavier[SDL_SCANCODE_DOWN])  tirEncours.velo.v += 0.2f;
-                if (clavier[SDL_SCANCODE_LEFT])  tirEncours.velo.u -= 0.2f;
-                if (clavier[SDL_SCANCODE_RIGHT]) tirEncours.velo.u += 0.2f;
-            }
-
-            if (tirEncours.actif) {
-                mettreAJourVol(&tirEncours, matrice, graviteMonde);
-            }
-
+            
             SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
             SDL_RenderClear(rendu);
 
@@ -128,6 +118,7 @@ int main(int argc, char * argv[]){
             SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU};
             SDL_RenderCopy(rendu, texMap, NULL, &rect_plein_ecran);
             
+
             /* --- AFFICHAGE DES DINOS --- */
             /* Équipe 1 */
             for(i = 0; i < equipe1.n; i++) {
@@ -140,7 +131,27 @@ int main(int argc, char * argv[]){
                 SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d], NULL, &r);
             }
 
-            if (tirEncours.actif) {
+
+            const Uint8 *clavier = SDL_GetKeyboardState(NULL);
+
+            if (!tirEncours.actif) {
+                if (clavier[SDL_SCANCODE_V]) {
+
+                    /* On replace le tir sur le dino avant de viser */
+                    tirEncours.pos.x = equipe1.tab[0].pos.x + 15;
+                    tirEncours.pos.y = equipe1.tab[0].pos.y + 15;
+                    
+                    /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
+                    viserArcher(rendu, texMap, &tirEncours, &clavier, graviteMonde);
+                }
+            }
+            else{
+                mettreAJourVol(&tirEncours, matrice, graviteMonde);
+            }
+
+
+
+            if(tirEncours.actif) {
                 tracerFleche(rendu, &tirEncours);
             } else {
                 tracerTrajectoireArcher(rendu, &tirEncours, graviteMonde);

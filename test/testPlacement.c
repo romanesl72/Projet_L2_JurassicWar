@@ -3,14 +3,14 @@
 #include <time.h>
 #include "../lib/types.h"
 #include "../lib/collision_decor.h"
-#include "../lib/gestion_placement.h"
+#include "../lib/placer_dinos.h"
 
 extern int matrice_test[MAT_H][MAT_L];
 
 void test_placement_multi_zones() {
     printf("\n--- Test Placement Multi-Zones ---\n");
-    t_dino d; 
-    d.d = DINO1;
+    t_dino dino; 
+    dino.d = D1;
     
     t_zone_depart mes_zones[2];
     
@@ -25,9 +25,9 @@ void test_placement_multi_zones() {
     mes_zones[1].id_equipe = 2;
 
     int z = rand() % 2;
-    remplir_matrice_dino(&d, mes_zones[z].bas_centre, 0, 0, matrice_test);
+    remplir_matrice_dino(&dino, mes_zones[z].bas_centre, matrice_test);
 
     printf("Dino place sur le point (%d, %d). Sa tete est en y=%d\n", 
-            mes_zones[z].bas_centre.x, mes_zones[z].bas_centre.y, d.pos.y);
+            mes_zones[z].bas_centre.x, mes_zones[z].bas_centre.y, dino.pos.y);
         
 }
