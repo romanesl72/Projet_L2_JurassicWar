@@ -112,10 +112,9 @@ void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
     Si a < 0 : La courbe "monte" (vers la gauche).
     Si a = 0 : Le terrain est plat. */
 
-    float a, b, angle;
+    float a, b;
     int mvt =0;
     int booleen;
-    int colision[4];
     if (state[SDL_SCANCODE_LEFT]){
         booleen=horsNuage(dino,nuage,&nb_pts,matrice,mvt);
         // Calculer la pente locale via la régression
@@ -153,7 +152,6 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
     float a, b;
     int mvt=0;
     int booleen;
-    int colision[4];
     if (state[SDL_SCANCODE_RIGHT]){    
         booleen=horsNuage(dino,nuage,&nb_pts,matrice,mvt);
         // Calculer la pente locale
@@ -213,7 +211,7 @@ void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_
             dino->pos = nuage[dino->indice_nuage];
             dino->deplacement->sautBooleen = 0;
             dino->deplacement->v_y = 0;
-            dino->deplacement->wait = 15; // Pause courte (0.2s à 60fps)
+            dino->deplacement->wait = 250;
         }
         
         remplir_matrice_dino(dino, dino->pos, matrice);
