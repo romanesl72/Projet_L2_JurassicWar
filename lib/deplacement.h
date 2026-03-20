@@ -6,7 +6,7 @@
 #include "tda_nuage.h"
 #include "chargerMatrice.h"
 #include "placer_dinos.h"
-#include "creation_nuage.h"
+#include "tda_nuage.h"
 #include "collision_decor.h"
 #include "fonctionsVerification.h"
 
@@ -54,7 +54,7 @@
  * @param nuage
  */
 
-int init_deplacement(t_dino **dino, int *nb_pts,int matrice[MAT_H][MAT_L], char *nomNuage[], t_coordonnee **nuage_principal, int nb_nuage, ...);
+int init_deplacement(t_dino **dino, int *nb_pts,int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...);
 
 
 /**
@@ -69,18 +69,6 @@ int init_deplacement(t_dino **dino, int *nb_pts,int matrice[MAT_H][MAT_L], char 
 void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
 
 /**
- * @fn int chercherNouveauIndiceNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]);
- * @author Solène Orieux
- * @date 
- * @brief
- * @param dino
- * @param nuage
- * @param nb_pts
- * @param matrice
- */
-int chercherNouveauIndiceNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]);
-
-/**
  * @fn int horsNuage(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L], int mvt);
  * @author Solène Orieux
  * @date 
@@ -92,7 +80,7 @@ int chercherNouveauIndiceNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, i
  * @param mvt
  */
 
-int horsNuage(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L], int mvt);
+int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int mvt);
 
 /**
  * @fn void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);

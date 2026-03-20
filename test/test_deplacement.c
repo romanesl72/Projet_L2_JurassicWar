@@ -21,13 +21,11 @@ int main(){
     
     t_dino *dino=NULL;
 
-    char *nomNuage[] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
-
     t_coordonnee *nuage1=NULL; 
     t_coordonnee *nuage2=NULL;
     t_coordonnee *nuage=NULL;
 
-    if(!init_deplacement(&dino, &nb_pts, matrice, nomNuage, &nuage, 2, &nuage1, &nuage2))return 1;
+    if(!init_deplacement(&dino, &nb_pts, matrice, &nuage, 2, &nuage1, &nuage2))return 1;
 
     
     dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
@@ -99,24 +97,38 @@ int main(){
             SDL_RenderPresent(rendu);
         }
 
-        /* --- NETTOYAGE --- */
-        SDL_DestroyTexture(texDino);
-        if(nuageExiste(nuage))nuageDetruire(&nuage);
-        if(nuageExiste(nuage1))nuageDetruire(&nuage1);
-        if(nuageExiste(nuage2))nuageDetruire(&nuage2);
+        /* --- NETTOYAGE DES TEXTURES --- */
+        if (texDino) SDL_DestroyTexture(texDino);
+        if (texMap) SDL_DestroyTexture(texMap);
 
-        free(dino->deplacement);
-        dino->deplacement=NULL;
-        free(dino);
-        SDL_DestroyTexture(texMap);
-        
+        /* --- NETTOYAGE DES DONNÉES DU JEU --- */
+        // Libérer d'abord les nuages sources via votre fonction dédiée
+        if (nuage1 != NULL) nuageDetruire(&nuage1);
+        if (nuage2 != NULL) nuageDetruire(&nuage2);
+
+        // Le nuage principal a été alloué par realloc, il faut le free s'il n'est pas NULL
+        if (nuage != NULL) {
+            free(nuage);
+            nuage = NULL;
+        }
+
+        /* --- NETTOYAGE DE LA STRUCTURE DINO --- */
+        if (dino != NULL) {
+            // On libère le sous-élément en premier
+            if (dino->deplacement != NULL) {
+                free(dino->deplacement);
+                dino->deplacement = NULL;
+            }
+            // Puis la structure principale
+            free(dino);
+            dino = NULL; // Sécurité pour éviter les pointeurs fous
+        }
+
+        /* --- FERMETURE SDL --- */
         SDL_DestroyRenderer(rendu);
         SDL_DestroyWindow(menuPrincipal);
         IMG_Quit();
         TTF_Quit();
         SDL_Quit();
-
-        return 0;
     }
-    return 1;
 }

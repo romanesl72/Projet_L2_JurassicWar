@@ -89,22 +89,62 @@ int nuageDetruire( t_coordonnee ** nuage) {
  * Affectation d'un nuage par copie
  */
 
-int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points) {
+int regroupementNuage(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int *nb_pts, int nb_pts_source) {
+    if (nuage_source == NULL || nb_pts_source <= 0) return 0;
 
-    //Si la cible existe déjà, on la libère pour éviter les fuites mémoire
-    if (nuageExiste(*nuage_cible)) {
-        if (!nuageDetruire(nuage_cible)) return 0;
+    int d = 0;
+    // On calcule l'écart sur l'axe X si le nuage cible n'est pas vide
+    if (*nuage_cible != NULL && *nb_pts > 0) {
+        d = nuage_source[0].x - (*nuage_cible)[*nb_pts - 1].x;
     }
 
-    // Vérification que la source existe
-    if (!nuageExiste(nuage_source)) return 0;
+    // On s'assure que d est positif, sinon on ne rajoute pas de points vides
+    int points_ecart = (d > 1) ? (d - 1) : 0; 
+    int nouveau_total = (*nb_pts) + points_ecart + nb_pts_source;
 
-    // Allocation de la nouvelle mémoire pour la cible
-    *nuage_cible = malloc(sizeof(t_coordonnee) * nb_points);
-    if (!nuageExiste(*nuage_cible)) return 0;
+    // Déclaration de temp HORS des blocs if/else
+    t_coordonnee *temp = realloc(*nuage_cible, sizeof(t_coordonnee) * nouveau_total);
+    
+    if (temp == NULL) {
+        printf("Erreur : Echec de la réallocation mémoire.\n");
+        return 0;
+    }
+    *nuage_cible = temp;
 
-    memcpy(*nuage_cible, nuage_source, sizeof(t_coordonnee) * nb_points);
+    // 1. Si il y a un trou (d > 0), on peut remplir le vide
+    if (points_ecart > 0) {
+        for (int i = 0; i < points_ecart; i++) {
+            (*nuage_cible)[*nb_pts + i].x = (*nuage_cible)[*nb_pts - 1].x + (i + 1);
+            (*nuage_cible)[*nb_pts + i].y = MAT_H;
+        }
+    }
+
+    // 2. Copier les points de la source à la suite
+    for (int i = 0; i < nb_pts_source; i++) {
+        // L'index de départ est l'ancien total + l'éventuel écart
+        (*nuage_cible)[*nb_pts + points_ecart + i] = nuage_source[i];
+    }
+
+    // Mettre à jour le compteur global
+    *nb_pts = nouveau_total;
 
     return 1;
 }
 
+
+/*
+* Affichage du nuage
+*/
+
+void afficherNuage(t_coordonnee *nuage, int nb_pts) {
+    if (nuage == NULL || nb_pts == 0) {
+        printf("Le nuage est vide ou n'existe pas.\n");
+        return;
+    }
+
+    printf("--- Affichage du Nuage de Points (%d points) ---\n", nb_pts);
+    for (int i = 0; i < nb_pts; i++) {
+        printf("Point %d : [x = %d, y = %d]\n", i, nuage[i].x, nuage[i].y);
+    }
+    printf("-----------------------------------------------\n");
+}
