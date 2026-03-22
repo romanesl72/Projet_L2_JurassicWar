@@ -1,4 +1,6 @@
+#include "../lib/fonctionsPlacementBombe.h"
 #include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/placer_dinos.h"
 #include <stdio.h>
 #include <math.h>
@@ -13,6 +15,10 @@
 void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon) {
     bombe->coor.x = coorChoisieX;
     bombe->coor.y = coorChoisieY;
+    bombe->rayon = rayon;
+}
+
+void initialiserRayonBombe(t_bombe *bombe, int rayon) {
     bombe->rayon = rayon;
 }
 
@@ -556,6 +562,56 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
         /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
         if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
             vectVitesse->u = fabs(vectVitesse->u);
+        }
+
+        SDL_RenderClear(zoneAffichage);
+        SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
+
+        tracerBombe(zoneAffichage, bombe);
+        afficherDinos(zoneAffichage, equipe1);
+        afficherDinos(zoneAffichage, equipe2);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
+
+        SDL_RenderPresent(zoneAffichage);
+        SDL_Delay(8);
+
+    } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
+}
+
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2){
+    
+    t_cote ancienCote = GAUCHE;
+    t_cote cote = GAUCHE;
+    t_dino *dino = recupererDinoNumero(equipe1, equipe2, D1);
+    placerBombeEntrePattes(dino, bombe, cote);
+
+    do {
+
+        SDL_PumpEvents();
+        *etatClavier = SDL_GetKeyboardState(NULL);
+
+        if ((*etatClavier)[SDL_SCANCODE_UP]){
+            vectVitesse->v -= 0.8;
+        }
+        if ((*etatClavier)[SDL_SCANCODE_DOWN]){
+            vectVitesse->v += 0.8;
+        }
+
+        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+        if ((*etatClavier)[SDL_SCANCODE_LEFT]){
+            vectVitesse->u = -fabs(vectVitesse->u);
+            cote = GAUCHE;
+        }
+
+        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
+            vectVitesse->u = fabs(vectVitesse->u);
+            cote = DROITE;
+        }
+
+        if (cote != ancienCote){
+            placerBombeEntrePattes(dino, bombe, cote);
+            ancienCote = cote;
         }
 
         SDL_RenderClear(zoneAffichage);

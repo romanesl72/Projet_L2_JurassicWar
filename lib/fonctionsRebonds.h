@@ -42,8 +42,8 @@
 void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
 
 /**
- * @fn void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, SDL_Texture * texDinos[6], t_joueur * equipe1, t_joueur * equipe2);
- * @brief la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur
+ * @fn void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
+ * @brief la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur. Les dinosaures sont présents à l'affichage.
  * @author Hannah Sergent
  * @date Crée le 17/03/2026
  * @param zoneAffichage pointeur sur la zone d'affichage
@@ -53,17 +53,34 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
  * @param bombe pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur un vecteur vitesse
  * @param gravite la gravite choisie
- * @param textDinos tableau contenant l'image à afficher pour chaque dinosaure
  * @param equipe1 l'équipe1 dont on veut afficher les dinosaures
  * @param equipe2 l'équipe2 dont on veut afficher les dinosaures
  */
 
 void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
 
+/**
+ * @fn void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
+ * @brief la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur. Les dinosaures sont présents à l'affichage et la bombe est lancée depuis la position d'un dinosaure.
+ * @author Hannah Sergent
+ * @date Crée le 22/03/2026
+ * @param zoneAffichage pointeur sur la zone d'affichage
+ * @param texMap l'image de la map sous forme de texture
+ * @param rect les coordonnées pour placer la map dans la fenetre
+ * @param etatClavier un pointeur de pointeur sur l'état du clavier
+ * @param bombe pointeur sur une structure de type bombe
+ * @param vectVitesse un pointeur sur un vecteur vitesse
+ * @param gravite la gravite choisie
+ * @param equipe1 l'équipe1 dont on veut afficher les dinosaures
+ * @param equipe2 l'équipe2 dont on veut afficher les dinosaures
+ */
+
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
+
 
 /**
  * @fn void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon);
- * @brief la fonction initialise les valeurs d'une bombe
+ * @brief la fonction initialise toutes les valeurs d'une bombe.
  * @author Hannah Sergent
  * @date Crée le 11/02/2026
  * @param bombe pointeur sur une structure de type bombe non initialisée
@@ -73,6 +90,17 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
  */
 
 void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon);
+
+/**
+ * @fn void initialiserRayonBombe(t_bombe *bombe, int rayon);
+ * @brief la fonction initialise uniquement le rayon de la bombe.
+ * @author Hannah Sergent
+ * @date Crée le 22/03/2026
+ * @param bombe pointeur sur une structure de type bombe non initialisée
+ * @param rayon rayon de la bombe
+ */
+
+void initialiserRayonBombe(t_bombe *bombe, int rayon);
 
 /**
  * @fn void initialiserVitesse(float *vitesseX, float *vitesseY, float vitesseChoisieX, float vitesseChoisieY);
