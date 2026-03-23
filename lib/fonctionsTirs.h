@@ -12,10 +12,10 @@ int collisionFrontiere(t_tir *tir);
 int collisionTerrain(int matrice[MAT_H][MAT_L], t_tir *tir);
 int collisionEau(int matrice[MAT_H][MAT_L], t_tir *tir);
 int collisionDino(int matrice[MAT_H][MAT_L], t_tir *tir);
-void mettreAJourVol(t_tir *tir, int matrice[MAT_H][MAT_L], float gravite);
+int mettreAJourVol(t_tir *tir, int matrice[MAT_H][MAT_L], float gravite, int id_tireur);
 void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir);
 void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase);
 
 
-void viserArcher(SDL_Renderer* rendu, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite);
+void viserArcher(SDL_Renderer* rendu, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2);
 #endif
