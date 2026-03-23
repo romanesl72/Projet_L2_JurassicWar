@@ -27,9 +27,14 @@
 
 typedef enum {EAU=-1, AIR, TERRE, D1, D2,D3,D4,D5,D6} t_case; 
 
-typedef enum {ARC, ARBALETE } t_arme_archer;
-typedef enum {FUSIL, REVOLVER } t_arme_feu;
-typedef enum {ARME_FEU, ARME_ARCHER} t_type_arme;
+/**
+ * @enum t_nom_arme
+ * @brief Toutes les armes utilisés hormis la bombe
+ * @author Romane Saint-Léger
+ * @date Crée le 07/03/2026
+ * @version 1.3
+*/
+typedef enum {ARC, ARBALETE, FUSIL, REVOLVER } t_nom_arme;
 
 typedef enum {GAUCHE, DROITE} t_cote;
 
@@ -172,23 +177,36 @@ typedef struct {
     int rayon;                  /**< */
 } t_bombe;
 
+/**
+ * @struct t_arme
+ * @brief Caractéristiques de chaque arme
+ * @author Romane Saint-Léger
+ * @date Crée le 7/03/2026
+ * @version 1.3
+*/
+
 typedef struct {
-    t_type_arme type_general;
-    union {
-        t_arme_archer archer;
-        t_arme_feu feu;
-    }sous_type;
-    int degats;
-    float poids_projectile;
+    t_nom_arme nom;             /**< Nom de l'arme utilisé*/
+    int degats;                 /**< Degats effectués par l'arme*/
+    float poids_projectile;     /**< Poids de l'arme, influence sa courbe (gravité)*/
+    float puissance_propulsion; /**< Vitesse de base*/
+    float vitesse_max;          /**< Vitesse Maximale*/
 }t_arme;
+
+/**
+ * @struct t_tir
+ * @brief Données nécessaire pour calculer un tir
+ * @author Romane Saint-Léger
+ * @date Crée le 7/03/2026
+ * @version 1.0
+*/
 
 typedef struct {
     t_coordonnee_calcul pos;
     t_vect velo;
-    int actif;
     t_arme arme_source;
+    int actif;
 }t_tir;
-
 
 
 #endif
