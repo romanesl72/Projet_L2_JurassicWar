@@ -10,11 +10,22 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 # Edition de liens
 
-EXECUTABLES = ./main_test ./test_archer ./test_deplacement ./testCollisions ./testDino ./testFonctionsChangementTour ./testFonctionsRebonds ./testFonctionsTuerDinos ./testPlacement ./testRegression
+EXECUTABLES = ./main_test \
+./test_archer \
+./test_deplacement \
+./testCollisions \
+./testDino \
+./testFonctionsChangementTour \
+./testFonctionsRebonds \
+./testFonctionsTuerDinos \
+./testPlacement \
+./testTirArmes \
+./testRegression
+
 
 OBJETS_MAIN = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 
-OBJETS_ARCHER = test_archer.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o tirer_archer.o
+OBJETS_ARCHER = test_archer.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o fonctionsTirs.o
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_COLLISIONS = testCollisions.o testPlacement.o collision_decor.o placer_dinos.o
 OBJETS_DEPLACEMENT = test_deplacement.o deplacement.o fonctionsVerification.o tda_nuage.o chargerMatrice.o placer_dinos.o regression.o collision_decor.o
@@ -22,8 +33,8 @@ OBJETS_DINO = testDino.o placer_dinos.o deplacement.o
 OBJETS_PLACEMENT = testPlacement.o collision_decor.o placer_dinos.o
 OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
 OBJETS_REGRESSION = testRegression.o tda_nuage.o regression.o
+OBJETS_TIR = testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
-
 
 all: $(EXECUTABLES)
 
@@ -38,6 +49,9 @@ all: $(EXECUTABLES)
 # -------------------   FICHIERS TEST   -------------------
 
 ./test_archer: $(OBJETS_ARCHER)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testTirArmes: $(OBJETS_TIR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
@@ -63,8 +77,6 @@ all: $(EXECUTABLES)
 
 ./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
-
-
 
 
 

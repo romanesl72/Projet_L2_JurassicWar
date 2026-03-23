@@ -4,7 +4,7 @@
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
 #include "../lib/types.h"
-#include "../lib/tirer_archer.h"
+#include "../lib/fonctionsTirs.h"
 #include <time.h>
 
 #define LARGEUR_FEN_JEU 1300

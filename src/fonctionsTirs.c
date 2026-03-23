@@ -1,4 +1,4 @@
-#include "../lib/tirer_archer.h"
+#include "../lib/fonctionsTirs.h"
 #include "../lib/placer_dinos.h"
 #include <math.h>
 
