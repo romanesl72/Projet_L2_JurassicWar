@@ -46,7 +46,7 @@ int main(int argc, char * argv[]){
         t_catalogue_zones catalogue;
 
         t_joueur equipe1, equipe2;
-        t_case dinoTouche;
+        t_case dinoTouche = AIR;
 
         t_bombe bombe;
 
@@ -148,37 +148,35 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2);
+                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, dinoTour);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);
             accumulateur += tempsEcoule;
 
             while (accumulateur >= vitesse) {
-                if (bombeLancee) {
+                if (bombeLancee == 1) {
 
                     bombe.coor.x += vitesse*vectVitesse.u;
                     bombe.coor.y += vitesse*vectVitesse.v;
                     vectVitesse.v += gravite*vitesse;
 
                     if (collisionFrontiereBombe(&bombe)) {
-                        bombeLancee = 0;
-                        /* 
-                        initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
-                        initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
-                        */
+                        bombeLancee = -1;
+
                     }
 
                     dinoTouche = collisionDinoBombe(matriceTerrain, &bombe);
 
-                    if (dinoTouche || collisionEauBombe(matriceTerrain, &bombe)) {
-                        bombeLancee = 0;
+                    if (((dinoTouche >= D1) && (dinoTouche <= D6)) || collisionEauBombe(matriceTerrain, &bombe)) {
+                        bombeLancee = -1;
 
                         SDL_RenderClear(zoneAffichage);
                         SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
 
-                        if (dinoTouche){
+                        if ((dinoTouche >= D1) && (dinoTouche <= D6)){
                             supprimerDinoJoueur(&equipe1, &equipe2, dinoTouche);
+                            dinoTouche = AIR;
                         }
 
                         /* --- AFFICHAGE DES DINOS --- */
@@ -193,14 +191,12 @@ int main(int argc, char * argv[]){
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
                         nombreRebonds ++;
 
-                        /* bombe.coor.x += vectVitesse.u *vitesse;
-                        bombe.coor.y += vectVitesse.v * vitesse; */
                         if (nombreRebonds > 1){
-                            bombeLancee = 0;
+                            bombeLancee = -1;
                         }
                     }
 
-                    if (bombeLancee) {
+                    if (bombeLancee == 1) {
 
                         SDL_RenderClear(zoneAffichage);
                         SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
@@ -212,6 +208,11 @@ int main(int argc, char * argv[]){
                         afficherDinos(zoneAffichage, &equipe2);
 
                         SDL_RenderPresent(zoneAffichage);
+                    }
+                    if (bombeLancee == -1){
+                        tourSuivant(&numeroTour, &equipeCourante, &dinoTour, &equipe1, &equipe2);
+                        printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", dinoTour, numeroTour, equipeCourante);
+                        initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
                     }
                 }
                 accumulateur -= vitesse;

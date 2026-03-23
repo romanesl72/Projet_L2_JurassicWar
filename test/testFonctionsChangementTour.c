@@ -46,7 +46,7 @@ int main(int argc, char * argv[]){
     printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", dinoTour, equipeCourante);
 
     for (i = 1; i < 2*NOMBRE_DINOS; i++){
-        tourSuivant(&numeroTour, &equipeCourante, &dinoTour);
+        tourSuivant(&numeroTour, &equipeCourante, &dinoTour, &equipe1, &equipe2);
         printf("Passage au tour numéro %d \n", numeroTour);
         printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", dinoTour, equipeCourante);
     }

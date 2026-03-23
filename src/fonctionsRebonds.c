@@ -578,11 +578,11 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
-void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2){
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant){
     
     t_cote ancienCote = GAUCHE;
     t_cote cote = GAUCHE;
-    t_dino *dino = recupererDinoNumero(equipe1, equipe2, D1);
+    t_dino *dino = recupererDinoNumero(equipe1, equipe2, numDinoCourant);
     placerBombeEntrePattes(dino, bombe, cote);
 
     do {
