@@ -120,6 +120,20 @@ typedef struct {
 	int n;          /**< Taille du tableau*/ 
 } t_joueur;
 
+/**
+ * @struct t_tour
+ * @brief Structure représentant la gestion des tours
+ * @author Hannah Sergent
+ * @date Crée le 24/03∕2026
+ * @version 1.0
+*/
+
+typedef struct {
+    int numeroTour;
+    int equipeCourante;
+    t_case dinoCourant;
+    t_case dinoPrecedent;
+} t_tour;
 
 /**
  * @struct t_zone_depart

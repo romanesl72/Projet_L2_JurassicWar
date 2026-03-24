@@ -24,33 +24,13 @@ int finPartie(t_joueur *equipe1, t_joueur *equipe2){
 }
 
 /** 
- * @fn void dinoSuivantAdversaire(int *equipeCourante, t_case *dinoTour);
- * @brief La fonction sélectionne le dinosaure suivant de l'équipe adverse.
+ * @fn void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour);
+ * @brief La fonction sélectionne le dinosaure suivant de la même équipe.
  * @author Hannah Sergent
  * @date Crée le 23/03/2026
  * @param equipeCourante un pointeur sur le numéro de l'équipe qui vient de jouer
  * @param dinoTour un pointeur sur le dinosaure qui vient de jouer
  */
-
-void dinoSuivantAdversaire(int *equipeCourante, t_case *dinoTour){
-
-    if ((*dinoTour) == D6){
-        (*dinoTour) = D1;
-        (*equipeCourante) = 1;
-    }
-    else {
-
-        if ((*equipeCourante) == 1){
-            (*dinoTour) += NOMBRE_DINOS/2;
-            (*equipeCourante) = 2;
-        }
-        else {
-            (*dinoTour) -= NOMBRE_DINOS/2 - 1;
-            (*equipeCourante) = 1;
-        }
-    }
-
-}
 
 void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour){
 
@@ -75,33 +55,34 @@ void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour){
 
 }
 
-void tourSuivant(int *numeroTour, int *equipeCourante, t_case *dinoTour, t_joueur *equipe1, t_joueur *equipe2){
+void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2){
 
-    t_dino *dino;
+    t_case dinoTemp;
+    t_dino *dino = NULL;
 
     if (!finPartie(equipe1, equipe2)){
 
-        dinoSuivantAdversaire(equipeCourante, dinoTour);
-
+        if (tour->equipeCourante == 1){
+            tour->equipeCourante = 2;
+        }
+        else {
+            tour->equipeCourante = 1;
+        }
+        dinoTemp = tour->dinoPrecedent;
+        tour->dinoPrecedent = tour->dinoCourant;
+        
         do {
-            dino = recupererDinoNumero(equipe1, equipe2, (*dinoTour));
-            if (dino == NULL){
-                dinoSuivantEquipe((*equipeCourante), dinoTour);
-            }
-        } while(dino == NULL);
+            dinoSuivantEquipe(tour->equipeCourante, &dinoTemp);
+            dino = recupererDinoNumero(equipe1, equipe2, dinoTemp);
 
-        (*numeroTour)++;
+        } while (dino == NULL);
+
+        tour->dinoCourant = dinoTemp;
+
+
+        tour->numeroTour ++;
     }
     else {
-        (*numeroTour) = -1;
+        tour->numeroTour = -1;
     }
-}
-
-/** 
- * @fn void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour);
- * @brief La fonction sélectionne le dinosaure suivant de la même équipe.
- * @author Hannah Sergent
- * @date Crée le 23/03/2026
- * @param equipeCourante un pointeur sur le numéro de l'équipe qui vient de jouer
- * @param dinoTour un pointeur sur le dinosaure qui vient de jouer
- */
+} 

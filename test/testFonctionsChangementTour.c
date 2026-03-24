@@ -16,16 +16,11 @@ int main(int argc, char * argv[]){
 
     int i;
 
-    int numeroTour = 1;
-    int equipeCourante = 1;
-    /*
-    int actionTour = 0; */
+    t_tour tour = {1, 1, D1, D6};
 
-    t_case dinoTour = D1;
-
-    printf("Valeur initiale de numeroTour : %d \n", numeroTour);
-    printf("Valeur initiale de equipeCourante : %d \n", equipeCourante);
-    printf("Valeur initiale de dinoTour : %d \n\n", dinoTour);
+    printf("Valeur initiale de numeroTour : %d \n", tour.numeroTour);
+    printf("Valeur initiale de equipeCourante : %d \n", tour.equipeCourante);
+    printf("Valeur initiale de dinoTour : %d \n\n", tour.dinoCourant);
 
     t_catalogue_zones catalogue;
 
@@ -43,12 +38,16 @@ int main(int argc, char * argv[]){
     /* Équipe 2 (IDs matrice 6, 7, 8) */
     placer_une_equipe(&equipe2, catalogue.zones_E2, matriceTerrain, D4);
 
-    printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", dinoTour, equipeCourante);
+    printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", tour.dinoCourant, tour.equipeCourante);
 
     for (i = 1; i < 2*NOMBRE_DINOS; i++){
-        tourSuivant(&numeroTour, &equipeCourante, &dinoTour, &equipe1, &equipe2);
+        /* tourSuivant(&numeroTour, &equipeCourante, &dinoTour, &equipe1, &equipe2); */
+        tourSuivant(&tour, &equipe1, &equipe2);
+        /*
         printf("Passage au tour numéro %d \n", numeroTour);
-        printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", dinoTour, equipeCourante);
+        printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", dinoTour, equipeCourante);*/
+        printf("Passage au tour numéro %d \n", tour.numeroTour);
+        printf("C'est au tour du dino numéroté %d dans la matrice de jouer. Il appartient à l'équipe %d.\n", tour.dinoCourant, tour.equipeCourante);
     }
 
 

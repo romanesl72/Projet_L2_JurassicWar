@@ -64,10 +64,8 @@ int main(int argc, char * argv[]){
         SDL_Window *menuPrincipal;
         SDL_Texture *texMap;
 
-        /* Variables de changement de tour */
-        int numeroTour = 1;
-        int equipeCourante = 1;
-        t_case dinoTour = D1;
+        /* Variable de changement de tour */
+        t_tour gestionTours = {1, 1, D1, D6};
 
         initialiserRayonBombe(&bombe, RAYON);
         initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
@@ -148,7 +146,7 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, dinoTour);
+                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, gestionTours.dinoCourant);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);
@@ -193,6 +191,7 @@ int main(int argc, char * argv[]){
 
                         if (nombreRebonds > 1){
                             bombeLancee = -1;
+                            printf("rebonds \n");
                         }
                     }
 
@@ -209,9 +208,10 @@ int main(int argc, char * argv[]){
 
                         SDL_RenderPresent(zoneAffichage);
                     }
+                    
                     if (bombeLancee == -1){
-                        tourSuivant(&numeroTour, &equipeCourante, &dinoTour, &equipe1, &equipe2);
-                        printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", dinoTour, numeroTour, equipeCourante);
+                        tourSuivant(&gestionTours, &equipe1, &equipe2);
+                        printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", gestionTours.dinoCourant, gestionTours.numeroTour, gestionTours.equipeCourante);
                         initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
                     }
                 }
