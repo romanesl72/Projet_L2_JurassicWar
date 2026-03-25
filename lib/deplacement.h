@@ -55,17 +55,6 @@ int init_deplacement(t_dino **dino, int *nb_pts,char *nomNuage[], int matrice[MA
 
 
 /**
- * @fn void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
- * @author Solène Orieux
- * @date 
- * @brief
- * @param dino
- * @param matrice
- */
-
-void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
-
-/**
  * @fn int horsNuage(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L], int mvt);
  * @author Solène Orieux
  * @date 
