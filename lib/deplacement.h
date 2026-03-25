@@ -51,7 +51,7 @@
  * @param nuage
  */
 
-int init_deplacement(t_dino **dino, int *nb_pts,int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...);
+int init_deplacement(t_dino **dino, int *nb_pts,char *nomNuage[], int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...);
 
 
 /**

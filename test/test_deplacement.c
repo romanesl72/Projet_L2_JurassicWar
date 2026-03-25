@@ -18,6 +18,8 @@ int main(){
 
     int enCours;
     int matrice[MAT_H][MAT_L];
+    char *nomNuage[5];
+
     int w, h;
 
     int nb_pts;
@@ -28,9 +30,11 @@ int main(){
     t_coordonnee *nuage2=NULL;
     t_coordonnee *nuage=NULL;
 
-    if(!init_deplacement(&dino, &nb_pts, matrice, &nuage, 2, &nuage1, &nuage2))return 1;
+    nomNuage[0] = "../img/test1_c.jpg";
+    nomNuage[1] = "../img/test2_c.jpg";
 
-    
+    if(!init_deplacement(&dino, &nb_pts, nomNuage, matrice, &nuage, 2, &nuage1, &nuage2))return 1;
+
     dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
     dino->hauteur = 30;
 

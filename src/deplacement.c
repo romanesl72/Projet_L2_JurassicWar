@@ -12,7 +12,7 @@
 #include "../lib/tda_nuage.h"
 #include "../lib/collision_decor.h"
 
-int init_deplacement(t_dino **dino, int *nb_pts, int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...) {
+int init_deplacement(t_dino **dino, int *nb_pts, char *nomNuage[], int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...) {
     *dino = malloc(sizeof(t_dino));
     if (*dino == NULL) return 0;
 
@@ -27,8 +27,6 @@ int init_deplacement(t_dino **dino, int *nb_pts, int matrice[MAT_H][MAT_L], t_co
     int nb_pts_retenu = 0;
     int nb_pts_image_actuelle = 0;
 
-    (*dino)->deplacement->nomNuage[0] = "../img/test1_c.jpg";
-    (*dino)->deplacement->nomNuage[1] = "../img/test2_c.jpg";
     (*dino)->indice_nuage = 1000;
 
     va_list args;
@@ -38,7 +36,7 @@ int init_deplacement(t_dino **dino, int *nb_pts, int matrice[MAT_H][MAT_L], t_co
         t_coordonnee **ptr_sur_nuage = va_arg(args, t_coordonnee **);
         
         // Charger l'image i
-        *ptr_sur_nuage = nuage_de_points(&nb_pts_image_actuelle, (*dino)->deplacement->nomNuage[i]);
+        *ptr_sur_nuage = nuage_de_points(&nb_pts_image_actuelle, nomNuage[i]);
         
         if (!nuageExiste(*ptr_sur_nuage)) {
             va_end(args);
