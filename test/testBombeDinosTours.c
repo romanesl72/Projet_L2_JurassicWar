@@ -161,6 +161,7 @@ int main(int argc, char * argv[]){
 
                     if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = -1;
+                        printf("Collision avec la frontière. \n");
 
                     }
 
@@ -168,11 +169,14 @@ int main(int argc, char * argv[]){
 
                     if (((dinoTouche >= D1) && (dinoTouche <= D6)) || collisionEauBombe(matriceTerrain, &bombe)) {
                         bombeLancee = -1;
+                        printf("Collision avec eau ou dinosaure. \n");
 
                         SDL_RenderClear(zoneAffichage);
                         SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
 
                         if ((dinoTouche >= D1) && (dinoTouche <= D6)){
+                            printf("Collision avec un dinosaure. \n");
+                            supprimer_matrice_dino(recupererDinoNumero(&equipe1, &equipe2, dinoTouche), matriceTerrain);
                             supprimerDinoJoueur(&equipe1, &equipe2, dinoTouche);
                             dinoTouche = AIR;
                         }
@@ -188,10 +192,10 @@ int main(int argc, char * argv[]){
                     }
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
                         nombreRebonds ++;
+                        printf("Collision avec le terrain. \n");
 
                         if (nombreRebonds > 1){
                             bombeLancee = -1;
-                            printf("rebonds \n");
                         }
                     }
 
