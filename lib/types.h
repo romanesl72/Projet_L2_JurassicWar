@@ -222,5 +222,18 @@ typedef struct {
     int actif;
 }t_tir;
 
+/**
+ * @struct t_element_file
+ * @brief élement d'une file
+ * @author Solène Orieux
+ * @date Crée le 25/03/2026
+ * @version 1.0
+*/
+
+typedef struct element{
+	int nombre; 
+	struct element* suivant;
+} t_element_file;
+
 
 #endif
