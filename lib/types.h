@@ -231,7 +231,7 @@ typedef struct {
 */
 
 typedef struct element{
-	int nombre; 
+	t_coordonnee *coordonnee; 
 	struct element* suivant;
 } t_element_file;
 
