@@ -25,16 +25,20 @@ EXECUTABLES = ./main_test \
 
 OBJETS_MAIN = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 
-OBJETS_ARCHER = test_archer.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o fonctionsTirs.o
-OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
-OBJETS_COLLISIONS = testCollisions.o testPlacement.o collision_decor.o placer_dinos.o
-OBJETS_DEPLACEMENT = test_deplacement.o deplacement.o fonctionsVerification.o tda_nuage.o chargerMatrice.o placer_dinos.o regression.o collision_decor.o
-OBJETS_DINO = testDino.o placer_dinos.o deplacement.o
-OBJETS_PLACEMENT = testPlacement.o collision_decor.o placer_dinos.o
-OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o fonctionsVerification.o fonctionsRebonds.o chargerMatrice.o
-OBJETS_REGRESSION = testRegression.o tda_nuage.o regression.o
-OBJETS_TIR = testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o
-OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
+
+OBJETS_ARCHER = 			test_archer.o 					$(OBJETS_COMMUNS) gestion_zones.o fonctionsTirs.o
+OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
+OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
+
+OBJETS_DEPLACEMENT = 		test_deplacement.o 				$(OBJETS_COMMUNS) deplacement.o regression.o collision_decor.o
+OBJETS_DINO = 				testDino.o 						$(OBJETS_COMMUNS) deplacement.o regression.o collision_decor.o
+OBJETS_REBONDS = 			testFonctionsRebonds.o 			placer_dinos.o chargerMatrice.o fonctionsVerification.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o
+OBJETS_REGRESSION = 		testRegression.o 				tda_nuage.o regression.o
+OBJETS_TIR = 				testTirArmes.o 					placer_dinos.o chargerMatrice.o fonctionsTirs.o
+OBJETS_TUER_DINOS = 		testFonctionsTuerDinos.o 		$(OBJETS_COMMUNS) gestion_zones.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsTuerDinos.o fonctionsPlacementBombe.o
+
 
 all: $(EXECUTABLES)
 
@@ -51,7 +55,7 @@ all: $(EXECUTABLES)
 ./test_archer: $(OBJETS_ARCHER)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./testTirArmes: $(OBJETS_TIR)
+./testBombeDinosTours: $(OBJETS_BOMBE_DINOS_TOURS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
@@ -75,6 +79,9 @@ all: $(EXECUTABLES)
 ./testRegression: $(OBJETS_REGRESSION)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testTirArmes: $(OBJETS_TIR)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
@@ -92,3 +99,4 @@ all: $(EXECUTABLES)
 
 clean:
 	rm -f $(FIC_OBJETS) $(EXECUTABLES)
+
