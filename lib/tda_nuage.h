@@ -44,17 +44,16 @@ int nuageExiste( t_coordonnee * const nuage );
 int nuageDetruire( t_coordonnee ** nuage);
 
 /**
- * @fn int regroupementNuage(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int *nb_pts, int nb_pts_source);
+ * @fn int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points);
  * @author Solène Orieux
- * @date 20/03/2026
+ * @date 26/03/2026
  * @brief
  * @param nuage_cible
  * @param nuage_source
  * @param nb_pts
- * @param nb_pts_source
  */
 
-int regroupementNuage(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int *nb_pts, int nb_pts_source);
+int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points);
 
 /**
  * @fn int regroupementNuage(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int *nb_pts, int nb_pts_source);

@@ -33,7 +33,7 @@ void initfile(void);
  */
 
 
-void ajouter(int v);
+void ajouter(t_coordonnee v);
 
 /**
  * @fn void retirer(int* v);
@@ -43,7 +43,7 @@ void ajouter(int v);
  * @param v poiteur sur la valeur à supprimer
  */
 
-void retirer(int* v);
+void retirer(t_coordonnee *v);
 
 /**
  * @fn int filevide(void);

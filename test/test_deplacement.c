@@ -1,141 +1,121 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "../lib/chargerMatrice.h"
+#include "../lib/fonctionsChangementTour.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsVerification.h"
+#include "../lib/gestion_zones.h"
+#include "../lib/placer_dinos.h"
 #include "../lib/deplacement.h"
 #include "../lib/tda_nuage.h"
-#include "../lib/chargerMatrice.h"
-//utile pour l'affichage de la fenêtre
-#include <SDL2/SDL.h>
+#include <time.h>
+#include <stdio.h>
 
-#define LARGEUR_FEN_JEU 1300
-#define HAUTEUR_FEN_JEU 700
-
-#define LARGEUR_FEN_MENU 400
-#define HAUTEUR_FEN_MENU 650
-
-
-int main(){
-
-    int enCours;
+int main(int argc, char * argv[]) {
+    /* ---- Déclarations des variables (Portée : toute la fonction main) ---- */
+    int i, enCours = 0;
     int matrice[MAT_H][MAT_L];
+    int nb_pts, w, h;
+    int trouves_E1 = 0, trouves_E2 = 0;
+    int timer = 1000;
+    t_case dinoTouche = D1;
+
     char *nomNuage[5];
-
-    int w, h;
-
-    int nb_pts;
+    t_coordonnee *nuages_stockes[5];
+    t_catalogue_zones catalogue;
+    t_joueur equipe1, equipe2;
+    t_tour gestionTours = {0, 1, D1, D1}; // Initialisation basique
     
-    t_dino *dino=NULL;
-
-    t_coordonnee *nuage1=NULL; 
-    t_coordonnee *nuage2=NULL;
-    t_coordonnee *nuage=NULL;
+    SDL_Event evenement;
+    SDL_Window *menuPrincipal = NULL;
+    SDL_Renderer *rendu = NULL;
+    SDL_Texture *texMap = NULL;
+    SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
 
     nomNuage[0] = "../img/test1_c.jpg";
     nomNuage[1] = "../img/test2_c.jpg";
+    int nb_nuage = 2;
 
-    if(!init_deplacement(&dino, &nb_pts, nomNuage, matrice, &nuage, 2, &nuage1, &nuage2))return 1;
-
-    dino->largeur = 30; // Correspond à la taille de votre rect d'affichage
-    dino->hauteur = 30;
-
+    /* ---- Initialisation ---- */
     if (initialisationCorrecte()) {
-
+        srand(time(NULL));
         enCours = 1;
-        SDL_Event evenement;
-        SDL_Window *menuPrincipal; 
-        SDL_Renderer *rendu;
-        
-        creerFenetre(&menuPrincipal, "Page du Jeu", LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU);
-        //rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
-        rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_SOFTWARE);
 
-        
+        creerFenetre(&menuPrincipal, "Jurassic War - Test Déplacement", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
+        rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
 
-        printf("Chargement de la texture map...\n");
-        SDL_Texture *texMap;
+        chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
+
+        // Extraction des points pour les zones de départ
+        nuages_stockes[0] = nuage_de_points(&nb_pts, nomNuage[0]);
+        generer_catalogue_depuis_nuage(nuages_stockes[0], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
+        nuageDetruire(&(nuages_stockes[0]));
+
+        nuages_stockes[1] = nuage_de_points(&nb_pts, nomNuage[1]);
+        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
+        nuageDetruire(&(nuages_stockes[1]));
+
         chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
-        if (texMap == NULL) {
-            printf("ERREUR : Impossible de charger l'image de la map\n");
-            return 0;
+
+        initialiserContenuJoueur(&equipe1); // Alloue tab ET texDinos
+        initialiserContenuJoueur(&equipe2);
+
+        // CHARGER LES TEXTURES DANS LA STRUCTURE
+        for(i = 0; i < 3; i++) {
+            chargerImage(rendu, &equipe1.texDinos[i], "../img/dino_test.png", &w, &h);
+            chargerImage(rendu, &equipe2.texDinos[i], "../img/dino_test.png", &w, &h);
+        }
+
+        // Vérification de la réussite du catalogue
+        if (trouves_E1 < 3 || trouves_E2 < 3) {
+            printf("ERREUR CRITIQUE : Impossible de trouver assez de zones de spawn (%d/3 E1, %d/3 E2).\n", trouves_E1, trouves_E2);
+            printf("Vérifiez que vos images .jpg ont assez de zones noires aux extrémités.\n");
+            enCours = 0; // Empêche de lancer la boucle
         } else {
-            printf("Texture map chargee avec succes !\n");
+            // Placement sécurisé uniquement si les zones existent
+            placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
+            placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
         }
-
-        /* Charger les images (Textures) */
-        SDL_Texture *texDino;
-        chargerImage(rendu, &texDino, "../img/dino_test.png", &w, &h);
-        
-        while(enCours) {
-            while (SDL_PollEvent(&evenement)){
-                if (evenement.type == SDL_QUIT){
-                    enCours = 0;
-                }
-            }
-            SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
-            SDL_RenderClear(rendu);
-
-            /* --- AFFICHAGE DE LA MAP --- */
-            SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU};
-            SDL_RenderCopy(rendu, texMap, NULL, &rect_plein_ecran);
-            
-            /* --- AFFICHAGE DU DINO*/
-            SDL_Rect r = {dino->pos.x,dino->pos.y, 30, 30};
-            SDL_RenderCopy(rendu, texDino, NULL, &r);
-            
-            // 2. Gérer les entrées clavier pour le mouvement
-            const Uint8 *state = SDL_GetKeyboardState(NULL);
-
-            saut(dino,nuage,nb_pts,matrice,state);
-
-            if ((!dino->deplacement->sautBooleen) && (!dino->deplacement->hors_nuage))
-            {
-                gauche(dino,nuage,nb_pts,matrice,state);
-                droite(dino,nuage,nb_pts,matrice,state);
-            }
-            
-            if (dino->deplacement->wait>0){
-                dino->deplacement->wait-=1;
-            }
-            
-            if ((dino->pv<=0) || (nuage==NULL)){
-                enCours=0;
-            }
-            
-            SDL_RenderPresent(rendu);
-        }
-
-        /* --- NETTOYAGE DES TEXTURES --- */
-        if (texDino) SDL_DestroyTexture(texDino);
-        if (texMap) SDL_DestroyTexture(texMap);
-
-        /* --- NETTOYAGE DES DONNÉES DU JEU --- */
-        // Libérer d'abord les nuages sources via votre fonction dédiée
-        if (nuage1 != NULL) nuageDetruire(&nuage1);
-        if (nuage2 != NULL) nuageDetruire(&nuage2);
-
-        // Le nuage principal a été alloué par realloc, il faut le free s'il n'est pas NULL
-        if (nuage != NULL) {
-            free(nuage);
-            nuage = NULL;
-        }
-
-        /* --- NETTOYAGE DE LA STRUCTURE DINO --- */
-        if (dino != NULL) {
-            // On libère le sous-élément en premier
-            if (dino->deplacement != NULL) {
-                free(dino->deplacement);
-                dino->deplacement = NULL;
-            }
-            // Puis la structure principale
-            free(dino);
-            dino = NULL; // Sécurité pour éviter les pointeurs fous
-        }
-
-        /* --- FERMETURE SDL --- */
-        SDL_DestroyRenderer(rendu);
-        SDL_DestroyWindow(menuPrincipal);
-        IMG_Quit();
-        TTF_Quit();
-        SDL_Quit();
     }
+
+    /* ---- Boucle Principale ---- */
+    while (enCours) {
+        while (SDL_PollEvent(&evenement)) {
+            if (evenement.type == SDL_QUIT) enCours = 0;
+        }
+
+        const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+        SDL_RenderClear(rendu);
+        SDL_RenderCopy(rendu, texMap, NULL, &rect_plein_ecran);
+
+        // Gestion du déplacement du dino actif
+        t_dino *dinoActuel = recupererDinoNumero(&equipe1, &equipe2, dinoTouche);
+        if (dinoActuel != NULL) {
+            deplacement_dino(dinoActuel, nomNuage, nb_nuage, matrice);
+            if(dinoActuel->etat==0){
+                supprimerDinoJoueur(&equipe1,&equipe2, dinoTouche);
+            }
+        }
+
+        afficherDinos(rendu, &equipe1);
+        afficherDinos(rendu, &equipe2);
+
+        SDL_RenderPresent(rendu);
+
+        if (timer == 0) {
+            tourSuivant(&gestionTours, &equipe1, &equipe2);
+            timer = 1000;
+        } else timer--;
+        
+        SDL_Delay(16); // ~60 FPS
+    }
+
+    /* ---- Nettoyage ---- */
+    detruireContenuJoueur(&equipe1);
+    detruireContenuJoueur(&equipe2);
+    SDL_DestroyTexture(texMap);
+    SDL_DestroyRenderer(rendu);
+    SDL_DestroyWindow(menuPrincipal);
+    SDL_Quit();
+
+    return 0;
 }

@@ -12,65 +12,6 @@
 #include "../lib/tda_nuage.h"
 #include "../lib/collision_decor.h"
 
-int init_deplacement(t_dino **dino, int *nb_pts, char *nomNuage[], int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...) {
-    *dino = malloc(sizeof(t_dino));
-    if (*dino == NULL) return 0;
-
-    (*dino)->deplacement = malloc(sizeof(t_deplacement));
-    if ((*dino)->deplacement == NULL) {
-        free(*dino);
-        return 0;
-    }
-
-    // Initialisation impérative du nuage de destination à NULL pour realloc
-    *nuage_principal = NULL; 
-    int nb_pts_retenu = 0;
-    int nb_pts_image_actuelle = 0;
-
-    (*dino)->indice_nuage = 1000;
-
-    va_list args;
-    va_start(args, nb_nuage);
-
-    for (int i = 0; i < nb_nuage; i++) {
-        t_coordonnee **ptr_sur_nuage = va_arg(args, t_coordonnee **);
-        
-        // Charger l'image i
-        *ptr_sur_nuage = nuage_de_points(&nb_pts_image_actuelle, nomNuage[i]);
-        
-        if (!nuageExiste(*ptr_sur_nuage)) {
-            va_end(args);
-            return 0;
-        }
-
-
-        // Fusionner dans le nuage principal
-        // IMPORTANT : Bien passer &nb_pts_retenu pour mettre à jour le total
-        regroupementNuage(nuage_principal, *ptr_sur_nuage, &nb_pts_retenu, nb_pts_image_actuelle);
-    }
-    
-    va_end(args);
-
-    // Mise à jour du compteur final de points pour l'appelant
-    *nb_pts = nb_pts_retenu;
-
-    /* --- Reste de l'initialisation --- */
-    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
-    
-    // On définit la position de départ (ici sur le premier nuage chargé)
-    // Attention : vérifiez que (*dino)->indice_nuage < nb_pts_retenu
-    (*dino)->pos = (*nuage_principal)[(*dino)->indice_nuage];
-    
-    (*dino)->deplacement->indice_reel = (float)(*dino)->indice_nuage;
-    (*dino)->deplacement->wait = 0;
-    (*dino)->pv = 100;
-    (*dino)->deplacement->hors_nuage = 0;
-
-    remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-
-    return 1;
-}
-
 
 
 int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int mvt) {
@@ -83,11 +24,8 @@ int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H]
     
     if((dino->deplacement->tab_res[0] == EAU)) {
         supprimer_matrice_dino(dino, matrice);
-        dino->pv = 0;
+        dino->etat = 0;
         dino->deplacement->hors_nuage = 1;
-        return 1;
-    }
-    if((dino->pos.y!=nuage[dino->indice_nuage].y) && (!booleen)){
         return 1;
     }
     
@@ -172,7 +110,8 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
 }
 
 // --- Dans SAUT ---
-void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+    int sens;
     // Déclenchement : On vérifie juste qu'on ne saute pas déjà et que le wait est fini
     if (dino->deplacement->wait == 0 && !dino->deplacement->sautBooleen) {
         if (state[SDL_SCANCODE_UP]) {
@@ -185,23 +124,54 @@ void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_
         supprimer_matrice_dino(dino, matrice);
         
         // Gestion des déplacements aériens
-        if (state[SDL_SCANCODE_RIGHT] && dino->indice_nuage < nb_pts - 1) 
+        if (state[SDL_SCANCODE_RIGHT] && dino->indice_nuage < *nb_pts - 1){
+            sens=1;
             dino->indice_nuage++;
-        if (state[SDL_SCANCODE_LEFT] && dino->indice_nuage > 0) 
+        }
+        if (state[SDL_SCANCODE_LEFT] && dino->indice_nuage > 0){
+            sens=-1;
             dino->indice_nuage--;
+        }
 
-        // Physique du saut
-        dino->deplacement->v_y += GRAVITE;
-        dino->pos.y += (int)dino->deplacement->v_y;
-        dino->pos.x = nuage[dino->indice_nuage].x;
-        dino->deplacement->indice_reel = (float)dino->indice_nuage;
+        if(dino->indice_nuage>=0 && dino->indice_nuage<*nb_pts){
+            // Physique du saut
+            dino->deplacement->v_y += GRAVITE;
+            dino->pos.y += (int)dino->deplacement->v_y;
+            dino->pos.x = (*nuage)[dino->indice_nuage].x;
+            dino->deplacement->indice_reel = (float)dino->indice_nuage;
 
-        // Atterrissage
-        if (dino->pos.y >= nuage[dino->indice_nuage].y) {
-            dino->pos = nuage[dino->indice_nuage];
-            dino->deplacement->sautBooleen = 0;
-            dino->deplacement->v_y = 0;
-            dino->deplacement->wait = 250;
+            // Atterrissage
+            if (dino->pos.y >= (*nuage)[dino->indice_nuage].y) {
+                dino->pos = (*nuage)[dino->indice_nuage];
+                dino->deplacement->sautBooleen = 0;
+                dino->deplacement->v_y = 0;
+                dino->deplacement->wait = 250;
+            }
+        }
+        
+        else{
+            dino->deplacement->v_y += GRAVITE;
+            dino->pos.y += (int)dino->deplacement->v_y;
+            dino->pos.x+=1;
+
+            if(collision_decor(dino->deplacement->tab_res, *dino, matrice)){
+                if((dino->id_nuage<nb_nuage) && (sens==1)){
+                    dino->id_nuage+=sens;
+                }
+                else if((dino->id_nuage>0) && (sens==-1)){
+                    dino->id_nuage+=sens;
+                }
+                t_coordonnee *nv_nuage=NULL;
+                nv_nuage=nuage_de_points(nb_pts,nomNuage[dino->id_nuage]);
+                if(nuageExiste(nv_nuage)){
+                    if(nuageDetruire(nuage)){
+                        nuageCopier(nuage,nv_nuage,*nb_pts);
+                        nuageDetruire(&nv_nuage);
+                    }
+                }
+                dino->indice_nuage=dino->pos.x-(*nuage)[0].x;
+                
+            }
         }
         
         remplir_matrice_dino(dino, dino->pos, matrice);
@@ -210,3 +180,30 @@ void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_
 
 
 
+void deplacement_dino(t_dino *dino, char *nomNuage[], int nb_nuage, int matrice[MAT_H][MAT_L]){
+    // Gérer les entrées clavier pour le mouvement
+
+    int nb_pts;
+
+    t_coordonnee *nuage=NULL;
+    nuage=nuage_de_points(&nb_pts,nomNuage[dino->id_nuage]);
+
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+    saut(dino, &nuage, nomNuage, nb_nuage, &nb_pts, matrice,state);
+
+    if ((!dino->deplacement->sautBooleen) && (!dino->deplacement->hors_nuage))
+    {
+        gauche(dino,nuage,nb_pts,matrice,state);
+        droite(dino,nuage,nb_pts,matrice,state);
+    }
+    
+    if (dino->deplacement->wait>0){
+        dino->deplacement->wait-=1;
+    }
+    
+    if ((dino->pv<=0) || (nuage==NULL)){
+        dino->etat=0;
+    }
+    nuageDetruire(&nuage);
+}

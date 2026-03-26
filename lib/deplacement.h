@@ -36,22 +36,6 @@
 #undef FORCE_SAUT
 #define FORCE_SAUT -7.0
 
-/**
- * @fn int init_deplacement(t_dino **dino, int matrice[MAT_H][MAT_L], char *nomNuage[], int nb_nuage, ...);
- * @author Solène Orieux
- * @date 14/03/2026
- * @brief
- * @param dino
- * @param nb_pts
- * @param matrice
- * @param dino
- * @param matrice
- * @param nomNuage
- * @param nb_nuage
- * @param nuage
- */
-
-int init_deplacement(t_dino **dino, int *nb_pts,char *nomNuage[], int matrice[MAT_H][MAT_L], t_coordonnee **nuage_principal, int nb_nuage, ...);
 
 
 /**
@@ -108,5 +92,16 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
  * @param state
  */
 
-void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
+void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state);
+
+
+/**
+ * @fn void deplacement_dino();
+ * @author Solène Orieux
+ * @date 26/03/2026
+ * @brief fonction qui déplace le dino
+ */
+
+void deplacement_dino(t_dino *dino, char *nomNuage[], int nb_nuage, int matrice[MAT_H][MAT_L]);
+
 #endif
