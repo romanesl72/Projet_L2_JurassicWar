@@ -109,10 +109,26 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
     }
 }
 
+
+// Fonction pour trouver l'indice le plus proche dans le nouveau nuage
+int trouverIndiceProche(t_coordonnee *nuage, int nb_pts, int x_cible) {
+    int proche = 0;
+    int min_diff = abs(nuage[0].x - x_cible);
+    for (int i = 1; i < nb_pts; i++) {
+        int diff = abs(nuage[i].x - x_cible);
+        if (diff < min_diff) {
+            min_diff = diff;
+            proche = i;
+        }
+    }
+    return proche;
+}
+
+
 // --- Dans SAUT ---
 void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
-    int sens;
-    // Déclenchement : On vérifie juste qu'on ne saute pas déjà et que le wait est fini
+    int sens = 0; // Toujours initialiser
+
     if (dino->deplacement->wait == 0 && !dino->deplacement->sautBooleen) {
         if (state[SDL_SCANCODE_UP]) {
             dino->deplacement->v_y = FORCE_SAUT;
@@ -123,87 +139,66 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
     if (dino->deplacement->sautBooleen) {
         supprimer_matrice_dino(dino, matrice);
         
-        // Gestion des déplacements aériens
-        if (state[SDL_SCANCODE_RIGHT] && dino->indice_nuage < *nb_pts - 1){
-            sens=1;
-            dino->indice_nuage++;
-        }
-        if (state[SDL_SCANCODE_LEFT] && dino->indice_nuage > 0){
-            sens=-1;
-            dino->indice_nuage--;
-        }
+        // On détermine le sens du mouvement
+        if (state[SDL_SCANCODE_RIGHT]) sens = 1;
+        else if (state[SDL_SCANCODE_LEFT]) sens = -1;
 
-        if(dino->indice_nuage>=0 && dino->indice_nuage<*nb_pts){
-            // Physique du saut
+        // On met à jour l'indice SANS vérifier les bornes ici pour permettre la sortie
+        dino->indice_nuage += sens;
+
+        // Cas 1 : On est toujours sur le nuage actuel
+        if(dino->indice_nuage >= 0 && dino->indice_nuage < *nb_pts){
             dino->deplacement->v_y += GRAVITE;
             dino->pos.y += (int)dino->deplacement->v_y;
             dino->pos.x = (*nuage)[dino->indice_nuage].x;
             dino->deplacement->indice_reel = (float)dino->indice_nuage;
 
-            // Atterrissage
             if (dino->pos.y >= (*nuage)[dino->indice_nuage].y) {
                 dino->pos = (*nuage)[dino->indice_nuage];
                 dino->deplacement->sautBooleen = 0;
                 dino->deplacement->v_y = 0;
-                dino->deplacement->wait = 250;
+                dino->deplacement->wait = 20; // Délai réduit pour test
             }
         }
-        
-        else{
-            dino->deplacement->v_y += GRAVITE;
-            dino->pos.y += (int)dino->deplacement->v_y;
-            dino->pos.x+=1;
-
-            if(collision_decor(dino->deplacement->tab_res, *dino, matrice)){
-                if((dino->id_nuage<nb_nuage) && (sens==1)){
-                    dino->id_nuage+=sens;
-                }
-                else if((dino->id_nuage>0) && (sens==-1)){
-                    dino->id_nuage+=sens;
-                }
-                t_coordonnee *nv_nuage=NULL;
-                nv_nuage=nuage_de_points(nb_pts,nomNuage[dino->id_nuage]);
-                if(nuageExiste(nv_nuage)){
-                    if(nuageDetruire(nuage)){
-                        nuageCopier(nuage,nv_nuage,*nb_pts);
-                        nuageDetruire(&nv_nuage);
-                    }
-                }
-                dino->indice_nuage=dino->pos.x-(*nuage)[0].x;
+        // Cas 2 : ON SORT DU NUAGE -> Transfert
+        else {
+            int nouvel_id = dino->id_nuage + sens;
+            
+            if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
+                t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
                 
+                if (nv_nuage != NULL) {
+                    nuageDetruire(nuage); 
+                    *nuage = nv_nuage;    
+                    dino->id_nuage = nouvel_id;
+                    
+                    // On se place sur le bord correspondant du nouveau nuage
+                    dino->indice_nuage = (sens == 1) ? 0 : (*nb_pts - 1);
+                    dino->pos.x = (*nuage)[dino->indice_nuage].x;
+                    dino->deplacement->indice_reel = (float)dino->indice_nuage;
+                }
+            } else {
+                // Si pas de nouveau nuage, on empêche la sortie (blocage au bord)
+                if (dino->indice_nuage < 0) dino->indice_nuage = 0;
+                if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
             }
         }
-        
         remplir_matrice_dino(dino, dino->pos, matrice);
     }
 }
 
-
-
-void deplacement_dino(t_dino *dino, char *nomNuage[], int nb_nuage, int matrice[MAT_H][MAT_L]){
-    // Gérer les entrées clavier pour le mouvement
-
-    int nb_pts;
-
-    t_coordonnee *nuage=NULL;
-    nuage=nuage_de_points(&nb_pts,nomNuage[dino->id_nuage]);
-
+void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L]) {
     const Uint8 *state = SDL_GetKeyboardState(NULL);
 
-    saut(dino, &nuage, nomNuage, nb_nuage, &nb_pts, matrice,state);
+    // 1. Toujours appeler saut pour gérer la physique et le changement de nuage
+    saut(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
 
-    if ((!dino->deplacement->sautBooleen) && (!dino->deplacement->hors_nuage))
-    {
-        gauche(dino,nuage,nb_pts,matrice,state);
-        droite(dino,nuage,nb_pts,matrice,state);
+    // 2. Mouvement horizontal uniquement si on ne saute pas
+    if (!dino->deplacement->sautBooleen && !dino->deplacement->hors_nuage) {
+        gauche(dino, *nuage, *nb_pts, matrice, state);
+        droite(dino, *nuage, *nb_pts, matrice, state);
     }
-    
-    if (dino->deplacement->wait>0){
-        dino->deplacement->wait-=1;
-    }
-    
-    if ((dino->pv<=0) || (nuage==NULL)){
-        dino->etat=0;
-    }
-    nuageDetruire(&nuage);
+
+    if (dino->deplacement->wait > 0) dino->deplacement->wait--;
+    if (dino->pv <= 0) dino->etat = 0;
 }

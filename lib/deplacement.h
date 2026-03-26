@@ -80,6 +80,8 @@ void gauche(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
 
 void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
 
+ int trouverIndiceProche(t_coordonnee *nuage, int nb_pts, int x_cible);
+
 /**
  * @fn void saut(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
  * @author Solène Orieux
@@ -94,7 +96,6 @@ void droite(t_dino *dino, t_coordonnee *nuage, int nb_pts, int matrice[MAT_H][MA
 
 void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state);
 
-
 /**
  * @fn void deplacement_dino();
  * @author Solène Orieux
@@ -102,6 +103,6 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
  * @brief fonction qui déplace le dino
  */
 
-void deplacement_dino(t_dino *dino, char *nomNuage[], int nb_nuage, int matrice[MAT_H][MAT_L]);
+void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L]);
 
 #endif
