@@ -1,5 +1,5 @@
 #include "../lib/fonctionsPlacementBombe.h"
-#include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsRebonds2.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/placer_dinos.h"
 #include <stdio.h>
@@ -7,7 +7,7 @@
 
 /** 
  * @file fonctionsRebonds.c
- * @brief Corps des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe
+ * @brief Corps des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe.
  * @author Hannah Sergent
  * @date Crée le 5/02/2026
  */
@@ -37,259 +37,42 @@ int collisionFrontiereBombe(t_bombe *bombe){
     return ((bombe->coor.x + bombe->rayon > LARGEUR_TERRAIN) || (bombe->coor.x - bombe->rayon < 0) || (bombe->coor.y + bombe->rayon > HAUTEUR_TERRAIN) || (bombe->coor.y - bombe->rayon < 0));
 }
 
+/**
+ * @fn int dansLimites(int x, int y);
+ * @brief La fonction vérifie si des coordonnées sont dans les limites de la matrice ou du terrain.
+ * @author Hannah Sergent
+ * @date Crée le 23/02/2026
+ * @param x coordoonnée des absisses
+ * @param y coordonnée des ordonnées
+ * @return 1 si les coordonnées sont dans les limites et 0 sinon
+ */
+
 int dansLimites(int x, int y){
     return ((x >= 0) && (x < LARGEUR_TERRAIN) && (y < HAUTEUR_TERRAIN) && (y >= 0));
 }
+
+/**
+ * @fn int estTerrain(t_case pixel);
+ * @brief La fonction indique si un pixel contient de la terre.
+ * @author Hannah Sergent
+ * @date Crée le 23/02/2026
+ * @param pixel contenu d'une case de la matrice
+ * @return TERRE si le pixel est de la terre et 0 sinon
+ */
 
 int estTerrain(t_case pixel){
     return (pixel == TERRE);
 }
 
-/*
-void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *normal) {
-    t_vect gradient = {0, 0};
-    float longueur;
-    t_coordonnee posBombe;
-    posBombe.x = (int)round(bombe->coor.x);
-    posBombe.y = (int)round(bombe->coor.y);
-
-    // condition sortie terrain à faire
-    if (!dansLimites(posBombe.x, posBombe.y)){
-        normal->u = 0;
-        normal->v = -1;
-        return;
-    }
-
-    if (dansLimites(posBombe.x + 1, posBombe.y) && dansLimites(posBombe.x - 1, posBombe.y)){
-        gradient.u = estTerrain(matriceTerrain[posBombe.y][posBombe.x + 1]) - estTerrain(matriceTerrain[posBombe.y][posBombe.x - 1]);
-    }
-    if (dansLimites(posBombe.x, posBombe.y + 1) && dansLimites(posBombe.x, posBombe.y - 1)){
-        gradient.v = estTerrain(matriceTerrain[posBombe.y + 1][posBombe.x]) - estTerrain(matriceTerrain[posBombe.y - 1][posBombe.x]);
-    }
-
-    longueur = sqrt(gradient.u * gradient.u + gradient.v * gradient.v);
-
-    if (longueur > 0.001){
-        normal->u = -gradient.u/longueur;
-        normal->v = -gradient.v/longueur;
-    }
-    else {
-        normal->u = 0;
-        normal->v = -1;
-    }
-
-} */
-
-/*
-int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse) {
-    t_vect normal;
-    calculerNormale(matriceTerrain, bombe, vectVitesse, &normal);
-    float produitScalaire = vectVitesse->u*normal.u + vectVitesse->v*normal.v;
-
-    normal.u *= 2*produitScalaire;
-    normal.v *= 2*produitScalaire;
-
-    if (matriceTerrain[bombe->coor.y][bombe->coor.x + bombe->rayon] == TERRE){
-        bombe->coor.x -= bombe->rayon;
-         vectVitesse->u = -COEF_RESTITUTION*vectVitesse->u; 
-        vectVitesse->u = vectVitesse->u - normal.u;
-        vectVitesse->v = vectVitesse->v - normal.v;
-        return 1;
-    }
-    else if (matriceTerrain[bombe->coor.y][bombe->coor.x - bombe->rayon] == TERRE){
-        bombe->coor.x += bombe->rayon;
-         vectVitesse->u = -COEF_RESTITUTION*vectVitesse->u; 
-        vectVitesse->u = vectVitesse->u - normal.u;
-        vectVitesse->v = vectVitesse->v - normal.v;
-        return 1;
-    }
-    else if (matriceTerrain[bombe->coor.y + bombe->rayon][bombe->coor.x] == TERRE) {
-        bombe->coor.y -= bombe->rayon;
-         vectVitesse->v = -COEF_RESTITUTION*vectVitesse->v; 
-        vectVitesse->u = vectVitesse->u - normal.u;
-        vectVitesse->v = vectVitesse->v - normal.v;
-        return 1;
-    }
-    else if (matriceTerrain[bombe->coor.y - bombe->rayon][bombe->coor.x] == TERRE) {
-        bombe->coor.y += bombe->rayon;
-         vectVitesse->v = -COEF_RESTITUTION*vectVitesse->v; 
-        vectVitesse->u = vectVitesse->u - normal.u;
-        vectVitesse->v = vectVitesse->v - normal.v;
-        return 1;
-    }
-    return 0;
-} */
-
-/*
-int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse) {
-    int voisinsX[8] = {1, -1, 0, 0, 1, 1, -1, -1};
-    int voisinsY[8] = {0, 0, 1, -1, 1, -1, 1, -1};
-    int coorVoisineX;
-    int coorVoisineY;
-    int i;
-    t_vect normal;
-
-    for (i = 0; i < 8; i++){
-        coorVoisineX = (int)round(bombe->coor.x) + voisinsX[i]* bombe->rayon;
-        coorVoisineY = (int)round(bombe->coor.y) + voisinsY[i]* bombe->rayon;
-
-        if (matriceTerrain[coorVoisineY][coorVoisineX] == TERRE){
-            bombe->coor.x -= voisinsX[i] * 0.5;
-            bombe->coor.y -= voisinsY[i] * 0.5;
-
-            calculerNormale(matriceTerrain, bombe, &normal);
-            float produitScalaire = vectVitesse->u*normal.u + vectVitesse->v*normal.v;
-
-            vectVitesse->u -= 2*produitScalaire*normal.u;
-            vectVitesse->v -= 2*produitScalaire*normal.v;
-
-            return 1;
-        }
-    }
-    return 0;
-} */
-
-/* Noyau de Sobel*/
-/* v' = v - 2<v,n>n*/
-
-/*
-void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_coordonnee_calcul *extremiteBombe, t_vect *normal) {
-
-    t_vect gradient = {0, 0};
-    float longueur;
-    t_coordonnee posBombe;
-    posBombe.x = (int)roundf(extremiteBombe->x);
-    posBombe.y = (int)roundf(extremiteBombe->y);
-    int i;
-    int j;
-    int val;
-    int poidsX;
-    int poidsY;
-
-    for (i = -1; i <=1; i++){
-        for (j = -1; j <= 1; j++){
-            if (dansLimites(posBombe.x + j, posBombe.y + i)){
-                val = estTerrain(matriceTerrain[posBombe.y + i][posBombe.x + j]);
-            }
-            poidsX = (i == 0) ? 2 * j : i;
-            poidsY = (j == 0) ? 2 * i : j;
-
-            gradient.u += poidsX * val;
-            gradient.v += poidsY * val;
-        }
-    }
-
-     norme 2 du gradient
-    longueur = sqrt(gradient.u * gradient.u + gradient.v * gradient.v);
-
-    Pour éviter une division par 0 ou une valeur trop faible 
-    if (longueur > 0.001){
-        normal->u = -gradient.u/longueur;
-        normal->v = -gradient.v/longueur;
-    }
-    else {
-        normal->u = 0;
-        normal->v = -1;
-    }
-
-} */
-
-/*
-int collisionTerrainBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe, t_vect *vectVitesse) {
-
-    int nombrePoints = 32;
-    int i;
-    float angle;
-    float produitScalaire;
-    float penetration;
-    t_coordonnee_calcul extremiteBombe;
-    t_coordonnee extremiteBombeMat;
-    t_vect normal;
-    t_vect normaleMoyenne = {0, 0};
-    t_vect profondeurEnfoncement;
-    int collision = 1;
-    int nbIter;
-    int collisionDetectee = 0;
-    int nbNormales = 0;
-
-    for (nbIter = 0; (nbIter < 20) && (collision); nbIter++){
-
-        collision = 0;
-
-        for(i = 0; i < nombrePoints; i++){
-
-             Representation de la bombe comme un cercle trigonométrique 
-
-            angle = i * (PI * 2 / nombrePoints);
-            extremiteBombe.x = bombe->coor.x + cos(angle)*bombe->rayon;
-            extremiteBombe.y = bombe->coor.y + sin(angle)*bombe->rayon;
-
-            extremiteBombeMat.x = roundf(extremiteBombe.x);
-            extremiteBombeMat.y = roundf(extremiteBombe.y);
-
-            if (matriceTerrain[extremiteBombeMat.y][extremiteBombeMat.x] == TERRE){
-
-                collision = 1;
-                collisionDetectee = 1;
-                calculerNormale(matriceTerrain, &extremiteBombe, &normal);
-
-                normaleMoyenne.u += normal.u;
-                normaleMoyenne.v += normal.v;
-                nbNormales ++;
-
-                profondeurEnfoncement.u = extremiteBombe.x - bombe->coor.x;
-                profondeurEnfoncement.v = extremiteBombe.y - bombe->coor.y;
-                penetration = bombe->rayon - sqrt(profondeurEnfoncement.u*profondeurEnfoncement.u + profondeurEnfoncement.v*profondeurEnfoncement.v);
-
-                if (penetration < 0){
-                    penetration = 0;
-                }
-
-                la
-                bombe->coor.x += normal.u*15;
-                bombe->coor.y += normal.v*15; 
-
-                bombe->coor.x += normal.u*penetration;
-                bombe->coor.y += normal.v*penetration;
-
-            }
-
-        }
-    }
-
-    if (collisionDetectee){
-
-        if (nbNormales > 0){
-
-            float longueur = sqrt(normaleMoyenne.u * normaleMoyenne.u + normaleMoyenne.v * normaleMoyenne.v);
-
-             Pour éviter une division par 0 ou une valeur trop faible 
-            if (longueur > 0.001){
-                normaleMoyenne.u /= longueur;
-                normaleMoyenne.v /= longueur;
-            }
-            else {
-                normaleMoyenne.u = 0;
-                normaleMoyenne.v = -1;
-            }
-
-        }
-
-        produitScalaire = vectVitesse->u*normaleMoyenne.u + vectVitesse->v*normaleMoyenne.v;
-
-        if (produitScalaire < 0){
-
-            vectVitesse->u -= 2*produitScalaire*normaleMoyenne.u;
-            vectVitesse->v -= 2*produitScalaire*normaleMoyenne.v;
-        }
-
-        if (collision){
-            printf("ici \n");
-        }
-        return 1;
-    }
-    return 0;
-} */
+/**
+ * @fn void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_coordonnee_calcul *extremiteBombe, t_vect *normal);
+ * @brief La fonction détermine un vecteur normal au terrain à partir des coordonnées d'un point.
+ * @author Hannah Sergent
+ * @date Crée le 23/02/2026
+ * @param matriceTerrain une matrice contenant les informations sur le terrain
+ * @param extremiteBombe les coordonnées flottantes d'une des extremités de la bombe
+ * @param normal un vecteur qui contient les coordonnées du vecteur normal calculé
+ */
 
 void calculerNormale(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_coordonnee_calcul *extremiteBombe, t_vect *normal) {
 
@@ -480,7 +263,7 @@ void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
 void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse, float gravite){
 
     float temps = 0;
-    float dt = 1.0f/120.0f;
+    float dt = 1.0f/250.0f;
     t_vect precedent;
     t_vect courant;
     float vitY = vectVitesse->v;
@@ -491,12 +274,15 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
     // Trajectoire de couleur rouge
     SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
 
-    while(temps < 2.0){
+    while(temps < 3.5){
 
         courant.u += dt*vectVitesse->u;
         courant.v += dt*vitY;
         vitY += gravite*dt;
-        SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v), roundf(courant.u), roundf(courant.v));
+
+        if (dansLimites(courant.u, courant.v)){
+            SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v), roundf(courant.u), roundf(courant.v));
+        }
 
         precedent = courant;
         temps += dt;
@@ -517,14 +303,12 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
             vectVitesse->v += 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
-            vectVitesse->u = -fabs(vectVitesse->u);
+            vectVitesse->u -= 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
         if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
-            vectVitesse->u = fabs(vectVitesse->u);
+            vectVitesse->u += 0.8;
         }
 
         SDL_RenderClear(zoneAffichage);
@@ -534,8 +318,8 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
-        /* SDL_Delay(16);*/
-        SDL_Delay(8);
+
+        SDL_Delay(4);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
@@ -554,14 +338,12 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
             vectVitesse->v += 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
-            vectVitesse->u = -fabs(vectVitesse->u);
+            vectVitesse->u -= 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
         if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
-            vectVitesse->u = fabs(vectVitesse->u);
+            vectVitesse->u += 0.8;
         }
 
         SDL_RenderClear(zoneAffichage);
@@ -573,22 +355,31 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
-        SDL_Delay(8);
+        SDL_Delay(4);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
-void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant){
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     
     t_cote ancienCote = GAUCHE;
     t_cote cote = GAUCHE;
     t_dino *dino = recupererDinoNumero(equipe1, equipe2, numDinoCourant);
-    placerBombeEntrePattes(dino, bombe, cote);
+    placerBombeEntrePattes(dino, bombe, cote, matriceTerrain);
 
     do {
 
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
+
+        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+        if ((*etatClavier)[SDL_SCANCODE_G]){
+            cote = GAUCHE;
+        }
+        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+        if ((*etatClavier)[SDL_SCANCODE_D]){
+            cote = DROITE;
+        }
 
         if ((*etatClavier)[SDL_SCANCODE_UP]){
             vectVitesse->v -= 0.8;
@@ -597,20 +388,16 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
             vectVitesse->v += 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
-            vectVitesse->u = -fabs(vectVitesse->u);
-            cote = GAUCHE;
+            vectVitesse->u -= 0.8;
         }
 
-        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
         if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
-            vectVitesse->u = fabs(vectVitesse->u);
-            cote = DROITE;
+            vectVitesse->u += 0.8;
         }
 
         if (cote != ancienCote){
-            placerBombeEntrePattes(dino, bombe, cote);
+            placerBombeEntrePattes(dino, bombe, cote, matriceTerrain);
             ancienCote = cote;
         }
 
@@ -623,7 +410,9 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
 
         SDL_RenderPresent(zoneAffichage);
-        SDL_Delay(8);
+        SDL_Delay(4);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
+
+

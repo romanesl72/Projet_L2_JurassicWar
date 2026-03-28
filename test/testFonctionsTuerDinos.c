@@ -1,5 +1,5 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsRebonds2.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTuerDinos.h"
 #include "../lib/fonctionsVerification.h"
@@ -12,7 +12,7 @@
 
 /** 
  * @file testFonctionsTuerDinos.c
- * @brief test des fonctions crées dans le fichier fonctionsTuerDinos.c
+ * @brief Test des fonctions crées dans le fichier fonctionsTuerDinos.c.
  * @author Hannah Sergent
  * @date Crée le 11/03/2026
  */
@@ -48,11 +48,11 @@ int main(int argc, char * argv[]){
 
         t_bombe bombe;
 
-        const float vitesse = 1.0f/120.0f;
+        const float vitesse = 1.0f/250.0f;
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        float gravite = 180;
+        float gravite = 140;
 
         int bombeLancee = 0;
         int nombreRebonds = 0;
@@ -157,10 +157,7 @@ int main(int argc, char * argv[]){
 
                     if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = 0;
-                        /* 
-                        initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
-                        initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
-                        */
+
                     }
 
                     dinoTouche = collisionDinoBombe(matriceTerrain, &bombe);
@@ -187,8 +184,6 @@ int main(int argc, char * argv[]){
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
                         nombreRebonds ++;
 
-                        /* bombe.coor.x += vectVitesse.u *vitesse;
-                        bombe.coor.y += vectVitesse.v * vitesse; */
                         if (nombreRebonds > 1){
                             bombeLancee = 0;
                         }
@@ -216,15 +211,6 @@ int main(int argc, char * argv[]){
 
         /* --- NETTOYAGE --- */
 
-        /*
-        free(equipe1.tab);
-        free(equipe2.tab);
-        for(i=0; i<3; i++) {
-            SDL_DestroyTexture(equipe1.texDinos[i]);
-        }
-        for(i=0; i<3; i++) {
-            SDL_DestroyTexture(equipe2.texDinos[i]);
-        } */
         detruireContenuJoueur(&equipe1);
         detruireContenuJoueur(&equipe2);
 

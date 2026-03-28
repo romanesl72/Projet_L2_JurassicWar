@@ -1,5 +1,5 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsRebonds2.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/types.h"
 
@@ -7,30 +7,18 @@
 
 /** 
  * @file testFonctionsRebonds.c
- * @brief test des fonctions crées dans le fichier fonctionsRebonds.c
+ * @brief Test des fonctions crées dans le fichier fonctionsRebonds.c.
  * @author Hannah Sergent
  * @date Crée le 5/02/2026
  */
 
-/*
-LARGEUR_FEN_JEU 1050
-HAUTEUR_FEN_JEU 650 */
-
-#define LARGEUR_FEN_MENU 400
-#define HAUTEUR_FEN_MENU 650
-
 #define RAYON 15
 
 #define COOR_X LARGEUR_TERRAIN/3
-#define COOR_Y HAUTEUR_TERRAIN/2
-
+#define COOR_Y 390
 
 #define VITESSE_X 90
 #define VITESSE_Y -90
-
-/*
-VITESSE_X 170 / 90
-VITESSE_Y -170 /-90 */
 
 int main(int argc, char * argv[]){
 
@@ -47,12 +35,11 @@ int main(int argc, char * argv[]){
 
         t_bombe bombe;
 
-        const float vitesse = 1.0f/120.0f;
+        const float vitesse = 1.0f/250.0f;
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        /* float gravite = 270; */
-        float gravite = 180;
+        float gravite = 140;
 
         int largeurFenetre;
         int hauteurFenetre;
@@ -65,7 +52,6 @@ int main(int argc, char * argv[]){
         int nombreRebonds = 0;
 
         SDL_Event evenement;
-
 
         SDL_Window *menuPrincipal; 
         creerFenetre(&menuPrincipal, "MenuPrincipal", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
@@ -112,16 +98,11 @@ int main(int argc, char * argv[]){
 
                     if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = 0;
-                        /* 
-                        initialiserBombe(&bombe, COOR_X, COOR_Y, RAYON);
-                        initialiserVitesse(&vitesseX, &vitesseY, VITESSE_X, VITESSE_Y);
-                        */
+
                     }
                     if (collisionTerrainBombe(matriceTerrain, &bombe, &vectVitesse)) {
                         nombreRebonds ++;
 
-                        /* bombe.coor.x += vectVitesse.u *vitesse;
-                        bombe.coor.y += vectVitesse.v * vitesse; */
                         if (nombreRebonds > 1){
                             bombeLancee = 0;
                         }

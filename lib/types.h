@@ -117,6 +117,7 @@ typedef struct {
 typedef struct {
 	t_dino * tab;   /**< Tableau de dinosaure */
     SDL_Texture **texDinos; /**< Tableau contenant les images de dinosaure */
+    SDL_Texture **texDinosInv; /**< Tableau contenant les images de dinosaure dans le sens inverse */
 	int n;          /**< Taille du tableau*/ 
 } t_joueur;
 
