@@ -102,17 +102,28 @@ void initialiserContenuJoueur(t_joueur *joueur){
     joueur->tab = malloc(sizeof(t_dino) * joueur->n);
     joueur->texDinos = malloc(sizeof(SDL_Texture *) * joueur->n);
 
-}
-
-void detruireContenuJoueur(t_joueur *joueur){
-
     int i;
 
-    free(joueur->tab);
+    for(i = 0; i < joueur->n; i++) {
+        // ALLOCATION CRUCIALE
+        joueur->tab[i].deplacement = malloc(sizeof(t_deplacement));
+        
+        // Initialisation des valeurs par défaut pour éviter les comportements erratiques
+        joueur->tab[i].deplacement->sautBooleen = 0;
+        joueur->tab[i].deplacement->wait = 0;
+        joueur->tab[i].deplacement->indice_reel = 0;
+        joueur->tab[i].etat = 1; // Vivant
+        joueur->tab[i].pv = 100;
+    }
 
-    for(i=0; i<NOMBRE_DINOS/2; i++) {
+}
+
+void detruireContenuJoueur(t_joueur *joueur) {
+    int i;
+    for(i = 0; i < joueur->n; i++) {
+        free(joueur->tab[i].deplacement); // Libère le malloc du déplacement
         SDL_DestroyTexture(joueur->texDinos[i]);
     }
+    free(joueur->tab);
     free(joueur->texDinos);
-
 }

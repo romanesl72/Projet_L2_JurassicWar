@@ -1,7 +1,7 @@
 #ifndef _FONCTIONSSTRUCTJOUEUR_H_
 #define _FONCTIONSSTRUCTJOUEUR_H_
 
-#include "../lib/types.h"
+#include "types.h"
 
 /** 
  * @file fonctionsStructJoueur.h
