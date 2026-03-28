@@ -296,12 +296,16 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
 
+        /* Ajuster la hauteur */
+
         if ((*etatClavier)[SDL_SCANCODE_UP]){
             vectVitesse->v -= 0.8;
         }
         if ((*etatClavier)[SDL_SCANCODE_DOWN]){
             vectVitesse->v += 0.8;
         }
+
+        /* Ajuster la puissance */
 
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
             vectVitesse->u -= 0.8;
@@ -331,12 +335,16 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
 
+        /* Ajuster la hauteur */
+
         if ((*etatClavier)[SDL_SCANCODE_UP]){
             vectVitesse->v -= 0.8;
         }
         if ((*etatClavier)[SDL_SCANCODE_DOWN]){
             vectVitesse->v += 0.8;
         }
+
+        /* Ajuster la puissance */
 
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
             vectVitesse->u -= 0.8;
@@ -360,26 +368,59 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
+/** 
+ * @fn void retournerLaser(t_vect *vectVitesse, t_cote cote)
+ * @brief La fonction détermine s'il faut retourner le laser ou non en fonction de la direction dans laquelle se trouve le dinosaure.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ * @param cote la direction attendue du laser
+ */
+
+void retournerLaser(t_vect *vectVitesse, t_cote cote){
+
+    /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+
+    if (cote == GAUCHE){
+        vectVitesse->u = -fabs(vectVitesse->u);
+    }
+
+    /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+
+    else {
+        vectVitesse->u = fabs(vectVitesse->u);
+    }
+
+}
+
 void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     
-    t_cote ancienCote = GAUCHE;
-    t_cote cote = GAUCHE;
+    t_cote cote = recupererDinoDirection(equipe1, equipe2, numDinoCourant);
+    t_cote ancienCote = cote;
+
     t_dino *dino = recupererDinoNumero(equipe1, equipe2, numDinoCourant);
-    placerBombeEntrePattes(dino, bombe, cote, matriceTerrain);
+
+    placerBombeEntrePattes(dino, bombe, &cote, matriceTerrain);
+
+    retournerDino(equipe1, equipe2, numDinoCourant, cote, &ancienCote);
+    retournerLaser(vectVitesse, cote);
 
     do {
 
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
 
-        /* Pour tracer la courbe de trajectoire vers la gauche, il faut une vitesse horizontale négative */
+        /* Changer de direction pour lancer la bombe */
+
         if ((*etatClavier)[SDL_SCANCODE_G]){
             cote = GAUCHE;
         }
-        /* Pour tracer la courbe de trajectoire vers la droite, il faut une vitesse horizontale positive */
+
         if ((*etatClavier)[SDL_SCANCODE_D]){
             cote = DROITE;
         }
+
+        /* Ajuster la hauteur */
 
         if ((*etatClavier)[SDL_SCANCODE_UP]){
             vectVitesse->v -= 0.8;
@@ -387,6 +428,8 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
         if ((*etatClavier)[SDL_SCANCODE_DOWN]){
             vectVitesse->v += 0.8;
         }
+
+        /* Ajuster la puissance */
 
         if ((*etatClavier)[SDL_SCANCODE_LEFT]){
             vectVitesse->u -= 0.8;
@@ -396,9 +439,17 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
             vectVitesse->u += 0.8;
         }
 
+        /* Le joueur veut changer de côté pour lancer la bombe */
+
         if (cote != ancienCote){
-            placerBombeEntrePattes(dino, bombe, cote, matriceTerrain);
-            ancienCote = cote;
+
+            placerBombeEntrePattes(dino, bombe, &cote, matriceTerrain);
+
+            /* S'il y a assez de place pour lancer la bombe dans l'autre sens, le dinosaure se retourne */
+
+            retournerDino(equipe1, equipe2, numDinoCourant, cote, &ancienCote);
+            retournerLaser(vectVitesse, cote);
+
         }
 
         SDL_RenderClear(zoneAffichage);
@@ -414,5 +465,6 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
+
 
 

@@ -52,6 +52,22 @@ t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case nume
     }
 }
 
+t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
+    /* Le numéro du dinosaure est compris entre 2 et 7 */
+
+    int indiceDino = rechercherDino(equipe1, numero);
+
+    if (indiceDino != -1){
+        return equipe1->tabCote[indiceDino];
+    }
+
+    indiceDino = rechercherDino(equipe2, numero);
+
+    if (indiceDino != -1){
+        return equipe2->tabCote[indiceDino];
+    }
+}
+
 void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
 
     int i;
@@ -72,6 +88,8 @@ void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
             for(i = indiceDino; i < (equipe1->n - 1); i++){
                 equipe1->tab[i] = equipe1->tab[i+1];
                 equipe1->texDinos[i] = equipe1->texDinos[i+1];
+                equipe1->texDinosInv[i] = equipe1->texDinosInv[i+1];
+                equipe1->tabCote[i] = equipe1->tabCote[i+1];
             }
             equipe1->n --;
         }
@@ -88,6 +106,8 @@ void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
                 for(i = indiceDino; i < (equipe2->n - 1); i++){
                     equipe2->tab[i] = equipe2->tab[i+1];
                     equipe2->texDinos[i] = equipe2->texDinos[i+1];
+                    equipe2->texDinosInv[i] = equipe2->texDinosInv[i+1];
+                    equipe2->tabCote[i] = equipe2->tabCote[i+1];
                 }
                 equipe2->n --;
             }
@@ -96,15 +116,80 @@ void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
     }
 }
 
+/** 
+ * @fn void echangerImgDino(t_joueur * equipe, int indiceDino);
+ * @brief La fonction échange deux images situées dans les deux tableaux d'images de la structure joueur.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param equipe un pointeur sur une structure de type joueur
+ * @param indiceDino l'indice dans le tableau d'images de l'image à échanger
+ */
+
+void echangerImgDino(t_joueur * equipe, int indiceDino){
+
+    SDL_Texture * imgTemp;
+
+    imgTemp = equipe->texDinos[indiceDino];
+    equipe->texDinos[indiceDino] = equipe->texDinosInv[indiceDino];
+    equipe->texDinosInv[indiceDino] = imgTemp;
+
+}
+
+/** 
+ * @fn void echangerCoteDino(t_joueur * equipe, int indiceDino);
+ * @brief La fonction échange la direction du dinosaure d'indice indiceDino dans le tableau contenant la direction des dinosaures.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param equipe un pointeur sur une structure de type joueur
+ * @param indiceDino l'indice dans le tableau de direction de la direction à échanger
+ */
+
+void echangerCoteDino(t_joueur * equipe, int indiceDino){
+
+    if (equipe->tabCote[indiceDino] == GAUCHE){
+        equipe->tabCote[indiceDino] = DROITE;
+    }
+    else {
+        equipe->tabCote[indiceDino] = GAUCHE;
+    }
+}
+
+void retournerDino(t_joueur * equipe1, t_joueur * equipe2, t_case numero, t_cote cote, t_cote *ancienCote){
+
+    int indiceDino;
+
+    if (cote != *ancienCote) {
+        *ancienCote = cote;
+
+        indiceDino = rechercherDino(equipe1, numero);
+
+        if (indiceDino != -1){
+            echangerImgDino(equipe1, indiceDino);
+            echangerCoteDino(equipe1, indiceDino);
+        }
+        else {
+            indiceDino = rechercherDino(equipe2, numero);
+            echangerImgDino(equipe2, indiceDino);
+            echangerCoteDino(equipe2, indiceDino);
+        }
+    }
+}
+
 void initialiserContenuJoueur(t_joueur *joueur){
+
+    int i;
 
     joueur->n = NOMBRE_DINOS/2;
     joueur->tab = malloc(sizeof(t_dino) * joueur->n);
     joueur->texDinos = malloc(sizeof(SDL_Texture *) * joueur->n);
-
-    int i;
+    joueur->texDinosInv = malloc(sizeof(SDL_Texture *) * joueur->n);
+    joueur->tabCote = malloc(sizeof(t_cote) * joueur->n);
 
     for(i = 0; i < joueur->n; i++) {
+
+        /* Initialisation du côté */
+        joueur->tabCote[i] = DROITE;
+        
         // ALLOCATION CRUCIALE
         joueur->tab[i].deplacement = malloc(sizeof(t_deplacement));
         
@@ -121,9 +206,13 @@ void initialiserContenuJoueur(t_joueur *joueur){
 void detruireContenuJoueur(t_joueur *joueur) {
     int i;
     for(i = 0; i < joueur->n; i++) {
-        free(joueur->tab[i].deplacement); // Libère le malloc du déplacement
+
+        free(joueur->tab[i].deplacement); // Libère le malloc du déplacement */
         SDL_DestroyTexture(joueur->texDinos[i]);
+        SDL_DestroyTexture(joueur->texDinosInv[i]);
     }
     free(joueur->tab);
     free(joueur->texDinos);
+    free(joueur->texDinosInv);
+    free(joueur->tabCote);
 }

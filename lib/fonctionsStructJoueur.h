@@ -1,7 +1,7 @@
 #ifndef _FONCTIONSSTRUCTJOUEUR_H_
 #define _FONCTIONSSTRUCTJOUEUR_H_
 
-#include "types.h"
+#include "../lib/types.h"
 
 /** 
  * @file fonctionsStructJoueur.h
@@ -24,6 +24,19 @@
 t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
 
 /** 
+ * @fn t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
+ * @brief La fonction récupère le côté vers lequel est orienté un dinosaure à partir de son identifiant.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param numero l'identifiant du dinosaure dont on veut connaître le côté
+ * @return le côté vers lequel le dinosaure est orienté
+ */
+
+t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
+
+/** 
  * @fn void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
  * @brief La fonction supprime un dinosaure de l'équipe auquel il appartient.
  * @author Hannah Sergent
@@ -34,6 +47,20 @@ t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case nume
  */
 
 void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
+
+/** 
+ * @fn void retournerDino(t_joueur * equipe1, t_joueur * equipe2, t_case numero);
+ * @brief La fonction détermine s'il faut retourner le dinosaure en fonction de la direction indiquée et de la direction précédente.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param numero l'identifiant du dinosaure à retourner
+ * @param cote la direction dans laquelle doit se trouver le dinosaure
+ * @param ancienCote un pointeur sur la direction précédente
+ */
+
+void retournerDino(t_joueur * equipe1, t_joueur * equipe2, t_case numero, t_cote cote, t_cote *ancienCote);
 
 /** 
  * @fn void initialiserContenuJoueur(t_joueur *joueur);

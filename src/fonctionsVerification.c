@@ -62,6 +62,16 @@ void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichi
 
 }
 
+void chargerImageSansTaille(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier) {
+    
+    *img = IMG_LoadTexture(zoneAffichage, nomFichier);
+
+    if(!*img) {
+        printf("Erreur lors du chargement de l'image : %s \n", IMG_GetError());
+    }
+    
+}
+
 /*void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLargeur, int *imgHauteur) {
     
     SDL_Surface *surfaceTemp = IMG_Load(nomFichier);

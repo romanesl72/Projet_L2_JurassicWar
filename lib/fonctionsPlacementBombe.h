@@ -28,6 +28,6 @@
  * @param matriceTerrain une matrice contenant les informations sur le terrain
  */
 
-void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 #endif

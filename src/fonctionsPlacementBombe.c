@@ -63,7 +63,7 @@ int enterreeBombe(t_bombe * bombe, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEU
     return 0;
 }
 
-void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
+void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
 
     int cotesEnterres[2] = {0, 0};
 
@@ -85,14 +85,14 @@ void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote cote, t_case m
 
     /* On veut lancer la bombe vers la gauche et il y a assez de place à gauche. */
 
-    if ((cote == GAUCHE) && (cotesEnterres[GAUCHE] == 0)){
+    if ((*cote == GAUCHE) && (cotesEnterres[GAUCHE] == 0)){
         bombe->coor.x = coorDino.x - bombe->rayon - EXPLOSION_NON_CONTROLEE;
         return;
     }
 
     /* On veut lancer la bombe vers la droite et il y a assez de place à droite. */
 
-    if ((cote == DROITE) && (cotesEnterres[DROITE] == 0)){
+    if ((*cote == DROITE) && (cotesEnterres[DROITE] == 0)){
         bombe->coor.x = coorDino.x + TAILLE_DINO + bombe->rayon + EXPLOSION_NON_CONTROLEE;
         return;
     }
@@ -101,7 +101,8 @@ void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote cote, t_case m
 
     if (cotesEnterres[DROITE] == 0){
         bombe->coor.x = coorDino.x + TAILLE_DINO + bombe->rayon + EXPLOSION_NON_CONTROLEE;
+        *cote = DROITE;
         return;
     }
-
+    *cote = GAUCHE;
 }

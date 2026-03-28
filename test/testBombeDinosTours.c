@@ -1,7 +1,7 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsChangementTour.h"
 #include "../lib/fonctionsPlacementBombe.h"
-#include "../lib/fonctionsRebonds.h"
+#include "../lib/fonctionsRebonds2.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTuerDinos.h"
 #include "../lib/fonctionsVerification.h"
@@ -14,7 +14,7 @@
 
 /** 
  * @file testBombeDinosTours.c
- * @brief test des fonctions crées dans le fichier fonctionsPlacementBombe.c
+ * @brief Test des fonctions crées dans le fichier fonctionsPlacementBombe.c.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026
  */
@@ -38,7 +38,7 @@ int main(int argc, char * argv[]){
         int i;
         int enCours = 1;
         int nb_pts;
-        int w, h;
+
         int trouves_E1 = 0;
         int trouves_E2 = 0;
 
@@ -50,11 +50,11 @@ int main(int argc, char * argv[]){
 
         t_bombe bombe;
 
-        const float vitesse = 1.0f/120.0f;
+        const float vitesse = 1.0f/250.0f;
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        float gravite = 180;
+        float gravite = 140;
 
         int bombeLancee = 0;
         int nombreRebonds = 0;
@@ -80,7 +80,11 @@ int main(int argc, char * argv[]){
 
         SDL_Renderer* zoneAffichage = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
 
-        chargerImage(zoneAffichage, &texMap, "../img/test1_b.jpg", &w, &h);
+        if (zoneAffichage == NULL){
+            printf("erreur 1 \n");
+        }
+
+        chargerImageSansTaille(zoneAffichage, &texMap, "../img/test1_b.jpg");
 
         SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
         SDL_RenderCopy(zoneAffichage, texMap, NULL, &rect_plein_ecran);
@@ -117,13 +121,21 @@ int main(int argc, char * argv[]){
 
         /* Charger les images (Textures) */
 
-        chargerImage(zoneAffichage, &(equipe1.texDinos[0]), "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &(equipe1.texDinos[1]), "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &(equipe1.texDinos[2]), "../img/dinoTransparent.png", &w, &h);
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinos[0]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinos[1]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinos[2]), "../img/dinoTransparent.png");
 
-        chargerImage(zoneAffichage, &(equipe2.texDinos[0]), "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &(equipe2.texDinos[1]), "../img/dinoTransparent.png", &w, &h);
-        chargerImage(zoneAffichage, &(equipe2.texDinos[2]), "../img/dinoTransparent.png", &w, &h);
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinos[0]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinos[1]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinos[2]), "../img/dinoTransparent.png");
+        
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinosInv[0]), "../img/dinoTransparentMiroir.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinosInv[1]), "../img/dinoTransparentMiroir.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe1.texDinosInv[2]), "../img/dinoTransparentMiroir.png");
+
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinosInv[0]), "../img/dinoTransparentMiroir.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinosInv[1]), "../img/dinoTransparentMiroir.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2.texDinosInv[2]), "../img/dinoTransparentMiroir.png");
 
         /* --- AFFICHAGE DES DINOS --- */
 
@@ -146,7 +158,7 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, gestionTours.dinoCourant);
+                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);

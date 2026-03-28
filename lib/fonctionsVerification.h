@@ -14,7 +14,7 @@
  
  /** 
  * @fn int initialisationCorrecte();
- * @brief la fonction initialise SDL2, SDL2_image et SDL_ttf
+ * @brief La fonction initialise SDL2, SDL2_image et SDL_ttf.
  * @author Hannah Sergent
  * @date Crée le 27/01/2026
  * @return 1 si tout s'est bien passé et 0 sinon
@@ -24,17 +24,27 @@ int initialisationCorrecte();
 
 /**
  * @fn void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
- * @brief La fonction charge une image comme texture SDL
+ * @brief La fonction charge une image comme une texture SDL et indique sa taille.
  * @author Hannah Sergent
  * @date Crée le 27/01/2026
- * @param zoneAffichage pointeur sur la zone d'affichage
- * @param img pointeur sur un pointeur de la texture image à charger
- * @param nomFichier nom du fichier contenant l'image
- * @param imgLongueur pointeur recevant la largeur de l'image
- * @param imgHauteur pointeur recevant la hauteur de l'image
+ * @param zoneAffichage  un pointeur sur la zone d'affichage
+ * @param img  un pointeur sur un pointeur de la texture image à charger
+ * @param nomFichier le nom du fichier contenant l'image
+ * @param imgLongueur un pointeur recevant la largeur de l'image
+ * @param imgHauteur un pointeur recevant la hauteur de l'image
  */
 void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
 
+/**
+ * @fn void chargerImageSansTaille(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier);
+ * @brief La fonction charge une image comme une texture SDL sans indiquer sa taille.
+ * @author Hannah Sergent
+ * @date Crée le 28/03/2026
+ * @param zoneAffichage pointeur sur la zone d'affichage
+ * @param img pointeur sur un pointeur de la texture image à charger
+ * @param nomFichier nom du fichier contenant l'image
+ */
+void chargerImageSansTaille(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier);
 
 /**
  * @fn void creerFenetre(SDL_Window **fenetre, char* nomFenetre, int fenLargeur, int fenHauteur);
