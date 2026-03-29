@@ -40,9 +40,9 @@ void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichi
  * @brief La fonction charge une image comme une texture SDL sans indiquer sa taille.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
- * @param zoneAffichage pointeur sur la zone d'affichage
- * @param img pointeur sur un pointeur de la texture image à charger
- * @param nomFichier nom du fichier contenant l'image
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param img un pointeur sur un pointeur de la texture image à charger
+ * @param nomFichier un nom du fichier contenant l'image
  */
 void chargerImageSansTaille(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier);
 
