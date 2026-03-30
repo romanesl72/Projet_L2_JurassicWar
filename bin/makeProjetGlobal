@@ -14,6 +14,7 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 EXECUTABLES = \
 ./testBombeDinosTours \
+./testBombeDinosToursV2 \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
 ./testFonctionsRebonds \
@@ -21,6 +22,20 @@ EXECUTABLES = \
 ./main_test
 
 OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+
+OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o \
+chargerMatrice.o \
+placer_dinos.o \
+tda_nuage.o \
+gestion_zones.o \
+fonctionsStructJoueur.o \
+fonctionsVerification.o \
+fonctionsChangementTour.o \
+fonctionsPageJeu.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsTuerDinos.o
+
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o chargerMatrice.o fonctionsMenuPrinc.o fonctionsVerification.o
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
@@ -35,6 +50,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testBombeDinosTours: $(OBJETS_BOMBE_DINOS_TOURS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testBombeDinosToursV2: $(OBJETS_BOMBE_DINOS_TOURS_V2)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)

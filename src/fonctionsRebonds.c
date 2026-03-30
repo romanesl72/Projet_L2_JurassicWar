@@ -1,5 +1,5 @@
 #include "../lib/fonctionsPlacementBombe.h"
-#include "../lib/fonctionsRebonds2.h"
+#include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/placer_dinos.h"
 #include <stdio.h>

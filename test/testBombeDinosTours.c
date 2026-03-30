@@ -1,7 +1,7 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsChangementTour.h"
 #include "../lib/fonctionsPlacementBombe.h"
-#include "../lib/fonctionsRebonds2.h"
+#include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTuerDinos.h"
 #include "../lib/fonctionsVerification.h"

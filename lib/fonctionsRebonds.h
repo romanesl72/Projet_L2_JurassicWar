@@ -25,6 +25,11 @@
 
 #define PI 3.1415
 
+#define RAYON 15
+
+#define VITESSE_X 90
+#define VITESSE_Y -90
+
 /**
  * @fn void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
  * @brief La fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur.
