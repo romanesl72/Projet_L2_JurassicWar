@@ -1,0 +1,139 @@
+#include "../lib/chargerMatrice.h"
+#include "../lib/types.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/fonctionsVerification.h"
+#include "../lib/placer_dinos.h"
+#include "../lib/gestion_zones.h"
+#include "../lib/fonctionsMenuHIP.h"
+#include <time.h>
+
+#include <SDL2/SDL_ttf.h>
+
+#define LARGEUR_FEN 1300
+#define HAUTEUR_HIP 100
+#define HAUTEUR_JEU 700
+#define HAUTEUR_TOTALE (HAUTEUR_HIP + HAUTEUR_JEU)
+
+int main(int argc, char * argv[]){
+
+    /* ---- 1. Initialisation ---- */
+    if (!initialisationCorrecte()) return 1;
+    srand(time(NULL));
+
+    SDL_Window *fenetre = NULL;
+    SDL_Renderer *rendu = NULL;
+    TTF_Font *police = NULL;
+
+    creerFenetre(&fenetre, "Jurassic War - HUD Mode", LARGEUR_FEN, HAUTEUR_TOTALE);
+    rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
+    initialiserPolice(&police, "../pde/arial.ttf", 16);
+
+    /* ---- 2. Chargement de la Map et Placement ---- */
+    int matrice[MAT_H][MAT_L];
+    int nb_pts, w, h;
+    int trouvés_E1 = 0, trouvés_E2 = 0;
+    t_coordonnee *nuages_stockes[5];
+    t_catalogue_zones catalogue;
+
+    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
+    
+    // Récupération des zones pour le placement (Placement Réel)
+    nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
+    generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+    nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
+    generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+
+    t_joueur equipe1, equipe2;
+    equipe1.n = 3; equipe2.n = 3;
+    equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
+    equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
+
+    // Placement réel sur la matrice (C'est ce placement qui compte !)
+    placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
+    placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
+    
+    // Initialisation des PV après le placement
+    for(int i=0; i<3; i++) { 
+        equipe1.tab[i].pv = 100 - (i*20); 
+        equipe2.tab[i].pv = 100; 
+    }
+
+    /* ---- 3. Chargement des Textures ---- */
+    SDL_Texture *texMap = NULL;
+    SDL_Texture *texDinos[6]; // Tableau pour les 6 types de dinos
+    SDL_Texture *texObjets[7] = {NULL};
+
+    char *nomsObjets[7] = {
+        "../img/img_arc.png", 
+        "../img/img_arbalete.png", 
+        "../img/img_bombe.png", 
+        "../img/img_fusil.png", 
+        "../img/img_revolver.png", 
+        "../img/img_potion.png", 
+        "../img/img_grappin.png"
+    };
+
+    for(int i = 0; i < 7; i++) {
+        chargerImage(rendu, &texObjets[i], nomsObjets[i], &w, &h);
+        if(texObjets[i] == NULL) {
+            printf("Attention : Impossible de charger %s\n", nomsObjets[i]);
+        }
+    }
+    chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
+    for(int k = 0; k < 6; k++) {
+        chargerImage(rendu, &texDinos[k], "../img/dinoTransparent.png", &w, &h);
+    }
+
+    int enCours = 1;
+    SDL_Event e;
+
+    /* ---- 4. Boucle de Rendu ---- */
+    while(enCours) {
+        while(SDL_PollEvent(&e)) {
+            if(e.type == SDL_QUIT) enCours = 0;
+            
+            
+        }
+
+        SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
+        SDL_RenderClear(rendu);
+
+        /* --- SECTION HAUT : LE HIP --- */
+        afficherInventaire(rendu, texObjets, 7);
+        afficherMenuPVDinos(rendu, police, equipe1, equipe2);
+
+        /* --- SECTION BAS : LE JEU --- */
+        SDL_Rect rectJeu = {0, HAUTEUR_HIP, LARGEUR_FEN, HAUTEUR_JEU};
+        SDL_RenderCopy(rendu, texMap, NULL, &rectJeu);
+
+        // Affichage de l'Équipe 1
+        for(int i=0; i<equipe1.n; i++) {
+            SDL_Rect r1 = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
+            // On utilise l'ID du dino pour choisir la bonne texture
+            SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d - D1], NULL, &r1);
+        }
+
+        // Affichage de l'Équipe 2
+        for(int i=0; i<equipe2.n; i++) {
+            SDL_Rect r2 = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
+            SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d - D1], NULL, &r2);
+        }
+
+        SDL_RenderPresent(rendu);
+        SDL_Delay(16);
+    }
+
+    /* ---- 5. Nettoyage ---- */
+    free(equipe1.tab);
+    free(equipe2.tab);
+    for(int k=0; k<6; k++) SDL_DestroyTexture(texDinos[k]);
+    TTF_CloseFont(police);
+    SDL_DestroyTexture(texMap);
+    SDL_DestroyRenderer(rendu);
+    SDL_DestroyWindow(fenetre);
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+
+    return 0;
+}
