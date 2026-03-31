@@ -17,6 +17,7 @@
  * @brief Corps des fonctions liées à la page du jeu.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.3
  */
 
 int creerPageJeu(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap){
@@ -94,7 +95,7 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
     }
 }
 
-void detecterEvenementMenuPrincipal(
+void detecterEvenementPageJeu(
     int *enCours, 
     int *bombeLancee, 
     int *nombreRebonds, 
@@ -110,7 +111,6 @@ void detecterEvenementMenuPrincipal(
 
     const Uint8 *etatClavier;
     SDL_Event evenement;
-    float gravite = 140;
 
     while (SDL_PollEvent(&evenement)){
         if (evenement.type == SDL_QUIT){
@@ -124,7 +124,7 @@ void detecterEvenementMenuPrincipal(
         *bombeLancee = 1;
         *nombreRebonds = 0;
 
-        choixHauteurLancerDinoCourant(zoneAffichage, texMap, rectFen, &etatClavier, bombe, vectVitesse, gravite, equipe1, equipe2, dinoCourant, matriceTerrain);
+        choixHauteurLancerDinoCourant(zoneAffichage, texMap, rectFen, &etatClavier, bombe, vectVitesse, equipe1, equipe2, dinoCourant, matriceTerrain);
     }
 }
 
@@ -172,7 +172,6 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
 
     const float vitesse = 1.0f/250.0f;
     static float accumulateur = 0;
-    float gravite = 140;
     t_case dinoTouche = AIR;
     float tempsEcoule;
 
@@ -184,7 +183,7 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
 
             bombe->coor.x += vitesse*vectVitesse->u;
             bombe->coor.y += vitesse*vectVitesse->v;
-            vectVitesse->v += gravite*vitesse;
+            vectVitesse->v += GRAVITE*vitesse;
 
             if (collisionFrontiereBombe(bombe)) {
                 *bombeLancee = -1;
@@ -229,6 +228,61 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
             }
         }
         accumulateur -= vitesse;
+    }
+}
+
+void lancerPartie(){
+    if (initialisationCorrecte()) {
+
+        int enCours = 1;
+
+        t_joueur equipe1, equipe2;
+
+        t_bombe bombe;
+
+        t_vect vectVitesse;
+
+        int bombeLancee = 0;
+        int nombreRebonds = 0;
+
+        // Variable de changement de tour
+        t_tour gestionTours = {1, 1, D1, D6};
+
+        SDL_Window *menuPrincipal;
+        SDL_Renderer* zoneAffichage;
+        SDL_Texture *texMap;
+        SDL_Rect rectFen = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
+
+        t_catalogue_zones catalogue;
+
+        t_case (*matriceTerrain)[LARGEUR_TERRAIN] = NULL;
+
+        if (!creerPageJeu(&menuPrincipal, &zoneAffichage, &texMap)){
+            return;
+        }
+
+        initialiserRayonBombe(&bombe, RAYON);
+        initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
+        initialiserMatrice(&matriceTerrain);
+        initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
+
+        afficherJeuSansBombe(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap);
+
+        Uint32 tempsPrecedent = SDL_GetTicks();
+        
+        while(enCours) {
+
+            detecterEvenementPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
+            lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap);
+
+        }
+
+        // --- NETTOYAGE --- 
+
+        destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, zoneAffichage, menuPrincipal);
+        IMG_Quit();
+        TTF_Quit();
+        SDL_Quit();
     }
 }
 

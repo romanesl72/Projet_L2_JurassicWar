@@ -17,15 +17,11 @@
  * @brief Test des fonctions crées dans le fichier fonctionsPlacementBombe.c.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026
+ * @version 2.0
  */
-
-#define RAYON 15
 
 #define COOR_X LARGEUR_TERRAIN/3
 #define COOR_Y HAUTEUR_TERRAIN/2
-
-#define VITESSE_X 90
-#define VITESSE_Y -90
 
 int main(int argc, char * argv[]){
 
@@ -79,10 +75,6 @@ int main(int argc, char * argv[]){
         creerFenetre(&menuPrincipal, "MenuPrincipal", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
 
         SDL_Renderer* zoneAffichage = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
-
-        if (zoneAffichage == NULL){
-            printf("erreur 1 \n");
-        }
 
         chargerImageSansTaille(zoneAffichage, &texMap, "../img/test1_b.jpg");
 
@@ -158,7 +150,7 @@ int main(int argc, char * argv[]){
                 bombeLancee = 1;
                 nombreRebonds = 0;
 
-                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, gravite, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
+                choixHauteurLancerDinoCourant(zoneAffichage, texMap, &rect_plein_ecran, &etatClavier, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
             }
             
             miseAjourTemps(&tempsPrecedent, &tempsEcoule);
@@ -169,7 +161,7 @@ int main(int argc, char * argv[]){
 
                     bombe.coor.x += vitesse*vectVitesse.u;
                     bombe.coor.y += vitesse*vectVitesse.v;
-                    vectVitesse.v += gravite*vitesse;
+                    vectVitesse.v += GRAVITE*vitesse;
 
                     if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = -1;

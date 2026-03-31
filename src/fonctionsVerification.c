@@ -1,12 +1,13 @@
-#include <stdio.h>
-
 #include "../lib/fonctionsVerification.h"
+
+#include <stdio.h>
 
 /**
  * @file fonctionsVerification.c
  * @brief Corps des fonctions pour initialiser différents objets SDL
  * @author Hannah Sergent
  * @date Crée le 27/01/2026
+ * @version 1.3
  */
 
 /* Fonction initialisationCorrecte

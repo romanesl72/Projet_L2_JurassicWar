@@ -97,7 +97,7 @@ void afficherMenuPrincipal(SDL_Renderer* zoneMenu, SDL_Rect *boutons, SDL_Textur
 
 /**
  * @fn void detecterEvenementMenuPrincipal(int *enCours, SDL_Rect *boutons);
- * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre (cliquer sur un bouton, sur la croix pour fermer).
+ * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer).
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
  * @param enCours un pointeur qui indique si la fenetre doit rester ouverte

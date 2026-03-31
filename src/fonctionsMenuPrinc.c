@@ -223,11 +223,16 @@ void detecterEvenementMenuPrincipal(int *enCours, SDL_Rect *boutons){
             x = evenement.button.x;
             y = evenement.button.y;
 
-            for (i = 0; i < 3; i++){
+            for (i = 1; i < 3; i++){
 
                 if(x >= boutons[i].x && x <= boutons[i].x + boutons[i].w && y >= boutons[i].y && y <= boutons[i].y + boutons[i].h){
                     printf("Bouton %d cliqué  \n", i);
                 }
+            }
+
+            // Lancer une partie quand on appuie sur le bouton démarrer
+            if(x >= boutons[0].x && x <= boutons[0].x + boutons[0].w && y >= boutons[0].y && y <= boutons[0].y + boutons[0].h){
+                *enCours = 2;
             }
 
             // Fermer la fenêtre quand on clique sur le bouton quitter

@@ -19,6 +19,7 @@ EXECUTABLES = \
 ./testFonctionsMenuPrinc \
 ./testFonctionsRebonds \
 ./testFonctionsTuerDinos \
+./testFonctionsVerification \
 ./main_test
 
 OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
@@ -37,7 +38,21 @@ fonctionsRebonds.o \
 fonctionsTuerDinos.o
 
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
-OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o chargerMatrice.o fonctionsMenuPrinc.o fonctionsVerification.o
+
+OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o \
+chargerMatrice.o \
+fonctionsChangementTour.o \
+fonctionsMenuPrinc.o \
+fonctionsPageJeu.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsTuerDinos.o \
+fonctionsVerification.o \
+gestion_zones.o \
+placer_dinos.o \
+tda_nuage.o \
+
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o  fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o chargerMatrice.o
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
@@ -65,6 +80,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsVerification: $(OBJETS_VERIFICATION)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # Compilation

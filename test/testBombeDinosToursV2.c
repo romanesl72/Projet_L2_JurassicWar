@@ -16,6 +16,7 @@
  * @brief Test des fonctions crées dans le fichier fonctionsPageJeu.c et fonctionsMenuPrincipal.c.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.2
  */
 
 int main(int argc, char * argv[]){
@@ -60,7 +61,7 @@ int main(int argc, char * argv[]){
         
         while(enCours) {
 
-            detecterEvenementMenuPrincipal(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
+            detecterEvenementPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
             lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap);
 
         }

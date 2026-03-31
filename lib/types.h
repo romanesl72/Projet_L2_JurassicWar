@@ -83,7 +83,8 @@ typedef enum {ARC, ARBALETE, FUSIL, REVOLVER } t_nom_arme;
 
 typedef enum {
     GAUCHE, /**< Direction gauche */
-    DROITE  /**< Direction droite */
+    DROITE,  /**< Direction droite */
+    SANS_DIR /**< Aucune direction */
 } t_cote;
 
 /**

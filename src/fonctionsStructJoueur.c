@@ -66,6 +66,7 @@ t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case num
     if (indiceDino != -1){
         return equipe2->tabCote[indiceDino];
     }
+    return SANS_DIR;
 }
 
 void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){

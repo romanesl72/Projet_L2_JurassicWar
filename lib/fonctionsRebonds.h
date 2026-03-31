@@ -1,7 +1,6 @@
 #ifndef _FONCTIONSREBONDS2_H_
 #define _FONCTIONSREBONDS2_H_
 
-#include <SDL2/SDL.h>
 #include "types.h"
 
 /** 
@@ -9,7 +8,36 @@
  * @brief Définition des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe.
  * @author Hannah Sergent
  * @date Crée le 5/02/2026
+ * @version 5.0
  */
+
+/**
+ * @def RAYON
+ * @brief Taille du rayon de la bombe.
+*/
+
+#define RAYON 15
+
+/**
+ * @def VITESSE_X
+ * @brief Vitesse horizontale initiale de la bombe.
+*/
+
+#define VITESSE_X 90
+
+/**
+ * @def VITESSE_Y
+ * @brief Vitesse verticale initiale de la bombe.
+*/
+
+#define VITESSE_Y -90
+
+/**
+ * @def GRAVITE
+ * @brief Gravite choisie pour la bombe.
+*/
+
+#define GRAVITE 140
 
 /**
  * @def COEF_RESTITUTION
@@ -25,11 +53,6 @@
 
 #define PI 3.1415
 
-#define RAYON 15
-
-#define VITESSE_X 90
-#define VITESSE_Y -90
-
 /**
  * @fn void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
  * @brief La fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur.
@@ -41,10 +64,9 @@
  * @param etatClavier un pointeur de pointeur sur l'état du clavier
  * @param bombe un pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur un vecteur vitesse
- * @param gravite la gravite choisie
  */
 
-void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite);
+void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse);
 
 /**
  * @fn void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
@@ -57,12 +79,11 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
  * @param etatClavier un pointeur de pointeur sur l'état du clavier
  * @param bombe un pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur un vecteur vitesse
- * @param gravite la gravite choisie
  * @param equipe1 l'équipe1 dont on veut afficher les dinosaures
  * @param equipe2 l'équipe2 dont on veut afficher les dinosaures
  */
 
-void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2);
+void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2);
 
 /**
  * @fn void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
@@ -75,13 +96,12 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
  * @param etatClavier un pointeur de pointeur sur l'état du clavier
  * @param bombe pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur un vecteur vitesse
- * @param gravite la gravite choisie
  * @param equipe1 l'équipe1 dont on veut afficher les dinosaures
  * @param equipe2 l'équipe2 dont on veut afficher les dinosaures
  * @param matriceTerrain une matrice contenant les informations sur le terrain
  */
 
-void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 
 /**

@@ -260,7 +260,17 @@ void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
     }
 }
 
-void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse, float gravite){
+/**
+ * @fn void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse);
+ * @brief La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge.
+ * @author Hannah Sergent
+ * @date Crée le 11/02/2026
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param coor un pointeur sur une structure contenant les coordonnées flottantes de la bombe
+ * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ */
+
+void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse){
 
     float temps = 0;
     float dt = 1.0f/250.0f;
@@ -278,7 +288,7 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
 
         courant.u += dt*vectVitesse->u;
         courant.v += dt*vitY;
-        vitY += gravite*dt;
+        vitY += GRAVITE*dt;
 
         if (dansLimites(courant.u, courant.v)){
             SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v), roundf(courant.u), roundf(courant.v));
@@ -289,7 +299,7 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
     }
 }
 
-void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite){
+void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse){
     
     do {
 
@@ -319,7 +329,7 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
         SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
 
         tracerBombe(zoneAffichage, bombe);
-        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse);
 
         SDL_RenderPresent(zoneAffichage);
 
@@ -328,7 +338,7 @@ void choixHauteurLancer(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Re
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
-void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2){
+void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2){
     
     do {
 
@@ -360,7 +370,7 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
         tracerBombe(zoneAffichage, bombe);
         afficherDinos(zoneAffichage, equipe1);
         afficherDinos(zoneAffichage, equipe2);
-        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse);
 
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(4);
@@ -371,6 +381,7 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
 /** 
  * @fn void retournerLaser(t_vect *vectVitesse, t_cote cote)
  * @brief La fonction détermine s'il faut retourner le laser ou non en fonction de la direction dans laquelle se trouve le dinosaure.
+ * Le laser désigne la trajectoire de lancer de la bombe.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
  * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
@@ -393,7 +404,7 @@ void retournerLaser(t_vect *vectVitesse, t_cote cote){
 
 }
 
-void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, float gravite, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
+void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     
     t_cote cote = recupererDinoDirection(equipe1, equipe2, numDinoCourant);
     t_cote ancienCote = cote;
@@ -452,13 +463,14 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
 
         }
 
+        /* Affichage de la map, de la bombe, des dinos, de la trajectoire */
         SDL_RenderClear(zoneAffichage);
         SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
 
         tracerBombe(zoneAffichage, bombe);
         afficherDinos(zoneAffichage, equipe1);
         afficherDinos(zoneAffichage, equipe2);
-        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse, gravite);
+        tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse);
 
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(4);
