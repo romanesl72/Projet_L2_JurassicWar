@@ -5,6 +5,8 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/fonctionsMenuHIP.h"
+#include "../lib/chargerMatrice.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include <time.h>
 
 #include <SDL2/SDL_ttf.h>
@@ -24,7 +26,7 @@ int main(int argc, char * argv[]){
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
 
-    creerFenetre(&fenetre, "Jurassic War - HUD Mode", LARGEUR_FEN, HAUTEUR_TOTALE);
+    creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_FEN, HAUTEUR_TOTALE);
     rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
     initialiserPolice(&police, "../pde/arial.ttf", 16);
 

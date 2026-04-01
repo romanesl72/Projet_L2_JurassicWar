@@ -1,5 +1,7 @@
 #include "../lib/fonctionsTirs.h"
 #include "../lib/placer_dinos.h"
+#include "../lib/chargerMatrice.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include <math.h>
 
 
@@ -198,4 +200,23 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
 
 
     tir->actif = 1; 
+}
+
+
+
+void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[MAT_H][MAT_L]) {
+    t_dino *victime = recupererDinoNumero(equipe1, equipe2, numDinoTouche);
+
+    if (victime != NULL) {
+        victime->pv -= degats;
+        
+        if (victime->pv <= 0) {
+            victime->pv = 0;
+            victime->etat = 0; // 0 pour Mort
+            printf("Le Dino %d est KO !\n", numDinoTouche);
+            
+            supprimer_matrice_dino(victime, matrice);
+            supprimerDinoJoueur(equipe1, equipe2, numDinoTouche);
+        }
+    }
 }
