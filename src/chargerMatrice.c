@@ -47,7 +47,6 @@ void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
 void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]) {
     /*permet de remetre à jour les anciennes zones comportant un dino*/
     int i,j,px,py;
-
     for(i = 0; i < 30; i++) {
         for(j = 0; j < 30; j++) {
             py = dino->pos.y + i;

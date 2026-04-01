@@ -52,6 +52,9 @@
 
 int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]);
 
+int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]);
+
+
 void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int sens);
 
 /**

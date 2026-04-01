@@ -29,7 +29,7 @@
 #define MAT_L 1300
 #define VIDE 0
 
-#define TIMER 10000
+#define TIMER 70000
 
 /**
  * @def TAILLE_DINO
