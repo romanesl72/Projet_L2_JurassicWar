@@ -24,7 +24,7 @@ void test_collision_eau() {
 
     // On vide la matrice et on place de l'eau au SUD
     for(int i=0; i<MAT_H; i++) for(int j=0; j<MAT_L; j++){
-        matrice_test[i][j] = VIDE;
+        matrice_test[i][j] = 0;
     }
     matrice_test[22][21] = EAU; 
 
@@ -119,7 +119,7 @@ int main() {
     
     // On réinitialise la matrice avant chaque test ou on la vide ici
     for(int i=0; i<MAT_H; i++) for(int j=0; j<MAT_L; j++){
-        matrice_test[i][j] = VIDE;
+        matrice_test[i][j] = 0;
     }
 
     test_collision_eau();

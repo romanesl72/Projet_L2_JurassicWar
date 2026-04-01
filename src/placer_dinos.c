@@ -52,3 +52,28 @@ void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe){
         SDL_RenderCopy(zoneAffichage, equipe->texDinos[i], NULL, &rectEquipe);
     }
 }
+
+
+void afficherDinosAvecJeu(SDL_Renderer* zoneAffichage, t_joueur * equipe){
+    if (equipe == NULL || equipe->tab == NULL) return;
+
+    int i;
+    SDL_Rect rectEquipe;
+    rectEquipe.w = TAILLE_DINO;
+    rectEquipe.h = TAILLE_DINO;
+
+    for(i = 0; i < equipe->n; i++) {
+        // Sécurité 1 : Vérifier si la texture est chargée
+        // Sécurité 2 : On peut aussi vérifier si les PV > 0
+        if (equipe->texDinos != NULL && equipe->texDinos[i] != NULL) {
+            
+            printf("OK\n");
+            // Si tu as le décalage de 100px (HIP) dans viserArcher, 
+            // n'oublie pas de l'ajouter ici ou de le gérer uniformément
+            rectEquipe.x = equipe->tab[i].pos.x;
+            rectEquipe.y = equipe->tab[i].pos.y + 100; // Décalage pour le menu HIP
+            
+            SDL_RenderCopy(zoneAffichage, equipe->texDinos[i], NULL, &rectEquipe);
+        }
+    }
+}

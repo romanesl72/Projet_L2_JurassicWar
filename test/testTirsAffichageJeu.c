@@ -8,8 +8,8 @@
 #include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionsPlacementBombe.h"
-#include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsStructJoueur.h"
+#include "../lib/fonctionSoin.h"
 #include <time.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -21,6 +21,7 @@
 int main(int argc, char * argv[]){
 
     int i,j;
+    const Uint8 *clavier = NULL;
 
     /* ---- Initialisation de la fenêtre---- */
     if (!initialisationCorrecte()) return 1;
@@ -67,26 +68,18 @@ int main(int argc, char * argv[]){
     /* ---- Initialisation des Armes ---- */
     t_dino *tireur = NULL;
 
-    t_arme catalogue_armes[5]; // Arc, Arbalete, Bombe Fusil, Revolver
+    t_arme catalogue_armes[4]; // Arc, Arbalete, Bombe Fusil, Revolver
     catalogue_armes[0] = (t_arme){ARC, 20, 1.0f, 5.0f, 15.0f};
     catalogue_armes[1] = (t_arme){ARBALETE, 35, 1.2f, 8.0f, 18.0f};
-    // Index 2 est réservé à la BOMBE (pas de t_arme nécessaire)
-    catalogue_armes[3] = (t_arme){FUSIL, 45, 0.4f, 15.0f, 30.0f};
-    catalogue_armes[4] = (t_arme){REVOLVER, 30, 0.6f, 13.0f, 25.0f};
-
+    catalogue_armes[2] = (t_arme){FUSIL, 45, 0.4f, 15.0f, 30.0f};
+    catalogue_armes[3] = (t_arme){REVOLVER, 30, 0.6f, 13.0f, 25.0f};
+    
+    
     int enCours = 1;
-    int armeSelectionnee = 0;
 
     t_tir tir;              /* Pour flèches/balles */
     tir.actif = 0;
 
-    t_bombe bombe;          /* Pour la bombe */
-    t_vect vectVitesse;
-    const float vitesse = 1.0f/250.0f;
-    float accumulateur = 0;
-    int bombeLancee = 0;
-    int nombreRebonds = 0;
-    
 
     /* ---- Chargement Textures ---- */
     SDL_Texture *texMap = NULL, *texDinos[6], *texObjets[7];
@@ -94,93 +87,85 @@ int main(int argc, char * argv[]){
                            "../img/img_fusil.png", "../img/img_revolver.png", "../img/img_potion.png", "../img/img_grappin.png"};
 
     chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
-    for(j=0; j<6; j++) chargerImage(rendu, &texDinos[j], "../img/dinoTransparent.png", &w, &h);
+    
+    equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+    equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+    
+    for(j=0; j<6; j++) {
+        chargerImage(rendu, &texDinos[j], "../img/dinoTransparent.png", &w, &h);
+        // On lie les textures aux structures joueurs
+        equipe1.texDinos[j] = texDinos[j];
+        equipe2.texDinos[j] = texDinos[j];
+    }
+    
+    
     for(i=0; i<7; i++) chargerImage(rendu, &texObjets[i], nomsObjets[i], &w, &h);
 
     /* ---- Initialisation ---- */
-    
 
     while(enCours) {
-        SDL_Event e;
-        while(SDL_PollEvent(&e)) {
-            if(e.type == SDL_QUIT) enCours = 0;
-
-            // Changement d'arme graphique (touches 1 à 7)
-            if(e.type == SDL_KEYDOWN && e.key.keysym.sym >= SDLK_1 && e.key.keysym.sym <= SDLK_7) {
-                armeSelectionnee = e.key.keysym.sym - SDLK_1;
-                printf("Arme selectionnee : %d\n", armeSelectionnee);
-            }
+        SDL_Event evenement;
+        while(SDL_PollEvent(&evenement)) {
+            if(evenement.type == SDL_QUIT) enCours = 0;
         }
 
-        const Uint8 *clavier = SDL_GetKeyboardState(NULL);
+        clavier = SDL_GetKeyboardState(NULL);
+        tireur = recupererDinoNumero(&equipe1, &equipe2, D1);
 
-        tireur = recupererDinoNumero(&equipe1, &equipe2, numDinoCourant);
+        SDL_PumpEvents();
 
         // Tir et Visée
-        if (!tir.actif && !bombeEnVol && clavier[SDL_SCANCODE_SPACE]) {
-            
-            switch(armeSelectionnee) {
-                case 0: // ARC
-                case 1: // ARBALÈTE
-                case 3: // FUSIL
-                case 4: // REVOLVER
-                    tir.actif = 1;
-                    tir.arme = catalogue_armes[armeSelectionnee];
-                    tir.pos.x = tireur->pos.x + 15;
-                    tir.pos.y = tireur->pos.y + 15;
-                    viserArcher(rendu, texMap, &tir, &clavier, graviteMonde, &equipe1, &equipe2);
-                    break;
+        if (!tir.actif){
+            int touchePressee = 0;
 
-                case 2: // LA BOMBE
-                    initialiserBombe(&bombeActuelle, tireur->pos.x, tireur->pos.y, 10);
-                    initialiserVitesse(&vectVitesse, 150.0f, -150.0f);
-                    nbRebonds = 0;
-                    
-                    SDL_Rect rectMapSeule = {0, 0, LARGEUR_FEN, HAUTEUR_JEU}; 
-                    choixHauteurLancerDinoCourant(rendu, texMap, &rectMapSeule, &clavier, &bombeActuelle, &vectVitesse, &equipe1, &equipe2, numDinoCourant, matrice);
-                    bombeEnVol = 1;
-                    break;
-
-                case 5: // LA POTION
-                    utiliserPotion(tireur);
-                    break;
-
-                case 6: // LE GRAPPIN
-                    printf("Grappin non implémenté\n");
-                    break;
+            /*On vérifie quelle touche est pressée pour choisir l'arme*/
+            if (clavier[SDL_SCANCODE_Q]) {
+                tir.arme_source = catalogue_armes[0];
+                printf("Arme : ARC\n");
+                touchePressee = 1;
             }
-        }
-
-        if (bombeEnVol) {
-            Uint32 tempsCourant = SDL_GetTicks();
-            static Uint32 tempsPrecedent = 0;
-            float tempsEcoule = (tempsCourant - tempsPrecedent) / 1000.0f;
-            tempsPrecedent = tempsCourant;
-            
-            accumulateurBombe += tempsEcoule;
-
-            while (accumulateurBombe >= dt_bombe) {
-                bombeActuelle.coor.x += dt_bombe * vectVitesse.u;
-                bombeActuelle.coor.y += dt_bombe * vectVitesse.v;
-                vectVitesse.v += GRAVITE * dt_bombe;
-
-                if (collisionFrontiereBombe(&bombeActuelle)) bombeEnVol = 0;
-                
-                if (collisionTerrainBombe(matrice, &bombeActuelle, &vectVitesse)) {
-                    nbRebonds++;
-                    if (nbRebonds > 2) bombeEnVol = 0; // Explosion après 2 rebonds
-                }
-                
-                if (collisionEauBombe(matrice, &bombeActuelle)) bombeEnVol = 0;
-                
-                accumulateurBombe -= dt_bombe;
+            else if (clavier[SDL_SCANCODE_A]) {
+                tir.arme_source = catalogue_armes[1];
+                printf("Arme : ARBALETE\n");
+                touchePressee = 1;
             }
+            else if (clavier[SDL_SCANCODE_F]) {
+                tir.arme_source = catalogue_armes[2];
+                printf("Arme : FUSIL\n");
+                touchePressee = 1;
+            }
+            else if (clavier[SDL_SCANCODE_R]) {
+                tir.arme_source = catalogue_armes[3];
+                printf("Arme : REVOLVER\n");
+                touchePressee = 1;
+            }
+            else if (clavier[SDL_SCANCODE_B]) {
+                printf("Bombe a utilisé\n");
+            }
+            else if (clavier[SDL_SCANCODE_P]) {
+                utiliserPotion(tireur);
+            }
+            else if (clavier[SDL_SCANCODE_G]) {
+                printf("Grappin non implémenté\n");
+            }
+            
+            if (touchePressee && tireur != NULL) {
+                /* On replace le tir sur le dino avant de viser */
+                tir.pos.x = tireur->pos.x + 15;
+                tir.pos.y = tireur->pos.y + 15;
+                
+                printf("Ok1\n");
+                /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
+                viserArcher(rendu, texMap, &tir, clavier, graviteMonde, &equipe1, &equipe2);
+                printf("Ok2\n");
+            }
+        
         }
 
         if (tir.actif) {
             int col = mettreAJourVol(&tir, matrice, graviteMonde, tireur->d);
             if (col >= D1) {
-                appliquerDegats(col, tir.arme.degats, &equipe1, &equipe2);
+                appliquerDegats(col, tir.arme_source.degats, &equipe1, &equipe2, matrice);
                 tir.actif = 0;
             }
             else if (col != 0) tir.actif = 0;
@@ -191,7 +176,7 @@ int main(int argc, char * argv[]){
         SDL_RenderClear(rendu);
 
         // HIP
-        afficherInventaire(rendu, texObjets, 7, armeSelectionnee);
+        afficherInventaire(rendu, texObjets, 7);
         afficherMenuPVDinos(rendu, police, equipe1, equipe2);
 
         // JEU (Map décalée de 100px)

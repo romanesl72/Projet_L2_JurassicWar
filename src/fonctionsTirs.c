@@ -14,12 +14,12 @@ void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme)
     tir->arme_source = arme;
 }
 
-
+/*
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
     Uint32 tempsCourant = SDL_GetTicks();
     *tempsEcoule = (tempsCourant - *tempsPrecedent)/1000.0f;
     *tempsPrecedent = tempsCourant;
-}
+}*/
 
 int collisionFrontiere(t_tir *tir){
     return ((tir->pos.x < 0) || (tir->pos.x >= MAT_L) || (tir->pos.y < 0) || (tir->pos.y >= MAT_H));
@@ -142,6 +142,7 @@ void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float grav
     }
 }
 
+/*
 void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
     
 
@@ -177,7 +178,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
         SDL_RenderClear(zoneAffichage);
         
         if (texMap != NULL) {
-            SDL_Rect rectMap = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
+            SDL_Rect rectMap = {0, 100, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
             SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
         }
 
@@ -198,6 +199,66 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 
+
+    tir->actif = 1; 
+}*/
+
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
+    
+    // Sécurité : si le pointeur clavier est NULL, on sort direct pour éviter le crash
+    if (etatClavier == NULL) return;
+
+    tir->velo.u = tir->arme_source.puissance_propulsion;
+    tir->velo.v = -tir->arme_source.puissance_propulsion;
+
+    float g_effet = gravite * tir->arme_source.poids_projectile;
+    float vMax = tir->arme_source.vitesse_max;
+
+    int enVisée = 1;
+    while(enVisée) {
+        SDL_PumpEvents();
+
+        // Gestion des contrôles
+        if (etatClavier[SDL_SCANCODE_UP])    tir->velo.v -= 0.1f;
+        if (etatClavier[SDL_SCANCODE_DOWN])  tir->velo.v += 0.1f;
+        if (etatClavier[SDL_SCANCODE_LEFT])  tir->velo.u -= 0.1f;
+        if (etatClavier[SDL_SCANCODE_RIGHT]) tir->velo.u += 0.1f;
+
+        // Bridage de la vitesse
+        if (tir->velo.u > vMax) tir->velo.u = vMax;
+        if (tir->velo.u < -vMax) tir->velo.u = -vMax;
+
+        // Rendu
+        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
+        SDL_RenderClear(zoneAffichage);
+        
+        // On dessine la map avec le décalage de 100px (HIP)
+        if (texMap != NULL) {
+            SDL_Rect rectMap = {0, 100, 1300, 700}; 
+            SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
+        }
+
+        if (e1 != NULL) {
+            afficherDinosAvecJeu(zoneAffichage, e1);
+        }
+        if (e2 != NULL){
+            afficherDinosAvecJeu(zoneAffichage, e2);
+        }
+        
+        // Simulation visuelle (on décale l'affichage de 100px vers le bas)
+        t_tir tirVisu = *tir;
+        tirVisu.pos.y += 100; 
+
+        tracerTrajectoireArcher(zoneAffichage, &tirVisu, g_effet);
+        tracerFleche(zoneAffichage, &tirVisu);
+
+        SDL_RenderPresent(zoneAffichage);
+
+        // Quitter la boucle sur ESPACE
+        if (etatClavier[SDL_SCANCODE_SPACE]) enVisée = 0;
+        
+        SDL_Delay(16);
+    }
 
     tir->actif = 1; 
 }

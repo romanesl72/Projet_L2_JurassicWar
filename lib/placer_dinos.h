@@ -48,4 +48,7 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
 
 void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe);
 
+
+void afficherDinosAvecJeu(SDL_Renderer* zoneAffichage, t_joueur * equipe);
+
 #endif

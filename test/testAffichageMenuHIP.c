@@ -5,7 +5,6 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/fonctionsMenuHIP.h"
-#include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include <time.h>
 

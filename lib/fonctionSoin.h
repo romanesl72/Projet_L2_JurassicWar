@@ -6,3 +6,6 @@
 
 
 void utiliserPotion(t_dino *dino);
+
+
+#endif

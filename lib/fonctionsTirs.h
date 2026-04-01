@@ -5,7 +5,7 @@
 #include "types.h"
 
 void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme);
-void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);
+/*void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule);*/
 
 int collisionFrontiere(t_tir *tir);
 
@@ -17,5 +17,6 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir);
 void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase);
 
 
-void viserArcher(SDL_Renderer* rendu, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2);
+void viserArcher(SDL_Renderer* rendu, SDL_Texture *texMap, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2);
+void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[MAT_H][MAT_L]);
 #endif
