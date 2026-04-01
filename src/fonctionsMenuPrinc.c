@@ -1,4 +1,5 @@
 #include "../lib/fonctionsMenuPrinc.h"
+#include "../lib/fonctionsPageJeu.h"
 #include "../lib/fonctionsVerification.h"
 
 #include <math.h>
@@ -62,16 +63,6 @@ void tracerCoinBouton(SDL_Renderer *zoneMenu, t_coordonnee *coorCoin, int rayon)
     }
 }
 
-/**
- * @fn void tracerBouton(SDL_Renderer *zoneMenu, SDL_Rect rectBouton, int rayon);
- * @brief La fonction trace un bouton aux bords arrondis dans le menu.
- * @author Hannah Sergent
- * @date Crée le 29/03/2026
- * @param zoneMenu un pointeur sur la zone du menu
- * @param rectBouton le rectangle du bouton à tracer
- * @param rayon le rayon choisi pour l'arrondi des bords
- */
-
 void tracerBouton(SDL_Renderer *zoneMenu, SDL_Rect rectBouton, int rayon){
 
     SDL_Rect rectangleCentral = {rectBouton.x + rayon, rectBouton.y, rectBouton.w - 2*rayon, rectBouton.h};
@@ -98,17 +89,6 @@ void tracerBouton(SDL_Renderer *zoneMenu, SDL_Rect rectBouton, int rayon){
     tracerCoinBouton(zoneMenu, &coorCoinBd, rayon);
 
 }
-
-/**
- * @fn void afficherTexteCase(SDL_Renderer* zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte);
- * @brief La fonction écrit le texte passé en paramètre en blanc au centre d'une case du menu.
- * @author Hannah Sergent
- * @date Crée le 28/03/2026
- * @param zoneMenu un pointeur sur la zone du menu
- * @param texte le texte à afficher
- * @param rectCase le rectangle de la case dans laquelle afficher le texte
- * @param tailleTexte la taille du texte à afficher
- */
 
 void afficherTexteCase(SDL_Renderer* zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte){
 
@@ -288,6 +268,48 @@ void detruireMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, 
     if (*menuPrincipal){
         SDL_DestroyWindow(*menuPrincipal);
         *menuPrincipal = NULL;
+    }
+}
+
+void ouvrirMenuPrinc(){
+
+    if (initialisationCorrecte()) {
+
+        int enCours = 1;
+
+        /* Les variables nécessaires au menu principal */
+
+        SDL_Rect boutons[4];
+        initialiserBoutons(boutons);
+
+        SDL_Window *menuPrincipal;
+        SDL_Texture *texImg;
+        SDL_Texture *texImgMiroir;
+        SDL_Renderer* zoneMenu;
+
+        if (!creerMenuPrincipal(&menuPrincipal, &zoneMenu, &texImg, &texImgMiroir)){
+            return;
+        }
+
+        while(enCours == 1) {
+
+            detecterEvenementMenuPrincipal(&enCours, boutons);
+            afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
+
+        }
+
+        detruireMenuPrincipal(&menuPrincipal, &zoneMenu, &texImg, &texImgMiroir);
+
+        /* L'utilisateur a cliqué sur le bouton démarrer la partie */
+
+        if (enCours == 2){
+            printf("Partie Lancée ! \n");
+            lancerPartie();
+        }
+
+        TTF_Quit();
+        IMG_Quit();
+        SDL_Quit();
     }
 }
 

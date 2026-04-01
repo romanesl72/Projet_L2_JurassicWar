@@ -50,8 +50,6 @@ int main(int argc, char * argv[]){
         float accumulateur = 0;
         t_vect vectVitesse;
 
-        float gravite = 140;
-
         int bombeLancee = 0;
         int nombreRebonds = 0;
 

@@ -1,4 +1,3 @@
-#include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsMenuPrinc.h"
 #include "../lib/fonctionsPageJeu.h"
 #include "../lib/fonctionsVerification.h"

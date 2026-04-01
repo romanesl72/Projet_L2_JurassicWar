@@ -13,10 +13,12 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 # Edition de liens
 
 EXECUTABLES = \
+./main \
 ./testBombeDinosTours \
 ./testBombeDinosToursV2 \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
+./testFonctionsPagesInformations \
 ./testFonctionsRebonds \
 ./testFonctionsTuerDinos \
 ./testFonctionsVerification \
@@ -39,6 +41,35 @@ fonctionsTuerDinos.o
 
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
 
+OBJETS_PAGES_INFOS = testFonctionsPagesInformations.o \
+chargerMatrice.o \
+fonctionsChangementTour.o \
+fonctionsMenuPrinc.o \
+fonctionsPageJeu.o \
+fonctionsPagesInformations.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsTuerDinos.o \
+fonctionsVerification.o \
+gestion_zones.o \
+placer_dinos.o \
+tda_nuage.o \
+
+OBJETS_MAIN = main.o \
+chargerMatrice.o \
+fonctionsChangementTour.o \
+fonctionsMenuPrinc.o \
+fonctionsPageJeu.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsTuerDinos.o \
+fonctionsVerification.o \
+gestion_zones.o \
+placer_dinos.o \
+tda_nuage.o \
+
 OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o \
 chargerMatrice.o \
 fonctionsChangementTour.o \
@@ -57,9 +88,15 @@ OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o 
 OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o  fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o chargerMatrice.o
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
 
+OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
+
+
 all: $(EXECUTABLES)
 
 # faire une ligne par exécutable
+
+./main: $(OBJETS_MAIN)
+	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./main_test: $(OBJETS_PLACEMENT_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
@@ -74,6 +111,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsMenuPrinc: $(OBJETS_MENU_PRINC)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsPagesInformations: $(OBJETS_PAGES_INFOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
