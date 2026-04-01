@@ -6,6 +6,7 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/deplacement.h"
 #include "../lib/tda_nuage.h"
+#include "../lib/types.h"
 #include <time.h>
 #include <stdio.h>
 
@@ -20,6 +21,7 @@ int main(int argc, char * argv[]) {
     int trouves_E1 = 0, trouves_E2 = 0;
     int timer =0;
     int nb_nuage = 2; 
+    int cgt=0;//regarde si on a changé de dino du à la mort d'un dino
 
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
@@ -93,29 +95,59 @@ int main(int argc, char * argv[]) {
         }
 
         /* --- Gestion du Tour et Chargement du Nuage Actif --- */
+        /* --- Dans la gestion du tour (main) --- */
+        /* --- Dans la boucle while (enCours) --- */
+
+        // 1. GESTION DU CHANGEMENT DE TOUR
         if (timer <= 0) {
-            tourSuivant(&gestionTours, &equipe1, &equipe2);
+            // Si le dino précédent est mort, on le supprime MAINTENANT du tableau
+            // avant de récupérer le nouveau dinoCourant
+            if (dinoActuel != NULL && dinoActuel->etat == 0) {
+                supprimerDinoJoueur(&equipe1, &equipe2, dinoActuel->d);
+                dinoActuel = NULL; // Sécurité
+            }
+
+            if(!cgt) {
+                tourSuivant(&gestionTours, &equipe1, &equipe2);
+            } else {
+                cgt = 0;
+            }
+            
+            // On récupère le nouveau dinosaure qui doit jouer
             dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
             
             if (dinoActuel != NULL) {
                 nuageDetruire(&nuage);
-                // On utilise l'ID du nuage stocké dans le dinosaure
                 nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
-                dinoActuel->pos=nuage[dinoActuel->indice_nuage];
                 
-                if (nuage == NULL) {
-                    printf("Erreur chargement nuage pour dino %d\n", dinoActuel->d);
-                    enCours = 0;
-                }
-                printf("C'est au tour du dinosaure %d\n", dinoActuel->d);
+                // Synchronisation de l'indice pour le déplacement fluide
+                dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                
+                if (dinoActuel->indice_nuage >= nb_pts) 
+                    dinoActuel->indice_nuage = nb_pts - 1;
+                
+                timer = TIMER;
             }
-            timer = 10000; // Délai avant le prochain changement de tour automatique
-        } else timer--;
+        }else timer--;
 
-        /* --- Mise à jour du Déplacement --- */
-        if (dinoActuel != NULL && nuage != NULL) {
+        // 2. LOGIQUE DE DÉPLACEMENT
+        if (dinoActuel != NULL && nuage != NULL && dinoActuel->etat != 0) {
             deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, &nb_pts, matrice);
+            
+            // Si le dino vient de mourir durant ce tour
+            if(dinoActuel->etat == 0) {
+                printf("Le dinosaure %d s'est noyé !\n", dinoActuel->d);
+                
+                // On le retire de la matrice pour qu'il disparaisse visuellement
+                supprimer_matrice_dino(dinoActuel, matrice);
+                
+                // On ne fait PAS supprimerDinoJoueur ici ! 
+                // On force juste la fin du tour.
+                timer = 0; 
+                cgt = 1; 
+            }
         }
+
 
         /* --- Rendu Graphique --- */
         SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);

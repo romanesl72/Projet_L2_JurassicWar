@@ -29,6 +29,8 @@
 #define MAT_L 1300
 #define VIDE 0
 
+#define TIMER 10000
+
 /**
  * @def TAILLE_DINO
  * @brief Taille de l'image dinosaure.
@@ -123,6 +125,7 @@ typedef struct {
 
 typedef struct {
     int sautBooleen;            /**< Vaut 1 si le dinosaure est en cours de saut */
+    int tomber;                 /**< Vaut 0 si le dinosaure ne tombe pas, 1 si il vient tout juste de tomber et 2 si il tombe */
     int id_nuage_temp;          /**< prochain nuage */
     int indice_nuage_temp;      /**< Position temporaire dans le prochain nuage */
     float indice_reel;          /**< Pour le déplacement */

@@ -196,6 +196,7 @@ void initialiserContenuJoueur(t_joueur *joueur){
         
         // Initialisation des valeurs par défaut pour éviter les comportements erratiques
         joueur->tab[i].deplacement->sautBooleen = 0;
+        joueur->tab[i].deplacement->tomber = 0;
         joueur->tab[i].deplacement->wait = 0;
         joueur->tab[i].deplacement->indice_reel = 0;
         joueur->tab[i].etat = 1; // Vivant
