@@ -1,8 +1,9 @@
 #include "../lib/types.h"
+#include "../lib/fonctionsMenuPrinc.h"
 
 int main(int argc, char * argv[]){
 
-    printf("Nous allons écrire le main ici \n");
+    ouvrirMenuPrinc();
 
     return 0;
 
