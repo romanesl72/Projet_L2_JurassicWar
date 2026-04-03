@@ -1,0 +1,5 @@
+Un dinosaure possède 100 points de vie au départ d'une partie.
+Un dinosaure meurt s'il a perdu tous ses points de vie, s'il tombe dans l'eau ou heurte une extrémité du terrain.
+Un dinosaure ne peut utiliser qu'une seule arme par tour.
+Un dinosaure a un temps limité pour agir.
+Une arme frappant un dinosaure de notre équipe inflige les mêmes dégâts que si elle avait touché l'adversaire.

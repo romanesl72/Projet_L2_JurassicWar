@@ -2,6 +2,7 @@
 #define _FONCTIONSREBONDS2_H_
 
 #include "types.h"
+#include "../lib/fonctionsMenuHIP.h"
 
 /** 
  * @file fonctionsRebonds.h
@@ -103,6 +104,7 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
 
 void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
+void choixHauteurLancerDinoCourantHIP(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 /**
  * @fn void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon);
@@ -196,5 +198,7 @@ int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t
  */
 
 void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe);
+
+void tracerBombeHIP(SDL_Renderer *zoneAffichage, t_bombe *bombe);
 
 #endif

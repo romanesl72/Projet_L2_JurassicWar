@@ -24,7 +24,18 @@ EXECUTABLES = \
 ./testFonctionsVerification \
 ./main_test
 
-OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o \
+placer_dinos.o \
+gestion_zones.o \
+tda_nuage.o \
+fonctionsChangementTour.o \
+fonctionsMenuHIP.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsVerification.o \
+fonctionsTuerDinos.o \
+chargerMatrice.o
 
 OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o \
 chargerMatrice.o \
@@ -59,6 +70,7 @@ tda_nuage.o \
 OBJETS_MAIN = main.o \
 chargerMatrice.o \
 fonctionsChangementTour.o \
+fonctionsMenuHIP.o \
 fonctionsMenuPrinc.o \
 fonctionsPageJeu.o \
 fonctionsPlacementBombe.o \
@@ -85,8 +97,27 @@ placer_dinos.o \
 tda_nuage.o \
 
 OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
-OBJETS_REBONDS = testFonctionsRebonds.o placer_dinos.o  fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o chargerMatrice.o
-OBJETS_TUER_DINOS = testFonctionsTuerDinos.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+
+OBJETS_REBONDS = testFonctionsRebonds.o \
+placer_dinos.o  \
+fonctionsMenuHIP.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsVerification.o \
+chargerMatrice.o
+
+OBJETS_TUER_DINOS = testFonctionsTuerDinos.o \
+placer_dinos.o \
+gestion_zones.o \
+tda_nuage.o \
+fonctionsMenuHIP.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o \
+fonctionsVerification.o \
+fonctionsTuerDinos.o \
+chargerMatrice.o
 
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
 

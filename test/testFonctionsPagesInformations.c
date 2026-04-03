@@ -9,5 +9,6 @@
  */
 
 int main(int argc, char *argv[]) {
-    ouvrirFenInfos();
+    /* ouvrirFenInfos("Principales Règles du jeu","../res/reglesJeu.txt"); */
+    ouvrirFenInfos("Liste des touches","../res/listeTouches.txt");
 }

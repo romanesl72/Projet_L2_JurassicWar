@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 /** 
  * @file fonctionsMenuPrinc.c
@@ -97,11 +98,11 @@ void afficherTexteCase(SDL_Renderer* zoneMenu, char *texte, SDL_Rect *rectCase, 
     TTF_Font *police;
     initialiserPolice(&police, "../pde/arial.ttf", tailleTexte);
 
-    /* Le texte est écrit en blanc */
+    /* Le texte est écrit en blanc */ 
 
     SDL_Color couleurTexte = {255, 255, 255, 255};
 
-    SDL_Surface *surfaceTexte = TTF_RenderUTF8_Blended(police, texte, couleurTexte);
+    SDL_Surface *surfaceTexte = TTF_RenderUTF8_Blended_Wrapped(police, texte, couleurTexte, LARGEUR_FEN_MENU);
     SDL_Texture *textureTexte = SDL_CreateTextureFromSurface(zoneMenu, surfaceTexte);
     
     /* Position du texte centrée dans la case */
@@ -187,7 +188,7 @@ void afficherMenuPrincipal(SDL_Renderer *zoneMenu, SDL_Rect *boutons, SDL_Textur
 
 }
 
-void detecterEvenementMenuPrincipal(int *enCours, SDL_Rect *boutons){
+void detecterEvenementsMenuPrincipal(int *enCours, SDL_Rect *boutons){
 
     SDL_Event evenement;
     int x,y;
@@ -271,6 +272,48 @@ void detruireMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, 
     }
 }
 
+void ouvrirMenuPrincBombe(){
+
+    if (initialisationCorrecte()) {
+
+        int enCours = 1;
+
+        /* Les variables nécessaires au menu principal */
+
+        SDL_Rect boutons[4];
+        initialiserBoutons(boutons);
+
+        SDL_Window *menuPrincipal;
+        SDL_Texture *texImg;
+        SDL_Texture *texImgMiroir;
+        SDL_Renderer* zoneMenu;
+
+        if (!creerMenuPrincipal(&menuPrincipal, &zoneMenu, &texImg, &texImgMiroir)){
+            return;
+        }
+
+        while(enCours == 1) {
+
+            detecterEvenementsMenuPrincipal(&enCours, boutons);
+            afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
+
+        }
+
+        detruireMenuPrincipal(&menuPrincipal, &zoneMenu, &texImg, &texImgMiroir);
+
+        /* L'utilisateur a cliqué sur le bouton démarrer la partie */
+
+        if (enCours == 2){
+            printf("Partie Lancée ! \n");
+            lancerPartieBombe();
+        }
+
+        TTF_Quit();
+        IMG_Quit();
+        SDL_Quit();
+    }
+}
+
 void ouvrirMenuPrinc(){
 
     if (initialisationCorrecte()) {
@@ -293,7 +336,7 @@ void ouvrirMenuPrinc(){
 
         while(enCours == 1) {
 
-            detecterEvenementMenuPrincipal(&enCours, boutons);
+            detecterEvenementsMenuPrincipal(&enCours, boutons);
             afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
 
         }

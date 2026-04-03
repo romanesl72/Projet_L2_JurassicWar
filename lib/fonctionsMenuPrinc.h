@@ -129,7 +129,7 @@ void afficherMenuPrincipal(SDL_Renderer* zoneMenu, SDL_Rect *boutons, SDL_Textur
  * @param boutons un tableau de type SDL_Rect représentant chaque bouton
  */
 
-void detecterEvenementMenuPrincipal(int *enCours, SDL_Rect *boutons);
+void detecterEvenementsMenuPrincipal(int *enCours, SDL_Rect *boutons);
 
 /**
  * @fn void detruireMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir);
@@ -145,10 +145,21 @@ void detecterEvenementMenuPrincipal(int *enCours, SDL_Rect *boutons);
 void detruireMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir);
 
 /** 
- * @fn void ouvrirMenuPrinc();
- * @brief La fonction ouvre le menu principal.
+ * @fn void ouvrirMenuPrincBombe();
+ * @brief La fonction ouvre le menu principal. 
+ * Le menu permet de lancer une partie où la seule arme disponible est la bombe et où les dinosaures ne peuvent pas se déplacer. 
  * @author Hannah Sergent
  * @date Crée le 01/04/2026
+ * @version 1.1
+ */
+
+void ouvrirMenuPrincBombe();
+
+/** 
+ * @fn void ouvrirMenuPrinc();
+ * @brief La fonction ouvre le menu principal du jeu avec toutes ses fonctionnalités.
+ * @author Hannah Sergent
+ * @date Crée le 03/04/2026
  * @version 1.0
  */
 

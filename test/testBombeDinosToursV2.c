@@ -46,7 +46,7 @@ int main(int argc, char * argv[]){
 
         t_case (*matriceTerrain)[LARGEUR_TERRAIN] = NULL;
 
-        if (!creerPageJeu(&menuPrincipal, &zoneAffichage, &texMap)){
+        if (!creerPageJeuBombe(&menuPrincipal, &zoneAffichage, &texMap)){
             return 1;
         }
 
@@ -61,14 +61,14 @@ int main(int argc, char * argv[]){
         
         while(enCours) {
 
-            detecterEvenementPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
-            lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap);
+            detecterEvenementsPageJeuBombe(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
+            lancerBombeSansHIP(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap);
 
         }
 
         // --- NETTOYAGE --- 
 
-        destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, zoneAffichage, menuPrincipal);
+        destruireElementsJeuBombe(&equipe1, &equipe2, matriceTerrain, texMap, zoneAffichage, menuPrincipal);
         IMG_Quit();
         TTF_Quit();
         SDL_Quit();

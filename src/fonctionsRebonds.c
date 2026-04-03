@@ -260,6 +260,23 @@ void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
     }
 }
 
+void tracerBombeHIP(SDL_Renderer *zoneAffichage, t_bombe *bombe){
+    int largeur;
+    int hauteur;
+
+    // Bombe de couleur blanche
+    SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
+
+    for(largeur = -bombe->rayon; largeur <= bombe->rayon; largeur++){
+        for(hauteur = -bombe->rayon; hauteur <= bombe->rayon; hauteur++){
+
+            if (largeur*largeur + hauteur*hauteur <= bombe->rayon*bombe->rayon) {
+                SDL_RenderDrawPoint(zoneAffichage, roundf(bombe->coor.x) + largeur, round(bombe->coor.y) + hauteur + HAUTEUR_HIP);
+            }
+        }
+    }
+}
+
 /**
  * @fn void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse);
  * @brief La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge.
@@ -292,6 +309,35 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
 
         if (dansLimites(courant.u, courant.v)){
             SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v), roundf(courant.u), roundf(courant.v));
+        }
+
+        precedent = courant;
+        temps += dt;
+    }
+}
+
+void tracerTrajectoireLancerHIP(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse){
+
+    float temps = 0;
+    float dt = 1.0f/250.0f;
+    t_vect precedent;
+    t_vect courant;
+    float vitY = vectVitesse->v;
+
+    precedent.u = courant.u = coor->x;
+    precedent.v = courant.v = coor->y;
+
+    // Trajectoire de couleur rouge
+    SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
+
+    while(temps < 3.5){
+
+        courant.u += dt*vectVitesse->u;
+        courant.v += dt*vitY;
+        vitY += GRAVITE*dt;
+
+        if (dansLimites(courant.u, courant.v)){
+            SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v) + HAUTEUR_HIP, roundf(courant.u), roundf(courant.v) + HAUTEUR_HIP);
         }
 
         precedent = courant;
@@ -471,6 +517,84 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
         afficherDinos(zoneAffichage, equipe1);
         afficherDinos(zoneAffichage, equipe2);
         tracerTrajectoireLancer(zoneAffichage, &(bombe->coor), vectVitesse);
+
+        SDL_RenderPresent(zoneAffichage);
+        SDL_Delay(4);
+
+    } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
+}
+
+void choixHauteurLancerDinoCourantHIP(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
+    
+    t_cote cote = recupererDinoDirection(equipe1, equipe2, numDinoCourant);
+    t_cote ancienCote = cote;
+
+    t_dino *dino = recupererDinoNumero(equipe1, equipe2, numDinoCourant);
+
+    placerBombeEntrePattes(dino, bombe, &cote, matriceTerrain);
+
+    retournerDino(equipe1, equipe2, numDinoCourant, cote, &ancienCote);
+    retournerLaser(vectVitesse, cote);
+
+    do {
+
+        SDL_PumpEvents();
+        *etatClavier = SDL_GetKeyboardState(NULL);
+
+        /* Changer de direction pour lancer la bombe */
+
+        if ((*etatClavier)[SDL_SCANCODE_G]){
+            cote = GAUCHE;
+        }
+
+        if ((*etatClavier)[SDL_SCANCODE_D]){
+            cote = DROITE;
+        }
+
+        /* Ajuster la hauteur */
+
+        if ((*etatClavier)[SDL_SCANCODE_UP]){
+            vectVitesse->v -= 0.8;
+        }
+        if ((*etatClavier)[SDL_SCANCODE_DOWN]){
+            vectVitesse->v += 0.8;
+        }
+
+        /* Ajuster la puissance */
+
+        if ((*etatClavier)[SDL_SCANCODE_LEFT]){
+            vectVitesse->u -= 0.8;
+        }
+
+        if ((*etatClavier)[SDL_SCANCODE_RIGHT]){
+            vectVitesse->u += 0.8;
+        }
+
+        /* Le joueur veut changer de côté pour lancer la bombe */
+
+        if (cote != ancienCote){
+
+            placerBombeEntrePattes(dino, bombe, &cote, matriceTerrain);
+
+            /* S'il y a assez de place pour lancer la bombe dans l'autre sens, le dinosaure se retourne */
+
+            retournerDino(equipe1, equipe2, numDinoCourant, cote, &ancienCote);
+            retournerLaser(vectVitesse, cote);
+
+        }
+
+        /* Affichage de la map, de la bombe, des dinos, de la trajectoire */
+        SDL_RenderClear(zoneAffichage);
+        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
+
+        afficherInventaire(zoneAffichage, texObjets, 7);
+        afficherMenuPVDinos(zoneAffichage, policeMenuHIP, *equipe1, *equipe2);
+        SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
+
+        tracerBombeHIP(zoneAffichage, bombe);
+        afficherDinosAvecJeu(zoneAffichage, equipe1);
+        afficherDinosAvecJeu(zoneAffichage, equipe2);
+        tracerTrajectoireLancerHIP(zoneAffichage, &(bombe->coor), vectVitesse);
 
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(4);

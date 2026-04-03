@@ -1,0 +1,9 @@
+Se déplacer : flèches du clavier
+Sélectionner l'arc : Q
+Sélectionner l'arbalète : A
+Sélectionner la bombe : B
+Sélectionner le fusil : F
+Sélectionner le grapin : G
+Sélectionner le révolver : R
+Ajuster la trajectoire ou la puissance des armes : flèches du clavier
+Tirer ou lancer : barre espace

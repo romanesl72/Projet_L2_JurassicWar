@@ -11,6 +11,20 @@
  * @version 1.0
  */
 
-void ouvrirFenInfos();
+/**
+ * @def TAILLE_POLICE_PARAGRAPHE
+ * @brief Taille de police choisie pour les paragraphes des fenêtres d'information.
+*/
+
+#define TAILLE_POLICE_PARAGRAPHE 20
+
+/**
+ * @def TAILLE_POLICE_SOUS_TITRE
+ * @brief Taille de police choisie pour les sous-titres des fenêtres d'information.
+*/
+
+#define TAILLE_POLICE_SOUS_TITRE 23
+
+void ouvrirFenInfos(char *nomFen, char *nomFichier);
 
 #endif

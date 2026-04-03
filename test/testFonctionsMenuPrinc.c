@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
         while(enCours == 1) {
 
-            detecterEvenementMenuPrincipal(&enCours, boutons);
+            detecterEvenementsMenuPrincipal(&enCours, boutons);
             afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
 
         }
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 
         if (enCours == 2){
             printf("Partie Lancée ! \n");
-            lancerPartie();
+            lancerPartieBombe();
         }
 
         TTF_Quit();
