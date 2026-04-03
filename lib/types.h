@@ -25,9 +25,11 @@
 
 #define HAUTEUR_TERRAIN 700
 
+#define HAUTEUR_HIP 100
+#define HAUTEUR_FEN_JEU_HIP (HAUTEUR_HIP + HAUTEUR_TERRAIN)
+
 #define MAT_H 700  
 #define MAT_L 1300
-#define VIDE 0
 
 #define TIMER 70000
 
