@@ -37,16 +37,14 @@ Le but est de tuer tous les dinosaures de l'équipe adverse en perdant le moins 
 
 ## Documentation :
 
-**Diagramme de GANTT :**
+**Accéder au Diagramme de GANTT :**
 
 ```bash
 cd Projet_L2_JurassicWar/doc/DiagrammeDeGanttPlanningProjet.ods
 cd Projet_L2_JurassicWar/doc/PlanningProjet.ods
 ```
 
-**Documentation Doxygen :**
-
-Accéder à la documentation doxygen :
+**Accéder à la documentation Doxygen :**
 
 - ***En local***
 
@@ -61,7 +59,8 @@ cd Projet_L2_JurassicWar/doc/doxygen/html/index.thml
 ## Informations d'installation :
 
 Les bibliothèques SDL2, SDL2_image et SDL_ttf sont nécessaires au fonctionnement du jeu.
-Pour les installer :
+
+**Installer SDL :**
 
 - ***Sur Linux***
 
@@ -76,7 +75,7 @@ sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 brew install sdl2 sdl2_image sdl2_ttf
 ```
 
-### Pour exécuter le Jeu :
+**Exécuter le jeu :**
 
 ```bash
 cd Projet_L2_JurassicWar/bin
