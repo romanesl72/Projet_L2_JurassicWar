@@ -9,22 +9,19 @@
 
 Nous avons entrepris ce projet dans le cadre de la deuxième année de notre cursus de double licence Mathématiques Informatique à l'université du Mans.
 
-[Lien vers la double licence Mathématiques Informatique](https://www.univ-lemans.fr/fr/formation/catalogue-des-formations/licence-lmd-LILMD/sciences-technologies-sante-0004/licence-informatique-IW600Y1Z/double-licence-mathematiques-informatique-LOYFWWL9.html)  
+[Obtenir plus d'informations sur la double licence Mathématiques Informatique](https://www.univ-lemans.fr/fr/formation/catalogue-des-formations/licence-lmd-LILMD/sciences-technologies-sante-0004/licence-informatique-IW600Y1Z/double-licence-mathematiques-informatique-LOYFWWL9.html)  
 
 ***Chronologie du projet :***
 
-janvier 2026 --> mars 2026
+janvier 2026 --> avril 2026
 
 ## Description du Projet:
 
 Le jeu JurassicWar est composé de 2 équipes, contenant chacune 3 dinosaures. Chaque dinosaure joue tour à jour.
 Quand vient le moment pour lui d'agir, le dinosaure peut se déplacer sur le terrain et tirer une seule fois avec l'arme de son choix dans une limite de temps impartie.
 
-Ce jeu reprend les principes des jeux à succès Hedgewars et Worms.  
+Ce jeu reprend les principes des jeux à succès [Hedgewars](https://www.hedgewars.org/fr) et [Worms](https://fr.wikipedia.org/wiki/Worms_(s%C3%A9rie_de_jeux_vid%C3%A9o)).    
 
-[Lien vers le jeu Hedgewars](https://www.hedgewars.org/fr)  
-
-[Lien vers le jeu Worms](https://fr.wikipedia.org/wiki/Worms_(s%C3%A9rie_de_jeux_vid%C3%A9o))
 
 ***Principales règles du jeu :***
 
@@ -38,18 +35,33 @@ Ce jeu reprend les principes des jeux à succès Hedgewars et Worms.
 
 Le but est de tuer tous les dinosaures de l'équipe adverse en perdant le moins de points de vie possible. Pour cela, les dinosaures disposent de différentes armes redoutables telles que la dinoBombe, le grapin ou encore le revolver.
 
-## Documentation/GANTT :
+## Documentation :
 
-**Lien GANTT (Google Sheet)**
+**Diagramme de GANTT :**
 
+```bash
+cd Projet_L2_JurassicWar/doc/DiagrammeDeGanttPlanningProjet.ods
+cd Projet_L2_JurassicWar/doc/PlanningProjet.ods
+```
 
-**Documentation Doxygen**
-Site Doxygen se trouve dans :
+**Documentation Doxygen :**
 
+Accéder à la documentation doxygen :
+
+- ***En local***
+
+```bash
+cd Projet_L2_JurassicWar/doc/doxygen/html/index.thml
+```
+
+- ***En ligne***
+
+[Documentation doxygen de JurassicWar](https://web-info.univ-lemans.fr/~s2400921/documentationJurassicWar/html/index.html)
 
 ## Informations d'installation :
 
-Pour installer les bibliothèques SDL2, SDL2_image et SDL2_ttf :
+Les bibliothèques SDL2, SDL2_image et SDL_ttf sont nécessaires au fonctionnement du jeu.
+Pour les installer :
 
 - ***Sur Linux***
 
@@ -67,7 +79,7 @@ brew install sdl2 sdl2_image sdl2_ttf
 ### Pour exécuter le Jeu :
 
 ```bash
-cd Projet/Projet_L2_JurassicWar/bin
+cd Projet_L2_JurassicWar/bin
 make -f Makefile
 ./main
 ```

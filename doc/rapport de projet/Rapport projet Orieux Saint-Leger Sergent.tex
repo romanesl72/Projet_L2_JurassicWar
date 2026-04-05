@@ -53,12 +53,33 @@
 
 \subsection{Positionnement et mobilité des dinosaures}
 
+\newpage
 \subsection{Système d’actions et outils à disposition du joueur}
-\subsubsection{Mécanique des changements de tour}
+Cette partie rend compte de la manière dont s'enchaînent des actions dans JurassicWar à travers la mécanique des changements de tours mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grapin. 
+\subsubsection{Mécanique des changements de tours}
+Premièrement, les dinosaures jouent chacun leur tour, c'est-à-dire que l'utilisateur n'a pas la possibilité de choisir avec lequel de ses trois dinosaures il souhaite agir à un tour donné. L'instauration de cette règle augmente d'une part la complexité du jeu, mais d'autre part le système des changements de tours, puisque l'alternance entre tous les dinosaures doit être correcte même lorsqu'un ou plusieurs d'entre eux meurent. Afin de mettre en œuvre les changements de tours, une fonction \textit{\mbox{tourSuivant}} a été crée. Elle s'appuie sur l'identifiant associé à chaque dinosaure pour déterminer le dinosaure qui peut jouer. Cependant, comme les dinosaures de la première équipe sont numérotés de un à trois et ceux de la seconde équipe de quatre à six, à la suite du premier dinosaure, c'est au quatrième dinosaure de jouer et non pas au second dinosaure pour garantir l'alternance entre les deux équipes. Ceci nécessite de mémoriser deux identifiants : celui du dinosaure qui vient d'agir et celui du dinosaure ayant agi précédemment. Ces identifiants sont stockés dans uns structure \textit{\mbox{t\_tour}} qui contient également le numéro de l'équipe qui vient de jouer et un compteur du nombre de tours effectués. Par ailleurs, la fonction \textit{\mbox{tourSuivant}} doit tenir compte de l'état vivant ou mort d'un dinosaure dans la mesure où un dinosaure mort ne peut plus jouer. Ainsi, une fois que la fonction a choisi un dinosaure, elle vérifie qu'il est vivant. Dans le cas contraire, elle sélectionne un autre dinosaure vivant appartenant au même joueur.
 \subsubsection{Infliger un coup mortel : bombe}
+Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arme mortelle : la bombe. Contrairement aux autres armes évoquées dans la section suivante, la bombe tue instantanément le dinosaure qu'elle heurte. Néanmoins, cette arme ne peut être utilisée uniquement si le dinosaure dispose d'une place suffisante à côté de lui pour la positionner. Par ailleurs, cette arme se caractérise également par sa capacité à rebondir sur le terrain. Cette capacité de la bombe à rebondir induit l'utilisation de plusieurs notions mathématiques dans le code. Tout d'abord, la mise en place des rebonds nécessite un système de collision avec le terrain efficace. La bombe ayant une forme circulaire, la fonction de collision avec le terrain nommée \textit{\mbox{collisionTerrainBombe}} fait recourt aux coordonnées polaires pour analyser les points sur le contour de la bombe. Les points analysés sont représentés en rouge sur la figure~\ref{fig:coordonneesPolaires} et sont au nombre de trente-deux.
+\begin{figure}[h]
+	\centering
+	\begin{minipage}[c]{0.45\textwidth}
+		\centering
+		\includegraphics[width=6cm]{img/coordonneesPolaires.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{0.45\textwidth}
+		\centering
+		\[x' = x + r\cos(\theta)\]
+		\[y' = y + r\sin(\theta)\]
+	\end{minipage}
+	\caption[schema des coordonnees polaires]{Schéma des coordonnées polaires}
+	\label{fig:coordonneesPolaires}
+\end{figure}
+En cas de collision avérée entre un de ces points et la terre, la pente du terrain est étudiée pour que la bombe rebondisse perpendiculairement
+\newpage
 \subsubsection{Blesser un dinosaure : armes de tir}
 \subsubsection{Autre méthode de déplacement : grapin}
-
+\newpage
 \subsection{Interface graphique et utilisateur}
 \subsubsection{Utilisation du module SDL}
 \subsubsection{Création d’un menu principal}
@@ -77,57 +98,79 @@
 \subsection{Traces de débogage}
 \subsubsection{Correction du système de collisions de la bombe}
 
-Lors de la création des fonctions détectant un contact de la bombe avec le terrain, la mer et  les frontières de la fenêtre, un bug silencieux a été rencontré, necessitant l'usage de l'outil gdb pour identifier le dysfonctionnement. La situation est la suivante :
+Lors de la création des fonctions chargées de détecter un contact entre la bombe et le terrain, la mer ainsi que les extrémités de la fenêtre, un bug silencieux a été rencontré, necessitant l'usage de l'outil gdb pour identifier le dysfonctionnement. La situation est la suivante :
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.45\textwidth}
-	\includegraphics[height=3.5cm]{img/trajectoireCollisionBombe.png}
-	\caption[trajectoire prevue]{Trajectoire prévue}
-	\label{fig:trajectoireCollisionBombe}
+		\centering
+		\includegraphics[height=3.5cm]{img/trajectoireCollisionBombe.png}
+		\caption[trajectoire prevue pour la bombe]{Trajectoire prévue pour la bombe}
+		\label{fig:trajectoireCollisionBombe}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.45\textwidth}
-	\includegraphics[height=3.5cm]{img/anomalieCollisionBombe.png}
-	\caption[trajet effectue]{Trajet effectué}
-	\label{fig:anomalieCollisionBombe}
+		\centering
+		\includegraphics[height=3.5cm]{img/anomalieCollisionBombe.png}
+		\caption[arret anormal de la bombel]{Arrêt anormal de la bombe}
+		\label{fig:anomalieCollisionBombe}
 	\end{subfigure}
-	\caption[parcours incorrect de la bombe]{Parcours incorrect de la bombe}
+	\caption[illustration du parcours incorrect effectue par la bombe]{Illustration du parcours incorrect effectué par la bombe}
 	\label{fig:collisionBombe}
 \end{figure}\\
-La bombe interrompt sa trajectoire au milieu du terrain avant d'avoir heurté la terre. Il s'agit par conséquent d'identifier une erreur dans la fonction collisionTerrainBombe. Pour cela, les fichiers impliqués dans l'affichage et le système de collisions sont compilés avec l'option -g : 
-gdb bombe\\
-Initialiser l’affichage des variables :\\
-(gdb) break testFonctionsRebonds.c :67\\
-Simuler l’appui sur la touche b :\\
-(gdb) break estFonctionsRebonds.c :92\\
-Vérifier que le lancement de la bombe :\\
-(gdb) break estFonctionsRebonds.c :98\\
-Analyser les valeurs des variables à la suite d’une collision avec le terrain :\\
-(gdb) break testFonctionsRebonds.c: 117\\
-Provoquer un arrêt en cas de collision avec le terrain :\\
-(gdb) break fonctionsRebonds.c:60 if ((matriceTerrain[bombe->coor.x][bombe->coor.y + bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.x][bombe->coor.y - bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.x + bombe->rayon][bombe->coor.y] == TERRE) || (matriceTerrain[bombe->coor.x - bombe->rayon][bombe->coor.y] == TERRE))\\
-(gdb) run\\
-(gdb) display bombeLancee\\
-bombeLancee = 0\\
-(gdb) display bombe.coor\\
-bombe.coor = {x = 325, y = 350}\\
-(gdb) continue\\
-bombeLancee = 0\\
-bombe.coor = {x = 325, y = 350}\\
-(gdb) set etatClavier[5] = 1\\
-(gdb) continue\\
-Positionnement de la bombe afin que sa trajectoire rencontre le terrain\\
-bombeLancee = 1\\
-bombe.coor = {x = 325, y = 350}\\
-(gdb) continue\\
-Thread 1 "bombe" hit Breakpoint 5, rebondTerrainBombe (matriceTerrain=0x7fffffc85290, bombe=0x7fffffc85234) at fonctionsRebonds.c:60\\
-60	    return ((matriceTerrain[bombe->coor.x][bombe->coor.y + bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.x][bombe->coor.y - bombe->rayon] == TERRE) || (matriceTerrain[bombe->coor.x + bombe->rayon][bombe->coor.y] == TERRE) || (matriceTerrain[bombe->coor.x - bombe->rayon][bombe->coor.y] == TERRE));\\
-(gdb) continue\\
-bombeLancee = 1\\
-bombe.coor = {x = 592, y = 131}\\
-(gdb) next\\
-bombeLancee = 0\\
-bombe.coor = {x = 592, y = 131}\\
-(gdb) quit\\
-
+La bombe interrompt sa trajectoire au milieu du ciel avant d'avoir heurté la terre. Il s'agit par conséquent d'identifier une erreur dans une des fonctions liées à la bombe, en particulier dans la fonction \textit{\mbox{collisionTerrainBombe}}. Pour cela, les fichiers impliqués dans l'affichage et le système de collisions sont compilés avec l'option -g :
+\begin{figure}[h]
+	\centering
+        	\includegraphics[height=6cm]{img/compilationCollisionBombe.png}
+	\caption[extrait du makefile utilise pour le debogage des collisions]{Extrait du makefile utilisé pour le débogage des collisions}
+	\label{fig:compilationCollisionBombe}
+\end{figure}\\
+Les lignes qui suivent constituent la séquence des instructions de débogage mise en oeuvre pour corriger le système de collision. Cette séquence de commande nécessite de provoquer artificiellement l'évènement clavier déclenchant le lancer de la bombe afin d'analyser le contenu des variables lorsque l'arme est en mouvement puis lors de la collision. Dans le jeu, c'est la touche b du clavier, représentée par la macro SDL\_SCANCODE\_B dans le module SDL qui amorce le tir de la bombe. Cette macro possédant pour valeur cinq, l'élément d'indice cinq du tableau \textit{etatClavier} qui consigne les touches actionnées par l'utilisateur est par conséquent positionné à un au cours de l'exécution du programme sous gdb.\\\\
+\textbf{Séquence des instructions de débogage :}
+\begin{verbatim}
+gdb bombe
+# Mise en place des points d'arrêt
+# Initialiser l'affichage des variables
+(gdb) break testFonctionsRebonds.c :67
+# Simuler l’appui sur la touche b du clavier 
+(gdb) break testFonctionsRebonds.c :92
+# Vérifier le contenu des variables au départ du lancement de la bombe
+(gdb) break testFonctionsRebonds.c :98
+# Analyser les valeurs des variables à la suite d’une collision avec le terrain
+(gdb) break testFonctionsRebonds.c: 117
+# Provoquer un arrêt en cas de collision avec le terrain
+(gdb) break fonctionsRebonds.c:60 \
+if ((matriceTerrain[bombe->coor.x][bombe->coor.y + bombe->rayon] == TERRE) \
+|| (matriceTerrain[bombe->coor.x][bombe->coor.y - bombe->rayon] == TERRE) \
+|| (matriceTerrain[bombe->coor.x + bombe->rayon][bombe->coor.y] == TERRE) \
+|| (matriceTerrain[bombe->coor.x - bombe->rayon][bombe->coor.y] == TERRE))
+# Lancement de l'exécution du programme
+(gdb) run
+(gdb) display bombeLancee
+bombeLancee = 0
+(gdb) display bombe.coor
+bombe.coor = {x = 325, y = 350}
+(gdb) continue
+bombeLancee = 0
+bombe.coor = {x = 325, y = 350}
+(gdb) set etatClavier[5] = 1
+(gdb) continue
+bombeLancee = 1
+bombe.coor = {x = 325, y = 350}
+(gdb) continue
+Thread 1 "bombe" hit Breakpoint 5, \
+rebondTerrainBombe (matriceTerrain=0x7fffffc85290, bombe=0x7fffffc85234) \
+at fonctionsRebonds.c:60 \
+return ((matriceTerrain[bombe->coor.x][bombe->coor.y + bombe->rayon] == TERRE) \
+|| (matriceTerrain[bombe->coor.x][bombe->coor.y - bombe->rayon] == TERRE) \
+|| (matriceTerrain[bombe->coor.x + bombe->rayon][bombe->coor.y] == TERRE) \
+|| (matriceTerrain[bombe->coor.x - bombe->rayon][bombe->coor.y] == TERRE));
+(gdb) continue
+bombeLancee = 1
+bombe.coor = {x = 592, y = 131}
+(gdb) next
+bombeLancee = 0
+bombe.coor = {x = 592, y = 131}
+(gdb) quit
+\end{verbatim}
+À l'issue de la séquence de commandes, il s'avère que l'erreur réside dans une inversion de coordonnées dans la fonction \textit{\mbox{collisionTerrainBombe}}, comme l'illustre l'arrêt au point d'arrêt numéro cinq. Cette inversion s'explique par une différence de convention entre la matrice et l'affichage dans la fenêtre avec le module SDL. Tandis que la largeur correspond à l'axe des ordonnées pour la matrice, il s'agit de l'axe des abscisses pour l'affichage et inversement pour la hauteur. La résolution du comportement incohérent de la bombe nécessite donc uniquement d'échanger les coordonnées x et y dans les tests effectués par la fonction.
 \end{document}
