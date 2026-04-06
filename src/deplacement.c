@@ -14,9 +14,9 @@
 /**
  * @brief Vérifie si le dinosaure sort du nuage actuel ou touche l'eau.
  */
-int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]) {
+int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]) {
 
-    if(dino->indice_nuage < 0 || dino->indice_nuage >= (*nb_pts)){
+    if(dino->indice_nuage < 0 || dino->indice_nuage >=nb_pts){
         dino->deplacement->hors_nuage = 1;
         return 1;
     }
@@ -255,4 +255,3 @@ void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int 
     if(noyade(dino, matrice))printf("dino etat:%d\n",dino->etat);
 
 }
-

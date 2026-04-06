@@ -54,4 +54,6 @@ void retirer(t_coordonnee *v);
 
 int filevide(void);
 
+int afficherFile(SDL_Renderer *rendu);
+
 #endif

@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include "../lib/types.h"
+#include "../lib/fonctionsVerification.h"
 #include "../lib/tda_file.h"
 
 // Utilisation de static pour encapsuler les variables dans ce fichier
-static t_element_file* tete = NULL;
-static t_element_file* queue = NULL;
+t_element_file* tete = NULL;
+t_element_file* queue = NULL;
 
 void initfile(void) {
     tete = NULL;
@@ -47,4 +48,25 @@ void retirer(t_coordonnee *v) {
         free(a_supprimer->coordonnee);
         free(a_supprimer);
     }
+}
+
+t_coordonnee *lire(){
+    if(!filevide())return tete->coordonnee;
+    return NULL;
+}
+
+int afficherFile(SDL_Renderer *rendu){
+    if(filevide())return 1;
+    t_element_file *elem_courant=tete;
+    
+    while (elem_courant!=NULL){
+        // Dessin du fil point par point (blanc)
+        SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
+        // Ajout de HAUTEUR_HIP pour l'affichage écran par rapport à la matrice
+        SDL_RenderDrawPoint(rendu, elem_courant->coordonnee->x,  elem_courant->coordonnee->y + HAUTEUR_HIP);
+        SDL_RenderPresent(rendu);
+        SDL_Delay(2);
+        elem_courant=elem_courant->suivant;
+    }
+    return 0;
 }

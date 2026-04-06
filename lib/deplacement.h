@@ -44,13 +44,11 @@
  * @date 
  * @brief
  * @param dino
- * @param nuage
  * @param nb_pts
  * @param matrice
- * @param mvt
  */
 
-int horsNuage(t_dino *dino, t_coordonnee *nuage, int *nb_pts, int matrice[MAT_H][MAT_L]);
+int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]);
 
 int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]);
 
