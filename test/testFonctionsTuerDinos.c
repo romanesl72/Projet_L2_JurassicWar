@@ -140,7 +140,7 @@ int main(int argc, char * argv[]){
 
                     bombe.coor.x += vitesse*vectVitesse.u;
                     bombe.coor.y += vitesse*vectVitesse.v;
-                    vectVitesse.v += GRAVITE*vitesse;
+                    vectVitesse.v += GRAVITE_BOMBE*vitesse;
 
                     if (collisionFrontiereBombe(&bombe)) {
                         bombeLancee = 0;
