@@ -1,7 +1,9 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/types.h"
+#include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTirs.h"
 #include "../lib/placer_dinos.h"
+#include "../lib/types.h"
 #include <time.h>
 
 #define LARGEUR_FEN_JEU 1300
@@ -72,9 +74,8 @@ int main(int argc, char * argv[]){
             if(touchePressee){
                 tirEncours.pos.x = 50;
                 tirEncours.pos.y = 600;
-                // On lance la visée (on passe NULL pour les équipes car inutile ici)
-                
-                viserArcher(rendu, NULL, &tirEncours, &clavier, graviteMonde, NULL, NULL);
+
+                viserArcher(rendu, NULL, NULL, NULL, 0, &tirEncours, clavier, graviteMonde, NULL, NULL);
             }
         }
 
@@ -89,7 +90,7 @@ int main(int argc, char * argv[]){
         
         // Dessin du projectile
         if (tirEncours.actif) {
-            tracerFleche(rendu, &tirEncours);
+            tracerArme(rendu, &tirEncours);
         }
 
         SDL_RenderPresent(rendu);

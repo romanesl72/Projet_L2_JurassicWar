@@ -17,9 +17,10 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
     int i, r;
     int trop_proche = 0;
     int securite = 0;
+    int points_ajoutes_ce_tour = 0;
 
     // La boucle continue tant qu'on n'a pas 10 de chaque côté
-    while ((*nb_E1 < 10 || *nb_E2 < 10) && securite < 5000) {
+    while (points_ajoutes_ce_tour < 10 && securite < 5000) {
         trop_proche = 0;
         securite++;
         
@@ -46,6 +47,7 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
                 catalogue->zones_E1[*nb_E1].indice_nuage = r;
                 catalogue->zones_E1[*nb_E1].id_nuage = id_n;
                 (*nb_E1)++; // On incrémente le compteur réel du main
+                points_ajoutes_ce_tour++;
             }
             // Zone Droite
             else if ((dino.x > (2 * MAT_L / 3)) && (*nb_E2 < 10)) {
@@ -54,6 +56,7 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
                 catalogue->zones_E2[*nb_E2].indice_nuage = r;
                 catalogue->zones_E2[*nb_E2].id_nuage = id_n;
                 (*nb_E2)++;
+                points_ajoutes_ce_tour++;
             }
         }
     }

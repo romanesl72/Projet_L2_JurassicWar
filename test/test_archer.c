@@ -1,10 +1,11 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/tda_nuage.h"
+#include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
+#include "../lib/tda_nuage.h"
 #include "../lib/types.h"
-#include "../lib/fonctionsTirs.h"
 #include <time.h>
 
 #define LARGEUR_FEN_JEU 1300
@@ -16,7 +17,7 @@
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation des variables ---- */
-    int i, k;
+    int i, j, k;
     int enCours;
     int matrice[MAT_H][MAT_L];
     int nb_pts;
@@ -32,6 +33,9 @@ int main(int argc, char * argv[]){
     t_arme arc = {ARC, 20, 1.0f, 5.0f, 15.0f};
     t_tir tirEncours;
     tirEncours.actif = 0;
+    TTF_Font *police = NULL;
+
+    initialiserPolice(&police, "../pde/arial.ttf", 16);
 
     if (initialisationCorrecte()) {
         srand(time(NULL)); /* Initialisation de l'aléatoire */
@@ -58,16 +62,7 @@ int main(int argc, char * argv[]){
         nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
         generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
 
-        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);
-
-        printf("Chargement de la texture map...\n");
-        SDL_Texture *texMap;
-        chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
-        if (texMap == NULL) {
-            printf("ERREUR : Impossible de charger l'image de la map\n");
-        } else {
-            printf("Texture map chargee avec succes !\n");
-        }
+        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);        
 
         /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
         equipe1.n = 3;
@@ -84,13 +79,30 @@ int main(int argc, char * argv[]){
 
 
         /* Charger les images (Textures) */
-        SDL_Texture *texDinos[6];
-        chargerImage(rendu, &texDinos[0], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(rendu, &texDinos[1], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(rendu, &texDinos[2], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(rendu, &texDinos[3], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(rendu, &texDinos[4], "../img/dinoTransparent.png", &w, &h);
-        chargerImage(rendu, &texDinos[5], "../img/dinoTransparent.png", &w, &h);
+        printf("Chargement de la texture map...\n");
+        SDL_Texture *texMap = NULL, *texDinos[6], *texObjets[7];
+        char *nomsObjets[7] = {"../img/img_arc.png", "../img/img_arbalete.png", "../img/img_bombe.png", 
+                            "../img/img_fusil.png", "../img/img_revolver.png", "../img/img_potion.png", "../img/img_grappin.png"};
+
+        chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
+        if (texMap == NULL) {
+            printf("ERREUR : Impossible de charger l'image de la map\n");
+        } else {
+            printf("Texture map chargee avec succes !\n");
+        }
+        
+        equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+        equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+        
+        for(j=0; j<6; j++) {
+            chargerImage(rendu, &texDinos[j], "../img/dinoTransparent.png", &w, &h);
+            // On lie les textures aux structures joueurs
+            equipe1.texDinos[j] = texDinos[j];
+            equipe2.texDinos[j] = texDinos[j];
+        }
+        
+        
+        for(i=0; i<7; i++) chargerImage(rendu, &texObjets[i], nomsObjets[i], &w, &h);
 
         equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
         equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
@@ -129,7 +141,7 @@ int main(int argc, char * argv[]){
                     tirEncours.pos.y = equipe1.tab[0].pos.y + 15;
                     
                     /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-                    viserArcher(rendu, texMap, &tirEncours, &clavier, graviteMonde, &equipe1, &equipe2);
+                    AncienviserArcher(rendu, texMap, &tirEncours, &clavier, graviteMonde, &equipe1, &equipe2);
                 }
             }
             else{
@@ -165,7 +177,7 @@ int main(int argc, char * argv[]){
             }
 
             if(tirEncours.actif) {
-                tracerFleche(rendu, &tirEncours);
+                tracerArme(rendu, &tirEncours);
             }
 
             SDL_RenderPresent(rendu);

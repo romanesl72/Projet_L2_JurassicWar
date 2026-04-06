@@ -86,7 +86,7 @@ int mettreAJourVol(t_tir *tir, int matrice[MAT_H][MAT_L], float gravite, int id_
 }
 
 
-void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
+void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir) {
     if (!tir->actif) return;
     float longueur;
     float norme;
@@ -97,12 +97,16 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
     SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
     
     if (tir->arme_source.nom == FUSIL || tir->arme_source.nom == REVOLVER) {
-        SDL_RenderDrawPoint(zoneAffichage, (int)roundf(tir->pos.x), (int)roundf(tir->pos.y));
+        longueur = 10.0;
+        SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 150, 255);
     }
     else {
         longueur = 20.0; /* Longueur du trait */
-        norme = sqrt(tir->velo.u * tir->velo.u + tir->velo.v * tir->velo.v);
+        SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
     }
+
+    norme = sqrt(tir->velo.u * tir->velo.u + tir->velo.v * tir->velo.v);
+
     if (norme > 0.1f) {
         arriereX = tir->pos.x - (tir->velo.u / norme) * longueur;
         arriereY = tir->pos.y - (tir->velo.v / norme) * longueur;
@@ -111,9 +115,9 @@ void tracerFleche(SDL_Renderer *zoneAffichage, t_tir *tir) {
     }
 }
 
-void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase) {
+void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite) {
     int i;
-    float g_effet;
+    float g_reel = gravite;
     float precX;
     float precY;
 
@@ -122,7 +126,6 @@ void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float grav
     float simuVitY = tir->velo.v;
     float simuVitX = tir->velo.u;
 
-    g_effet  = graviteBase * tir->arme_source.poids_projectile;
 
     /* Trajectoire de couleur rouges */
     SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
@@ -133,7 +136,7 @@ void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float grav
 
         simuX += simuVitX;
         simuY += simuVitY;
-        simuVitY += g_effet;
+        simuVitY += g_reel;
 
         /* On dessine un trait entre chaque point simulé pour une belle courbe */
         SDL_RenderDrawLine(zoneAffichage, (int)roundf(precX), (int)roundf(precY), (int)roundf(simuX), (int)roundf(simuY));
@@ -142,8 +145,8 @@ void tracerTrajectoireArcher(SDL_Renderer *zoneAffichage, t_tir *tir, float grav
     }
 }
 
-/*
-void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
+
+void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
     
 
     tir->velo.u = tir->arme_source.puissance_propulsion;
@@ -178,7 +181,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
         SDL_RenderClear(zoneAffichage);
         
         if (texMap != NULL) {
-            SDL_Rect rectMap = {0, 100, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
+            SDL_Rect rectMap = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
             SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
         }
 
@@ -190,21 +193,19 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
             afficherDinos(zoneAffichage, e2);
         }
 
-        tracerFleche(zoneAffichage, tir);
+        tracerArme(zoneAffichage, tir);
 
-        tracerTrajectoireArcher(zoneAffichage, tir, g_effet);
+        tracerTrajectoireTir(zoneAffichage, tir, g_effet);
 
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(16);
 
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 
-
     tir->actif = 1; 
-}*/
+}
 
-void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
-    
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
     // Sécurité : si le pointeur clavier est NULL, on sort direct pour éviter le crash
     if (etatClavier == NULL) return;
 
@@ -218,11 +219,18 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
     while(enVisée) {
         SDL_PumpEvents();
 
-        // Gestion des contrôles
-        if (etatClavier[SDL_SCANCODE_UP])    tir->velo.v -= 0.1f;
-        if (etatClavier[SDL_SCANCODE_DOWN])  tir->velo.v += 0.1f;
-        if (etatClavier[SDL_SCANCODE_LEFT])  tir->velo.u -= 0.1f;
-        if (etatClavier[SDL_SCANCODE_RIGHT]) tir->velo.u += 0.1f;
+        if (etatClavier[SDL_SCANCODE_UP]){
+            tir->velo.v -= 0.1f;
+        }
+        if (etatClavier[SDL_SCANCODE_DOWN]){
+            tir->velo.v += 0.1f;
+        }
+        if (etatClavier[SDL_SCANCODE_LEFT]){
+            tir->velo.u -= 0.1f;
+        }
+        if (etatClavier[SDL_SCANCODE_RIGHT]){
+            tir->velo.u += 0.1f;
+        }
 
         // Bridage de la vitesse
         if (tir->velo.u > vMax) tir->velo.u = vMax;
@@ -232,6 +240,14 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
         SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
         SDL_RenderClear(zoneAffichage);
         
+        if (texObjets != NULL) {
+            afficherInventaire(zoneAffichage, texObjets, 7);
+        }
+
+        if (police != NULL && e1 != NULL && e2 != NULL) {
+            afficherMenuPVDinos(zoneAffichage, police, *e1, *e2);
+        }
+
         // On dessine la map avec le décalage de 100px (HIP)
         if (texMap != NULL) {
             SDL_Rect rectMap = {0, 100, 1300, 700}; 
@@ -247,10 +263,12 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
         
         // Simulation visuelle (on décale l'affichage de 100px vers le bas)
         t_tir tirVisu = *tir;
-        tirVisu.pos.y += 100; 
+        if (texMap != NULL){
+            tirVisu.pos.y += 100;
+        }
 
-        tracerTrajectoireArcher(zoneAffichage, &tirVisu, g_effet);
-        tracerFleche(zoneAffichage, &tirVisu);
+        tracerTrajectoireTir(zoneAffichage, &tirVisu, g_effet);
+        tracerArme(zoneAffichage, &tirVisu);
 
         SDL_RenderPresent(zoneAffichage);
 
@@ -262,8 +280,6 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, c
 
     tir->actif = 1; 
 }
-
-
 
 void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[MAT_H][MAT_L]) {
     t_dino *victime = recupererDinoNumero(equipe1, equipe2, numDinoTouche);

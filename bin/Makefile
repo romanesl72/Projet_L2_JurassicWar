@@ -14,13 +14,10 @@ EXECUTABLES = ./main_test \
 ./testAffichageMenuHIP \
 ./testTirsAffichageJeu \
 ./test_archer \
-./test_deplacement \
 ./testCollisions \
-./testDino \
 ./testFonctionsChangementTour \
 ./testFonctionsRebonds \
 ./testFonctionsTuerDinos \
-./testPlacement \
 ./testTirArmes \
 ./testRegression
 
@@ -28,22 +25,24 @@ EXECUTABLES = ./main_test \
 OBJETS_MAIN = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 
 OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
+OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o
 
-OBJETS_ARCHER = 			test_archer.o 					$(OBJETS_COMMUNS) gestion_zones.o fonctionsTirs.o fonctionsStructJoueur.o
-OBJETS_AFFICHAGE_HIP =		testAffichageMenuHIP.o 			$(OBJETS_COMMUNS) fonctionsMenuHIP.o gestion_zones.o fonctionsStructJoueur.o
-OBJETS_TIRSAFFICHAGE = 		testTirsAffichageJeu.o 			$(OBJETS_COMMUNS) gestion_zones.o fonctionsMenuHIP.o fonctionsTirs.o fonctionsRebonds.o fonctionsPlacementBombe.o fonctionsStructJoueur.o fonctionSoin.o
+OBJETS_ARCHER = 			test_archer.o 					$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o fonctionsMenuHIP.o
+OBJETS_AFFICHAGE_HIP =		testAffichageMenuHIP.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsMenuHIP.o
+OBJETS_TIRSAFFICHAGE = 		testTirsAffichageJeu.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsMenuHIP.o fonctionsTirs.o fonctionsRebonds.o fonctionsPlacementBombe.o fonctionSoin.o
 
 
-OBJETS_BOMBE_DINOS_TOURS = 	testBombeDinosTours.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsVerification.o fonctionsTuerDinos.o chargerMatrice.o
+OBJETS_BOMBE_DINOS_TOURS = 	testBombeDinosTours.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
 OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
 OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
 
-OBJETS_DEPLACEMENT = 		test_deplacement.o 				$(OBJETS_COMMUNS) gestion_zones.o deplacement.o regression.o collision_decor.o fonctionsChangementTour.o fonctionsStructJoueur.o
-OBJETS_DINO = 				testDino.o 						$(OBJETS_COMMUNS) deplacement.o regression.o collision_decor.o
-OBJETS_REBONDS = 			testFonctionsRebonds.o 			placer_dinos.o chargerMatrice.o fonctionsVerification.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o
+OBJETS_REBONDS = 			testFonctionsRebonds.o 			$(OBJETS_COMMUNS) fonctionsMenuHIP.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o
+
 OBJETS_REGRESSION = 		testRegression.o 				tda_nuage.o regression.o
-OBJETS_TIR = 				testTirArmes.o 					placer_dinos.o chargerMatrice.o fonctionsTirs.o
-OBJETS_TUER_DINOS = 		testFonctionsTuerDinos.o 		$(OBJETS_COMMUNS) gestion_zones.o fonctionsRebonds.o fonctionsStructJoueur.o fonctionsTuerDinos.o fonctionsPlacementBombe.o
+OBJETS_TIR = 				testTirArmes.o 					placer_dinos.o chargerMatrice.o fonctionsTirs.o fonctionsMenuHIP.o fonctionsStructJoueur.o
+OBJETS_TUER_DINOS = 		testFonctionsTuerDinos.o 		$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsRebonds.o fonctionsTuerDinos.o fonctionsPlacementBombe.o fonctionsMenuHIP.o
+
+
 
 all: $(EXECUTABLES)
 
@@ -73,9 +72,6 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testCollisions: $(OBJETS_COLLISIONS)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
-./test_deplacement: $(OBJETS_DEPLACEMENT)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testDino: $(OBJETS_DINO)

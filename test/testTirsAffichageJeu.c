@@ -143,7 +143,9 @@ int main(int argc, char * argv[]){
                 printf("Bombe a utilisé\n");
             }
             else if (clavier[SDL_SCANCODE_P]) {
+                printf("Soin : POTION\n");
                 utiliserPotion(tireur);
+                //afficherMenuPVDinos(rendu, police, equipe1, equipe2);
             }
             else if (clavier[SDL_SCANCODE_G]) {
                 printf("Grappin non implémenté\n");
@@ -156,7 +158,7 @@ int main(int argc, char * argv[]){
                 
                 printf("Ok1\n");
                 /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-                viserArcher(rendu, texMap, &tir, clavier, graviteMonde, &equipe1, &equipe2);
+                viserArcher(rendu, texMap, texObjets, police, 0, &tir, clavier, graviteMonde, &equipe1, &equipe2);
                 printf("Ok2\n");
             }
         
@@ -184,9 +186,11 @@ int main(int argc, char * argv[]){
         SDL_RenderCopy(rendu, texMap, NULL, &rectJeu);
 
         // DINOS (Position Y + 100)
-        for(i=0; i<3; i++) {
+        for(i=0; i<equipe1.n; i++) {
             SDL_Rect r1 = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
             SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d - D1], NULL, &r1);
+        }
+        for(i=0; i<equipe2.n; i++) {
             SDL_Rect r2 = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
             SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d - D1], NULL, &r2);
         }
@@ -195,7 +199,7 @@ int main(int argc, char * argv[]){
             // On décale aussi l'affichage de la flèche de 100px en Y
             t_tir tirAffichage = tir;
             tirAffichage.pos.y += HAUTEUR_HIP;
-            tracerFleche(rendu, &tirAffichage);
+            tracerArme(rendu, &tirAffichage);
         }
 
         SDL_RenderPresent(rendu);
