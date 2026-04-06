@@ -8,6 +8,19 @@
 #define LARGEUR_INVENTAIRE 650
 #define HAUTEUR_FEN_TOTALE (HAUTEUR_FEN_JEU + HAUTEUR_HIP)
 
+void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cache) {
+    SDL_Color blanc = {255,255,255,255};
+    char nomDino[20];
+
+    for (int i = 0; i < 6; i++) {
+        sprintf(nomDino, "Dino %d :", i+1);
+        SDL_Surface *surf = TTF_RenderText_Blended(police, nomDino, blanc);
+        cache[i].tex = SDL_CreateTextureFromSurface(rendu, surf);
+        cache[i].largeurTex = surf->w;
+        cache[i].hauteurTex = surf->h;
+        SDL_FreeSurface(surf);
+    }
+}
 
 void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur) {
     if (!police || !message) return;
@@ -29,12 +42,11 @@ void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, 
 void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets) {
     int i;
     int tailleCase = LARGEUR_INVENTAIRE / nbObjets;
-    
+
     for (i = 0; i < nbObjets; i++) {
         SDL_Rect rCase = {i * tailleCase, 0, tailleCase, HAUTEUR_HIP};
         
         // Fond de la case
-        SDL_SetRenderDrawColor(rendu, 40, 40, 40, 255);
         SDL_RenderFillRect(rendu, &rCase);
         
 
@@ -76,6 +88,7 @@ void afficherBarrePV(SDL_Renderer *rendu, t_dino dino, int x, int y) {
     SDL_SetRenderDrawColor(rendu, 200, 200, 200, 255);
     SDL_Rect rBordure = {x, y, largeurMax, hauteurBarre};
     SDL_RenderDrawRect(rendu, &rBordure);
+    SDL_SetRenderDrawColor(rendu, 40, 40, 40, 255);
 }
 
 void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2) {
@@ -85,7 +98,7 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
     int xBase = 660; // Juste après l'inventaire (650 + 10 de marge)
     int xPos;
 
-    /* --- Équipe 1 (Ligne du haut dans le HUD) --- */
+    // --- Équipe 1 (Ligne du haut dans le HUD) ---
     for (i = 0; i < e1.n; i++) {
         sprintf(buffer, "Dino %d :", i + 1);
         
@@ -98,7 +111,7 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
         afficherBarrePV(rendu, e1.tab[i], xPos + 70, 20);
     }
 
-    /* --- Équipe 2 (Ligne du bas dans le HUD) --- */
+    // --- Équipe 2 (Ligne du bas dans le HUD) --- 
     for (i = 0; i < e2.n; i++) {
         sprintf(buffer, "Dino %d :", i + 4); // i+4 pour correspondre aux IDs D4, D5, D6
         
@@ -107,6 +120,39 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
         
         // Appel de la barre de PV
         afficherBarrePV(rendu, e2.tab[i], xPos + 70, 60);
+    }
+}
+
+void afficherMenuPVDinosOp(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2, t_texte_cache *cache) {
+    int i;
+    SDL_Color blanc = {255, 255, 255, 255};
+    char buffer[20];
+    int xBase = 660; // Juste après l'inventaire (650 + 10 de marge)
+    SDL_Rect dest;
+
+    // --- Équipe 1 (Ligne du haut dans le HUD) ---
+    for (i = 0; i < e1.n; i++) {
+
+        dest.x = xBase + i * 210;
+        dest.y = 15;
+        dest.w = cache[i].largeurTex;
+        dest.h = cache[i].hauteurTex;
+        SDL_RenderCopy(rendu, cache[i].tex, NULL, &dest);
+
+        afficherBarrePV(rendu, e1.tab[i], dest.x + 70, 20);
+    }
+
+    // --- Équipe 2 (Ligne du bas dans le HUD) --- 
+    for (i = 0; i < e2.n; i++) {
+
+        dest.x = xBase + i * 210;
+        dest.y = 55;
+        dest.w = cache[i].largeurTex;
+        dest.h = cache[i].hauteurTex;
+        SDL_RenderCopy(rendu, cache[i+3].tex, NULL, &dest);
+        
+        // Appel de la barre de PV
+        afficherBarrePV(rendu, e2.tab[i], dest.x + 70, 60);
     }
 }
 

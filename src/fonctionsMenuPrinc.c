@@ -1,5 +1,6 @@
 #include "../lib/fonctionsMenuPrinc.h"
 #include "../lib/fonctionsPageJeu.h"
+#include "../lib/fonctionsPagesInformations.h"
 #include "../lib/fonctionsVerification.h"
 
 #include <math.h>
@@ -188,7 +189,7 @@ void afficherMenuPrincipal(SDL_Renderer *zoneMenu, SDL_Rect *boutons, SDL_Textur
 
 }
 
-void detecterEvenementsMenuPrincipal(int *enCours, SDL_Rect *boutons){
+int detecterEvenementsMenuPrincipal(SDL_Rect *boutons){
 
     SDL_Event evenement;
     int x,y;
@@ -197,32 +198,28 @@ void detecterEvenementsMenuPrincipal(int *enCours, SDL_Rect *boutons){
     while (SDL_PollEvent(&evenement)){
 
         if (evenement.type == SDL_QUIT){
-            *enCours = 0;
+            return 0;
         }
 
         if(evenement.type == SDL_MOUSEBUTTONDOWN) {
             x = evenement.button.x;
             y = evenement.button.y;
 
-            for (i = 1; i < 3; i++){
+            for (i = 0; i < 3; i++){
 
                 if(x >= boutons[i].x && x <= boutons[i].x + boutons[i].w && y >= boutons[i].y && y <= boutons[i].y + boutons[i].h){
-                    printf("Bouton %d cliqué  \n", i);
+                    return 2 + i;
                 }
-            }
-
-            // Lancer une partie quand on appuie sur le bouton démarrer
-            if(x >= boutons[0].x && x <= boutons[0].x + boutons[0].w && y >= boutons[0].y && y <= boutons[0].y + boutons[0].h){
-                *enCours = 2;
             }
 
             // Fermer la fenêtre quand on clique sur le bouton quitter
             if(x >= boutons[3].x && x <= boutons[3].x + boutons[3].w && y >= boutons[3].y && y <= boutons[3].y + boutons[3].h){
-                *enCours = 0;
+                return 0;
             }
 
         }
     }
+    return 1;
 }
 
 int creerMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir){
@@ -294,7 +291,7 @@ void ouvrirMenuPrincBombe(){
 
         while(enCours == 1) {
 
-            detecterEvenementsMenuPrincipal(&enCours, boutons);
+            enCours = detecterEvenementsMenuPrincipal(boutons);
             afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
 
         }
@@ -306,6 +303,12 @@ void ouvrirMenuPrincBombe(){
         if (enCours == 2){
             printf("Partie Lancée ! \n");
             lancerPartieBombe();
+        }
+        if (enCours == 3){
+            ouvrirFenInfos("Principales Règles du jeu","../res/reglesJeu.txt");
+        }
+        if (enCours == 4){
+            ouvrirFenInfos("Liste des touches","../res/listeTouches.txt");
         }
 
         TTF_Quit();
@@ -336,7 +339,7 @@ void ouvrirMenuPrinc(){
 
         while(enCours == 1) {
 
-            detecterEvenementsMenuPrincipal(&enCours, boutons);
+            enCours = detecterEvenementsMenuPrincipal(boutons);
             afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
 
         }
@@ -348,6 +351,12 @@ void ouvrirMenuPrinc(){
         if (enCours == 2){
             printf("Partie Lancée ! \n");
             lancerPartie();
+        }
+        if (enCours == 3){
+            ouvrirFenInfos("Principales Règles du jeu","../res/reglesJeu.txt");
+        }
+        if (enCours == 4){
+            ouvrirFenInfos("Liste des touches","../res/listeTouches.txt");
         }
 
         TTF_Quit();

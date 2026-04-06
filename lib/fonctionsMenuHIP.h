@@ -15,5 +15,15 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
 void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur);
 
 
+typedef struct {
+    SDL_Texture *tex;
+    int largeurTex; 
+    int hauteurTex;
+} t_texte_cache;
+
+void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cache);
+void afficherMenuPVDinosOp(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2, t_texte_cache *cache);
+
+
 
 #endif

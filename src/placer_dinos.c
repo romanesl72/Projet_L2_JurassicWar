@@ -67,7 +67,6 @@ void afficherDinosAvecJeu(SDL_Renderer* zoneAffichage, t_joueur * equipe){
         // Sécurité 2 : On peut aussi vérifier si les PV > 0
         if (equipe->texDinos != NULL && equipe->texDinos[i] != NULL) {
             
-            printf("OK\n");
             // Si tu as le décalage de 100px (HIP) dans viserArcher, 
             // n'oublie pas de l'ajouter ici ou de le gérer uniformément
             rectEquipe.x = equipe->tab[i].pos.x;

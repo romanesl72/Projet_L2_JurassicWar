@@ -184,7 +184,7 @@ void detecterEvenementsPageJeu(
     t_joueur *equipe1, 
     t_joueur *equipe2, 
     t_case dinoCourant, 
-    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] ){
+    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_texte_cache *cache ){
 
     const Uint8 *etatClavier;
     SDL_Event evenement;
@@ -201,7 +201,7 @@ void detecterEvenementsPageJeu(
         *bombeLancee = 1;
         *nombreRebonds = 0;
 
-        choixHauteurLancerDinoCourantHIP(zoneAffichage, texMap, texObjets, policeMenuHIP, rectFen, &etatClavier, bombe, vectVitesse, equipe1, equipe2, dinoCourant, matriceTerrain);
+        choixHauteurLancerDinoCourantHIP(zoneAffichage, texMap, texObjets, policeMenuHIP, rectFen, &etatClavier, bombe, vectVitesse, equipe1, equipe2, dinoCourant, matriceTerrain, cache);
     }
 }
 
@@ -231,39 +231,36 @@ void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, 
 }
 
 /* créer des fonctions d'affichage avec toutes les armes : bombe et tirs + menuHIP */
-void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP){
+void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
 
     SDL_RenderClear(zoneAffichage);
-    SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
-
-    /* Affichage de l'inventaire */
-    afficherInventaire(zoneAffichage, texObjets, 7);
-    afficherMenuPVDinos(zoneAffichage, policeMenuHIP, *equipe1, *equipe2);
 
     SDL_RenderCopy(zoneAffichage, texMap, NULL, rectFen);
 
     afficherDinosAvecJeu(zoneAffichage, equipe1);
     afficherDinosAvecJeu(zoneAffichage, equipe2);
 
+    /* Affichage de l'inventaire */
+    afficherInventaire(zoneAffichage, texObjets, 7);
+    afficherMenuPVDinosOp(zoneAffichage, policeMenuHIP, *equipe1, *equipe2, cache);
+
     SDL_RenderPresent(zoneAffichage);
 
 }
 
-void afficherJeuAvecArmes(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP){
+void afficherJeuAvecArmes(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
 
     SDL_RenderClear(zoneAffichage);
-    SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
-
-    /* Affichage de l'inventaire */
-    afficherInventaire(zoneAffichage, texObjets, 7);
-    afficherMenuPVDinos(zoneAffichage, policeMenuHIP, *equipe1, *equipe2);
-
     SDL_RenderCopy(zoneAffichage, texMap, NULL, rectFen);
 
     tracerBombeHIP(zoneAffichage, bombe);
 
     afficherDinosAvecJeu(zoneAffichage, equipe1);
     afficherDinosAvecJeu(zoneAffichage, equipe2);
+
+    /* Affichage de l'inventaire */
+    afficherInventaire(zoneAffichage, texObjets, 7);
+    afficherMenuPVDinosOp(zoneAffichage, policeMenuHIP, *equipe1, *equipe2, cache);
 
     SDL_RenderPresent(zoneAffichage);
 
@@ -372,7 +369,7 @@ void lancerBombeSansHIP(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRe
 /* Fonction pour le lancer de la bombe adaptée au menu des armes */
 void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, 
     t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours,
-    SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP
+    SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache
     ){
 
     const float vitesse = 1.0f/250.0f;
@@ -392,6 +389,7 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
 
             if (collisionFrontiereBombe(bombe)) {
                 *bombeLancee = -1;
+                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 printf("Collision avec la frontière. \n");
 
             }
@@ -409,7 +407,7 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
                     dinoTouche = AIR;
                 }
 
-                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP);
+                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 
             }
             if (collisionTerrainBombe(matriceTerrain, bombe, vectVitesse)) {
@@ -418,12 +416,13 @@ void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, 
 
                 if (*nombreRebonds > 1){
                     *bombeLancee = -1;
+                    afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 }
             }
 
             if (*bombeLancee == 1) {
 
-                afficherJeuAvecArmes(equipe1, equipe2, bombe, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP);
+                afficherJeuAvecArmes(equipe1, equipe2, bombe, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
             
             if (*bombeLancee == -1){
@@ -533,24 +532,32 @@ void lancerPartie(){
             return;
         }
 
+        /* Initialiser images du menu */
+        t_texte_cache cache[6];
+        chargerTexteDinos(zoneAffichage, policeMenuHIP, cache);
+
         initialiserRayonBombe(&bombe, RAYON);
         initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
         initialiserMatrice(&matriceTerrain);
         initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
 
-        afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP);
+        SDL_SetRenderDrawColor(zoneAffichage, 40, 40, 40, 255);
+        afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
 
         Uint32 tempsPrecedent = SDL_GetTicks();
         
         while(enCours) {
 
-            detecterEvenementsPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain);
-            lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP);
+            detecterEvenementsPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache);
+            lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
 
         }
 
         // --- NETTOYAGE --- 
 
+        for (int i = 0; i < 6; i++) {
+            SDL_DestroyTexture(cache[i].tex);
+        }
         destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, texObjets, policeMenuHIP, zoneAffichage, fenJeu);
         IMG_Quit();
         TTF_Quit();

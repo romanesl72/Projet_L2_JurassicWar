@@ -59,7 +59,7 @@ int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFe
 
 }
 
-void detecterEvenementFenInfos(int *enCours, SDL_Rect *boutonRetour){
+int detecterEvenementFenInfos(SDL_Rect *boutonRetour){
 
     SDL_Event evenement;
     int x,y;
@@ -67,7 +67,7 @@ void detecterEvenementFenInfos(int *enCours, SDL_Rect *boutonRetour){
     while (SDL_PollEvent(&evenement)){
 
         if (evenement.type == SDL_QUIT){
-            *enCours = 0;
+            return 0;
         }
 
         if(evenement.type == SDL_MOUSEBUTTONDOWN) {
@@ -76,10 +76,11 @@ void detecterEvenementFenInfos(int *enCours, SDL_Rect *boutonRetour){
 
             // Fermer la fenêtre quand on clique sur le bouton quitter
             if(x >= boutonRetour->x && x <= boutonRetour->x + boutonRetour->w && y >= boutonRetour->y && y <= boutonRetour->y + boutonRetour->h){
-                *enCours = 2;
+                return 2;
             }
         }
     }
+    return 1;
 }
 
 char* lireInfosFichier(char *nomFichier){
@@ -210,14 +211,14 @@ void ouvrirFenInfos(char *nomFen, char *nomFichier){
         }
 
         while(enCours == 1) {
-            detecterEvenementFenInfos(&enCours, &boutonRetour);
+            enCours = detecterEvenementFenInfos(&boutonRetour);
             afficherFenInfos(zoneInfos, &boutonRetour, nomFen, nomFichier);
         }
 
         detruireFenInfos(&fenInfos, &zoneInfos);
 
         if (enCours == 2){
-            ouvrirMenuPrincBombe();
+            ouvrirMenuPrinc();
         }
 
         TTF_Quit();

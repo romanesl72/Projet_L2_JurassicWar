@@ -524,7 +524,7 @@ void choixHauteurLancerDinoCourant(SDL_Renderer* zoneAffichage, SDL_Texture *tex
     } while(!(*etatClavier)[SDL_SCANCODE_SPACE]);
 }
 
-void choixHauteurLancerDinoCourantHIP(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
+void choixHauteurLancerDinoCourantHIP(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rect, const Uint8 **etatClavier, t_bombe *bombe, t_vect *vectVitesse, t_joueur * equipe1, t_joueur * equipe2, t_case numDinoCourant,  t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_texte_cache *cache){
     
     t_cote cote = recupererDinoDirection(equipe1, equipe2, numDinoCourant);
     t_cote ancienCote = cote;
@@ -585,16 +585,15 @@ void choixHauteurLancerDinoCourantHIP(SDL_Renderer* zoneAffichage, SDL_Texture *
 
         /* Affichage de la map, de la bombe, des dinos, de la trajectoire */
         SDL_RenderClear(zoneAffichage);
-        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
-
-        afficherInventaire(zoneAffichage, texObjets, 7);
-        afficherMenuPVDinos(zoneAffichage, policeMenuHIP, *equipe1, *equipe2);
         SDL_RenderCopy(zoneAffichage, texMap, NULL, rect);
 
         tracerBombeHIP(zoneAffichage, bombe);
         afficherDinosAvecJeu(zoneAffichage, equipe1);
         afficherDinosAvecJeu(zoneAffichage, equipe2);
         tracerTrajectoireLancerHIP(zoneAffichage, &(bombe->coor), vectVitesse);
+
+        afficherInventaire(zoneAffichage, texObjets, 7);
+        afficherMenuPVDinosOp(zoneAffichage, policeMenuHIP, *equipe1, *equipe2, cache);
 
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(4);

@@ -1,5 +1,6 @@
 #include "../lib/fonctionsMenuPrinc.h"
 #include "../lib/fonctionsPageJeu.h"
+#include "../lib/fonctionsPagesInformations.h"
 #include "../lib/fonctionsVerification.h"
 
 #include <SDL2/SDL_image.h>
@@ -34,8 +35,7 @@ int main(int argc, char *argv[]) {
         }
 
         while(enCours == 1) {
-
-            detecterEvenementsMenuPrincipal(&enCours, boutons);
+            enCours = detecterEvenementsMenuPrincipal(boutons);
             afficherMenuPrincipal(zoneMenu, boutons, texImg, texImgMiroir);
 
         }
@@ -47,6 +47,12 @@ int main(int argc, char *argv[]) {
         if (enCours == 2){
             printf("Partie Lancée ! \n");
             lancerPartieBombe();
+        }
+        if (enCours == 3){
+            ouvrirFenInfos("Principales Règles du jeu","../res/reglesJeu.txt");
+        }
+        if (enCours == 4){
+            ouvrirFenInfos("Liste des touches","../res/listeTouches.txt");
         }
 
         TTF_Quit();
