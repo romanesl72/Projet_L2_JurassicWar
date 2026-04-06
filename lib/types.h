@@ -136,6 +136,7 @@ typedef struct {
     int hors_nuage;             /**<  */
     int wait;                   /**< Petite pause pour ne pas sauter deux fois d'un coup*/
     int taille_nuage[5];        /**< donne la taille de chaque nuage */
+    int sens;                   /**< donne le sens de déplacement 1 à droite et -1 à gauche */
     t_coordonnee coteProche[5]; /**< donne le premier et le dernier x de chaque nuage */
 } t_deplacement;
 

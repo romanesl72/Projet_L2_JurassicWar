@@ -45,3 +45,11 @@ int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
 
     return contact;
 }
+
+int collision_cote(t_dino dino, int matrice[MAT_H][MAT_L]){
+    int i;
+    for(i=0;i<TAILLE_DINO;i++){
+        if(matrice[dino.pos.y+i][dino.pos.x+TAILLE_DINO]==TERRE)return 1;
+    }
+    return 0;
+}

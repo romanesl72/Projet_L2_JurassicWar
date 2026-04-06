@@ -50,6 +50,8 @@
 
 int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]);
 
+int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens);
+
 int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]);
 
 

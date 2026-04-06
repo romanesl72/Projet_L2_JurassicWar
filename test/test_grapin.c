@@ -1,6 +1,7 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/types.h"
 #include "../lib/grapin.h"
+#include "../lib/tda_file.h"
 #include "../lib/tda_nuage.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/placer_dinos.h"
@@ -32,7 +33,7 @@ int main(int argc, char * argv[]){
 
     /* ---- 2. Chargement de la Map et Placement ---- */
     int matrice[MAT_H][MAT_L];
-    int nb_pts, w, h, i;
+    int nb_pts, w, h, i, sens=1;
     int trouves_E1 = 0, trouves_E2 = 0;
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
@@ -54,9 +55,6 @@ int main(int argc, char * argv[]){
     nuageDetruire(&nuages_stockes[1]);
 
     t_joueur equipe1, equipe2;
-    equipe1.n = 3; equipe2.n = 3;
-    equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-    equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
 
     /* ---- 4. Initialisation des Equipes ---- */
     initialiserContenuJoueur(&equipe1);
@@ -80,7 +78,7 @@ int main(int argc, char * argv[]){
 
     /* ---- 3. Chargement des Textures ---- */
     SDL_Texture *texMap = NULL;
-    SDL_Texture *texDinos[6]; // Tableau pour les 6 types de dinos
+    SDL_Texture *texDinos[6]={NULL}; // Tableau pour les 6 types de dinos
     SDL_Texture *texObjets[7] = {NULL};
 
     char *nomsObjets[7] = {
@@ -95,10 +93,11 @@ int main(int argc, char * argv[]){
 
     dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
     supprimer_matrice_dino(dinoActuel, matrice);
+    dinoActuel->id_nuage=1;
+    dinoActuel->indice_nuage=30;
     nuage= nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
-    
-    dinoActuel->indice_nuage=400;
     dinoActuel->pos=nuage[dinoActuel->indice_nuage];
+    
     remplir_matrice_dino(dinoActuel, dinoActuel->pos, matrice);
 
     for(int i = 0; i < 7; i++) {
@@ -122,28 +121,55 @@ int main(int argc, char * argv[]){
             if(e.type == SDL_QUIT) enCours = 0;
         }
 
-        state = SDL_GetKeyboardState(NULL);
+        // PROTECTION CRITIQUE
+        if(dinoActuel != NULL) {
+            state = SDL_GetKeyboardState(NULL);
 
-        afficher(rendu, police, texMap, texDinos, texObjets, nomsObjets, equipe1, equipe2);
+            // On affiche l'état actuel des équipes
+            afficher(rendu, police, texMap, texDinos, texObjets, nomsObjets, equipe1, equipe2);
 
-        if (state[SDL_SCANCODE_G]) {
-            grapin(matrice, rendu, &dinoActuel, state, texMap, police, texDinos, texObjets, nomsObjets, equipe1, equipe2);
+            // On ne lance le grappin que si le dinosaure existe toujours
+            if (state[SDL_SCANCODE_G]) {
+                grapin(matrice, rendu, &dinoActuel, state, texMap, police, texDinos, texObjets,nomsObjets, &equipe1, &equipe2 , &nb_pts, &nuage, 2, nomNuage);
+            }
+
+            SDL_RenderPresent(rendu);
+            SDL_Delay(16);
+        } else {
+            // Le dinosaure est mort, on peut soit quitter, soit changer de tour
+            printf("Plus de dinosaure actif. Fin du test.\n");
+            enCours = 0; 
         }
-
-        SDL_RenderPresent(rendu);
-        SDL_Delay(16);
     }
 
     /* ---- 5. Nettoyage ---- */
-    /* ---- 6. Nettoyage ---- */
+    detruireFile();
     nuageDetruire(&nuage);
+    nuage=NULL;
     detruireContenuJoueur(&equipe1);
     detruireContenuJoueur(&equipe2);
-    for(int k=0; k<6; k++) SDL_DestroyTexture(texDinos[k]);
-    TTF_CloseFont(police);
-    SDL_DestroyTexture(texMap);
-    SDL_DestroyRenderer(rendu);
-    SDL_DestroyWindow(fenetre);
+    
+    for(int k = 0; k < 6; k++) {
+        if(texDinos[k] != NULL) {
+            SDL_DestroyTexture(texDinos[k]);
+            texDinos[k] = NULL;
+        }
+    }
+
+    for(int i = 0; i < 7; i++) {
+        if(texObjets[i] != NULL) {
+            SDL_DestroyTexture(texObjets[i]);
+            texObjets[i] = NULL;
+        }
+    }
+    
+    if(texMap != NULL) SDL_DestroyTexture(texMap);
+    if(police != NULL) TTF_CloseFont(police);
+    
+    // Détruire le moteur de rendu AVANT la fenêtre
+    if(rendu != NULL) SDL_DestroyRenderer(rendu);
+    if(fenetre != NULL) SDL_DestroyWindow(fenetre);
+
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

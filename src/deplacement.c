@@ -25,9 +25,53 @@ int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]) {
     return 0; 
 }
 
+int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens){
+    int d1,d2,ecart;
+    int ac_id_nuage, ac_indice;
+    int nouvel_id = dino->id_nuage + sens;
+        
+    if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
+        t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
+        
+        if(nv_nuage != NULL){
+            d1 = dino->pos.x;
+
+            // Détermine le point de bordure le plus proche du nouveau nuage
+            d2 = (sens == 1) ? nv_nuage[0].x : nv_nuage[*nb_pts - 1].x;
+            
+            ecart = abs(d2 - d1);
+
+            // Transfert de mémoire sécurisé
+            nuageDetruire(nuage);
+            *nuage = nv_nuage;
+            ac_id_nuage=dino->id_nuage ;
+            dino->id_nuage = nouvel_id;
+            // Positionnement sur le nouveau nuage avec compensation d'écart
+            ac_indice=dino->indice_nuage;
+            dino->indice_nuage = (sens == 1) ? (0 + ecart) : (*nb_pts - 1 - ecart);
+            printf("id=%d\n,indice=%d\n",dino->id_nuage,dino->indice_nuage);
+            // Sécurité bornes
+            if (dino->indice_nuage < 0) dino->indice_nuage = 0;
+            if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
+
+            if((*nuage)[dino->indice_nuage].y<(dino->pos.y-TAILLE_DINO)){
+                printf("\ndino=%d\nnuage=%d\n",dino->pos.y,(*nuage)[dino->indice_nuage].y);
+                dino->id_nuage=ac_id_nuage;
+                dino->indice_nuage=ac_indice;
+                nuageDetruire(nuage);
+                *nuage = nuage_de_points(nb_pts, nomNuage[dino->id_nuage]);;
+                return 0;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]){
     // Si le pied touche l'eau (EAU = -1 dans votre enum t_case)
-    if(dino->pos.y>=(MAT_H-80)) {
+    
+    if(matrice[dino->pos.y+30][dino->pos.x+15]==-1) {
         dino->etat = 0; 
         dino->pv = 0;
         dino->deplacement->hors_nuage = 1;
@@ -46,34 +90,13 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
 
     // Phase 1 : Initialisation de la chute et chargement du nouveau nuage
     if (dino->deplacement->tomber == 1) {
-        int nouvel_id = dino->id_nuage + sens;
         
-        if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
-            t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
-            
-            if(nv_nuage != NULL){
-                d1 = dino->pos.x;
-                // Détermine le point de bordure le plus proche du nouveau nuage
-                d2 = (sens == 1) ? nv_nuage[0].x : nv_nuage[*nb_pts - 1].x;
-                ecart = abs(d2 - d1);
-
-                // Transfert de mémoire sécurisé
-                nuageDetruire(nuage);
-                *nuage = nv_nuage; 
-                dino->id_nuage = nouvel_id;
-                
-                // Positionnement sur le nouveau nuage avec compensation d'écart
-                dino->indice_nuage = (sens == 1) ? (0 + ecart) : (*nb_pts - 1 - ecart);
-                
-                // Sécurité bornes
-                if (dino->indice_nuage < 0) dino->indice_nuage = 0;
-                if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
-
-                dino->pos.x = (*nuage)[dino->indice_nuage].x;
-                dino->deplacement->indice_reel = (float)dino->indice_nuage;
-                dino->deplacement->tomber = 2; // Passage à la chute physique
-            }
-        } else {
+        if (replacementNuage(dino, nb_pts, nuage,nb_nuage, nomNuage,sens)) {
+            dino->pos.x = (*nuage)[dino->indice_nuage].x;
+            dino->deplacement->indice_reel = (float)dino->indice_nuage;
+            dino->deplacement->tomber = 2; // Passage à la chute physique
+        }
+        else {
             dino->deplacement->tomber = 2; // tombe quand même
         }
     }
@@ -98,7 +121,7 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
 
 void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
     float a, b;
-    int booleen=horsNuage(dino, *nuage, nb_pts, matrice);
+    int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_LEFT]){
         regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
@@ -107,7 +130,7 @@ void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
         dino->deplacement->indice_reel -= pas;
         dino->indice_nuage = (int)dino->deplacement->indice_reel;
         noyade(dino,matrice);
-        booleen=horsNuage(dino, *nuage, nb_pts, matrice);
+        booleen=horsNuage(dino, *nb_pts, matrice);
         if(booleen){
         dino->deplacement->tomber = 1;
         tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
@@ -122,7 +145,7 @@ void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
 
 void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
     float a, b;
-    int booleen=horsNuage(dino, *nuage, nb_pts, matrice);
+    int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_RIGHT]){
         regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
@@ -221,7 +244,7 @@ void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int 
 
     // 2. DÉTECTION DE COLLISION IMMÉDIATE
     // On vérifie si la position actuelle touche l'eau.
-    if (horsNuage(dino, *nuage, nb_pts, matrice)) {
+    if (horsNuage(dino, *nb_pts, matrice)) {
         if (dino->etat == 0) { // Si horsNuage a détecté l'eau
             supprimer_matrice_dino(dino, matrice);
         }

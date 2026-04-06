@@ -45,6 +45,8 @@ void ajouter(t_coordonnee v);
 
 void retirer(t_coordonnee *v);
 
+void detruireFile();
+
 /**
  * @fn int filevide(void);
  * @author Solène Orieux
@@ -55,5 +57,7 @@ void retirer(t_coordonnee *v);
 int filevide(void);
 
 int afficherFile(SDL_Renderer *rendu);
+
+t_coordonnee *lireTete();
 
 #endif

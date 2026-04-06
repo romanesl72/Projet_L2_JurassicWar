@@ -30,6 +30,15 @@
  */
 int collision_grapin(t_coordonnee pos, int matrice[MAT_H][MAT_L]);
 
+int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, 
+    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+    t_joueur *equipe1, t_joueur *equipe2);
+
+void balancier(int matrice[MAT_H][MAT_L], t_dino *dino, SDL_Renderer* zoneAffichage, 
+               const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, 
+               SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], 
+               t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation);
+               
 /**
  * @fn float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state);
  * @author Solène Orieux
@@ -76,7 +85,11 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[MAT_H][MAT
  * @param distance_parcourue
  * @param zoneAffichage pointeur sur la zone d'affichage
  */
-int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, int *collision, const Uint8 *state, int distance_parcourue, SDL_Renderer* zoneAffichage);
+
+
+int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, const Uint8 *state, int distance_parcourue, 
+     SDL_Renderer* zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[]);
+
 
 /**
  * @fn int grapin(int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, t_dino **dino, const Uint8 *state);
@@ -96,7 +109,8 @@ int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, int *collision, const Uint8
  * @param equipe2
  */
 int grapin(int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, t_dino **dino, 
-     const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
-     SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
-     t_joueur equipe1, t_joueur equipe2);
+           const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
+           SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+           t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
+           int nb_nuage, char *nomNuage[]);
 #endif

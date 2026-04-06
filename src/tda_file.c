@@ -8,6 +8,7 @@ t_element_file* tete = NULL;
 t_element_file* queue = NULL;
 
 void initfile(void) {
+    detruireFile();
     tete = NULL;
     queue = NULL;
 }
@@ -55,18 +56,39 @@ t_coordonnee *lire(){
     return NULL;
 }
 
+void detruireFile() {
+    t_element_file* courant = tete;
+    t_element_file* a_supprimer;
+
+    while (courant != NULL) {
+        a_supprimer = courant;
+        courant = courant->suivant;
+
+        if (a_supprimer->coordonnee != NULL) {
+            free(a_supprimer->coordonnee);
+        }
+        free(a_supprimer);
+    }
+
+    tete = NULL;
+    queue = NULL;
+}
+
 int afficherFile(SDL_Renderer *rendu){
     if(filevide())return 1;
     t_element_file *elem_courant=tete;
     
     while (elem_courant!=NULL){
-        // Dessin du fil point par point (blanc)
         SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
         // Ajout de HAUTEUR_HIP pour l'affichage écran par rapport à la matrice
-        SDL_RenderDrawPoint(rendu, elem_courant->coordonnee->x,  elem_courant->coordonnee->y + HAUTEUR_HIP);
+        SDL_RenderDrawLine(rendu, (int)queue->coordonnee->x, (int)queue->coordonnee->y+HAUTEUR_HIP, elem_courant->coordonnee->x,  elem_courant->coordonnee->y+HAUTEUR_HIP);
         SDL_RenderPresent(rendu);
         SDL_Delay(2);
         elem_courant=elem_courant->suivant;
     }
     return 0;
+}
+
+t_coordonnee *lireTete(){
+    if(!filevide())return tete->coordonnee;
 }
