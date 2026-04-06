@@ -216,20 +216,22 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
     float vMax = tir->arme_source.vitesse_max;
 
     int enVisée = 1;
+    printf("Position tir depart : x=%f, y=%f\n", tir->pos.x, tir->pos.y);
     while(enVisée) {
-        SDL_PumpEvents();
+        SDL_Event e;
+        while(SDL_PollEvent(&e)); 
 
         if (etatClavier[SDL_SCANCODE_UP]){
-            tir->velo.v -= 0.1f;
+            tir->velo.v -= 0.5f;
         }
         if (etatClavier[SDL_SCANCODE_DOWN]){
-            tir->velo.v += 0.1f;
+            tir->velo.v += 0.5f;
         }
         if (etatClavier[SDL_SCANCODE_LEFT]){
-            tir->velo.u -= 0.1f;
+            tir->velo.u -= 0.5f;
         }
         if (etatClavier[SDL_SCANCODE_RIGHT]){
-            tir->velo.u += 0.1f;
+            tir->velo.u += 0.5f;
         }
 
         // Bridage de la vitesse

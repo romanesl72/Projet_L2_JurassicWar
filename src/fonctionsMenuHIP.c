@@ -125,8 +125,6 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
 
 void afficherMenuPVDinosOp(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2, t_texte_cache *cache) {
     int i;
-    SDL_Color blanc = {255, 255, 255, 255};
-    char buffer[20];
     int xBase = 660; // Juste après l'inventaire (650 + 10 de marge)
     SDL_Rect dest;
 
