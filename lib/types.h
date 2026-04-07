@@ -132,8 +132,8 @@ typedef struct {
     int indice_nuage_temp;      /**< Position temporaire dans le prochain nuage */
     float indice_reel;          /**< Pour le déplacement */
     int tab_res[4];             /**< pour les colisions */
-    float v_y;                  /**< pour les sauts */
-    int hors_nuage;             /**<  */
+    float v_y;                  /**< force du saut*/
+    int hors_nuage;             /**< Vaut 1 si le dinosaure est en dehors du nuage, 0 sinon*/
     int wait;                   /**< Petite pause pour ne pas sauter deux fois d'un coup*/
     int taille_nuage[5];        /**< donne la taille de chaque nuage */
     int sens;                   /**< donne le sens de déplacement 1 à droite et -1 à gauche */
@@ -157,7 +157,7 @@ typedef struct {
     int etat;               /**< Vivant ou Mort */
     int pv;                 /**< Points de vie restant */
     int memoire[30][30];    /**< Permet de mémoriser Ce qu'il y avait dans la matrice avant le dino */
-    t_deplacement *deplacement;
+    t_deplacement *deplacement; /**< Contient toutes les infos utiles au déplacements */
 } t_dino;
 
 /**
@@ -287,8 +287,8 @@ typedef struct {
 */
 
 typedef struct element{
-	t_coordonnee *coordonnee; 
-	struct element* suivant;
+	t_coordonnee *coordonnee; /**< coordonnée (x,y) */
+	struct element* suivant;  /**< élément suivant de la file */
 } t_element_file;
 
 
