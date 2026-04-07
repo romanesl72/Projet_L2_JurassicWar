@@ -2,7 +2,9 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsStructJoueur.h"
+
 #include <math.h>
+#include <stdio.h>
 
 
 void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme) {
@@ -214,12 +216,16 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
 
     float g_effet = gravite * tir->arme_source.poids_projectile;
     float vMax = tir->arme_source.vitesse_max;
+    SDL_Rect rectMap = {0, 100, 1300, 700};
 
     int enVisée = 1;
     printf("Position tir depart : x=%f, y=%f\n", tir->pos.x, tir->pos.y);
     while(enVisée) {
         SDL_Event e;
         while(SDL_PollEvent(&e)); 
+    int enVisee = 1;
+    while(enVisee) {
+        SDL_PumpEvents();
 
         if (etatClavier[SDL_SCANCODE_UP]){
             tir->velo.v -= 0.5f;
@@ -239,20 +245,10 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
         if (tir->velo.u < -vMax) tir->velo.u = -vMax;
 
         // Rendu
-        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
         SDL_RenderClear(zoneAffichage);
-        
-        if (texObjets != NULL) {
-            afficherInventaire(zoneAffichage, texObjets, 7);
-        }
-
-        if (police != NULL && e1 != NULL && e2 != NULL) {
-            afficherMenuPVDinos(zoneAffichage, police, *e1, *e2);
-        }
 
         // On dessine la map avec le décalage de 100px (HIP)
         if (texMap != NULL) {
-            SDL_Rect rectMap = {0, 100, 1300, 700}; 
             SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
         }
 
@@ -272,10 +268,18 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
         tracerTrajectoireTir(zoneAffichage, &tirVisu, g_effet);
         tracerArme(zoneAffichage, &tirVisu);
 
+        if (texObjets != NULL) {
+            afficherInventaire(zoneAffichage, texObjets, 7);
+        }
+
+        if (police != NULL && e1 != NULL && e2 != NULL) {
+            afficherMenuPVDinos(zoneAffichage, police, *e1, *e2);
+        }
+
         SDL_RenderPresent(zoneAffichage);
 
         // Quitter la boucle sur ESPACE
-        if (etatClavier[SDL_SCANCODE_SPACE]) enVisée = 0;
+        if (etatClavier[SDL_SCANCODE_SPACE]) enVisee = 0;
         
         SDL_Delay(16);
     }

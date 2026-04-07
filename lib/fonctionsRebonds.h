@@ -34,11 +34,11 @@
 #define VITESSE_Y -90
 
 /**
- * @def GRAVITE
+ * @def GRAVITE_BOMBE
  * @brief Gravite choisie pour la bombe.
 */
 
-#define GRAVITE 140
+#define GRAVITE_BOMBE 140
 
 /**
  * @def COEF_RESTITUTION

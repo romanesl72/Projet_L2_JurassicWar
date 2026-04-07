@@ -305,7 +305,7 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
 
         courant.u += dt*vectVitesse->u;
         courant.v += dt*vitY;
-        vitY += GRAVITE*dt;
+        vitY += GRAVITE_BOMBE*dt;
 
         if (dansLimites(courant.u, courant.v)){
             SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v), roundf(courant.u), roundf(courant.v));
@@ -334,7 +334,7 @@ void tracerTrajectoireLancerHIP(SDL_Renderer *zoneAffichage, t_coordonnee_calcul
 
         courant.u += dt*vectVitesse->u;
         courant.v += dt*vitY;
-        vitY += GRAVITE*dt;
+        vitY += GRAVITE_BOMBE*dt;
 
         if (dansLimites(courant.u, courant.v)){
             SDL_RenderDrawLine(zoneAffichage, roundf(precedent.u), roundf(precedent.v) + HAUTEUR_HIP, roundf(courant.u), roundf(courant.v) + HAUTEUR_HIP);
