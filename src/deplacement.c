@@ -119,56 +119,40 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
     
 }
 
-void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state, int sens, int booleen){
     float a, b;
-    printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
+    regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
+    
+    float pas = VITESSE_BASE * (1.0f + sens*(a * 0.5f));
+    dino->deplacement->indice_reel += sens*pas;
+    dino->indice_nuage = (int)dino->deplacement->indice_reel;
+    noyade(dino,matrice);
+    booleen=horsNuage(dino, *nb_pts, matrice);
+    if(booleen){
+        dino->deplacement->tomber = 1;
+        tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, sens); 
+    }
+    else {
+        supprimer_matrice_dino(dino, matrice);
+        dino->pos = (*nuage)[dino->indice_nuage];
+        remplir_matrice_dino(dino, dino->pos, matrice);
+    }
+}
+
+void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+    
     int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_LEFT]){
-        regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
-        
-        float pas = VITESSE_BASE * (1.0f - (a * 0.5f));
-        dino->deplacement->indice_reel -= pas;
-        dino->indice_nuage = (int)dino->deplacement->indice_reel;
-        noyade(dino,matrice);
-        booleen=horsNuage(dino, *nb_pts, matrice);
-        if(booleen){
-            dino->deplacement->tomber = 1;
-            tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
-        }
-        else {
-            supprimer_matrice_dino(dino, matrice);
-            dino->pos = (*nuage)[dino->indice_nuage];
-            remplir_matrice_dino(dino, dino->pos, matrice);
-        }
+        marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, -1, booleen);
     }
 }
 
 void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
-    float a, b;
-    printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
     int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_RIGHT]){
-        regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
-        
-        float pas = VITESSE_BASE * (1.0f + (a * 0.5f));
-        dino->deplacement->indice_reel += pas;
-        dino->indice_nuage = (int)dino->deplacement->indice_reel;
-        printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
-        printf("\noyade=%d\n",noyade(dino,matrice));
-        if(booleen){
-            printf("\n----------c'est le caca -----------------\n");
-            dino->deplacement->tomber = 1;
-            tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
-        }
-        else {
-            supprimer_matrice_dino(dino, matrice);
-            printf("\n------hey--------\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
-            dino->pos = (*nuage)[dino->indice_nuage];
-            remplir_matrice_dino(dino, dino->pos, matrice);
-        }
-        
+        marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, 1, booleen);
     }
 }
 
