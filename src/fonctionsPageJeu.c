@@ -2,10 +2,12 @@
 #include "../lib/deplacement.h"
 #include "../lib/fonctionsChangementTour.h"
 #include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionSoin.h"
 #include "../lib/fonctionsPageJeu.h"
 #include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionSoin.h"
 #include "../lib/fonctionsStructJoueur.h"
+#include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsTuerDinos.h"
 #include "../lib/fonctionsVerification.h"
@@ -185,17 +187,23 @@ int detecterEvenementsPageJeu(
     SDL_Rect *rectFen, 
     t_bombe *bombe, 
     t_vect *vectVitesse, 
+    t_tir *tir, 
     t_joueur *equipe1, 
     t_joueur *equipe2, 
     t_case dinoCourant, 
-    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_texte_cache *cache, t_arme *catalogue_armes, t_tir *tir){
+    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
+    t_texte_cache *cache,
+    t_arme catalogue[4] ){
 
     const Uint8 *etatClavier;
     SDL_Event evenement;
     
     t_dino *tireur = recupererDinoNumero(equipe1, equipe2, dinoCourant);
     tir->actif = 0;
-    float graviteArmes = 0.5f;
+    t_dino *dinoActuel = recupererDinoNumero(equipe1, equipe2, dinoCourant);
+    int armePrise = -1;
+    //Ajout de cette vérification ? if (dinoActuel != NULL)
+
 
     while (SDL_PollEvent(&evenement)){
         if (evenement.type == SDL_QUIT){
@@ -205,6 +213,7 @@ int detecterEvenementsPageJeu(
 
     etatClavier = SDL_GetKeyboardState(NULL);
 
+    /* La Bombe */
     if (etatClavier[SDL_SCANCODE_B]){
         *nombreRebonds = 0;
 
@@ -240,7 +249,7 @@ int detecterEvenementsPageJeu(
             tir->pos.y = tireur->pos.y + 15;
             
             /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-            viserArcher(zoneAffichage, texMap, texObjets, policeMenuHIP, 0, tir, etatClavier, graviteArmes, equipe1, equipe2);
+            viserArcher(zoneAffichage, texMap, texObjets, policeMenuHIP, 0, tir, etatClavier, GRAVITE, equipe1, equipe2);
         }
     }
     return tir->actif;
@@ -612,8 +621,10 @@ void lancerPartie(){
     if (initialisationCorrecte()) {
 
         int enCours = 1;
+        int col;
 
         t_joueur equipe1, equipe2;
+        t_dino *tireurActuel;
 
         // Variables pour les tirs
         t_arme catalogue_armes[4]; // Arc, Arbalete, Bombe Fusil, Revolver
@@ -665,15 +676,24 @@ void lancerPartie(){
         
         while(enCours) {
 
+            detecterEvenementsPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
+            //detecterEvenementsPageJeu(&enCours, &bombeLancee, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache);
+            
+            /* Ici je ne comprends pas, dans ta fonction detecterEvenemntsPageJeu tu n'as pas déjà lancé ta bombe ?*/
+            lancerBombe(&tempsPrecedent, &bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes, &tir);
             if (action == 1){
-                int col = mettreAJourVol(&tir, matriceTerrain, graviteArmes, gestionTours.dinoCourant);
-                if (col >= D1) {
+                // On récupère le tireur pour l'ID (éviter qu'il se tire dessus)
+                tireurActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                
+                col = mettreAJourVol(&tir, matriceTerrain, GRAVITE, tireurActuel->d);
+                
+                if (col >= D1) { // Touche un dino
                     appliquerDegats(col, tir.arme_source.degats, &equipe1, &equipe2, matriceTerrain);
                     tir.actif = 0;
-                    tourSuivant(&gestionTours, &equipe1, &equipe2);
+                    tourSuivant(&gestionTours, &equipe1, &equipe2); // On change de tour après l'impact
                 }
-                else if (col != 0) {
+                else if (col != 0) { // Touche sol ou eau
                     tir.actif = 0;
                     tourSuivant(&gestionTours, &equipe1, &equipe2);
                 }
@@ -688,6 +708,15 @@ void lancerPartie(){
                 effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             } */
 
+            if (tir.actif) {
+                afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+                
+                t_tir tirAffichage = tir;
+                tirAffichage.pos.y += 100;
+                tracerArme(zoneAffichage, &tirAffichage);
+                
+                SDL_RenderPresent(zoneAffichage);
+            }
         }
 
         // --- NETTOYAGE --- 
