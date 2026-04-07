@@ -21,14 +21,12 @@ int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
         tab_res[i] = 0;
     }
 
-    int bas = dino.pos.y + dino.hauteur;
-    int milieu_x = dino.pos.x + (dino.largeur / 2);
-
+    int bas = dino.pos.y + TAILLE_DINO;
+    int milieu_x = dino.pos.x + (TAILLE_DINO/ 2);
     // Sécurité limites matrice
     if (bas >= MAT_H || milieu_x >= MAT_L || milieu_x < 0){
         return 0;
     }
-
     // Vérification SUD (Priorité à l'Eau)
     if (matrice[bas][milieu_x] == EAU) {
         tab_res[0] = -1; // Code spécial pour la mort
@@ -39,8 +37,8 @@ int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
     }
 
     // Vérification Côtés et Haut (Terre uniquement)
-    if (matrice[dino.pos.y + (dino.hauteur/2)][dino.pos.x] == TERRE) { tab_res[1] = 1; contact = 1; } // OUEST
-    if (matrice[dino.pos.y + (dino.hauteur/2)][dino.pos.x + dino.largeur] == TERRE) { tab_res[2] = 1; contact = 1; } // EST
+    if (matrice[dino.pos.y + (TAILLE_DINO/2)][dino.pos.x] == TERRE) { tab_res[1] = 1; contact = 1; } // OUEST
+    if (matrice[dino.pos.y + (TAILLE_DINO/2)][dino.pos.x + TAILLE_DINO] == TERRE) { tab_res[2] = 1; contact = 1; } // EST
     if (matrice[dino.pos.y][milieu_x] == TERRE) { tab_res[3] = 1; contact = 1; } // NORD
 
     return contact;
