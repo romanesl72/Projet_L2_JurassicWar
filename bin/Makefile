@@ -1,4 +1,4 @@
-FLAGS_COMPILATION = -Wall `sdl2-config --cflags`
+FLAGS_COMPILATION = -g -Wall `sdl2-config --cflags`
 FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
 
 REP_SRC = ../src

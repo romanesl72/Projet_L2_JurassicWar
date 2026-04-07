@@ -59,12 +59,15 @@ int collisionDino(int matrice[MAT_H][MAT_L], t_tir *tir) {
 int mettreAJourVol(t_tir *tir, int matrice[MAT_H][MAT_L], float gravite, int id_tireur) {
     if (!tir->actif) return 0;
 
-    int resDino = collisionDino(matrice, tir);
     /* On applique la gravité */
     float g_effet= gravite * tir->arme_source.poids_projectile;
+
+    int resDino = collisionDino(matrice, tir);
+    
+    tir->velo.v += g_effet;
     tir->pos.x += tir->velo.u;
     tir->pos.y += tir->velo.v;
-    tir->velo.v += g_effet;
+    
 
     /* Détection pour arrêter le vol par ordre de priorité*/
     if(collisionFrontiere(tir)){
@@ -119,7 +122,6 @@ void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir) {
 
 void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite) {
     int i;
-    float g_reel = gravite;
     float precX;
     float precY;
 
@@ -132,18 +134,17 @@ void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite
     /* Trajectoire de couleur rouges */
     SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
 
-    for (i = 0; i < 50; i++) {
+    for (i = 0; i < 30; i++) {
         precX = simuX;
         precY = simuY;
 
+        simuVitY += gravite;
         simuX += simuVitX;
         simuY += simuVitY;
-        simuVitY += g_reel;
 
         /* On dessine un trait entre chaque point simulé pour une belle courbe */
         SDL_RenderDrawLine(zoneAffichage, (int)roundf(precX), (int)roundf(precY), (int)roundf(simuX), (int)roundf(simuY));
         
-
     }
 }
 
@@ -207,37 +208,47 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
     tir->actif = 1; 
 }
 
-void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant) {
     // Sécurité : si le pointeur clavier est NULL, on sort direct pour éviter le crash
     if (etatClavier == NULL) return;
 
+    t_cote cote = recupererDinoDirection(e1, e2, numDinoCourant);
+    t_cote ancienCote = cote;
+
     tir->velo.u = tir->arme_source.puissance_propulsion;
     tir->velo.v = -tir->arme_source.puissance_propulsion;
+
+    if (cote == GAUCHE && tir->velo.u > 0) {
+        tir->velo.u = -tir->velo.u;
+    }
 
     float g_effet = gravite * tir->arme_source.poids_projectile;
     float vMax = tir->arme_source.vitesse_max;
     SDL_Rect rectMap = {0, 100, 1300, 700};
 
-    int enVisée = 1;
-    printf("Position tir depart : x=%f, y=%f\n", tir->pos.x, tir->pos.y);
-    while(enVisée) {
-        SDL_Event e;
-        while(SDL_PollEvent(&e)); 
     int enVisee = 1;
     while(enVisee) {
         SDL_PumpEvents();
 
+        if (etatClavier[SDL_SCANCODE_G]) cote = GAUCHE;
+        if (etatClavier[SDL_SCANCODE_D]) cote = DROITE;
+
         if (etatClavier[SDL_SCANCODE_UP]){
-            tir->velo.v -= 0.5f;
+            tir->velo.v -= 0.2f;
         }
         if (etatClavier[SDL_SCANCODE_DOWN]){
-            tir->velo.v += 0.5f;
+            tir->velo.v += 0.2f;
         }
         if (etatClavier[SDL_SCANCODE_LEFT]){
-            tir->velo.u -= 0.5f;
+            tir->velo.u -= 0.2f;
         }
         if (etatClavier[SDL_SCANCODE_RIGHT]){
-            tir->velo.u += 0.5f;
+            tir->velo.u += 0.2f;
+        }
+
+        if (cote != ancienCote) {
+            retournerDino(e1, e2, numDinoCourant, cote, &ancienCote);
+            tir->velo.u = -tir->velo.u; 
         }
 
         // Bridage de la vitesse
