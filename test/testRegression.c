@@ -4,6 +4,14 @@
 #include "../lib/tda_nuage.h"
 #include "../lib/regression.h"
 
+/** 
+ * @file test_deplacement.c
+ * @brief Test des fonctions crées dans le fichier tda_nuage.c
+ * @author Solène Orieux
+ * @date Crée le 17/03/2026
+ */
+
+
 int main() {
     // code à modifier si le nombre d'image est différent de 2
     //pour compiler dans bin: gcc -Wall ../src/creation_nuage.c -Ilib -o nuage -lSDL2 -lm

@@ -14,6 +14,12 @@
 
 #include <SDL2/SDL_ttf.h>
 
+/** 
+ * @file test_deplacement.c
+ * @brief Test des fonctions crées dans le fichier grapin.c
+ * @author Solène Orieux
+ * @date Crée le 03/04/2026
+ */
 
 
 int main(int argc, char * argv[]){

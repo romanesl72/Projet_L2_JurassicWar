@@ -13,6 +13,13 @@
 #define LARGEUR_FEN_JEU 1300
 #define HAUTEUR_FEN_JEU 700
 
+/** 
+ * @file test_deplacement.c
+ * @brief Test des fonctions crées dans le fichier deplacement.c
+ * @author Solène Orieux
+ * @date Crée le 26/02/2026
+ */
+
 int main(int argc, char * argv[]) {
     /* ---- 1. Déclarations et Initialisations ---- */
     int i, nb_pts, w, h;
