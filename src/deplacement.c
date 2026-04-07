@@ -121,6 +121,7 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
 
 void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
     float a, b;
+    printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
     int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_LEFT]){
@@ -132,8 +133,8 @@ void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
         noyade(dino,matrice);
         booleen=horsNuage(dino, *nb_pts, matrice);
         if(booleen){
-        dino->deplacement->tomber = 1;
-        tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
+            dino->deplacement->tomber = 1;
+            tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
         }
         else {
             supprimer_matrice_dino(dino, matrice);
@@ -145,6 +146,7 @@ void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
 
 void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
     float a, b;
+    printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
     int booleen=horsNuage(dino, *nb_pts, matrice);
     if(dino->etat==0)return;
     if (state[SDL_SCANCODE_RIGHT]){
@@ -153,19 +155,23 @@ void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
         float pas = VITESSE_BASE * (1.0f + (a * 0.5f));
         dino->deplacement->indice_reel += pas;
         dino->indice_nuage = (int)dino->deplacement->indice_reel;
-        noyade(dino,matrice);
+        printf("\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
+        printf("\noyade=%d\n",noyade(dino,matrice));
         if(booleen){
-        dino->deplacement->tomber = 1;
-        tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
+            printf("\n----------c'est le caca -----------------\n");
+            dino->deplacement->tomber = 1;
+            tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, -1); 
         }
         else {
             supprimer_matrice_dino(dino, matrice);
+            printf("\n------hey--------\nid nuage=%d\nindice=%d\n",dino->id_nuage,dino->indice_nuage);
             dino->pos = (*nuage)[dino->indice_nuage];
             remplir_matrice_dino(dino, dino->pos, matrice);
         }
         
     }
 }
+
 // --- Dans SAUT ---
 void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
     int sens = 0; // Toujours initialiser
@@ -187,7 +193,7 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
         dino->indice_nuage += sens;
 
         // Cas 1 : On est toujours sur le nuage actuel
-        if(dino->indice_nuage >= 0 && dino->indice_nuage < *nb_pts){
+        if(!horsNuage(dino,*nb_pts,matrice)){
             if(!noyade(dino,matrice)){
                 dino->deplacement->v_y += GRAVITE;
                 dino->pos.y += (int)dino->deplacement->v_y;
@@ -204,27 +210,18 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
             
         }
         // Cas 2 : ON SORT DU NUAGE -> Transfert
-        else {
-            int nouvel_id = dino->id_nuage + sens;
+        else if(!collision_decor(dino->deplacement->tab_res,*dino,matrice)){
+            dino->deplacement->v_y += GRAVITE;
+            dino->pos.y += (int)dino->deplacement->v_y;
+            dino->pos.x += sens;
+        }
+        else{
+            if (!noyade(dino,matrice)){
+                replacementNuage(dino,nb_pts, nuage, nb_nuage, nomNuage, sens);
+                dino->pos.x = (*nuage)[dino->indice_nuage].x;
+                dino->deplacement->indice_reel = (float)dino->indice_nuage;
+            }
             
-            if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
-                t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
-                
-                if (nv_nuage != NULL) {
-                    nuageDetruire(nuage); 
-                    *nuage = nv_nuage;    
-                    dino->id_nuage = nouvel_id;
-                    
-                    // On se place sur le bord correspondant du nouveau nuage
-                    dino->indice_nuage = (sens == 1) ? 0 : (*nb_pts - 1);
-                    dino->pos.x = (*nuage)[dino->indice_nuage].x;
-                    dino->deplacement->indice_reel = (float)dino->indice_nuage;
-                    noyade(dino,matrice);
-                }
-            }
-            else{
-                if(!noyade(dino,matrice))tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, 1); 
-            }
         }
         remplir_matrice_dino(dino, dino->pos, matrice);
     }
@@ -243,14 +240,14 @@ void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int 
     }
 
     // 2. DÉTECTION DE COLLISION IMMÉDIATE
-    // On vérifie si la position actuelle touche l'eau.
+    //On vérifie si la position actuelle touche l'eau.
     if (horsNuage(dino, *nb_pts, matrice)) {
         if (dino->etat == 0) { // Si horsNuage a détecté l'eau
             supprimer_matrice_dino(dino, matrice);
         }
     }
 
-    // 3. LOGIQUE DE MOUVEMENT (Uniquement si vivant)
+    // // 3. LOGIQUE DE MOUVEMENT (Uniquement si vivant)
     if (dino->deplacement->tomber) {
         // Si le dino est en train de tomber (chute libre ou changement de nuage)
         tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, 0);
@@ -259,20 +256,20 @@ void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int 
         //Gestion du saut (prioritaire sur la marche)
         saut(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
 
-        // Gestion de la marche (uniquement si au sol et pas en train de sauter)
+        //Gestion de la marche (uniquement si au sol et pas en train de sauter)
         if (!dino->deplacement->sautBooleen) {
             gauche(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
             droite(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
         }
     }
     if (dino->etat == 0) { // Si horsNuage a détecté l'eau
-        supprimer_matrice_dino(dino, matrice);
-        return; // On arrête tout ici pour éviter que tomberNuage ne le "sauve"
-    }
+         supprimer_matrice_dino(dino, matrice);
+         return; // On arrête tout ici pour éviter que tomberNuage ne le "sauve"
+     }
 
-    // 4. POST-TRAITEMENT
+    // // 4. POST-TRAITEMENT
     if (dino->deplacement->wait > 0) {
-        dino->deplacement->wait--;
+         dino->deplacement->wait--;
     }
 
     if(noyade(dino, matrice))printf("dino etat:%d\n",dino->etat);
