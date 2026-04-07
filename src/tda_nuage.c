@@ -82,36 +82,6 @@ int nuageDetruire( t_coordonnee ** nuage) {
 }
 
 /*
- * Affectation d'un nuage par copie
- */
-
-/*
- * Affectation d'un nuage par copie
- */
-int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points) {
-
-    // Si la cible existe déjà, on la libère pour éviter les fuites mémoire
-    if (*nuage_cible != NULL) {
-        nuageDetruire(nuage_cible);
-    }
-
-    // Vérification que la source existe
-    if (!nuageExiste(nuage_source)) return 0;
-
-    // Allocation de la nouvelle mémoire pour la cible
-    *nuage_cible = malloc(sizeof(t_coordonnee) * nb_points);
-    if (!nuageExiste(*nuage_cible)) return 0;
-
-    // Copie des données 
-    for (int i = 0; i < nb_points; i++) {
-        (*nuage_cible)[i] = nuage_source[i];
-    }
-
-    return 1;
-}
-
-
-/*
 * Affichage du nuage
 */
 
