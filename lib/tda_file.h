@@ -1,14 +1,13 @@
-
-// J'ai repris les fonctions du module d'algo2, merci Madame Py.
-
 #ifndef _TDA_FILE_H_
 #define _TDA_FILE_H_
 
 #include "types.h"
 
+// J'ai repris les fonctions du module d'algo2, merci Madame Py.
+
 /** 
  * @file tda_file.h
- * @brief 
+ * @brief fonction permettant la création d'une file
  * @author Solène Orieux
  * @date 25/03/2025
  */
@@ -45,6 +44,12 @@ void ajouter(t_coordonnee v);
 
 void retirer(t_coordonnee *v);
 
+/**
+ * @fn void detruireFile();
+ * @author Solène Orieux
+ * @date 05/04/2025
+ * @brief destruction globale de la file
+ */
 void detruireFile();
 
 /**
@@ -56,7 +61,21 @@ void detruireFile();
 
 int filevide(void);
 
+/**
+ * @fn int afficherFile(SDL_Renderer *rendu);
+ * @author Solène Orieux
+ * @date 05/04/2025
+ * @brief affiche l'entiéreté de la file
+ * @param rendu pointeur sur la fenêtre de jeu
+ */
 int afficherFile(SDL_Renderer *rendu);
+
+/**
+ * @fn t_coordonnee *lireTete();
+ * @author Solène Orieux
+ * @date 07/04/2025
+ * @brief renvoie un pointeur sur la tête de file
+ */
 
 t_coordonnee *lireTete();
 
