@@ -229,6 +229,7 @@ int detecterEvenementsPageJeu(
         }
         else if (etatClavier[SDL_SCANCODE_P]) {
             utiliserPotion(tireur);
+            return 3;
         }
 
         if (tir->actif){
@@ -237,7 +238,7 @@ int detecterEvenementsPageJeu(
             tir->pos.y = tireur->pos.y + 15;
             
             /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-            viserArcher(zoneAffichage, texMap, texObjets, policeMenuHIP, 0, tir, etatClavier, GRAVITE, equipe1, equipe2, dinoCourant);
+            viserArcher(zoneAffichage, texMap, texObjets, policeMenuHIP, tir, etatClavier, GRAVITE, equipe1, equipe2, dinoCourant);
         }
     }
     return tir->actif;
@@ -485,6 +486,7 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
     }
 }
 
+/*
 void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_dino *dinoActuel, int *timer, int *cgt, char **nomNuage, int *nb_pts, t_coordonnee *nuage){
 
     int nb_nuage = 2;
@@ -535,7 +537,7 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         // On affiche l'état actuel des équipes
     afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
     SDL_Delay(10);
-}
+}*/
 
 void lancerPartieBombe(){
     if (initialisationCorrecte()) {
@@ -688,17 +690,24 @@ void lancerPartie(){
             if (action == 2) {
                 lancerBombe(&bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
-
+            else if (action == 3) {
+                printf("Potion utilisee. Changement de tour.\n");
+                tourSuivant(&gestionTours, &equipe1, &equipe2);
+                // On rafraîchit l'affichage pour voir les nouveaux PV
+                afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+                SDL_Delay(200);
+            
+            }
             else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
-            else {
+            /*else {
                 dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
                 nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
                 dinoActuel->pos=nuage[dinoActuel->indice_nuage];
                 remplir_matrice_dino(dinoActuel, dinoActuel->pos, matriceTerrain);
                 effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, dinoActuel, &timer, &cgt, nomNuage, &nb_pts, nuage);
-            }
+            }*/
         }
 
         // --- NETTOYAGE --- 

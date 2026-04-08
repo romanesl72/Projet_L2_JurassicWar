@@ -11,7 +11,17 @@
 void utiliserPotion(t_dino *dino) {
     if (dino == NULL) return;
     
-    int soin = 20;
+    int chance = rand() % 100;
+    int soin;
+
+    if (chance < 50) {
+        soin = 5;
+    } else if (chance < 80) {
+        soin = 10;
+    } else {
+        soin = 20;
+    }
+
     dino->pv += soin;
     
     if (dino->pv > 100){
