@@ -17,7 +17,7 @@
 */
 
 #undef VITESSE_BASE
-#define VITESSE_BASE 0.05
+#define VITESSE_BASE 0.1
 
 /**
  * @def GRAVITE
@@ -38,7 +38,7 @@
 
 
 /**
- * @fn int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]);
  * @author Solène Orieux
  * @date 11/03/2026
  * @brief renvoie vraie l'indice du dino n'est plus dans le nuage, faux sinon
@@ -47,7 +47,7 @@
  * @param matrice représentation du terrain sous forme de matrice
  */
 
-int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]);
 
 /**
  * @fn int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens);
@@ -65,17 +65,17 @@ int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens);
 
 /**
- * @fn int noyade(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]);
  * @author Solène Orieux
  * @date 01/04/2026
  * @brief renvoie vraie si le dino s'est noyé, faux sinon
  * @param dino pointeur sur dino
  * @param matrice représentation du terrain sous forme de matrice
  */
-int noyade(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]);
 
 /**
- * @fn void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int sens);
+ * @fn void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int sens);
  * @author Solène Orieux
  * @date 01/04/2026
  * @brief permet de retrouver la position du dino sur le nuage de points lorsqu'on change de colline
@@ -87,10 +87,10 @@ int noyade(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @param matrice représentation du terrain sous forme de matrice
  * @param sens permet de savoir vers quels nuage on se dirige
  */
-void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int sens);
+void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int sens);
 
 /**
- * @fn void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state, int sens, int booleen);
+ * @fn void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state, int sens, int booleen);
  * @date 08/04/2026
  * @brief permet au dino de marcher plus ou moins vite en fonction de la pente
  * @param dino pointeur sur dino
@@ -103,11 +103,11 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
  * @param sens permet de savoir vers quels nuage on se dirige
  * @param booleen permet de savoir si l'on n'est pas hors nuage
  */
-void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state, int sens, int booleen);
+void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state, int sens, int booleen);
 
 
 /**
- * @fn void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN],const Uint8 *state);
+ * @fn void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
  * @author Solène Orieux
  * @date 25/02/2026
  * @brief Le dino se dirige à gauche
@@ -120,10 +120,10 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
  * @param state pointeur sur l'état du clavier
  */
 
-void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN],const Uint8 *state);
+void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
 
 /**
- * @fn void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN],const Uint8 *state);
+ * @fn void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
  * @author Solène Orieux
  * @date 25/022026
  * @brief Le dino se dirige à droite
@@ -136,11 +136,11 @@ void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
  * @param state pointeur sur l'état du clavier
  */
 
-void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN],const Uint8 *state);
+void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L],const Uint8 *state);
 
 
 /**
- * @fn void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state);
+ * @fn void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state);
  * @author Solène Orieux
  * @date 07/03/2026
  * @brief permet au dino de sauter
@@ -153,7 +153,7 @@ void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
  * @param state pointeur sur l'état du clavier
  */
 
-void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state);
+void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state);
 
 /**
  * @fn void deplacement_dino();
@@ -166,8 +166,10 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
  * @param nb_nuage nombre de nuage présent dans la map
  * @param nb_pts pointeur sur le nombre de points dans le nuage
  * @param matrice représentation du terrain sous forme de matrice
+ * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  */
 
-void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], t_joueur * equipe1, t_joueur * equipe2);
 
 #endif
