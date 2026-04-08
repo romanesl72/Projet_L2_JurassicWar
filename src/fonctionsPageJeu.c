@@ -8,7 +8,6 @@
 #include "../lib/fonctionSoin.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTirs.h"
-#include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsTuerDinos.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
@@ -486,20 +485,12 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
     }
 }
 
-/*
-void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
+void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_dino *dinoActuel, int *timer, int *cgt, char **nomNuage, int *nb_pts, t_coordonnee *nuage){
 
-    t_dino *dinoActuel = NULL;
-    int timer = TIMER;
-    int cgt = 0;
-    t_coordonnee *nuage = NULL;
-    char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
-    int nb_pts;
     int nb_nuage = 2;
-
     // A. GESTION AUTOMATIQUE DU TOUR
     // Si le temps est fini OU si le dinosaure actuel est inexistant/mort
-    if (timer <= 0 || dinoActuel == NULL) {
+    if (*timer <= 0 || dinoActuel == NULL) {
         
         // Si le dino précédent est mort, on le retire avant de passer au suivant
         if (dinoActuel != NULL && dinoActuel->etat == 0) {
@@ -508,10 +499,10 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         }
 
         // Calcul du tour suivant
-        if(!cgt) {
+        if(!(*cgt)) {
             tourSuivant(gestionTours, equipe1, equipe2);
         } else {
-            cgt = 0; // On reset l'indicateur de mort
+            *cgt = 0; // On reset l'indicateur de mort
         }
         
         // Récupération du nouveau dinosaure actif
@@ -519,29 +510,32 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         
         if (dinoActuel != NULL) {
             nuageDetruire(&nuage);
-            nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+            nuage = nuage_de_points(nb_pts, nomNuage[dinoActuel->id_nuage]);
             
             // Synchronisation position réelle pour la fluidité
             dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
-            timer = TIMER; // Relance du temps de jeu
+            *timer = TIMER; // Relance du temps de jeu
         }
-    } else {
-        timer--; // Le temps s'écoule
+    } 
+    else {
+        *timer--; // Le temps s'écoule
     }
 
     // B. LOGIQUE DE DÉPLACEMENT ET NOYADE
     if (dinoActuel != NULL && nuage != NULL && dinoActuel->etat != 0) {
-        deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, &nb_pts, matriceTerrain);
+        deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, nb_pts, matriceTerrain, equipe1, equipe2);
         
         // Si le dinosaure vient de se noyer (état passé à 0 dans deplacement.c)
         if(dinoActuel->etat == 0) {
             supprimer_matrice_dino(dinoActuel, matriceTerrain); // Effacement immédiat
-            timer = 0;  // Force le changement de tour au prochain cycle
-            cgt = 1;    // Indique qu'on change suite à une mort
+            *timer = 0;  // Force le changement de tour au prochain cycle
+            *cgt = 1;    // Indique qu'on change suite à une mort
         }
     }
+        // On affiche l'état actuel des équipes
     afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-}*/
+    SDL_Delay(10);
+}
 
 void lancerPartieBombe(){
     if (initialisationCorrecte()) {
@@ -598,7 +592,7 @@ void lancerPartieBombe(){
     }
 }
 
-/* Une partie avec les bombes et les armes !!! */
+
 void lancerPartie(){
     if (initialisationCorrecte()) {
 
@@ -652,6 +646,14 @@ void lancerPartie(){
         initialiserMatrice(&matriceTerrain);
         initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
 
+        // Variables pour les déplacements
+        t_dino *dinoActuel = NULL;
+        int timer = TIMER;
+        int cgt = 0;
+        char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
+        int nb_pts;
+        t_coordonnee *nuage = NULL;
+
         SDL_SetRenderDrawColor(zoneAffichage, 40, 40, 40, 255);
         afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
         
@@ -690,10 +692,13 @@ void lancerPartie(){
             else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
-            /*
             else {
-                effectuerDeplacement
-            } */
+                dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+                dinoActuel->pos=nuage[dinoActuel->indice_nuage];
+                remplir_matrice_dino(dinoActuel, dinoActuel->pos, matriceTerrain);
+                effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, dinoActuel, &timer, &cgt, nomNuage, &nb_pts, nuage);
+            }
         }
 
         // --- NETTOYAGE --- 
@@ -701,6 +706,8 @@ void lancerPartie(){
         for (int i = 0; i < 6; i++) {
             SDL_DestroyTexture(cache[i].tex);
         }
+        nuageDetruire(&nuage);
+        nuage=NULL;
         destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, texObjets, policeMenuHIP, zoneAffichage, fenJeu);
         IMG_Quit();
         TTF_Quit();

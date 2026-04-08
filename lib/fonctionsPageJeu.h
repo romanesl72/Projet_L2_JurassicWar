@@ -2,6 +2,7 @@
 #define _FONCTIONSPAGEJEU_H_
 
 #include "../lib/types.h"
+#include <SDL2/SDL_ttf.h>
 
 /** 
  * @file fonctionsPageJeu.h
