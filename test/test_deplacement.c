@@ -1,93 +1,74 @@
 #include "../lib/chargerMatrice.h"
-#include "../lib/fonctionsChangementTour.h"
-#include "../lib/fonctionsStructJoueur.h"
-#include "../lib/fonctionsVerification.h"
-#include "../lib/gestion_zones.h"
-#include "../lib/placer_dinos.h"
-#include "../lib/deplacement.h"
-#include "../lib/tda_nuage.h"
 #include "../lib/types.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/fonctionsChangementTour.h"
+#include "../lib/deplacement.h"
+#include "../lib/fonctionsVerification.h"
+#include "../lib/placer_dinos.h"
+#include "../lib/gestion_zones.h"
+#include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionsPageJeu.h"
+#include "../lib/fonctionsStructJoueur.h"
+#include "../lib/fonctionsAffichage.h"
 #include <time.h>
-#include <stdio.h>
 
-#define LARGEUR_FEN_JEU 1300
-#define HAUTEUR_FEN_JEU 700
+#include <SDL2/SDL_ttf.h>
 
-/** 
- * @file test_deplacement.c
- * @brief Test des fonctions crées dans le fichier deplacement.c
- * @author Solène Orieux
- * @date Crée le 26/02/2026
- */
 
-int main(int argc, char * argv[]) {
-    /* ---- 1. Déclarations et Initialisations ---- */
-    int i, nb_pts, w, h;
-    int enCours = 0;
+
+int main(int argc, char * argv[]){
+
+    /* ---- 1. Initialisation ---- */
+    if (!initialisationCorrecte()) return 1;
+    srand(time(NULL));
+
+    SDL_Window *fenetre = NULL;
+    SDL_Renderer *rendu = NULL;
+    TTF_Font *police = NULL;
+    const Uint8 *state=NULL;
+    t_joueur equipe1, equipe2;
     int matrice[MAT_H][MAT_L];
+    int nb_pts, w, h, i, sens=1;
     int trouves_E1 = 0, trouves_E2 = 0;
-    int timer = TIMER; // Initialisé avec la macro de types.h
-    int nb_nuage = 2; 
-    int cgt = 0; // Indicateur de changement forcé (mort)
-
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
-    t_joueur equipe1, equipe2;
     t_tour gestionTours = {1, 1, D1, D6}; // Tour 1, Equipe 1, Dino D1
-    
+    int timer=TIMER;
+    int cgt=0;
+    int nb_nuage=2;
     char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
+    char *nomsObjets[7] = {
+        "../img/img_arc.png", 
+        "../img/img_arbalete.png", 
+        "../img/img_bombe.png", 
+        "../img/img_fusil.png", 
+        "../img/img_revolver.png", 
+        "../img/img_potion.png", 
+        "../img/img_grappin.png"
+    };
     t_coordonnee *nuage = NULL;
     t_dino *dinoActuel = NULL;
-
-    SDL_Window *menuPrincipal = NULL;
-    SDL_Renderer *rendu = NULL;
     SDL_Texture *texMap = NULL;
-    SDL_Event evenement;
-    SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU};
+    SDL_Texture *texObjets[7] = {NULL};
 
-    /* ---- 2. Initialisation SDL et Ressources ---- */
-    if (initialisationCorrecte()) {
-        srand(time(NULL));
-        enCours = 1;
+    creerPageJeu(&fenetre, &rendu, &texMap, texObjets, &police);
+    chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
+    
+    initialiserEquipes(&equipe1, &equipe2, &catalogue, matrice, rendu);
 
-        creerFenetre(&menuPrincipal, "Jurassic War - Test Déplacement", LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU);
-        rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
+    dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+    nuage= nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+    dinoActuel->pos=nuage[dinoActuel->indice_nuage];
+    
+    remplir_matrice_dino(dinoActuel, dinoActuel->pos, matrice);
 
-        chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
-        chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
+    int enCours = 1;
+    SDL_Event e;
 
-        /* ---- 3. Préparation du terrain (Zones de spawn) ---- */
-        nuages_stockes[0] = nuage_de_points(&nb_pts, nomNuage[0]);
-        generer_catalogue_depuis_nuage(nuages_stockes[0], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
-        nuageDetruire(&nuages_stockes[0]);
-
-        nuages_stockes[1] = nuage_de_points(&nb_pts, nomNuage[1]);
-        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
-        nuageDetruire(&nuages_stockes[1]);
-
-        /* ---- 4. Initialisation des Equipes ---- */
-        initialiserContenuJoueur(&equipe1);
-        initialiserContenuJoueur(&equipe2);
-
-        for(i = 0; i < equipe1.n; i++) {
-            chargerImage(rendu, &equipe1.texDinos[i], "../img/dino_test.png", &w, &h);
-            chargerImage(rendu, &equipe2.texDinos[i], "../img/dino_test.png", &w, &h);
-        }
-
-        if (trouves_E1 >= 3 && trouves_E2 >= 3) {
-            placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
-            placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
-            for(i = 0; i < 3; i++) {
-                equipe1.tab[i].id_nuage = 0;
-                equipe2.tab[i].id_nuage = 1;
-            }
-        }
-    }
-
-    /* ---- 5. Boucle de Jeu Principale ---- */
-    while (enCours) {
-        while (SDL_PollEvent(&evenement)) {
-            if (evenement.type == SDL_QUIT) enCours = 0;
+    /* ---- 4. Boucle de Rendu ---- */
+    while(enCours) {
+        while(SDL_PollEvent(&e)) {
+            if(e.type == SDL_QUIT) enCours = 0;
         }
 
         // A. GESTION AUTOMATIQUE DU TOUR
@@ -118,13 +99,15 @@ int main(int argc, char * argv[]) {
                 dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
                 timer = TIMER; // Relance du temps de jeu
             }
-        } else {
+        } 
+        else {
             timer--; // Le temps s'écoule
+            printf("time=%d\n",timer);
         }
 
         // B. LOGIQUE DE DÉPLACEMENT ET NOYADE
         if (dinoActuel != NULL && nuage != NULL && dinoActuel->etat != 0) {
-            deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, &nb_pts, matrice);
+            deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, &nb_pts, matrice,&equipe1, &equipe2);
             
             // Si le dinosaure vient de se noyer (état passé à 0 dans deplacement.c)
             if(dinoActuel->etat == 0) {
@@ -133,33 +116,20 @@ int main(int argc, char * argv[]) {
                 cgt = 1;    // Indique qu'on change suite à une mort
             }
         }
-
-        // C. RENDU GRAPHIQUE
-        SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
-        SDL_RenderClear(rendu);
-        SDL_RenderCopy(rendu, texMap, NULL, &rect_plein_ecran);
-
-        // Affichage des dinosaures vivants
-        for(i = 0; i < equipe1.n; i++) {
-            SDL_Rect r = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y, 30, 30};
-            SDL_RenderCopy(rendu, equipe1.texDinos[i], NULL, &r);
-        }
-        for(i = 0; i < equipe2.n; i++) {
-            SDL_Rect r = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y, 30, 30};
-            SDL_RenderCopy(rendu, equipe2.texDinos[i], NULL, &r);
-        }
-
+            // On affiche l'état actuel des équipes
+        afficher(rendu, police, texMap, texObjets, nomsObjets, &equipe1, &equipe2);
         SDL_RenderPresent(rendu);
-        SDL_Delay(2); // Petit délai pour stabiliser la vitesse du timer
+        SDL_Delay(10);
+        
     }
 
-    /* ---- 6. Nettoyage ---- */
+    /* ---- 5. Nettoyage ---- */
     nuageDetruire(&nuage);
-    detruireContenuJoueur(&equipe1);
-    detruireContenuJoueur(&equipe2);
-    SDL_DestroyTexture(texMap);
-    SDL_DestroyRenderer(rendu);
-    SDL_DestroyWindow(menuPrincipal);
+    nuage=NULL;
+    destruireElementsJeu(&equipe1, &equipe2, matrice, texMap, texObjets, police, rendu, fenetre);
+
+    TTF_Quit();
+    IMG_Quit();
     SDL_Quit();
 
     return 0;
