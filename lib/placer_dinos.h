@@ -7,17 +7,18 @@
  * @file placer_dinos.h
  * @brief Fonctions de placement des dinosaures sur la matrice.
  * @author Romane Saint_Léger
- * @date Crée le 17/02/2026
+ * @date Crée le 15/02/2026
  */
 
 /**
  * @fn void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @author Romane Saint-Léger
- * @date Crée le 17/02/2026
+ * @date Crée le 15/02/2026
  * @brief Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.
  * @param dino Pointeur vers la structure du dino à placer.
  * @param p_sol Coordonnées du point sol o`u les pieds du dinosaure doivent se poser.
  * @param matrice La matrice (terrain) à mettre à jour avec l'ID du dino.
+ * @version 1.2
  */
 
 void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
@@ -26,12 +27,13 @@ void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_
 /**
  * @fn void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart);
  * @author Romane Saint-Léger
- * @date Crée le 17/02/2026
+ * @date Crée le 15/02/2026
  * @brief Initialise et place tous les dinosaures d'une équipe sur le terrain.
  * @param joueur Pointeur vers la structure du joueur (l'équipe).
  * @param points_spawn Tableau des points de spawn disponibles.
  * @param matrice Matrice de jeu à modifier
  * @param id_depart Indice de départ pour chaque dinosaure afin de les différencier.
+ * @version 1.2
  */
 
 
@@ -44,10 +46,20 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
  * @brief La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param equipe l'équipe dont on veut afficher les dinosaures
+ * @version 1.3
  */
 
 void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe);
 
+/**
+ * @fn void afficherDinosAvecJeu(SDL_Renderer* zoneAffichage, t_joueur * equipe);
+ * @author Romane Saint-Léger
+ * @date Crée le 01/04/2026
+ * @brief La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain avec l'inventaire et les points de vie des dinos
+ * @param zoneAffichage pointeur sur la zone d'affichage
+ * @param equipe l'équipe dont on veut afficher les dinosaures
+ * @version 1.0
+ */
 
 void afficherDinosAvecJeu(SDL_Renderer* zoneAffichage, t_joueur * equipe);
 

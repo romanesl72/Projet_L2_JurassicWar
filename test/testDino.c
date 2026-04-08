@@ -15,7 +15,7 @@
 
 int main(){
 
-    int matrice_test[MAT_H][MAT_L];
+    int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int i,j;
     t_dino d; 
     d.d = D1;

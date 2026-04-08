@@ -24,10 +24,10 @@ void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
 }*/
 
 int collisionFrontiere(t_tir *tir){
-    return ((tir->pos.x < 0) || (tir->pos.x >= MAT_L) || (tir->pos.y < 0) || (tir->pos.y >= MAT_H));
+    return ((tir->pos.x < 0) || (tir->pos.x >= LARGEUR_TERRAIN) || (tir->pos.y < 0) || (tir->pos.y >= HAUTEUR_TERRAIN));
 }
 
-int collisionTerrain(int matrice[MAT_H][MAT_L], t_tir *tir) {
+int collisionTerrain(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir) {
     int mx = (int)roundf(tir->pos.x);
     int my = (int)roundf(tir->pos.y);
     if (collisionFrontiere(tir)) {
@@ -36,7 +36,7 @@ int collisionTerrain(int matrice[MAT_H][MAT_L], t_tir *tir) {
     return (matrice[my][mx] == TERRE);
 }
 
-int collisionEau(int matrice[MAT_H][MAT_L], t_tir *tir) {
+int collisionEau(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir) {
     int mx = (int)roundf(tir->pos.x);
     int my = (int)roundf(tir->pos.y);
     if (collisionFrontiere(tir)) {
@@ -45,7 +45,7 @@ int collisionEau(int matrice[MAT_H][MAT_L], t_tir *tir) {
     return (matrice[my][mx] == EAU);
 }
 
-int collisionDino(int matrice[MAT_H][MAT_L], t_tir *tir) {
+int collisionDino(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir) {
     int mx = (int)roundf(tir->pos.x);
     int my = (int)roundf(tir->pos.y);
     int valeur = matrice[my][mx];
@@ -56,7 +56,7 @@ int collisionDino(int matrice[MAT_H][MAT_L], t_tir *tir) {
     return 0;
 }
 
-int mettreAJourVol(t_tir *tir, int matrice[MAT_H][MAT_L], float gravite, int id_tireur) {
+int mettreAJourVol(t_tir *tir, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], float gravite, int id_tireur) {
     if (!tir->actif) return 0;
 
     /* On applique la gravité */
@@ -298,7 +298,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
     tir->actif = 1; 
 }
 
-void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[MAT_H][MAT_L]) {
+void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     t_dino *victime = recupererDinoNumero(equipe1, equipe2, numDinoTouche);
 
     if (victime != NULL) {

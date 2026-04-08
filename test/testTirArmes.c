@@ -12,7 +12,7 @@
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation simplifiée ---- */
-    int matrice[MAT_H][MAT_L] = {AIR}; // On initialise tout à AIR
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] = {AIR}; // On initialise tout à AIR
     float graviteMonde = 0.5f;
     int enCours = 1;
 
@@ -75,7 +75,7 @@ int main(int argc, char * argv[]){
                 tirEncours.pos.x = 50;
                 tirEncours.pos.y = 600;
 
-                viserArcher(rendu, NULL, NULL, NULL, 0, &tirEncours, clavier, graviteMonde, NULL, NULL);
+                viserArcher(rendu, NULL, NULL, NULL, 0, &tirEncours, clavier, graviteMonde, NULL, NULL, 0);
             }
         }
 

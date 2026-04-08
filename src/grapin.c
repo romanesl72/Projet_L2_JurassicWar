@@ -24,7 +24,7 @@
 
 
 /**
- * @fn int collision_grapin(t_coordonnee pos, int matrice[MAT_H][MAT_L]);
+ * @fn int collision_grapin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @author Solène Orieux
  * @date 3/04/2006
  * @brief regarde si le grapin accroche
@@ -32,9 +32,9 @@
  * @param matrice représentation du terrain sous forme de matrice
  */
 
-int collision_grapin(t_coordonnee pos, int matrice[MAT_H][MAT_L]){ 
+int collision_grapin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){ 
 
-    if(pos.y >= 0 && pos.y < MAT_H && pos.x >= 0 && pos.x < MAT_L) {
+    if(pos.y >= 0 && pos.y < HAUTEUR_TERRAIN && pos.x >= 0 && pos.x < LARGEUR_TERRAIN) {
         if(matrice[pos.y][pos.x] == TERRE){
             printf("\n--------TERRE-------\n");
             return 1;
@@ -44,7 +44,7 @@ int collision_grapin(t_coordonnee pos, int matrice[MAT_H][MAT_L]){
 }
 
 /**
- * @fn int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, 
+ * @fn int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
     TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
     t_joueur *equipe1, t_joueur *equipe2);
  * @author Solène Orieux
@@ -64,7 +64,7 @@ int collision_grapin(t_coordonnee pos, int matrice[MAT_H][MAT_L]){
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  */
 
-int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, 
+int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
     TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
     t_joueur *equipe1, t_joueur *equipe2){
     if(horsNuage( *dino, nb_pts, matrice)){
@@ -100,7 +100,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[MAT_H][MAT
 }
 
 /**
- * @fn void balancier(int matrice[MAT_H][MAT_L], t_dino *dino, SDL_Renderer* zoneAffichage, 
+ * @fn void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer* zoneAffichage, 
                const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, 
                SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], 
                t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation);
@@ -120,7 +120,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[MAT_H][MAT
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param pts_rotation pointeur sur la coordonnée du points de rotation du grapin
  */
-void balancier(int matrice[MAT_H][MAT_L], t_dino *dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
+void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
                TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], 
                SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, 
                t_joueur *equipe2, t_coordonnee *pts_rotation) {
@@ -179,9 +179,9 @@ void balancier(int matrice[MAT_H][MAT_L], t_dino *dino, SDL_Renderer* zoneAffich
 
         // SÉCURITÉ BORNES : Empêche de sortir de la matrice (cause de Segfault)
         if (nouvelle_x < 0) nouvelle_x = 0;
-        if (nouvelle_x >= MAT_L - 30) nouvelle_x = MAT_L - 31;
+        if (nouvelle_x >= LARGEUR_TERRAIN - 30) nouvelle_x = LARGEUR_TERRAIN - 31;
         if (nouvelle_y < 0) nouvelle_y = 0;
-        if (nouvelle_y >= MAT_H - 30) nouvelle_y = MAT_H - 31;
+        if (nouvelle_y >= HAUTEUR_TERRAIN - 30) nouvelle_y = HAUTEUR_TERRAIN - 31;
 
         dino->pos.x = nouvelle_x;
         dino->pos.y = nouvelle_y;
@@ -259,7 +259,7 @@ float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *
 
 
 /**
- * @fn int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[MAT_H][MAT_L], int *collision, int distance_parcourue);
+ * @fn int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision, int distance_parcourue);
  * @author Solène Orieux
  * @date 3/04/2006
  * @brief on lance le grapin
@@ -269,7 +269,7 @@ float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *
  * @param collision pointeur sur une variable booléenne qui permet de savoir si on à touché une nouvelle colline
  * @param distance_parcourue On s'assure que le grapin ne va pas détecter une colision avec l'emplacement initial
  */
-int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[MAT_H][MAT_L], int *collision_detectee, int distance_parcourue) {
+int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision_detectee, int distance_parcourue) {
     
     // Calcul précis en flottant
     pos_precise->x += 5.0f * cos(angle_rad);
@@ -294,7 +294,7 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[MAT_H]
 }
 
 /**
- * @fn int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, const Uint8 *state, int distance_parcourue, 
+ * @fn int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const Uint8 *state, int distance_parcourue, 
      SDL_Renderer* zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[]);
  * @author Solène Orieux
  * @date 3/04/2006
@@ -309,7 +309,7 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[MAT_H]
  * @param nb_nuage nombre de nuage présent dans la map
  * @param nomNuage liste des différents noms d'image permettant de créer le nuage
  */
-int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, const Uint8 *state, int distance_parcourue, 
+int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const Uint8 *state, int distance_parcourue, 
      SDL_Renderer* zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[]) {
     int ecart;
     t_coordonnee pos_suivante;
@@ -355,7 +355,7 @@ int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, const Uint8 *state, int dis
 
 
 /**
- * @fn int grapin(int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, t_dino **dino, 
+ * @fn int grapin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
            SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
@@ -375,7 +375,7 @@ int rappel(int matrice[MAT_H][MAT_L], t_dino **dino, const Uint8 *state, int dis
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
  * @param equipe2 structure correspondant aux dinosaures du joueur 2
  */
-int grapin(int matrice[MAT_H][MAT_L], SDL_Renderer* zoneAffichage, t_dino **dino, 
+int grapin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
            SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 

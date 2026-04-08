@@ -30,7 +30,7 @@ int main(int argc, char * argv[]){
     initialiserPolice(&police, "../pde/arial.ttf", 16);
 
     /* ---- 2. Chargement de la Map et Placement ---- */
-    int matrice[MAT_H][MAT_L];
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts, w, h;
     int trouvés_E1 = 0, trouvés_E2 = 0;
     t_coordonnee *nuages_stockes[5];

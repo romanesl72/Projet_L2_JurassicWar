@@ -19,7 +19,7 @@ int main(int argc, char * argv[]){
     /* ---- Initialisation des variables ---- */
     int i, j, k;
     int enCours;
-    int matrice[MAT_H][MAT_L];
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts;
     int w, h;
     int trouvés_E1 = 0;

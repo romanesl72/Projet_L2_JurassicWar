@@ -11,7 +11,7 @@
  */
 
 /**
- * @fn void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_L]);
+ * @fn void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @brief Charge une matrice depuis un fichier.
  * @author Romane Saint-Léger
  * @date Crée le 07/02/2026
@@ -19,7 +19,7 @@
  * @param matrice La matrice à remplir avec les données du fichier.
  */
 
-void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_L]);
+void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 /**
  * @fn int initialiserMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]);
@@ -45,7 +45,7 @@ int initialiserMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]);
 void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]);
 
 /**
- * @fn void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
+ * @fn void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @brief la fonction supprime le dino de la matrice
  * @author Solène Orieux
  * @date Crée le 01/03/2026
@@ -54,6 +54,6 @@ void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]);
  * @param matrice La matrice à modifier
  */
 
-void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]);
+void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 #endif

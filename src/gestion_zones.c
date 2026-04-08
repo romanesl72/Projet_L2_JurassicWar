@@ -41,7 +41,7 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
 
         if(!trop_proche) {
             // Zone Gauche : on n'ajoute que si on en a moins de 10 ET que le point est à gauche
-            if ((dino.x < (MAT_L / 3)) && (*nb_E1 < 10)) {
+            if ((dino.x < (LARGEUR_TERRAIN / 3)) && (*nb_E1 < 10)) {
                 catalogue->zones_E1[*nb_E1].bas_centre = dino;
                 catalogue->zones_E1[*nb_E1].id_equipe = 1;
                 catalogue->zones_E1[*nb_E1].indice_nuage = r;
@@ -50,7 +50,7 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
                 points_ajoutes_ce_tour++;
             }
             // Zone Droite
-            else if ((dino.x > (2 * MAT_L / 3)) && (*nb_E2 < 10)) {
+            else if ((dino.x > (2 * LARGEUR_TERRAIN / 3)) && (*nb_E2 < 10)) {
                 catalogue->zones_E2[*nb_E2].bas_centre = dino;
                 catalogue->zones_E2[*nb_E2].id_equipe = 2;
                 catalogue->zones_E2[*nb_E2].indice_nuage = r;

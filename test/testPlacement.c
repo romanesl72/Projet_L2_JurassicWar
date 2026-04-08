@@ -5,7 +5,7 @@
 #include "../lib/collision_decor.h"
 #include "../lib/placer_dinos.h"
 
-extern int matrice_test[MAT_H][MAT_L];
+extern int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
 
 void test_placement_multi_zones() {
     printf("\n--- Test Placement Multi-Zones ---\n");

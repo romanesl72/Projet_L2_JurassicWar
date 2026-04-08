@@ -40,7 +40,7 @@ int main(int argc, char * argv[]){
     int nb_pts, w, h;
     int trouvés_E1 = 0, trouvés_E2 = 0;
     float graviteMonde = 0.5f;
-    int matrice[MAT_H][MAT_L];
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_coordonnee *nuages_stockes[3];
     t_catalogue_zones catalogue;
     
@@ -145,7 +145,6 @@ int main(int argc, char * argv[]){
             else if (clavier[SDL_SCANCODE_P]) {
                 printf("Soin : POTION\n");
                 utiliserPotion(tireur);
-                //afficherMenuPVDinos(rendu, police, equipe1, equipe2);
             }
             else if (clavier[SDL_SCANCODE_G]) {
                 printf("Grappin non implémenté\n");
@@ -158,7 +157,7 @@ int main(int argc, char * argv[]){
                 
                 printf("Ok1\n");
                 /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-                viserArcher(rendu, texMap, texObjets, police, 0, &tir, clavier, graviteMonde, &equipe1, &equipe2);
+                viserArcher(rendu, texMap, texObjets, police, 0, &tir, clavier, graviteMonde, &equipe1, &equipe2, D1);
                 printf("Ok2\n");
             }
         

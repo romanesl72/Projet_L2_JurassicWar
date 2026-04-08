@@ -9,7 +9,7 @@
 
 // Aux dimensions de ton fichier .txt
 
-void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_L]) {
+void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     int i, j;
     
     FILE* file = fopen(nomFichier, "r");
@@ -17,8 +17,8 @@ void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[MAT_H][MAT_
         perror("Erreur ouverture matrice.txt");
         return;
     }
-    for (i = 0; i < MAT_H; i++) {
-        for (j = 0; j < MAT_L; j++) {
+    for (i = 0; i < HAUTEUR_TERRAIN; i++) {
+        for (j = 0; j < LARGEUR_TERRAIN; j++) {
             fscanf(file, "%d", &matrice[i][j]);
         }
     }
@@ -44,14 +44,14 @@ void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
     *matriceTerrain = NULL;
 }
 
-void supprimer_matrice_dino(t_dino *dino, int matrice[MAT_H][MAT_L]) {
+void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     /*permet de remetre à jour les anciennes zones comportant un dino*/
     int i,j,px,py;
     for(i = 0; i < 30; i++) {
         for(j = 0; j < 30; j++) {
             py = dino->pos.y + i;
             px = dino->pos.x + j;
-            if (py >= 0 && py < MAT_H && px >= 0 && px < MAT_L) {
+            if (py >= 0 && py < HAUTEUR_TERRAIN && px >= 0 && px < LARGEUR_TERRAIN) {
                 matrice[py][px] = dino->memoire[i][j];
             }
         }

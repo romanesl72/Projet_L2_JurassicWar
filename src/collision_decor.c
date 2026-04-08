@@ -13,7 +13,7 @@
  * @param matrice La matrice du terrain chargée en mémoire.
  * @return int Retourne 1 si une collision avec la terre est détectée, 0 sinon.
  */
-int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
+int collision_decor(int tab_res[4], t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     int contact = 0;
     int i;
 
@@ -24,7 +24,7 @@ int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
     int bas = dino.pos.y + TAILLE_DINO;
     int milieu_x = dino.pos.x + (TAILLE_DINO/ 2);
     // Sécurité limites matrice
-    if (bas >= MAT_H || milieu_x >= MAT_L || milieu_x < 0){
+    if (bas >= HAUTEUR_TERRAIN || milieu_x >= LARGEUR_TERRAIN || milieu_x < 0){
         return 0;
     }
     // Vérification SUD (Priorité à l'Eau)
@@ -44,7 +44,7 @@ int collision_decor(int tab_res[4], t_dino dino, int matrice[MAT_H][MAT_L]) {
     return contact;
 }
 
-int collision_cote(t_dino dino, int matrice[MAT_H][MAT_L]){
+int collision_cote(t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     int i;
     for(i=0;i<TAILLE_DINO;i++){
         if(matrice[dino.pos.y+i][dino.pos.x+TAILLE_DINO]==TERRE)return 1;

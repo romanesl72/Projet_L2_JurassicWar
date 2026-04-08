@@ -5,7 +5,7 @@
 #include "../lib/collision_decor.h"
 
 // On déclare la matrice de test en global pour qu'elle soit accessible
-int matrice_test[MAT_H][MAT_L];
+int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
 
 void test_placement_multi_zones();
 
@@ -23,7 +23,7 @@ void test_collision_eau() {
     int res[4];
 
     // On vide la matrice et on place de l'eau au SUD
-    for(int i=0; i<MAT_H; i++) for(int j=0; j<MAT_L; j++){
+    for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
         matrice_test[i][j] = 0;
     }
     matrice_test[22][21] = EAU; 
@@ -118,7 +118,7 @@ int main() {
     srand(time(NULL));
     
     // On réinitialise la matrice avant chaque test ou on la vide ici
-    for(int i=0; i<MAT_H; i++) for(int j=0; j<MAT_L; j++){
+    for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
         matrice_test[i][j] = 0;
     }
 
