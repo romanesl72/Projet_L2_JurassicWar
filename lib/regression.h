@@ -11,19 +11,6 @@
  * @date 24/03/2026
  */
 
-
-/**
- * @fn t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]);
- * @author Solène Orieux
- * @date 24/03/2026
- * @brief
- * @param nb_points pointeur sur le nombre de points du nuage de points
- * @param nomFichier nom de l'image où l'on pourra extraire le nuage de points
- */
-
-
-t_coordonnee *nuage_de_points(int *nb_points,char nomFichier[]);
-
 /**
  * @fn void moyenne(t_coordonnee *T, int n, float *x, float *y);
  * @author Solène Orieux

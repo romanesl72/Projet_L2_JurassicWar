@@ -23,6 +23,15 @@
 
 void initfile(void);
 
+
+/**
+ * @fn int filevide(void);
+ * @author Solène Orieux
+ * @date 25/03/2025
+ * @brief vérifie si la file est vide
+ */
+
+int filevide(void);
 /**
  * @fn void ajouter(int v);
  * @author Solène Orieux
@@ -30,7 +39,6 @@ void initfile(void);
  * @brief ajout dans la file
  * @param v valeur à ajouter
  */
-
 
 void ajouter(t_coordonnee v);
 
@@ -52,14 +60,6 @@ void retirer(t_coordonnee *v);
  */
 void detruireFile();
 
-/**
- * @fn int filevide(void);
- * @author Solène Orieux
- * @date 25/03/2025
- * @brief vérifie si la file est vide
- */
-
-int filevide(void);
 
 /**
  * @fn int afficherFile(SDL_Renderer *rendu);
