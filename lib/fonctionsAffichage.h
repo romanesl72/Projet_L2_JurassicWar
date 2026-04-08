@@ -26,15 +26,13 @@
  * @param rendu un pointeur sur la fenêtre du jeu
  * @param police un pointeur sur la police du jeu
  * @param texMap un pointeur l'image principal du jeu
- * @param texDino un tableau de pointeur sur les images représentant le dinosaure
  * @param texObjets un tableau de pointeur sur les images des différants objets
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
- * @param equipe1 structure correspondant aux dinosaures du joueur 1
- * @param equipe2 structure correspondant aux dinosaures du joueur 2
+ * @param equipe1 pointeur de structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 pointeur de structure correspondant aux dinosaures du joueur 2
  */
-void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap,
-     SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
-    t_joueur equipe1, t_joueur equipe2);
+void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], char *nomsObjets[],
+    t_joueur *equipe1, t_joueur *equipe2);
 
 
 #endif
