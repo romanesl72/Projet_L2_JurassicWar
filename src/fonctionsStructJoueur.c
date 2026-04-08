@@ -199,6 +199,7 @@ void initialiserContenuJoueur(t_joueur *joueur){
         joueur->tab[i].deplacement->tomber = 0;
         joueur->tab[i].deplacement->wait = 0;
         joueur->tab[i].deplacement->indice_reel = 0;
+        joueur->tab[i].deplacement->sens = DROITE;
         joueur->tab[i].etat = 1; // Vivant
         joueur->tab[i].pv = 100;
     }
