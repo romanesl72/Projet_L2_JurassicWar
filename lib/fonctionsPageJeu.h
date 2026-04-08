@@ -25,6 +25,9 @@
 
 int creerPageJeuBombe(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap);
 
+int creerPageJeu(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap, SDL_Texture **texObjets, TTF_Font **policeMenuHIP);
+
+
 /** 
  * @fn void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones *catalogue, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer *zoneAffichage);
  * @brief La fonction initialise les deux équipes, c'est à dire chaque joueur et le placement des dinosaures sur le terrain.
@@ -104,6 +107,10 @@ void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe * bombe,
  */
 
 void destruireElementsJeuBombe(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu);
+
+
+void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu);
+
 
 /** 
  * @fn void lancerBombeSansHIP(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap);
