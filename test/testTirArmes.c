@@ -50,7 +50,7 @@ int main(int argc, char * argv[]){
             int touchePressee = 0;
 
             /*On vérifie quelle touche est pressée pour choisir l'arme*/
-            if (clavier[SDL_SCANCODE_V]) {
+            if (clavier[SDL_SCANCODE_Q]) {
                 tirEncours.arme_source = catalogue_armes[0];
                 printf("Arme : ARC\n");
                 touchePressee = 1;
@@ -75,7 +75,7 @@ int main(int argc, char * argv[]){
                 tirEncours.pos.x = 50;
                 tirEncours.pos.y = 600;
 
-                viserArcher(rendu, NULL, NULL, NULL, 0, &tirEncours, clavier, graviteMonde, NULL, NULL, 0);
+                viserArcher(rendu, NULL, NULL, NULL, &tirEncours, clavier, graviteMonde, NULL, NULL, 0);
             }
         }
 

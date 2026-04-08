@@ -211,17 +211,24 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
     tir->actif = 1; 
 }
 
-void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant) {
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant) {
     
     /* Sécurité */
     if (etatClavier == NULL) return;
 
-    t_cote cote = recupererDinoDirection(e1, e2, numDinoCourant);
-    t_cote ancienCote = cote;
+    t_cote cote = DROITE; 
+    t_cote ancienCote;
+
+    printf("Debug A\n");
+    if (e1 != NULL && e2 != NULL) {
+        cote = recupererDinoDirection(e1, e2, numDinoCourant);
+    }
+    printf("Debug B\n");
+    ancienCote = cote;
 
     tir->velo.u = tir->arme_source.puissance_propulsion;
     tir->velo.v = -tir->arme_source.puissance_propulsion;
-
+    printf("Debug C\n");
     if (cote == GAUCHE && tir->velo.u > 0) {
         tir->velo.u = -tir->velo.u;
     }
@@ -235,8 +242,10 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
         SDL_PumpEvents();
 
         /* Commandes pour choisir le sens du dinosaure */
-        if (etatClavier[SDL_SCANCODE_G]) cote = GAUCHE;
-        if (etatClavier[SDL_SCANCODE_D]) cote = DROITE;
+        if (e1 != NULL && e2 != NULL) {
+            if (etatClavier[SDL_SCANCODE_G]) cote = GAUCHE;
+            if (etatClavier[SDL_SCANCODE_D]) cote = DROITE;
+        }
 
         /* Commandes pour viser */
         if (etatClavier[SDL_SCANCODE_UP]){
@@ -261,6 +270,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
         if (tir->velo.u > vMax) tir->velo.u = vMax;
         if (tir->velo.u < -vMax) tir->velo.u = -vMax;
 
+        SDL_SetRenderDrawColor(zoneAffichage, 50, 50, 50, 255);
         SDL_RenderClear(zoneAffichage);
 
         /* On dessine la map avec le décalage de 100px (HIP) */

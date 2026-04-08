@@ -144,7 +144,6 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
  * @param texMap pointeur sur la texture de la map
  * @param texObjets pointeur sur la texture des Objets
  * @param police pointeur sur la police d'écriture
- * @param armeSelectionnee
  * @param tir pointeur sur la structure de tir
  * @param etatClavier un pointeur de pointeur sur l'état du clavier
  * @param e1 pointeur sur la structure de l'équipe 1 afin de pouvoir accéder aux dinos de leur équipe
@@ -152,7 +151,7 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
  * @param numDinoCourant Numéro du dinosaure en train de tirer
  */
 
-void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant);
+void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant);
 
 /**
  * @fn appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);

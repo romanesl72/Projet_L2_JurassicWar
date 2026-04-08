@@ -57,6 +57,15 @@ int main(int argc, char * argv[]){
     equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
     equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
 
+    equipe1.tabCote = malloc(sizeof(t_cote) * equipe1.n);
+    equipe2.tabCote = malloc(sizeof(t_cote) * equipe2.n);
+
+    // Initialise les directions par défaut pour éviter des valeurs aléatoires
+    for(i = 0; i < 3; i++) {
+        equipe1.tabCote[i] = DROITE;
+        equipe2.tabCote[i] = GAUCHE;
+    }
+    
     placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
     placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
 
@@ -82,22 +91,27 @@ int main(int argc, char * argv[]){
 
 
     /* ---- Chargement Textures ---- */
-    SDL_Texture *texMap = NULL, *texDinos[6], *texObjets[7];
+    SDL_Texture *texMap = NULL, *texDinos[6], *texDinosInv[6], *texObjets[7];
     char *nomsObjets[7] = {"../img/img_arc.png", "../img/img_arbalete.png", "../img/img_bombe.png", 
                            "../img/img_fusil.png", "../img/img_revolver.png", "../img/img_potion.png", "../img/img_grappin.png"};
 
     chargerImage(rendu, &texMap, "../img/test1_b.jpg", &w, &h);
-    
+
     equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+    equipe1.texDinosInv = malloc(sizeof(SDL_Texture*) * 6);
     equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
+    equipe2.texDinosInv = malloc(sizeof(SDL_Texture*) * 6);
     
     for(j=0; j<6; j++) {
         chargerImage(rendu, &texDinos[j], "../img/dinoTransparent.png", &w, &h);
+        chargerImage(rendu, &texDinosInv[j], "../img/dinoTransparent.png", &w, &h);
         // On lie les textures aux structures joueurs
         equipe1.texDinos[j] = texDinos[j];
+        equipe1.texDinosInv[j] = texDinosInv[j];
         equipe2.texDinos[j] = texDinos[j];
+        equipe2.texDinosInv[j] = texDinosInv[j];
     }
-    
+
     
     for(i=0; i<7; i++) chargerImage(rendu, &texObjets[i], nomsObjets[i], &w, &h);
 
@@ -156,8 +170,9 @@ int main(int argc, char * argv[]){
                 tir.pos.y = tireur->pos.y + 15;
                 
                 printf("Ok1\n");
+                printf("%d\n", tireur->d);
                 /* Bloque le jeu tant qu'on n'a pas appuyé sur ESPACE */
-                viserArcher(rendu, texMap, texObjets, police, 0, &tir, clavier, graviteMonde, &equipe1, &equipe2, D1);
+                viserArcher(rendu, texMap, texObjets, police, &tir, clavier, graviteMonde, &equipe1, &equipe2, tireur->d);
                 printf("Ok2\n");
             }
         
@@ -206,6 +221,13 @@ int main(int argc, char * argv[]){
     }
 
     /* ---- 6. Nettoyage ---- */
+    for(i = 0; i < equipe1.n; i++) {
+        if(equipe1.tab[i].deplacement) free(equipe1.tab[i].deplacement);
+    }
+    for(i = 0; i < equipe2.n; i++) {
+        if(equipe2.tab[i].deplacement) free(equipe2.tab[i].deplacement);
+    }
+
     free(equipe1.tab);
     free(equipe2.tab);
 
