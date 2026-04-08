@@ -32,24 +32,40 @@ int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]){
     return 0;
 }
 
+
 int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens){
-    int d1, d2, ecart;
+
+    int d1,d2,ecart;
     int ac_id_nuage, ac_indice;
     int nouvel_id = dino->id_nuage + sens;
     if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
         t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
+
         if(nv_nuage != NULL){
             d1 = dino->pos.x;
+            // Détermine le point de bordure le plus proche du nouveau nuage
             d2 = (sens == 1) ? nv_nuage[0].x : nv_nuage[*nb_pts - 1].x;
             ecart = abs(d2 - d1);
+            // Transfert de mémoire sécurisé
             nuageDetruire(nuage);
             *nuage = nv_nuage;
-            ac_id_nuage = dino->id_nuage;
+            ac_id_nuage=dino->id_nuage ;
             dino->id_nuage = nouvel_id;
-            ac_indice = dino->indice_nuage;
+            // Positionnement sur le nouveau nuage avec compensation d'écart
+            ac_indice=dino->indice_nuage;
+
             dino->indice_nuage = (sens == 1) ? (0 + ecart) : (*nb_pts - 1 - ecart);
+            printf("id=%d\n,indice=%d\n",dino->id_nuage,dino->indice_nuage);
             if (dino->indice_nuage < 0) dino->indice_nuage = 0;
             if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
+            if((*nuage)[dino->indice_nuage].y<(dino->pos.y-TAILLE_DINO)){
+                printf("\ndino=%d\nnuage=%d\n",dino->pos.y,(*nuage)[dino->indice_nuage].y);
+                dino->id_nuage=ac_id_nuage;
+                dino->indice_nuage=ac_indice;
+                nuageDetruire(nuage);
+                *nuage = nuage_de_points(nb_pts, nomNuage[dino->id_nuage]);
+                return 0;
+            }
             return 1;
         }
     }
@@ -89,17 +105,20 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
     float pas = VITESSE_BASE * (1.0f + sens*(a * 0.5f));
     dino->deplacement->indice_reel += sens*pas;
     dino->indice_nuage = (int)dino->deplacement->indice_reel;
-    noyade(dino, matrice);
     if(horsNuage(dino, *nb_pts, matrice)){
-        dino->deplacement->tomber = 1;
-        tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, sens); 
+        supprimer_matrice_dino(dino, matrice);
+        dino->pos.x+=sens;
+        remplir_matrice_dino(dino, dino->pos, matrice);
+        if(!noyade(dino, matrice)){
+            dino->deplacement->tomber=1;
+            tomberNuage( dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, sens);
+        }
     } else {
         supprimer_matrice_dino(dino, matrice);
         dino->pos = (*nuage)[dino->indice_nuage];
         remplir_matrice_dino(dino, dino->pos, matrice);
     }
 }
-
 // --- LOGIQUE DE DIRECTION ---
 
 void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
@@ -130,22 +149,39 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
         else if (state[SDL_SCANCODE_LEFT]) sens = -1, dino->deplacement->sens = GAUCHE;
         dino->indice_nuage += sens;
         if(!horsNuage(dino, *nb_pts, matrice)){
-            if(!noyade(dino, matrice)){
-                dino->deplacement->v_y += GRAVITE;
-                dino->pos.y += (int)dino->deplacement->v_y;
-                dino->pos.x = (*nuage)[dino->indice_nuage].x;
-                dino->deplacement->indice_reel = (float)dino->indice_nuage;
-                if (dino->pos.y >= (*nuage)[dino->indice_nuage].y) {
-                    dino->pos = (*nuage)[dino->indice_nuage];
-                    dino->deplacement->sautBooleen = 0;
-                    dino->deplacement->v_y = 0;
-                    dino->deplacement->wait = 20;
-                }
+           
+            dino->deplacement->v_y += GRAVITE;
+            dino->pos.y += (int)dino->deplacement->v_y;
+            dino->pos.x = (*nuage)[dino->indice_nuage].x;
+            dino->deplacement->indice_reel = (float)dino->indice_nuage;
+            if (dino->pos.y >= (*nuage)[dino->indice_nuage].y) {
+                dino->pos = (*nuage)[dino->indice_nuage];
+                dino->deplacement->sautBooleen = 0;
+                dino->deplacement->v_y = 0;
+                dino->deplacement->wait = 20;
             }
-        } else {
-            replacementNuage(dino, nb_pts, nuage, nb_nuage, nomNuage, sens);
+            remplir_matrice_dino(dino, dino->pos, matrice);
+            
+        } 
+        else {
+            if(!replacementNuage(dino, nb_pts, nuage, nb_nuage, nomNuage, sens)){
+                if(!noyade(dino, matrice)){
+                    dino->deplacement->v_y += GRAVITE;
+                    dino->pos.y += (int)dino->deplacement->v_y;
+                    dino->pos.x += sens;
+                    dino->deplacement->indice_reel = (float)dino->indice_nuage;
+                    remplir_matrice_dino(dino, dino->pos, matrice);
+                }
+                else if(dino->deplacement->tomber==0){
+                    dino->deplacement->tomber=1;
+                    tomberNuage( dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, sens);
+                }
+                else{
+                    tomberNuage( dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, sens);
+                }
+                
+            }
         }
-        remplir_matrice_dino(dino, dino->pos, matrice);
     }
 }
 
