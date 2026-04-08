@@ -86,9 +86,9 @@ typedef enum {ARC, ARBALETE, FUSIL, REVOLVER } t_nom_arme;
 */
 
 typedef enum {
-    GAUCHE, /**< Direction gauche */
-    DROITE,  /**< Direction droite */
-    SANS_DIR /**< Aucune direction */
+    GAUCHE,     /**< Direction gauche */
+    DROITE,     /**< Direction droite */
+    SANS_DIR    /**< Aucune direction */
 } t_cote;
 
 /**
@@ -100,8 +100,8 @@ typedef enum {
 */
 
 typedef struct {
-	int x; /**< Position horizontale */
-	int y; /**< Position verticale */
+	int x;      /**< Position horizontale */
+	int y;      /**< Position verticale */
 } t_coordonnee;
 
 /**
@@ -113,8 +113,8 @@ typedef struct {
  */
 
 typedef struct {
-	float x; /**< Position horizontale flottante */
-	float y; /**< Position verticale flottante */
+	float x;    /**< Position horizontale flottante */
+	float y;    /**< Position verticale flottante */
 } t_coordonnee_calcul;
 
 /**
@@ -149,14 +149,14 @@ typedef struct {
 */
 
 typedef struct {
-    t_case d;               /**< Numéro du dinosaure de 2 à 7 */
-    t_coordonnee pos;       /**< Position actuelle */
-    int id_nuage;           /**< Numéro du nuage */
-    int indice_nuage;       /**< Position dans le nuage */
-    int largeur, hauteur;   /**< Dimensions du dinosaure */
-    int etat;               /**< Vivant ou Mort */
-    int pv;                 /**< Points de vie restant */
-    int memoire[30][30];    /**< Permet de mémoriser Ce qu'il y avait dans la matrice avant le dino */
+    t_case d;                   /**< Numéro du dinosaure de 2 à 7 */
+    t_coordonnee pos;           /**< Position actuelle */
+    int id_nuage;               /**< Numéro du nuage */
+    int indice_nuage;           /**< Position dans le nuage */
+    int largeur, hauteur;       /**< Dimensions du dinosaure */
+    int etat;                   /**< Vivant ou Mort */
+    int pv;                     /**< Points de vie restant */
+    int memoire[30][30];        /**< Permet de mémoriser Ce qu'il y avait dans la matrice avant le dino */
     t_deplacement *deplacement; /**< Contient toutes les infos utiles au déplacements */
 } t_dino;
 
@@ -272,10 +272,10 @@ typedef struct {
 */
 
 typedef struct {
-    t_coordonnee_calcul pos;
-    t_vect velo;
-    t_arme arme_source;
-    int actif;
+    t_coordonnee_calcul pos;    /**< Position du projectile en cours */
+    t_vect velo;                /**< Vecteur correspondant au projectile */
+    t_arme arme_source;         /**< Arme utilisé pour le tir */
+    int actif;                  /**< Si le tir est en cours ou pas */
 }t_tir;
 
 /**
