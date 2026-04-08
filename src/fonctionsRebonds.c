@@ -29,6 +29,7 @@ void initialiserVitesse(t_vect *vectVitesse, float vitesseChoisieX, float vitess
 
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
     Uint32 tempsCourant = SDL_GetTicks();
+    printf("%ld %ld \n", tempsCourant, *tempsPrecedent);
     *tempsEcoule = (tempsCourant - *tempsPrecedent)/1000.0f;
     *tempsPrecedent = tempsCourant;
 }
@@ -319,7 +320,7 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
 void tracerTrajectoireLancerHIP(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse){
 
     float temps = 0;
-    float dt = 1.0f/250.0f;
+    float dt = 1.0f/120.0f;
     t_vect precedent;
     t_vect courant;
     float vitY = vectVitesse->v;

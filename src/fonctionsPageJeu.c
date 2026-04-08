@@ -179,7 +179,8 @@ void detecterEvenementsPageJeuBombe(
 /* Ajouter les touches pour les armes dans les évènements */
 int detecterEvenementsPageJeu(
     int *enCours,  
-    int *nombreRebonds, 
+    int *nombreRebonds,
+    int *bombeLancee, 
     SDL_Renderer *zoneAffichage, 
     SDL_Texture *texMap, 
     SDL_Texture **texObjets,
@@ -199,8 +200,6 @@ int detecterEvenementsPageJeu(
     SDL_Event evenement;
     
     t_dino *tireur = recupererDinoNumero(equipe1, equipe2, dinoCourant);
-    //tir->actif = 0;
-    //Ajout de cette vérification ? if (tireur != NULL)
 
 
     while (SDL_PollEvent(&evenement)){
@@ -214,6 +213,7 @@ int detecterEvenementsPageJeu(
     /* La Bombe */
     if (etatClavier[SDL_SCANCODE_B]){
         *nombreRebonds = 0;
+        *bombeLancee = 2;
 
         choixHauteurLancerDinoCourantHIP(zoneAffichage, texMap, texObjets, policeMenuHIP, rectFen, &etatClavier, bombe, vectVitesse, equipe1, equipe2, dinoCourant, matriceTerrain, cache);
         return 2;
@@ -434,72 +434,64 @@ void lancerBombeSansHIP(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRe
     }
 }
 
-/* Fonction pour le lancer de la bombe adaptée au menu des armes */
-void lancerBombe(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, 
+void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, 
     t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours,
     SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache
     ){
 
-    const float vitesse = 1.0f/250.0f;
-    static float accumulateur = 0;
+    const float vitesse = 1.0f/120.0f;
     t_case dinoTouche = AIR;
-    float tempsEcoule;
 
-    miseAjourTemps(tempsPrecedent, &tempsEcoule);
-    accumulateur += tempsEcoule;
+    while ((*bombeLancee == 2)) {
 
-    while (accumulateur >= vitesse) {
-        if (*bombeLancee == 2) {
+        bombe->coor.x += vitesse*vectVitesse->u;
+        bombe->coor.y += vitesse*vectVitesse->v;
+        vectVitesse->v += GRAVITE_BOMBE*vitesse;
 
-            bombe->coor.x += vitesse*vectVitesse->u;
-            bombe->coor.y += vitesse*vectVitesse->v;
-            vectVitesse->v += GRAVITE_BOMBE*vitesse;
+        if (collisionFrontiereBombe(bombe)) {
+            *bombeLancee = -1;
+            afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+            printf("Collision avec la frontière. \n");
 
-            if (collisionFrontiereBombe(bombe)) {
-                *bombeLancee = 0;
-                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-                printf("Collision avec la frontière. \n");
+        }
 
+        dinoTouche = collisionDinoBombe(matriceTerrain, bombe);
+
+        if (((dinoTouche >= D1) && (dinoTouche <= D6)) || collisionEauBombe(matriceTerrain, bombe)) {
+            *bombeLancee = -1;
+            printf("Collision avec eau ou dinosaure. \n");
+
+            if ((dinoTouche >= D1) && (dinoTouche <= D6)){
+                printf("Collision avec un dinosaure. \n");
+                supprimer_matrice_dino(recupererDinoNumero(equipe1, equipe2, dinoTouche), matriceTerrain);
+                supprimerDinoJoueur(equipe1, equipe2, dinoTouche);
+                dinoTouche = AIR;
             }
 
-            dinoTouche = collisionDinoBombe(matriceTerrain, bombe);
-
-            if (((dinoTouche >= D1) && (dinoTouche <= D6)) || collisionEauBombe(matriceTerrain, bombe)) {
-                *bombeLancee = 0;
-                printf("Collision avec eau ou dinosaure. \n");
-
-                if ((dinoTouche >= D1) && (dinoTouche <= D6)){
-                    printf("Collision avec un dinosaure. \n");
-                    supprimer_matrice_dino(recupererDinoNumero(equipe1, equipe2, dinoTouche), matriceTerrain);
-                    supprimerDinoJoueur(equipe1, equipe2, dinoTouche);
-                    dinoTouche = AIR;
-                }
-
-                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-                
-            }
-            if (collisionTerrainBombe(matriceTerrain, bombe, vectVitesse)) {
-                (*nombreRebonds) ++;
-                printf("Collision avec le terrain. \n");
-
-                if (*nombreRebonds > 1){
-                    *bombeLancee = 0;
-                    afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-                }
-            }
-
-            if (*bombeLancee == 2) {
-
-                afficherJeuAvecArmes(equipe1, equipe2, bombe, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-            }
+            afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             
-            if (*bombeLancee == 0){
-                tourSuivant(gestionTours, equipe1, equipe2);
-                printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", gestionTours->dinoCourant, gestionTours->numeroTour, gestionTours->equipeCourante);
-                initialiserVitesse(vectVitesse, VITESSE_X, VITESSE_Y);
+        }
+        if (collisionTerrainBombe(matriceTerrain, bombe, vectVitesse)) {
+            (*nombreRebonds) ++;
+            printf("Collision avec le terrain. \n");
+
+            if (*nombreRebonds > 1){
+                *bombeLancee = -1;
+                afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
         }
-        accumulateur -= vitesse;
+
+        if (*bombeLancee == 2) {
+
+            afficherJeuAvecArmes(equipe1, equipe2, bombe, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+        }
+        
+        if (*bombeLancee == -1){
+            tourSuivant(gestionTours, equipe1, equipe2);
+            printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", gestionTours->dinoCourant, gestionTours->numeroTour, gestionTours->equipeCourante);
+            initialiserVitesse(vectVitesse, VITESSE_X, VITESSE_Y);
+        }
+        SDL_Delay(8);
     }
 }
 
@@ -639,6 +631,7 @@ void lancerPartie(){
         t_vect vectVitesse;
         int action = 0;
         int nombreRebonds = 0;
+        int bombeLancee = 0;
 
         // Variable de changement de tour
         t_tour gestionTours = {1, 1, D1, D6};
@@ -670,60 +663,22 @@ void lancerPartie(){
 
         SDL_SetRenderDrawColor(zoneAffichage, 40, 40, 40, 255);
         afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-
-        Uint32 tempsPrecedent = SDL_GetTicks();
         
         while(enCours) {
-            
-            /*action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
-            if (action == 1){
-                // On récupère le tireur pour l'ID (éviter qu'il se tire dessus)
-                tireurActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
-                
-                col = mettreAJourVol(&tir, matriceTerrain, graviteArmes, tireurActuel->d);
-                
-                if (col >= D1) { // Touche un dino
-                    appliquerDegats(col, tir.arme_source.degats, &equipe1, &equipe2, matriceTerrain);
-                    tir.actif = 0;
-                    tourSuivant(&gestionTours, &equipe1, &equipe2); // On change de tour après l'impact
-                }
-                else if (col != 0) { // Touche sol ou eau
-                    tir.actif = 0;
-                    tourSuivant(&gestionTours, &equipe1, &equipe2);
-                }
-                afficherJeuAvecArmesTir(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, &tir);
-                
-            }
-            if (action == 2) {
-                lancerBombe(&tempsPrecedent, &action, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-            }*/
-            /*
-            else {
-                effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-            } */
-            /*
-            if (tir.actif) {
-                afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-                
-                t_tir tirAffichage = tir;
-                tirAffichage.pos.y += 100;
-                tracerArme(zoneAffichage, &tirAffichage);
-                
-                SDL_RenderPresent(zoneAffichage);
-            }*/
 
-            action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
+            action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, &bombeLancee, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
 
-            /* Les Armes */
+            // Les Armes
             if (tir.actif) {
                 tireurActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
                 
-                /* On fait avancer la flèche */
+                // On fait avancer la flèche
                 col = mettreAJourVol(&tir, matriceTerrain, graviteArmes, tireurActuel->d);
 
                 afficherJeuAvecArmesTir(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, &tir);
+                SDL_Delay(16);
 
-                /* Collision ? */
+                // Collision ?
                 if (col != 0) {
                     if (col >= D1) {
                         appliquerDegats(col, tir.arme_source.degats, &equipe1, &equipe2, matriceTerrain);
@@ -736,16 +691,14 @@ void lancerPartie(){
                 }
             }
             
-            /* La Bombe */
-            else if (action == 2) {
-                lancerBombe(&tempsPrecedent, &action, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+            // La Bombe
+            if (action == 2) {
+                lancerBombe(&bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
 
-            else {
+            else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
-
-            SDL_Delay(16);
         }
 
         // --- NETTOYAGE --- 
