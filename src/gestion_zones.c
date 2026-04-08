@@ -3,23 +3,26 @@
 #include <stdio.h>
 #include <math.h>
 
-
+/** 
+ * @file gestion_zones.c
+ * @brief Corps des fonctions qui génère les zones de placement pour les dinosaures
+ * @author Romane Saint_Léger
+ * @date Crée le 17/02/2026
+ * @version 1.5
+ */
 
 float distance(t_coordonnee p1, t_coordonnee p2) {
     return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
 }
 
-/**
- * Cette fonction prend le nuage de points (tous les points du sol)
- * et choisit 10 points au hasard à gauche et 10 à droite.
- */
+
 void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalogue_zones *catalogue, int *nb_E1, int *nb_E2, int id_n) {
     int i, r;
     int trop_proche = 0;
     int securite = 0;
     int points_ajoutes_ce_tour = 0;
 
-    // La boucle continue tant qu'on n'a pas 10 de chaque côté
+    /* La boucle continue tant qu'on n'en a pas 10 de chaque côté */
     while (points_ajoutes_ce_tour < 10 && securite < 5000) {
         trop_proche = 0;
         securite++;
@@ -27,7 +30,7 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
         r = rand() % nb_points;
         t_coordonnee dino = nuage[r];
 
-        // Vérifier la distance par rapport à CEUX DÉJÀ EXISTANTS
+        /* Vérifier la distance par rapport à CEUX DÉJÀ EXISTANTS */
         for(i=0; i < *nb_E1; i++) {
             if(distance(dino, catalogue->zones_E1[i].bas_centre) < 30){
                 trop_proche = 1;
@@ -40,16 +43,16 @@ void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalo
         }
 
         if(!trop_proche) {
-            // Zone Gauche : on n'ajoute que si on en a moins de 10 ET que le point est à gauche
+            /* Zone Gauche : on n'ajoute que si on en a moins de 10 ET que le point est à gauche */
             if ((dino.x < (LARGEUR_TERRAIN / 3)) && (*nb_E1 < 10)) {
                 catalogue->zones_E1[*nb_E1].bas_centre = dino;
                 catalogue->zones_E1[*nb_E1].id_equipe = 1;
                 catalogue->zones_E1[*nb_E1].indice_nuage = r;
                 catalogue->zones_E1[*nb_E1].id_nuage = id_n;
-                (*nb_E1)++; // On incrémente le compteur réel du main
+                (*nb_E1)++;
                 points_ajoutes_ce_tour++;
             }
-            // Zone Droite
+            /* Zone Droite : on n'ajoute que si on en a moins de 10 ET que le point est à droite */
             else if ((dino.x > (2 * LARGEUR_TERRAIN / 3)) && (*nb_E2 < 10)) {
                 catalogue->zones_E2[*nb_E2].bas_centre = dino;
                 catalogue->zones_E2[*nb_E2].id_equipe = 2;

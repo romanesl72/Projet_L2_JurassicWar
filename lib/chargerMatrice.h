@@ -5,9 +5,10 @@
 
 /** 
  * @file chargerMatrice.h
- * @brief Fonctions pour charger une matrice depuis un fichier.
- * @author Romane Saint_Léger Hannah Sergent
+ * @brief Définitions des fonctions pour charger une matrice depuis un fichier.
+ * @author Romane Saint_Léger Hannah Sergent Solène Orieux
  * @date Crée le 07/02/2026
+ * @version 2.2
  */
 
 /**
@@ -15,6 +16,7 @@
  * @brief Charge une matrice depuis un fichier.
  * @author Romane Saint-Léger
  * @date Crée le 07/02/2026
+ * @version 1.0
  * @param nomFichier Le nom du fichier à lire.
  * @param matrice La matrice à remplir avec les données du fichier.
  */

@@ -6,6 +6,13 @@
 #include <math.h>
 #include <stdio.h>
 
+/** 
+ * @file fonctionsTirs.c
+ * @brief Corps des fonctions 
+ * @author Romane Saint_Léger
+ * @date Crée le 17/03/2026
+ * @version 2.0
+ */
 
 void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme) {
     tir->pos.x = departX;
@@ -16,12 +23,6 @@ void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme)
     tir->arme_source = arme;
 }
 
-/*
-void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
-    Uint32 tempsCourant = SDL_GetTicks();
-    *tempsEcoule = (tempsCourant - *tempsPrecedent)/1000.0f;
-    *tempsPrecedent = tempsCourant;
-}*/
 
 int collisionFrontiere(t_tir *tir){
     return ((tir->pos.x < 0) || (tir->pos.x >= LARGEUR_TERRAIN) || (tir->pos.y < 0) || (tir->pos.y >= HAUTEUR_TERRAIN));
@@ -55,6 +56,7 @@ int collisionDino(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir) {
     if (valeur >= D1) return valeur;
     return 0;
 }
+
 
 int mettreAJourVol(t_tir *tir, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], float gravite, int id_tireur) {
     if (!tir->actif) return 0;
@@ -120,6 +122,7 @@ void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir) {
     }
 }
 
+
 void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite) {
     int i;
     float precX;
@@ -150,7 +153,6 @@ void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite
 
 
 void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2) {
-    
 
     tir->velo.u = tir->arme_source.puissance_propulsion;
     tir->velo.v = -tir->arme_source.puissance_propulsion;
@@ -159,10 +161,11 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
     float vMax = tir->arme_source.vitesse_max;
 
     do {
-
+        
         SDL_PumpEvents();
         *etatClavier = SDL_GetKeyboardState(NULL);
 
+        /* Commandes pour viser */
         if ((*etatClavier)[SDL_SCANCODE_UP]){
             tir->velo.v -= 0.1;
         }
@@ -209,7 +212,8 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
 }
 
 void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant) {
-    // Sécurité : si le pointeur clavier est NULL, on sort direct pour éviter le crash
+    
+    /* Sécurité */
     if (etatClavier == NULL) return;
 
     t_cote cote = recupererDinoDirection(e1, e2, numDinoCourant);
@@ -230,9 +234,11 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
     while(enVisee) {
         SDL_PumpEvents();
 
+        /* Commandes pour choisir le sens du dinosaure */
         if (etatClavier[SDL_SCANCODE_G]) cote = GAUCHE;
         if (etatClavier[SDL_SCANCODE_D]) cote = DROITE;
 
+        /* Commandes pour viser */
         if (etatClavier[SDL_SCANCODE_UP]){
             tir->velo.v -= 0.2f;
         }
@@ -251,14 +257,13 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
             tir->velo.u = -tir->velo.u; 
         }
 
-        // Bridage de la vitesse
+        /* Contrôler la vitesse avec un maximum */
         if (tir->velo.u > vMax) tir->velo.u = vMax;
         if (tir->velo.u < -vMax) tir->velo.u = -vMax;
 
-        // Rendu
         SDL_RenderClear(zoneAffichage);
 
-        // On dessine la map avec le décalage de 100px (HIP)
+        /* On dessine la map avec le décalage de 100px (HIP) */
         if (texMap != NULL) {
             SDL_RenderCopy(zoneAffichage, texMap, NULL, &rectMap);
         }
@@ -270,7 +275,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
             afficherDinosAvecJeu(zoneAffichage, e2);
         }
         
-        // Simulation visuelle (on décale l'affichage de 100px vers le bas)
+        /* On décale l'affichage de 100px vers le bas) */
         t_tir tirVisu = *tir;
         if (texMap != NULL){
             tirVisu.pos.y += 100;
@@ -289,7 +294,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
 
         SDL_RenderPresent(zoneAffichage);
 
-        // Quitter la boucle sur ESPACE
+        /* Quitter la boucle sur ESPACE */
         if (etatClavier[SDL_SCANCODE_SPACE]) enVisee = 0;
         
         SDL_Delay(16);
@@ -306,7 +311,7 @@ void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur 
         
         if (victime->pv <= 0) {
             victime->pv = 0;
-            victime->etat = 0; // 0 pour Mort
+            victime->etat = 0; /* 0 pour Mort */
             printf("Le Dino %d est KO !\n", numDinoTouche);
             
             supprimer_matrice_dino(victime, matrice);
