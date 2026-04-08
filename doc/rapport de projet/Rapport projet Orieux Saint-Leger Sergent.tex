@@ -32,19 +32,29 @@
 \clearpage
 \tableofcontents
 
+\newpage
 \section{Introduction}
 \subsection{Contexte}
 \subsection{Énoncé du problème}
 \subsection{Objectifs initiaux du projet}
 
 
-
+\newpage
 \section{Conception}
+Les principales règles du jeu ainsi que le choix des fonctionnalités pour le déroulement de la partie ou encore l'interface graphique de JurassicWar sont détaillées dans cette section. 
 \subsection{Principales règles du jeu}
+JurassicWar se compose de deux équipes, contenant chacune trois dinosaures. Au départ d'une partie, tous les dinosaures de la première équipe se trouvent à gauche du terrain et tous les dinosaures de la seconde équipe à droite de ce même terrain comme le montre la figure~\ref{fig:illustrationEquipesReglesJeu}.  L'objectif du jeu est de tuer les dinosaures de l'équipe adverse.  La partie s'achève lorsque tous les dinosaures d'une équipe sont morts. L'équipe comportant encore des membres vivants remporte le jeu. Pour tenter de gagner la partie,  les dinosaures peuvent se déplacer et recourir à diverses armes telles que l'arc, la bombe ou encore le revolver. De plus, pour circuler plus rapidement sur la zone de jeu ou accéder à certains endroits difficiles d'accès, les dinosaures disposent d'un grapin. Par ailleurs, les dinosaures jouent chacun leur tour. Ils disposent d'un temps limité par tour pour agir et ne peuvent utiliser qu'un seul outil par tour.
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.8\textwidth]{img/illustrationEquipesReglesJeu.png}
+	\caption[illustration des equipes sur le terrain]{Illustration des équipes sur le terrain et des zones inaccessibles}
+	\label{fig:illustrationEquipesReglesJeu}
+\end{figure}
+De plus, ils doivent se plier à un certain nombre de règles pour survivre le plus longtemps possible. Premièrement, un dinosaure possède cent points de vie au départ d'une partie. Il meurt s'il a perdu tous ses points de vie, s'il tombe dans la mer ou heurte une extrémité du terrain. Ces zones, que les dinosaures doivent éviter, sont représentées sur la figure~\ref{fig:illustrationEquipesReglesJeu}.  Deuxièmement, si le dinosaure touche accidentellement un autre dinosaure de son équipe en tirant avec une arme, le dinosaure visé perd le même nombre de points de vie que pour un coup frappant un dinosaure de l'équipe adverse. Le jeu nécessite ainsi d'être adroit pour parvenir à tuer l'équipe opposée mais aussi pour ne pas blesser accidentellement un membre de son équipe.
 \subsection{Foncionnalités prévues}
+Des choix ont été effectués concernant les fonctionnalités à inclure dans JurassicWar. Il s'agit d'un jeu à deux joueurs qui n'offre pas l'opportunité de mener une partie individuellement. Il utilise une matrice pour réprésenter le terrain sur lequel le jeu se déroule. Les joueurs disposent de quatre armes de tir, respectivement l'arc, l'arbalète, le revolver et le fusil ainsi que d'une arme explosive, la bombe. Le système de tir propose une prévisualisation de la trajectoire qu'il est possible de modifier avant de valider l'envoi du projectile. Le jeu n'inclut pas uniquement des armes mais aussi d'autres outils comme une potion de soin et un grapin. En outre, jurassicWar intègre une interface utilisateur. En effet, il propose un affichage du terrain, des dinosaures et des armes en deux dimensions. Il propose également un menu principal et un menu de changement d'armes. Le jeu indique en temps réel le nombre de points de vie restant des dinosaures sur la fenêtre du jeu.
 
-
-
+\newpage
 \section{Organisation du travail}
 \subsection{Répartition des tâches}
 \subsection{Planning prévisionnel}
@@ -64,14 +74,14 @@ Cette partie rend compte de la manière dont s'enchaînent les actions dans Jura
 Premièrement, les dinosaures jouent chacun leur tour, c'est-à-dire que l'utilisateur n'a pas la possibilité de choisir avec lequel de ses trois dinosaures il souhaite agir à un tour donné. L'instauration de cette règle augmente d'une part  la complexité du jeu, mais d'autre part  le système des changements de tours, puisque l'alternance entre tous les dinosaures doit être correcte même lorsqu'un ou plusieurs d'entre eux meurent. Afin de mettre en œuvre les changements de tours, une fonction \textit{\mbox{tourSuivant}} a été crée. Elle s'appuie sur l'identifiant associé à chaque dinosaure pour déterminer le dinosaure qui peut jouer. Cependant, comme les dinosaures de la première équipe sont numérotés de un à trois et ceux de la seconde équipe de quatre à six, à la suite du premier dinosaure, c'est au quatrième dinosaure de jouer et non pas au second dinosaure pour garantir l'alternance entre les deux équipes. Ceci nécessite de mémoriser deux identifiants : celui du dinosaure qui vient d'agir et celui du dinosaure ayant agi précédemment. Ces identifiants sont stockés dans uns structure \textit{\mbox{t\_tour}} qui contient également le numéro de l'équipe qui vient de jouer et un compteur du nombre de tours effectués. Par ailleurs, la fonction \textit{\mbox{tourSuivant}} doit tenir compte de l'état d'un dinosaure dans la mesure où un dinosaure mort ne peut plus jouer. Ainsi, une fois que la fonction a choisi un dinosaure, elle vérifie qu'il est vivant. Dans le cas contraire, elle sélectionne un autre dinosaure jusqu'à en trouver un encore dans la partie. Une sécurité a été ajoutée pour que la fonction ne renvoie aucun dinosaure en fin de partie, c'est à dire lorsque tous les dinosaures d'un joueur ont péri.
 \subsubsection{Infliger un coup mortel : bombe}
 Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arme mortelle : la bombe. Contrairement aux armes de tirs évoquées dans la section suivante, la bombe tue instantanément le dinosaure qu'elle heurte. Néanmoins, cette arme peut uniquement être employée si le dinosaure dispose d'une place suffisante à côté de lui pour la positionner. L'objectif consiste à apporter de la difficulté supplémentaire mais aussi un intérêt à utiliser chaque arme disponible dans le jeu. De surcroît, cette arme se caractérise par sa capacité à rebondir sur le terrain. Cette capacité de la bombe à rebondir induit l'utilisation de plusieurs notions mathématiques dans le code. Pour faciliter l'application de ces notions, la bombe est représentée par une structure \textit{\mbox{t\_bombe}} comportant notamment le rayon et  le vecteur vitesse du projectile, c'est à dire la vitesse sur l'axe horizontal et vertical de la bombe. Tout d'abord, la mise en place des rebonds nécessite un système de collision avec le sol précis en raison du relief particulier du terrain. Le terrain étant formé de collines et de cratères aux courbures arrondies, une détection de collisions limitée aux quatre directions haut, gauche, bas et droite ne suffit pas et manque les impacts en diagonale. En conséquence, pour élargir le nombre de directions étudiées lors des collisions, la fonction \textit{\mbox{collisionTerrainBombe}} fait recourt aux formules des coordonnées polaires pour analyser une multitude de points sur le contour de la bombe. Les points analysés sont représentés en rouge sur la figure~\ref{fig:coordonneesPolaires} accompagnés de la formule pour calculer leurs coordonnées.
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
-	\begin{minipage}[c]{0.45\textwidth}
+	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-		\includegraphics[width=6cm]{img/coordonneesPolaires.png}
+		\includegraphics[width=6.2cm]{img/coordonneesPolaires.png}
 	\end{minipage}
 	\hfill
-	\begin{minipage}[c]{0.45\textwidth}
+	\begin{minipage}[c]{0.4\textwidth}
 		\centering
 		\[x' = x + r\cos(\theta)\]
 		\[y' = y + r\sin(\theta)\]
@@ -80,7 +90,7 @@ Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arm
 	\label{fig:coordonneesPolaires}
 \end{figure}\\
 En cas de collision avérée entre un ou plusieurs de ces points et la terre, une seconde étape consiste à étudier la pente du terrain de manière à ce que la bombe rebondisse perpendiculairement au sol. Pour cela, les valeurs dans la matrice des points voisins au lieu d'impact sont examinées et les pixels contenant de la terre sont intégrés dans le calcul d'un gradient à la surface du terrain, c'est à dire d'un vecteur qui pointe vers la direction où la densité de la terre est la plus forte. Un exemple de gradient pouvant être établi par la fonction \textit{\mbox{collisionTerrainBombe}} est représenté sur la figure~\ref{fig:vecteurNormalBombe}. Dans le calcul du gradient,  il est donné un poids important aux points jouxtant l'impact et un poids plus faible aux voisins plus éloignés afin de rendre compte au mieux du relief et pour qu'aucune éventuelle irrégularité du terrain ne fausse les résultats. De plus, dans le cas où toute une partie de la bombe est en contact avec le sol, le gradient est déterminé pour chaque point de collision. En prenant l'opposé de chacun de ces vecteurs, une famille de vecteurs normaux est formée, c'est à dire un ensemble de vecteurs perpendiculaires au terrain. Le vecteur normal finalement choisi pour le rebond constitue une moyenne de tous ces vecteurs.
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/vecteurNormalBombe.png}
         	\caption[exemple gradient et vecteur normal en un point donne du terrain]{Exemple d'un gradient et d'un vecteur normal associé à la bombe en un point donné du terrain}
@@ -111,10 +121,10 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 \subsection{Interface graphique et utilisateur}
 La visualisation à l'écran tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module SDL, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de jurassicWar par les joueurs.  
 \subsubsection{Utilisation du module SDL}
-En premier lieu, la sélection du module SDL pour le projet se justifie par sa portabilité. Contrairement à d'autres librairies graphiques, SDL fonctionne à la fois sur Linux, Windows et macOS et est adapté au langage C. Il est principalement employé pour afficher le terrain, les dinosaures, les armes ainsi que divers menus explicités par la suite. Toutefois, il gère également les différentes actions du joueur tel qu'appuyer une touche du clavier pour choisir une arme et la trajectoire du tir dans les fonctions \textit{\mbox{choixHauteurLancer}} et \textit{\mbox{viserArcher}}, ou encore cliquer sur les boutons du menu principal dans la fonction \textit{\mbox{detecterEvenementsMenuPrincipal}}. Sans oublier que les touches du clavier se veulent indispensables aux déplacements des dinosaures. Cependant, ce module représente également une contrainte puisqu'il requiert de gérer correctement la mémoire entre les différentes allocations et libérations que ce soit pour les fenêtres mais aussi pour les textures des dinosaures et des objets. En outre, obtenir un rendu propre lors du lancer de la bombe ou de l'envoi de flèches et des balles pendant les tirs exige des ajustements, notamment en ce qui concerne le délai d'affichage des images. D'un côté, un délai trop long engendre un visuel flou et peu esthétique pour l'utilisateur et d'un autre côté, un délai trop court consomme beaucoup de ressources. Par conséquent, cet intervalle de temps est directement lié à la vitesse des projectiles et donc aux calculs mathématiques liés à ceux-ci. Enfin, l'interface graphique de jurassicWar cumule une multitude d'images et de textes lorsque tous les élements du jeu c'est à dire l'inventaire et le terrain sont réunis. Ceci impose un ordre d'affichage strict pour assurer la fiabilité de l'affichage. C'est un enjeu rencontré par les différentes versions des fonctions \textit{\mbox{afficherJeu}}.
+En premier lieu, la sélection du module SDL pour le projet se justifie par sa portabilité. Contrairement à d'autres librairies graphiques, SDL fonctionne à la fois sur Linux, Windows et macOS et est adapté au langage C. Il est principalement employé pour afficher le terrain, les dinosaures, les armes ainsi que divers menus explicités par la suite. Toutefois, il gère également les différentes actions du joueur tel qu'appuyer une touche du clavier pour choisir une arme et la trajectoire du tir dans les fonctions \textit{\mbox{choixHauteurLancer}} et \textit{\mbox{viserArcher}}, ou encore cliquer sur les boutons du menu principal dans la fonction \textit{\mbox{detecterEvenementsMenuPrincipal}}. Sans oublier que les touches du clavier se veulent indispensables aux déplacements des dinosaures. Cependant, ce module représente également une contrainte puisqu'il requiert de gérer correctement la mémoire entre les différentes allocations et libérations que ce soit pour les fenêtres mais aussi pour les textures des dinosaures et des objets. En outre, obtenir un rendu propre lors du lancer de la bombe ou de l'envoi de flèches et des balles pendant les tirs exige des ajustements, notamment en ce qui concerne le délai d'affichage des images. D'un côté, un délai trop long engendre un visuel flou et peu esthétique pour l'utilisateur et d'un autre côté, un délai trop court consomme beaucoup de ressources. Par conséquent, cet intervalle de temps est directement lié à la vitesse des projectiles et donc aux calculs mathématiques liés à ceux-ci. Enfin, l'interface graphique de jurassicWar cumule une multitude d'images et de textes lorsque tous les élements du jeu, c'est-à-dire l'inventaire et le terrain sont réunis. Ceci impose un ordre d'affichage strict pour assurer la fiabilité de l'affichage. C'est un enjeu rencontré par les différentes versions des fonctions \textit{\mbox{afficherJeu}}.
  
-\subsubsection{Création d’un menu principal}
-En second lieu, un menu principal a été crée dans jurassicWar afin de fournir une interface intéractive pour le lancement d'une partie et l'accès aux principales informations du jeu.
+\subsubsection{Création d'un menu principal}
+En second lieu, un menu principal a été conçu dans jurassicWar afin de fournir une interface intéractive centralisant l'accès aux fonctionnalités essentielles du jeu.  Il comporte quatre onglets permettant de démarrer la partie, de consulter les principales règles du jeu, d'accéder à  la liste des touches du clavier et de quitter le programme. Les règles instaurées dans la partie ainsi que la liste des touches du clavier correspondant à chaque action figurent comme indispensables dans le menu dans la mesure où ces informations sont inconnues au joueur lors de la découverte du jeu. Ces informations sont placées dans des fenêtres distinctes accessibles depuis des boutons. Leur affichage repose sur le module SDL, abordé dans la section précédente et employé dans plusieurs fonctions telles que \textit{\mbox{tracerBouton}} ou encore \textit{\mbox{afficherMenuPrincipal}}. De même, la détection des clics dans le menu est réalisé par SDL. À propos du texte contenu dans les fenêtres, celui-ci est stocké dans des fichiers, lus lorsque l'utilisateur demande l'ouverture d'une page par le biais de la fonction \textit{\mbox{lireInfosFichier}}. Le texte, rédigé en français et contenant de nombreux caractères accentués, a nécessité de tenir compte de l'encodage en UTF-8 des caractères, notamment pour obtenir un rendu correct avec SDL. L'intégration du menu principal avec le reste du code du jeu a consisté à découper le code déjà existant en fonctions et à adapter la structure du programme principal. Dans un premier temps, le programme central invoque la fonction \textit{\mbox{ouvrirMenuPrinc}} qui initialise le menu principal et sollicite toutes les fonctions liées au menu. Puis, dans un second temps, en cas d'une action de l'utilisateur dans ce sens, la fonction \textit{\mbox{lancerPartie}} s'exécute. Cette fonction orchestre tout le fonctionnement global du jeu et fait appel à toutes les fonctions rédigées dans le cadre du projet.
 
 \newpage
 \subsubsection{Faciliter l’utilisation du jeu pour l’utilisateur}
@@ -130,7 +140,7 @@ En second lieu, un menu principal a été crée dans jurassicWar afin de fournir
 \subsubsection{Correction du système de collisions de la bombe}
 
 Lors de la création des fonctions chargées de détecter un contact entre la bombe et le terrain, la mer ainsi que les extrémités de la fenêtre, un bug silencieux a été rencontré, necessitant l'usage de l'outil gdb pour identifier le dysfonctionnement. La situation est la suivante :
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\begin{subfigure}{0.45\textwidth}
 		\centering
@@ -149,7 +159,7 @@ Lors de la création des fonctions chargées de détecter un contact entre la bo
 	\label{fig:collisionBombe}
 \end{figure}\\
 La bombe interrompt sa trajectoire au milieu du ciel avant d'avoir heurté la terre. Il s'agit par conséquent d'identifier une erreur dans une des fonctions liées à la bombe, en particulier dans la fonction \textit{\mbox{collisionTerrainBombe}}. Pour cela, les fichiers impliqués dans l'affichage et le système de collisions sont compilés avec l'option -g :
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
         	\includegraphics[height=6cm]{img/compilationCollisionBombe.png}
 	\caption[extrait du makefile utilise pour le debogage des collisions]{Extrait du makefile utilisé pour le débogage des collisions}
@@ -164,9 +174,11 @@ gdb bombe
 (gdb) break testFonctionsRebonds.c :67
 # Simuler l’appui sur la touche b du clavier 
 (gdb) break testFonctionsRebonds.c :92
-# Vérifier le contenu des variables au départ du lancement de la bombe
+# Vérifier le contenu des variables au départ du lancement de la
+ bombe
 (gdb) break testFonctionsRebonds.c :98
-# Analyser les valeurs des variables à la suite d’une collision avec le terrain
+# Analyser les valeurs des variables à la suite d’une collision
+ avec le terrain
 (gdb) break testFonctionsRebonds.c: 117
 # Provoquer un arrêt en cas de collision avec le terrain
 (gdb) break fonctionsRebonds.c:60 \
