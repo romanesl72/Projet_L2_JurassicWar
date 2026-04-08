@@ -31,7 +31,7 @@
 #define MAT_H 700  
 #define MAT_L 1300
 
-#define TIMER 70000
+#define TIMER 4000
 
 /**
  * @def TAILLE_DINO
@@ -136,7 +136,7 @@ typedef struct {
     int hors_nuage;             /**< Vaut 1 si le dinosaure est en dehors du nuage, 0 sinon*/
     int wait;                   /**< Petite pause pour ne pas sauter deux fois d'un coup*/
     int taille_nuage[5];        /**< donne la taille de chaque nuage */
-    int sens;                   /**< donne le sens de déplacement 1 à droite et -1 à gauche */
+    t_cote sens;                /**< donne le sens de déplacement */
     t_coordonnee coteProche[5]; /**< donne le premier et le dernier x de chaque nuage */
 } t_deplacement;
 
