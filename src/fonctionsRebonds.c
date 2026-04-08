@@ -10,6 +10,7 @@
  * @brief Corps des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe.
  * @author Hannah Sergent
  * @date Crée le 5/02/2026
+ * @version 5.2
  */
 
 void initialiserBombe(t_bombe *bombe, float coorChoisieX, float coorChoisieY, int rayon) {
@@ -29,7 +30,6 @@ void initialiserVitesse(t_vect *vectVitesse, float vitesseChoisieX, float vitess
 
 void miseAjourTemps(Uint32 *tempsPrecedent, float *tempsEcoule){
     Uint32 tempsCourant = SDL_GetTicks();
-    printf("%ld %ld \n", tempsCourant, *tempsPrecedent);
     *tempsEcoule = (tempsCourant - *tempsPrecedent)/1000.0f;
     *tempsPrecedent = tempsCourant;
 }
@@ -43,6 +43,7 @@ int collisionFrontiereBombe(t_bombe *bombe){
  * @brief La fonction vérifie si des coordonnées sont dans les limites de la matrice ou du terrain.
  * @author Hannah Sergent
  * @date Crée le 23/02/2026
+ * @version 1.0
  * @param x coordoonnée des absisses
  * @param y coordonnée des ordonnées
  * @return 1 si les coordonnées sont dans les limites et 0 sinon
@@ -57,6 +58,7 @@ int dansLimites(int x, int y){
  * @brief La fonction indique si un pixel contient de la terre.
  * @author Hannah Sergent
  * @date Crée le 23/02/2026
+ * @version 1.0
  * @param pixel contenu d'une case de la matrice
  * @return TERRE si le pixel est de la terre et 0 sinon
  */
@@ -70,6 +72,7 @@ int estTerrain(t_case pixel){
  * @brief La fonction détermine un vecteur normal au terrain à partir des coordonnées d'un point.
  * @author Hannah Sergent
  * @date Crée le 23/02/2026
+ * @version 7.2
  * @param matriceTerrain une matrice contenant les informations sur le terrain
  * @param extremiteBombe les coordonnées flottantes d'une des extremités de la bombe
  * @param normal un vecteur qui contient les coordonnées du vecteur normal calculé

@@ -34,6 +34,20 @@
 #define VITESSE_Y -90
 
 /**
+ * @def VITESSE_X_MAIN
+ * @brief Vitesse horizontale initiale de la bombe.
+*/
+
+#define VITESSE_X_MAIN 140
+
+/**
+ * @def VITESSE_Y_MAIN
+ * @brief Vitesse verticale initiale de la bombe.
+*/
+
+#define VITESSE_Y_MAIN -140
+
+/**
  * @def GRAVITE_BOMBE
  * @brief Gravite choisie pour la bombe.
 */

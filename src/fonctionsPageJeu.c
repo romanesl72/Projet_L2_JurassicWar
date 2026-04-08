@@ -100,11 +100,11 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
     srand(time(NULL)); /* Initialisation de l'aléatoire */
     
     /* Récupérer les zones via le nuage de points */
-    nuagesStockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-    generer_catalogue_depuis_nuage(nuagesStockes[1], nb_pts, catalogue, &trouves_E1, &trouves_E2, 1);
+    nuagesStockes[0] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
+    generer_catalogue_depuis_nuage(nuagesStockes[0], nb_pts, catalogue, &trouves_E1, &trouves_E2, 0);
 
-    nuagesStockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-    generer_catalogue_depuis_nuage(nuagesStockes[2], nb_pts, catalogue, &trouves_E1, &trouves_E2, 2);
+    nuagesStockes[1] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
+    generer_catalogue_depuis_nuage(nuagesStockes[1], nb_pts, catalogue, &trouves_E1, &trouves_E2, 1);
 
     printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);
 
@@ -121,23 +121,14 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
 
     /* Charger les images (Textures) */
 
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinos[0]), "../img/dinoTransparent.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinos[1]), "../img/dinoTransparent.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinos[2]), "../img/dinoTransparent.png");
+    for (i = 0; i < NOMBRE_DINOS/2; i++){
+        chargerImageSansTaille(zoneAffichage, &(equipe1->texDinos[i]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2->texDinos[i]), "../img/dinoTransparent.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe1->texDinosInv[i]), "../img/dinoTransparentMiroir.png");
+        chargerImageSansTaille(zoneAffichage, &(equipe2->texDinosInv[i]), "../img/dinoTransparentMiroir.png");
+    }
 
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinos[0]), "../img/dinoTransparent.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinos[1]), "../img/dinoTransparent.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinos[2]), "../img/dinoTransparent.png");
-    
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinosInv[0]), "../img/dinoTransparentMiroir.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinosInv[1]), "../img/dinoTransparentMiroir.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe1->texDinosInv[2]), "../img/dinoTransparentMiroir.png");
-
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinosInv[0]), "../img/dinoTransparentMiroir.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinosInv[1]), "../img/dinoTransparentMiroir.png");
-    chargerImageSansTaille(zoneAffichage, &(equipe2->texDinosInv[2]), "../img/dinoTransparentMiroir.png");
-
-    for(i=1; i<3; i++) {
+    for(i=0; i<2; i++) {
         nuageDetruire(&(nuagesStockes[i]));
     }
 }
@@ -489,9 +480,9 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
         if (*bombeLancee == -1){
             tourSuivant(gestionTours, equipe1, equipe2);
             printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", gestionTours->dinoCourant, gestionTours->numeroTour, gestionTours->equipeCourante);
-            initialiserVitesse(vectVitesse, VITESSE_X, VITESSE_Y);
+            initialiserVitesse(vectVitesse, VITESSE_X_MAIN, VITESSE_Y_MAIN);
         }
-        SDL_Delay(8);
+        SDL_Delay(4);
     }
 }
 
@@ -657,7 +648,7 @@ void lancerPartie(){
         chargerTexteDinos(zoneAffichage, policeMenuHIP, cache);
 
         initialiserRayonBombe(&bombe, RAYON);
-        initialiserVitesse(&vectVitesse, VITESSE_X, VITESSE_Y);
+        initialiserVitesse(&vectVitesse, VITESSE_X_MAIN, VITESSE_Y_MAIN);
         initialiserMatrice(&matriceTerrain);
         initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
 
@@ -699,6 +690,10 @@ void lancerPartie(){
             else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
+            /*
+            else {
+                effectuerDeplacement
+            } */
         }
 
         // --- NETTOYAGE --- 
