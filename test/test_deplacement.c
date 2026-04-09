@@ -25,12 +25,9 @@ int main(int argc, char * argv[]){
     SDL_Window *fenetre = NULL;
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
-    const Uint8 *state=NULL;
     t_joueur equipe1, equipe2;
     int matrice[MAT_H][MAT_L];
-    int nb_pts, w, h, i, sens=1;
-    int trouves_E1 = 0, trouves_E2 = 0;
-    t_coordonnee *nuages_stockes[5];
+    int nb_pts;
     t_catalogue_zones catalogue;
     t_tour gestionTours = {1, 1, D1, D6}; // Tour 1, Equipe 1, Dino D1
     int timer=TIMER;
