@@ -4,19 +4,16 @@
 #include "../lib/fonctionsMenuHIP.h"
 #include "../lib/fonctionsVerification.h"
 
-#define HAUTEUR_HIP 100
-#define LARGEUR_INVENTAIRE 650
-#define HAUTEUR_FEN_TOTALE (HAUTEUR_FEN_JEU + HAUTEUR_HIP)
-
 /** 
  * @file fonctionsMenuHIP.c
- * @brief Corps des fonctions 
+ * @brief Corps des fonctions liées au menu HIP.
  * @author Romane Saint_Léger Hannah Sergent
  * @date Crée le 31/03/2026
  * @version 1.2
  */
 
 void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cache) {
+
     SDL_Color blanc = {255,255,255,255};
     char nomDino[20];
 
@@ -32,6 +29,7 @@ void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cac
 
 
 void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur) {
+
     if (!police || !message) return;
     
     SDL_Surface *surface = TTF_RenderText_Blended(police, message, couleur);
@@ -49,6 +47,7 @@ void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, 
 
 
 void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets) {
+    
     int i;
     int tailleCase = LARGEUR_INVENTAIRE / nbObjets;
 

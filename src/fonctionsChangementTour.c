@@ -4,9 +4,10 @@
 
 /** 
  * @file fonctionsChangementTour.c
- * @brief Corps des fonctions liées au changement de tour
+ * @brief Corps des fonctions liées au changement de tour.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026
+ * @version 2.3
  */
 
 /** 
@@ -14,6 +15,7 @@
  * @brief La fonction détermine si la partie est terminée.
  * @author Hannah Sergent
  * @date Crée le 23/03/2026
+ * @version 1.0
  * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @return 1 si la partie est terminée et 0 sinon
@@ -28,6 +30,7 @@ int finPartie(t_joueur *equipe1, t_joueur *equipe2){
  * @brief La fonction sélectionne le dinosaure suivant de la même équipe.
  * @author Hannah Sergent
  * @date Crée le 23/03/2026
+ * @version 1.0
  * @param equipeCourante un pointeur sur le numéro de l'équipe qui vient de jouer
  * @param dinoTour un pointeur sur le dinosaure qui vient de jouer
  */
@@ -35,6 +38,7 @@ int finPartie(t_joueur *equipe1, t_joueur *equipe2){
 void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour){
 
     if (equipeCourante == 1){
+
         if ((*dinoTour) == D3){
             (*dinoTour) = D1;
         }
@@ -44,6 +48,7 @@ void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour){
 
     }
     else {
+
         if ((*dinoTour) == D6){
             (*dinoTour) = D4;
         }
@@ -62,12 +67,17 @@ void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2){
 
     if (!finPartie(equipe1, equipe2)){
 
+        /* Changement de l'équipe courante */
+
         if (tour->equipeCourante == 1){
             tour->equipeCourante = 2;
         }
         else {
             tour->equipeCourante = 1;
         }
+
+        /* Changement du dinosaure courant */
+
         dinoTemp = tour->dinoPrecedent;
         tour->dinoPrecedent = tour->dinoCourant;
         
@@ -79,10 +89,8 @@ void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2){
 
         tour->dinoCourant = dinoTemp;
 
+        /* Changement du numéro de tour */
 
         tour->numeroTour ++;
-    }
-    else {
-        tour->numeroTour = -1;
     }
 } 

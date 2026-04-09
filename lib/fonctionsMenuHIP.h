@@ -8,15 +8,37 @@
 
 /** 
  * @file 
- * @brief Définitions des fonctions 
+ * @brief Définitions des fonctions liées au menu HIP
  * @author Romane Saint_Léger Hannah Sergent
  * @date Crée le 31/03/2026
  * @version 1.2
  */
 
 /**
+ * @def LARGEUR_INVENTAIRE
+ * @brief Largeur de l'inventaire dans le menu HIP.
+*/
+
+#define LARGEUR_INVENTAIRE 650
+
+/**
+ * @struct t_texte_cache
+ * @brief Structure qui charge le texte à afficher pour la barre des pv.
+ * @author Hannah Sergent
+ * @date Crée le 06/04/2026
+ * @version 1.0
+ */
+
+typedef struct {
+    SDL_Texture *tex; /**< Tableau contenant les textures de texte */
+    int largeurTex; /**< Largeur de la texture de texte */
+    int hauteurTex; /**< Hauteur de la texture de texte */
+} t_texte_cache;
+
+
+/**
  * @fn void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets);
- * @brief Fonction qui affiche les 7 Objets en haut à gauche
+ * @brief La fonction affiche les 7 Objets en haut à gauche.
  * @author Romane Saint-Léger
  * @date Crée le 31/03/2026
  * @version 1.0
@@ -30,7 +52,7 @@ void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObje
 
 /**
  * @fn void afficherBarrePV(SDL_Renderer *rendu, t_dino dino, int x, int y);
- * @brief Fonction qui affiche une barre de vie en fonction d'un dinosaure
+ * @brief La fonction affiche une barre de vie en fonction d'un dinosaure.
  * @author Romane Saint-Léger
  * @date Crée le 31/03/2026
  * @version 1.0
@@ -44,26 +66,26 @@ void afficherBarrePV(SDL_Renderer *rendu, t_dino dino, int x, int y);
 
 /**
  * @fn void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2);
- * @brief Fonction qui affiche le menu des PV des dinosaures
+ * @brief La fonction affiche le menu des PV des dinosaures.
  * @author Romane Saint-Léger
  * @date Crée le 31/03/2026
  * @version 1.0
  * @param rendu un pointeur sur le rendu de l'affichage
- * @param police pointeur sur la police d'écriture
- * @param e1 structure de l'équipe 1
- * @param e2 structure de l'équipe 2
+ * @param police un pointeur sur la police d'écriture
+ * @param e1 la structure de l'équipe 1
+ * @param e2 la structure de l'équipe 2
  */
 
 void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2);
 
 /**
  * @fn void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur);
- * @brief Fonction qui affiche du texte sur le menu du Haut (HIP)
+ * @brief La fonction affiche du texte sur le menu du Haut (HIP)
  * @author Romane Saint-Léger
  * @date Crée le 31/03/2026
  * @version 1.0
  * @param rendu un pointeur sur le rendu de l'affichage
- * @param police pointeur sur la police d'écriture
+ * @param police un pointeur sur la police d'écriture
  * @param message le message que l'on souhaite afficher
  * @param x coordonnée x du début du message
  * @param y coordonnée y du début du message
@@ -72,32 +94,15 @@ void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_j
 
 void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur);
 
-
-/**
- * @struct t_texte_cache
- * @brief 
- * @author Hannah Sergent
- * @date Crée le 06/04/2026
- * @version 1.0
- * @param 
- * @param 
- */
-
-typedef struct {
-    SDL_Texture *tex;
-    int largeurTex; 
-    int hauteurTex;
-} t_texte_cache;
-
 /**
  * @fn void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cache);
- * @brief 
+ * @brief La fonction initialise la structure t_texte_cache.
  * @author Hannah Sergent
  * @date Crée le 06/04/2026
  * @version 1.0
- * @param rendu
- * @param police 
- * @param cache 
+ * @param rendu un pointeur sur le rendu de l'affichage
+ * @param police un pointeur sur la police d'écriture
+ * @param cache la structure à initialiser
  */
 
 
@@ -105,15 +110,15 @@ void chargerTexteDinos(SDL_Renderer *rendu, TTF_Font *police, t_texte_cache *cac
 
 /**
  * @fn void afficherMenuPVDinosOp(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2, t_texte_cache *cache);
- * @brief 
+ * @brief La fonction affiche le menu des PV des dinosaures de manière optimisée.
  * @author Hannah Sergent
  * @date Crée le 06/04/2026
  * @version 1.0
- * @param rendu
- * @param police
- * @param e1
- * @param e2
- * @param cache
+ * @param rendu un pointeur sur le rendu de l'affichage
+ * @param police un pointeur sur la police d'écriture
+ * @param e1 la structure de l'équipe 1
+ * @param e2 la structure de l'équipe 1
+ * @param cache un pointeur sur une structure contenant le texte à afficher
  */
  
 void afficherMenuPVDinosOp(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2, t_texte_cache *cache);

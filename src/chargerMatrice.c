@@ -1,3 +1,4 @@
+#include "../lib/chargerMatrice.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,8 +8,6 @@
  * @author Romane Saint_Léger Hannah Sergent
  * @date Crée le 07/02/2026
  */
-
-#include "../lib/chargerMatrice.h"
 
 void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     int i, j;
@@ -26,7 +25,6 @@ void chargerMatriceDepuisFichier(const char* nomFichier, int matrice[HAUTEUR_TER
     fclose(file);
 }
 
-
 int initialiserMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
 
     *matriceTerrain = malloc(sizeof(t_case) * HAUTEUR_TERRAIN * LARGEUR_TERRAIN);
@@ -41,14 +39,10 @@ int initialiserMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
     return 1;
 }
 
-
-
 void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]){
     free(*matriceTerrain);
     *matriceTerrain = NULL;
 }
-
-
 
 void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     /*permet de remetre à jour les anciennes zones comportant un dino*/
