@@ -3,9 +3,10 @@
 
 /** 
  * @file fonctionsStructJoueur.c
- * @brief Corps des fonctions liées à la structure joueur
+ * @brief Corps des fonctions liées à la structure joueur.
  * @author Hannah Sergent
  * @date Crée le 18/03/2026
+ * @version 4.1
  */
 
 /** 
@@ -13,6 +14,7 @@
  * @brief La fonction recherche si le dinosaure fait partie de l'équipe equipe à partir de son identifiant.
  * @author Hannah Sergent
  * @date Crée le 19/03/2026
+ * @version 1.0
  * @param equipe une structure correspondant aux dinosaures de l'équipe equipe
  * @param numero l'identifiant du dinosaure recherché
  * @return l'identifiant du dinosaure s'il a été trouvé et -1 sinon
@@ -31,6 +33,7 @@ int rechercherDino(t_joueur * equipe, t_case numero){
 }
 
 t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
+
     /* Le numéro du dinosaure est compris entre 2 et 7 */
 
     int indiceDino = rechercherDino(equipe1, numero);
@@ -53,6 +56,7 @@ t_dino * recupererDinoNumero(t_joueur * equipe1, t_joueur * equipe2, t_case nume
 }
 
 t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
+
     /* Le numéro du dinosaure est compris entre 2 et 7 */
 
     int indiceDino = rechercherDino(equipe1, numero);
@@ -66,6 +70,9 @@ t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case num
     if (indiceDino != -1){
         return equipe2->tabCote[indiceDino];
     }
+
+    /* Ne renvoie pas de direction si le dinosaure n'a pas été trouvé */
+
     return SANS_DIR;
 }
 
@@ -94,6 +101,7 @@ void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
             }
             equipe1->n --;
         }
+
         else {
 
             /* Recherche du dinosaure dans l'équipe 2*/
@@ -118,15 +126,16 @@ void supprimerDinoJoueur(t_joueur * equipe1, t_joueur * equipe2, t_case numero){
 }
 
 /** 
- * @fn void echangerImgDino(t_joueur * equipe, int indiceDino);
+ * @fn void echangerImgDino(t_joueur *equipe, int indiceDino);
  * @brief La fonction échange deux images situées dans les deux tableaux d'images de la structure joueur.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
+ * @version 1.1
  * @param equipe un pointeur sur une structure de type joueur
  * @param indiceDino l'indice dans le tableau d'images de l'image à échanger
  */
 
-void echangerImgDino(t_joueur * equipe, int indiceDino){
+void echangerImgDino(t_joueur *equipe, int indiceDino){
 
     SDL_Texture * imgTemp;
 
@@ -137,15 +146,16 @@ void echangerImgDino(t_joueur * equipe, int indiceDino){
 }
 
 /** 
- * @fn void echangerCoteDino(t_joueur * equipe, int indiceDino);
+ * @fn void echangerCoteDino(t_joueur *equipe, int indiceDino);
  * @brief La fonction échange la direction du dinosaure d'indice indiceDino dans le tableau contenant la direction des dinosaures.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
+ * @version 1.1
  * @param equipe un pointeur sur une structure de type joueur
  * @param indiceDino l'indice dans le tableau de direction de la direction à échanger
  */
 
-void echangerCoteDino(t_joueur * equipe, int indiceDino){
+void echangerCoteDino(t_joueur *equipe, int indiceDino){
 
     if (equipe->tabCote[indiceDino] == GAUCHE){
         equipe->tabCote[indiceDino] = DROITE;
@@ -155,7 +165,7 @@ void echangerCoteDino(t_joueur * equipe, int indiceDino){
     }
 }
 
-void retournerDino(t_joueur * equipe1, t_joueur * equipe2, t_case numero, t_cote cote, t_cote *ancienCote){
+void retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote){
 
     int indiceDino;
 
@@ -181,76 +191,80 @@ void initialiserContenuJoueur(t_joueur *joueur){
     int i;
 
     joueur->n = NOMBRE_DINOS/2;
+
     joueur->tab = malloc(sizeof(t_dino) * joueur->n);
     joueur->texDinos = malloc(sizeof(SDL_Texture *) * joueur->n);
     joueur->texDinosInv = malloc(sizeof(SDL_Texture *) * joueur->n);
     joueur->tabCote = malloc(sizeof(t_cote) * joueur->n);
+
+    if ((joueur->tab == NULL) || (joueur->texDinos == NULL) || (joueur->texDinosInv == NULL) || (joueur->tabCote == NULL)){
+        printf("Erreur d'allocation lors de l'initialisation du contenu des joueurs. \n");
+    }
 
     for(i = 0; i < joueur->n; i++) {
 
         /* Initialisation du côté */
         joueur->tabCote[i] = DROITE;
         
-        // ALLOCATION CRUCIALE
+        /* Allocations pour les déplacements */
+
         joueur->tab[i].deplacement = malloc(sizeof(t_deplacement));
-        
-        // Initialisation des valeurs par défaut pour éviter les comportements erratiques
+
+        if (joueur->tab[i].deplacement == NULL){
+            printf("Erreur d'allocation pour les déplacements des dinosaures des joueurs. \n");
+        }
+
         joueur->tab[i].deplacement->sautBooleen = 0;
         joueur->tab[i].deplacement->tomber = 0;
         joueur->tab[i].deplacement->wait = 0;
         joueur->tab[i].deplacement->indice_reel = 0;
         joueur->tab[i].deplacement->sens = DROITE;
-        joueur->tab[i].etat = 1; // Vivant
+        /* Etat vivant */
+        joueur->tab[i].etat = 1;
         joueur->tab[i].pv = 100;
-        printf("tomber=%d\nsaut=%d\n",joueur->tab[i].deplacement->tomber,joueur->tab[i].deplacement->sautBooleen);
     
     }
 
 }
 
-
-/** * @fn void afficherContenuJoueur(t_joueur joueur, char * nomEquipe);
- * @brief Affiche dans la console l'état détaillé de tous les dinosaures d'une équipe.
- * @param joueur La structure joueur à inspecter.
- * @param nomEquipe Une chaîne de caractères pour identifier l'équipe (ex: "Equipe 1").
- */
 void afficherContenuJoueur(t_joueur joueur, char * nomEquipe) {
+
     int i;
+    t_dino *d;
+
     printf("\n=== État de l'unité : %s (Nombre: %d) ===\n", nomEquipe, joueur.n);
     
     for(i = 0; i < joueur.n; i++) {
-        t_dino *d = &joueur.tab[i];
+
+        d = &joueur.tab[i];
         printf("  Dino n°%d [ID Matrice: %d] :\n", i, d->d);
         printf("    - État: %s | PV: %d\n", (d->etat == 1 ? "VIVANT" : "MORT"), d->pv);
         printf("    - Position: (%d, %d) | Index Nuage: %d\n", d->pos.x, d->pos.y, d->indice_nuage);
         
         if(d->deplacement != NULL) {
-            printf("    - Déplacement: Tomber=%d | Saut=%d | Sens=%s | Wait=%d\n", 
-                    d->deplacement->tomber, 
-                    d->deplacement->sautBooleen,
-                    (d->deplacement->sens == DROITE ? "DROITE" : "GAUCHE"),
-                    d->deplacement->wait);
-        } else {
+            printf("    - Déplacement: Tomber=%d | Saut=%d | Sens=%s | Wait=%d\n", d->deplacement->tomber, d->deplacement->sautBooleen, (d->deplacement->sens == DROITE ? "DROITE" : "GAUCHE"), d->deplacement->wait);
+        } 
+        else {
             printf("    - Déplacement: NULL (ERREUR D'ALLOCATION)\n");
         }
         
-        // Affichage du côté stocké dans le tableau parallèle
         printf("    - Direction Image: %s\n", (joueur.tabCote[i] == DROITE ? "DROITE" : "GAUCHE"));
         printf("    -----------------------------------\n");
     }
     printf("==========================================\n\n");
 }
 
-
-
 void detruireContenuJoueur(t_joueur *joueur) {
+
     int i;
+
     for(i = 0; i < joueur->n; i++) {
 
-        free(joueur->tab[i].deplacement); // Libère le malloc du déplacement */
+        free(joueur->tab[i].deplacement);
         SDL_DestroyTexture(joueur->texDinos[i]);
         SDL_DestroyTexture(joueur->texDinosInv[i]);
     }
+
     free(joueur->tab);
     free(joueur->texDinos);
     free(joueur->texDinosInv);

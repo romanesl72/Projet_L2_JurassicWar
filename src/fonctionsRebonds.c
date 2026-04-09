@@ -60,7 +60,7 @@ int dansLimites(int x, int y){
  * @date Crée le 23/02/2026
  * @version 1.0
  * @param pixel contenu d'une case de la matrice
- * @return TERRE si le pixel est de la terre et 0 sinon
+ * @return TERRE si le pixel correspond à de la terre et 0 sinon
  */
 
 int estTerrain(t_case pixel){
@@ -73,7 +73,7 @@ int estTerrain(t_case pixel){
  * @author Hannah Sergent
  * @date Crée le 23/02/2026
  * @version 7.2
- * @param matriceTerrain une matrice contenant les informations sur le terrain
+ * @param matriceTerrain la matrice contenant les informations sur le terrain
  * @param extremiteBombe les coordonnées flottantes d'une des extremités de la bombe
  * @param normal un vecteur qui contient les coordonnées du vecteur normal calculé
  */
@@ -241,12 +241,6 @@ int collisionEauBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t
     return ((matriceTerrain[posBombe.y][posBombe.x + bombe->rayon] == EAU) || (matriceTerrain[posBombe.y][posBombe.x - bombe->rayon] == EAU) || (matriceTerrain[posBombe.y + bombe->rayon][posBombe.x] == EAU) || (matriceTerrain[posBombe.y - bombe->rayon][posBombe.x] == EAU));
 }
 
-/* Fonction tracerBombe
- * Rôle : tracer un cercle dans une fenêtre représentant une bombe
- * Paramètres : un pointeur sur la zone d'affichage, les coordonnées où tracer la bombe et son rayon
- * Valeur de retour : aucune
-*/
-
 void tracerBombe(SDL_Renderer *zoneAffichage, t_bombe *bombe){
     int largeur;
     int hauteur;
@@ -286,6 +280,7 @@ void tracerBombeHIP(SDL_Renderer *zoneAffichage, t_bombe *bombe){
  * @brief La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge.
  * @author Hannah Sergent
  * @date Crée le 11/02/2026
+ * @version 1.0
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param coor un pointeur sur une structure contenant les coordonnées flottantes de la bombe
  * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
@@ -319,6 +314,17 @@ void tracerTrajectoireLancer(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *c
         temps += dt;
     }
 }
+
+/**
+ * @fn void tracerTrajectoireLancerHIP(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse);
+ * @brief La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge dans une fenêtre contenant un menu HIP.
+ * @author Hannah Sergent
+ * @date Crée le 3/04/2026
+ * @version 1.0
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param coor un pointeur sur une structure contenant les coordonnées flottantes de la bombe
+ * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ */
 
 void tracerTrajectoireLancerHIP(SDL_Renderer *zoneAffichage, t_coordonnee_calcul *coor, t_vect *vectVitesse){
 
@@ -434,6 +440,7 @@ void choixHauteurLancerAvecDinos(SDL_Renderer* zoneAffichage, SDL_Texture *texMa
  * Le laser désigne la trajectoire de lancer de la bombe.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
+ * @version 1.0
  * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
  * @param cote la direction attendue du laser
  */

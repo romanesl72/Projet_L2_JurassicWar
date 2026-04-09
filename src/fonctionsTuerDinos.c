@@ -3,9 +3,10 @@
 
 /** 
  * @file fonctionsTuerDinos.c
- * @brief Corps des fonctions pour lancer une bombe sur un dinosaure
+ * @brief Corps des fonctions pour le lancer d'une bombe sur un dinosaure.
  * @author Hannah Sergent
  * @date Crée le 11/03/2026
+ * @version 1.0
  */
 
 t_case collisionDinoBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe) {
