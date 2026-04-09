@@ -4,11 +4,27 @@
 #include "../lib/types.h"
 #include "../lib/collision_decor.h"
 
+/** 
+ * @file testCollisions.c
+ * @brief Fonctions de tests sur les collisions avec le dinosaure
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
+
+
 // On déclare la matrice de test en global pour qu'elle soit accessible
 int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
 
 void test_placement_multi_zones();
 
+/** 
+ * @fn test_collision_eau();
+ * @brief Corps d'une fonction de test sur les collisions du dino avec l'eau
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
 
 void test_collision_eau() {
     printf("--- Test Collision Eau ---\n");
@@ -36,6 +52,14 @@ void test_collision_eau() {
     }
 }
 
+/** 
+ * @fn test_collision_sol();
+ * @brief Corps d'une fonction de test sur les collisions du dino avec le sol
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
+
 void test_collision_sol() {
     printf("\n--- Test Collision Sol (Verticale) ---\n");
     // Dino posé sur le sol (y=20, hauteur=2, donc pieds à y=22)
@@ -61,6 +85,14 @@ void test_collision_sol() {
         printf("Echec : Le sol n'a pas ete detecte (res[0] = %d).\n", res[0]);
     }
 }
+
+/** 
+ * @fn test_collision_mur_cote();
+ * @brief Corps d'une fonction de test sur les collisions du dino avec un mur
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
 
 void test_collision_mur_cote() {
     printf("\n--- Test Collision Mur (Horizontale) ---\n");
@@ -88,6 +120,14 @@ void test_collision_mur_cote() {
         printf("Echec : Le mur n'a pas ete detecte (res[2] = %d).\n", res[2]);
     }
 }
+
+/** 
+ * @fn test_chute_libre();
+ * @brief Corps d'une fonction de test sur les collisions du dino avec l'air
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
 
 void test_chute_libre() {
     printf("\n--- Test Chute Libre (Ciel) ---\n");

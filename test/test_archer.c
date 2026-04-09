@@ -8,11 +8,13 @@
 #include "../lib/types.h"
 #include <time.h>
 
-#define LARGEUR_FEN_JEU 1300
-#define HAUTEUR_FEN_JEU 700
-
-#define LARGEUR_FEN_MENU 400
-#define HAUTEUR_FEN_MENU 650
+/** 
+ * @file testAffichageMenuHIP.c
+ * @brief Corps d'une fonction de test sur l'affichage des dinos avec le tir à l'arc
+ * @author Romane Saint_Léger
+ * @date Crée le 17/03/2026
+ * @version 1.5
+ */
 
 int main(int argc, char * argv[]){
 
@@ -45,7 +47,7 @@ int main(int argc, char * argv[]){
         SDL_Window *menuPrincipal; 
         SDL_Renderer *rendu;
         
-        creerFenetre(&menuPrincipal, "Page du Jeu", LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU);
+        creerFenetre(&menuPrincipal, "Page du Jeu", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
         //rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
         rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_SOFTWARE);
 
@@ -161,7 +163,7 @@ int main(int argc, char * argv[]){
             SDL_RenderClear(rendu);
 
             /* --- AFFICHAGE DE LA MAP --- */
-            SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU};
+            SDL_Rect rect_plein_ecran = {0, 0, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
             SDL_RenderCopy(rendu, texMap, NULL, &rect_plein_ecran);
             
             /* --- AFFICHAGE DES DINOS --- */

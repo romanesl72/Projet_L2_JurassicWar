@@ -5,6 +5,14 @@
 #include "../lib/collision_decor.h"
 #include "../lib/placer_dinos.h"
 
+/** 
+ * @file testPlacement.c
+ * @brief Corps d'une fonction de test les placements des dinosaures
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.2
+ */
+
 extern int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
 
 void test_placement_multi_zones() {

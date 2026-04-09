@@ -13,10 +13,14 @@
 #include <time.h>
 #include <SDL2/SDL_ttf.h>
 
-#define LARGEUR_FEN 1300
-#define HAUTEUR_HIP 100
-#define HAUTEUR_JEU 700
-#define HAUTEUR_TOTALE (HAUTEUR_HIP + HAUTEUR_JEU)
+
+/** 
+ * @file testTirsAffichageJeu.c
+ * @brief Corps d'une fonction de test sur l'affichage des tirs dans le jeu.
+ * @author Romane Saint_Léger
+ * @date Crée le 01/04/2026
+ * @version 1.3
+ */
 
 int main(int argc, char * argv[]){
 
@@ -31,7 +35,7 @@ int main(int argc, char * argv[]){
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
 
-    creerFenetre(&fenetre, "Test Complet : Armes & Degats", LARGEUR_FEN, HAUTEUR_TOTALE);
+    creerFenetre(&fenetre, "Test Complet : Armes & Degats", LARGEUR_TERRAIN, HAUTEUR_FEN_JEU_HIP);
     rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
     initialiserPolice(&police, "../pde/arial.ttf", 16);
 
@@ -196,7 +200,7 @@ int main(int argc, char * argv[]){
         afficherMenuPVDinos(rendu, police, equipe1, equipe2);
 
         // JEU (Map décalée de 100px)
-        SDL_Rect rectJeu = {0, HAUTEUR_HIP, LARGEUR_FEN, HAUTEUR_JEU};
+        SDL_Rect rectJeu = {0, HAUTEUR_HIP, LARGEUR_TERRAIN, HAUTEUR_TERRAIN};
         SDL_RenderCopy(rendu, texMap, NULL, &rectJeu);
 
         // DINOS (Position Y + 100)

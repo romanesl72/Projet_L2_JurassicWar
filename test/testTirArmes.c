@@ -6,8 +6,13 @@
 #include "../lib/types.h"
 #include <time.h>
 
-#define LARGEUR_FEN_JEU 1300
-#define HAUTEUR_FEN_JEU 700
+/** 
+ * @file testTirArmes.c
+ * @brief Corps d'une fonction de test sur les différents tirs et leur puissance
+ * @author Romane Saint_Léger
+ * @date Crée le 27/03/2026
+ * @version 1.3
+ */
 
 int main(int argc, char * argv[]){
 
@@ -32,7 +37,7 @@ int main(int argc, char * argv[]){
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) return 1;
 
-    SDL_Window *fenetre = SDL_CreateWindow("Test Physique Armes (V, A, R, F)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, LARGEUR_FEN_JEU, HAUTEUR_FEN_JEU, 0);
+    SDL_Window *fenetre = SDL_CreateWindow("Test Physique Armes (V, A, R, F)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, LARGEUR_TERRAIN, HAUTEUR_TERRAIN, 0);
     SDL_Renderer *rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
 
 
