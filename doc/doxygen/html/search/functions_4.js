@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['horsnuage_0',['horsNuage',['../deplacement_8h.html#a2a486e858a97555ad4a95a05b2377c0c',1,'deplacement.c']]]
+  ['echangercotedino_0',['echangerCoteDino',['../fonctionsStructJoueur_8c.html#ae3b964b22807361ad438719c5265a21b',1,'fonctionsStructJoueur.c']]],
+  ['echangerimgdino_1',['echangerImgDino',['../fonctionsStructJoueur_8c.html#af630dee3badcc87432431b19196c5cdd',1,'fonctionsStructJoueur.c']]],
+  ['enterreebombe_2',['enterreeBombe',['../fonctionsPlacementBombe_8c.html#ac40aa67fbb627251acbb241e50e2d6d4',1,'fonctionsPlacementBombe.c']]],
+  ['estterrain_3',['estTerrain',['../fonctionsRebonds_8c.html#a1c47f03f7571b43fd63c05e5bf9d8b03',1,'fonctionsRebonds.c']]]
 ];

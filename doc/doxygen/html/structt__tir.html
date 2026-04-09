@@ -6,6 +6,7 @@
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JurassicWar: Référence de la structure t_tir</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -91,20 +94,34 @@ $(function(){initNavTree('structt__tir.html','','structt__tir-members'); });
   <div class="headertitle"><div class="title">Référence de la structure t_tir</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Données nécessaires pour calculer un tir.  
+ <a href="#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="types_8h_source.html">types.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
 <tr class="memitem:a076d12d8c8f691bdce0c83f65e08f27c" id="r_a076d12d8c8f691bdce0c83f65e08f27c"><td class="memItemLeft" align="right" valign="top"><a id="a076d12d8c8f691bdce0c83f65e08f27c" name="a076d12d8c8f691bdce0c83f65e08f27c"></a>
 <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pos</b></td></tr>
+<tr class="memdesc:a076d12d8c8f691bdce0c83f65e08f27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position du projectile en cours. <br /></td></tr>
 <tr class="memitem:a39cb2b0a3444175a3ee50fb2f710636f" id="r_a39cb2b0a3444175a3ee50fb2f710636f"><td class="memItemLeft" align="right" valign="top"><a id="a39cb2b0a3444175a3ee50fb2f710636f" name="a39cb2b0a3444175a3ee50fb2f710636f"></a>
 <a class="el" href="structt__vect.html">t_vect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>velo</b></td></tr>
+<tr class="memdesc:a39cb2b0a3444175a3ee50fb2f710636f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vecteur correspondant au projectile. <br /></td></tr>
+<tr class="memitem:a14b4df7ece0bd89ada6f784fbdc6e73a" id="r_a14b4df7ece0bd89ada6f784fbdc6e73a"><td class="memItemLeft" align="right" valign="top"><a id="a14b4df7ece0bd89ada6f784fbdc6e73a" name="a14b4df7ece0bd89ada6f784fbdc6e73a"></a>
+<a class="el" href="structt__arme.html">t_arme</a>&#160;</td><td class="memItemRight" valign="bottom"><b>arme_source</b></td></tr>
+<tr class="memdesc:a14b4df7ece0bd89ada6f784fbdc6e73a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arme utilisé pour le tir. <br /></td></tr>
 <tr class="memitem:a349055c8b2ad6642c5b1badca6ead2bd" id="r_a349055c8b2ad6642c5b1badca6ead2bd"><td class="memItemLeft" align="right" valign="top"><a id="a349055c8b2ad6642c5b1badca6ead2bd" name="a349055c8b2ad6642c5b1badca6ead2bd"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>actif</b></td></tr>
-<tr class="memitem:a14b4df7ece0bd89ada6f784fbdc6e73a" id="r_a14b4df7ece0bd89ada6f784fbdc6e73a"><td class="memItemLeft" align="right" valign="top"><a id="a14b4df7ece0bd89ada6f784fbdc6e73a" name="a14b4df7ece0bd89ada6f784fbdc6e73a"></a>
-t_arme&#160;</td><td class="memItemRight" valign="bottom"><b>arme_source</b></td></tr>
+<tr class="memdesc:a349055c8b2ad6642c5b1badca6ead2bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Si le tir est en cours ou pas. <br /></td></tr>
 </table>
-<hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
-<li>/info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/<a class="el" href="types_8h_source.html">types.h</a></li>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Données nécessaires pour calculer un tir. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 7/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+</div><hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
+<li>/info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/<a class="el" href="types_8h_source.html">types.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -120,7 +137,7 @@ t_arme&#160;</td><td class="memItemRight" valign="bottom"><b>arme_source</b></td
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="structt__tir.html">t_tir</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

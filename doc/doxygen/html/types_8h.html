@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/types.h</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/types.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -92,15 +95,16 @@ $(function(){initNavTree('types_8h.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Définition des structures de données pour Jurassic War.  
+<p>Définition des structures de données pour JurassicWar.  
 <a href="#details">Plus de détails...</a></p>
-
+<div class="textblock"><code>#include &lt;SDL2/SDL.h&gt;</code><br />
+</div>
 <p><a href="types_8h_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:t_5Fcoordonnee" id="r_t_5Fcoordonnee"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__coordonnee.html">t_coordonnee</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure de coordonnées entières classiques (pixels)  <a href="structt__coordonnee.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure de coordonnées entières classiques (pixels).  <a href="structt__coordonnee.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fcoordonnee_5Fcalcul" id="r_t_5Fcoordonnee_5Fcalcul"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure qui contient des coordonnées flottantes pour ne pas perdre de précision dans les calculs.  <a href="structt__coordonnee__calcul.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fdeplacement" id="r_t_5Fdeplacement"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__deplacement.html">t_deplacement</a></td></tr>
@@ -109,67 +113,173 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure regroupant toutes les informations d'un dinosaure.  <a href="structt__dino.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fjoueur" id="r_t_5Fjoueur"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__joueur.html">t_joueur</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant un joueur et son équipe de dinosaure.  <a href="structt__joueur.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="memitem:t_5Ftour" id="r_t_5Ftour"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__tour.html">t_tour</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant la gestion des tours.  <a href="structt__tour.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fzone_5Fdepart" id="r_t_5Fzone_5Fdepart"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__zone__depart.html">t_zone_depart</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zone où un dinosaure peut apparaitre.  <a href="structt__zone__depart.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fcatalogue_5Fzones" id="r_t_5Fcatalogue_5Fzones"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structures qui contient les zones des différentes équipes.  <a href="structt__catalogue__zones.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structures qui contiennent les zones des différentes équipes.  <a href="structt__catalogue__zones.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fvect" id="r_t_5Fvect"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__vect.html">t_vect</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Une structure représentant un vecteur de R carré.  <a href="structt__vect.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Fbombe" id="r_t_5Fbombe"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__bombe.html">t_bombe</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure qui contient les coordonnées et le rayon d'une bombe.  <a href="structt__bombe.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="memitem:t_5Farme" id="r_t_5Farme"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__arme.html">t_arme</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Caractéristiques de chaque arme.  <a href="structt__arme.html#details">Plus de détails...</a><br /></td></tr>
 <tr class="memitem:t_5Ftir" id="r_t_5Ftir"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structt__tir.html">t_tir</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Données nécessaires pour calculer un tir.  <a href="structt__tir.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="memitem:element" id="r_element"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelement.html">element</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a157e93f13cbc0b4bb991d0e1e4782484" id="r_a157e93f13cbc0b4bb991d0e1e4782484"><td class="memItemLeft" align="right" valign="top"><a id="a157e93f13cbc0b4bb991d0e1e4782484" name="a157e93f13cbc0b4bb991d0e1e4782484"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>LARGEUR_TERRAIN</b>&#160;&#160;&#160;1300</td></tr>
+<tr class="memdesc:a157e93f13cbc0b4bb991d0e1e4782484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largeur du terrain, de la matrice et de la fenêtre. <br /></td></tr>
 <tr class="memitem:ab1ca77f80eef9f176701cff3bde3e273" id="r_ab1ca77f80eef9f176701cff3bde3e273"><td class="memItemLeft" align="right" valign="top"><a id="ab1ca77f80eef9f176701cff3bde3e273" name="ab1ca77f80eef9f176701cff3bde3e273"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>HAUTEUR_TERRAIN</b>&#160;&#160;&#160;700</td></tr>
+<tr class="memdesc:ab1ca77f80eef9f176701cff3bde3e273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hauteur du terrain, de la matrice et de la fenêtre. <br /></td></tr>
+<tr class="memitem:ab49a5b8e283b424b1ce3c43067200709" id="r_ab49a5b8e283b424b1ce3c43067200709"><td class="memItemLeft" align="right" valign="top"><a id="ab49a5b8e283b424b1ce3c43067200709" name="ab49a5b8e283b424b1ce3c43067200709"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAUTEUR_HIP</b>&#160;&#160;&#160;100</td></tr>
+<tr class="memitem:ae3fe7dc34dccb78bfa9233327ae262f0" id="r_ae3fe7dc34dccb78bfa9233327ae262f0"><td class="memItemLeft" align="right" valign="top"><a id="ae3fe7dc34dccb78bfa9233327ae262f0" name="ae3fe7dc34dccb78bfa9233327ae262f0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAUTEUR_FEN_JEU_HIP</b>&#160;&#160;&#160;(HAUTEUR_HIP + <a class="el" href="#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>)</td></tr>
 <tr class="memitem:a78fc8a5bbdd2b3703156d5c86c3f0b62" id="r_a78fc8a5bbdd2b3703156d5c86c3f0b62"><td class="memItemLeft" align="right" valign="top"><a id="a78fc8a5bbdd2b3703156d5c86c3f0b62" name="a78fc8a5bbdd2b3703156d5c86c3f0b62"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>MAT_H</b>&#160;&#160;&#160;700</td></tr>
 <tr class="memitem:abce05c81b7048535bded57058e0c13fc" id="r_abce05c81b7048535bded57058e0c13fc"><td class="memItemLeft" align="right" valign="top"><a id="abce05c81b7048535bded57058e0c13fc" name="abce05c81b7048535bded57058e0c13fc"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>MAT_L</b>&#160;&#160;&#160;1300</td></tr>
-<tr class="memitem:a3ee479371002a0a258e5c4111cc6e54f" id="r_a3ee479371002a0a258e5c4111cc6e54f"><td class="memItemLeft" align="right" valign="top"><a id="a3ee479371002a0a258e5c4111cc6e54f" name="a3ee479371002a0a258e5c4111cc6e54f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDE</b>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a599217205dc3092c26567a2bd868ef3a" id="r_a599217205dc3092c26567a2bd868ef3a"><td class="memItemLeft" align="right" valign="top"><a id="a599217205dc3092c26567a2bd868ef3a" name="a599217205dc3092c26567a2bd868ef3a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TIMER</b>&#160;&#160;&#160;4000</td></tr>
 <tr class="memitem:aba0120102bf94e4310bdbf1d41d5a971" id="r_aba0120102bf94e4310bdbf1d41d5a971"><td class="memItemLeft" align="right" valign="top"><a id="aba0120102bf94e4310bdbf1d41d5a971" name="aba0120102bf94e4310bdbf1d41d5a971"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>TAILLE_DINO</b>&#160;&#160;&#160;30</td></tr>
+<tr class="memdesc:aba0120102bf94e4310bdbf1d41d5a971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taille de l'image dinosaure. <br /></td></tr>
+<tr class="memitem:af9a65248c7f8fb2091303aeab63cb3f6" id="r_af9a65248c7f8fb2091303aeab63cb3f6"><td class="memItemLeft" align="right" valign="top"><a id="af9a65248c7f8fb2091303aeab63cb3f6" name="af9a65248c7f8fb2091303aeab63cb3f6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NOMBRE_DINOS</b>&#160;&#160;&#160;6</td></tr>
+<tr class="memdesc:af9a65248c7f8fb2091303aeab63cb3f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de dinosaures dans le jeu. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a85caea00c6e837d0f5c3c6da90a8570c" id="r_a85caea00c6e837d0f5c3c6da90a8570c"><td class="memItemLeft" align="right" valign="top"><a id="a85caea00c6e837d0f5c3c6da90a8570c" name="a85caea00c6e837d0f5c3c6da90a8570c"></a>
+typedef struct <a class="el" href="structelement.html">element</a>&#160;</td><td class="memItemRight" valign="bottom"><b>t_element_file</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Énumérations</h2></td></tr>
-<tr class="memitem:a1892fa62fed162459425c9a576c75ba3" id="r_a1892fa62fed162459425c9a576c75ba3"><td class="memItemLeft" align="right" valign="top"><a id="a1892fa62fed162459425c9a576c75ba3" name="a1892fa62fed162459425c9a576c75ba3"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1892fa62fed162459425c9a576c75ba3">t_numDino</a> { <br />
-&#160;&#160;<b>DINO1</b>
-, <b>DINO2</b>
-, <b>DINO3</b>
-, <b>DINO4</b>
+<tr class="memitem:ab21a60e1517c8d253cc83c12f6e027f3" id="r_ab21a60e1517c8d253cc83c12f6e027f3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> { <br />
+&#160;&#160;<a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a27888822e7489521a065a46d95fb4acc">EAU</a> =-1
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a2b284adc15b412cbd260beb887f2df87">AIR</a>
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a0a61314700024ebd6142c8fde55197a3">TERRE</a>
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a29b8ecb29049f38cbf752d95f479bff7">D1</a>
 , <br />
-&#160;&#160;<b>DINO5</b>
-, <b>DINO6</b>
+&#160;&#160;<a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a86c69dc8849d17673b52b9a8d94d8b9f">D2</a>
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3ade8ef7573c5fa770f07ac7616cbf5d34">D3</a>
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a12761dd9f3b74590b720d87d6ca9fbcf">D4</a>
+, <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3a9bfc9615ce2836fe43fe37e0eda2a68a">D5</a>
+, <br />
+&#160;&#160;<a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3ab6e74cb404ad3a7370b6cbb05f004fcb">D6</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a1892fa62fed162459425c9a576c75ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumération des différents dinosaures disponibles. <br /></td></tr>
-<tr class="memitem:ab21a60e1517c8d253cc83c12f6e027f3" id="r_ab21a60e1517c8d253cc83c12f6e027f3"><td class="memItemLeft" align="right" valign="top"><a id="ab21a60e1517c8d253cc83c12f6e027f3" name="ab21a60e1517c8d253cc83c12f6e027f3"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> { <br />
-&#160;&#160;<b>EAU</b> =-1
-, <b>AIR</b>
-, <b>TERRE</b>
-, <b>D1</b>
-, <br />
-&#160;&#160;<b>D2</b>
-, <b>D3</b>
-, <b>D4</b>
-, <b>D5</b>
-, <br />
-&#160;&#160;<b>D6</b>
-, <b>BOMBE</b>
-<br />
- }</td></tr>
-<tr class="memdesc:ab21a60e1517c8d253cc83c12f6e027f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Représentation de chaque élément sur la matrice. <br /></td></tr>
-<tr class="memitem:a6f3501a65615aa9d4a32543287d07e34" id="r_a6f3501a65615aa9d4a32543287d07e34"><td class="memItemLeft" align="right" valign="top"><a id="a6f3501a65615aa9d4a32543287d07e34" name="a6f3501a65615aa9d4a32543287d07e34"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>t_pistolet</b> { <b>FUSIL</b>
+<tr class="memdesc:ab21a60e1517c8d253cc83c12f6e027f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Représentation de chaque élément sur la matrice.  <a href="#ab21a60e1517c8d253cc83c12f6e027f3">Plus de détails...</a><br /></td></tr>
+<tr class="memitem:ad23ba049619a72d7996f4f1bd70c9b74" id="r_ad23ba049619a72d7996f4f1bd70c9b74"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad23ba049619a72d7996f4f1bd70c9b74">t_nom_arme</a> { <b>ARC</b>
+, <b>ARBALETE</b>
+, <b>FUSIL</b>
 , <b>REVOLVER</b>
  }</td></tr>
+<tr class="memdesc:ad23ba049619a72d7996f4f1bd70c9b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toutes les armes utilisées hormis la bombe.  <a href="#ad23ba049619a72d7996f4f1bd70c9b74">Plus de détails...</a><br /></td></tr>
+<tr class="memitem:a83e6498e585e66600977123e70d854e5" id="r_a83e6498e585e66600977123e70d854e5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83e6498e585e66600977123e70d854e5">t_cote</a> { <a class="el" href="#a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86">GAUCHE</a>
+, <a class="el" href="#a83e6498e585e66600977123e70d854e5a79f680205087956546ae263797bd1343">DROITE</a>
+, <a class="el" href="#a83e6498e585e66600977123e70d854e5ab0bf1e2fb65bbf0a358656758e456c9f">SANS_DIR</a>
+ }</td></tr>
+<tr class="memdesc:a83e6498e585e66600977123e70d854e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique la direction dans laquelle pointe les dinosaures ou les armes.  <a href="#a83e6498e585e66600977123e70d854e5">Plus de détails...</a><br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
-<div class="textblock"><p>Définition des structures de données pour Jurassic War. </p>
+<div class="textblock"><p>Définition des structures de données pour JurassicWar. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux Romane Saint-Léger Hannah Sergent </dd></dl>
-</div></div><!-- contents -->
+<dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentation du type de l'énumération</h2>
+<a id="ab21a60e1517c8d253cc83c12f6e027f3" name="ab21a60e1517c8d253cc83c12f6e027f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab21a60e1517c8d253cc83c12f6e027f3">&#9670;&#160;</a></span>t_case</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Représentation de chaque élément sur la matrice. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux Romane Saint-Léger Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a27888822e7489521a065a46d95fb4acc" name="ab21a60e1517c8d253cc83c12f6e027f3a27888822e7489521a065a46d95fb4acc"></a>EAU&#160;</td><td class="fielddoc"><p>Valeur représentant l'eau. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a2b284adc15b412cbd260beb887f2df87" name="ab21a60e1517c8d253cc83c12f6e027f3a2b284adc15b412cbd260beb887f2df87"></a>AIR&#160;</td><td class="fielddoc"><p>Valeur représentant l'air. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a0a61314700024ebd6142c8fde55197a3" name="ab21a60e1517c8d253cc83c12f6e027f3a0a61314700024ebd6142c8fde55197a3"></a>TERRE&#160;</td><td class="fielddoc"><p>Valeur représentant la terre. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a29b8ecb29049f38cbf752d95f479bff7" name="ab21a60e1517c8d253cc83c12f6e027f3a29b8ecb29049f38cbf752d95f479bff7"></a>D1&#160;</td><td class="fielddoc"><p>Dinosaure numéro 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a86c69dc8849d17673b52b9a8d94d8b9f" name="ab21a60e1517c8d253cc83c12f6e027f3a86c69dc8849d17673b52b9a8d94d8b9f"></a>D2&#160;</td><td class="fielddoc"><p>Dinosaure numéro 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3ade8ef7573c5fa770f07ac7616cbf5d34" name="ab21a60e1517c8d253cc83c12f6e027f3ade8ef7573c5fa770f07ac7616cbf5d34"></a>D3&#160;</td><td class="fielddoc"><p>Dinosaure numéro 3. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a12761dd9f3b74590b720d87d6ca9fbcf" name="ab21a60e1517c8d253cc83c12f6e027f3a12761dd9f3b74590b720d87d6ca9fbcf"></a>D4&#160;</td><td class="fielddoc"><p>Dinosaure numéro 4. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3a9bfc9615ce2836fe43fe37e0eda2a68a" name="ab21a60e1517c8d253cc83c12f6e027f3a9bfc9615ce2836fe43fe37e0eda2a68a"></a>D5&#160;</td><td class="fielddoc"><p>Dinosaure numéro 5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab21a60e1517c8d253cc83c12f6e027f3ab6e74cb404ad3a7370b6cbb05f004fcb" name="ab21a60e1517c8d253cc83c12f6e027f3ab6e74cb404ad3a7370b6cbb05f004fcb"></a>D6&#160;</td><td class="fielddoc"><p>Dinosaure numéro 6. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a83e6498e585e66600977123e70d854e5" name="a83e6498e585e66600977123e70d854e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e6498e585e66600977123e70d854e5">&#9670;&#160;</a></span>t_cote</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a83e6498e585e66600977123e70d854e5">t_cote</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indique la direction dans laquelle pointe les dinosaures ou les armes. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 24/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86" name="a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86"></a>GAUCHE&#160;</td><td class="fielddoc"><p>Direction gauche. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a83e6498e585e66600977123e70d854e5a79f680205087956546ae263797bd1343" name="a83e6498e585e66600977123e70d854e5a79f680205087956546ae263797bd1343"></a>DROITE&#160;</td><td class="fielddoc"><p>Direction droite. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a83e6498e585e66600977123e70d854e5ab0bf1e2fb65bbf0a358656758e456c9f" name="a83e6498e585e66600977123e70d854e5ab0bf1e2fb65bbf0a358656758e456c9f"></a>SANS_DIR&#160;</td><td class="fielddoc"><p>Aucune direction. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad23ba049619a72d7996f4f1bd70c9b74" name="ad23ba049619a72d7996f4f1bd70c9b74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23ba049619a72d7996f4f1bd70c9b74">&#9670;&#160;</a></span>t_nom_arme</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad23ba049619a72d7996f4f1bd70c9b74">t_nom_arme</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Toutes les armes utilisées hormis la bombe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 07/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>
@@ -183,7 +293,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/src/fonctionsTirs.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctionsTirs_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier fonctionsTirs.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Corps des fonctions pour les tirs.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="fonctionsTirs_8h_source.html">../lib/fonctionsTirs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="placer__dinos_8h_source.html">../lib/placer_dinos.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="chargerMatrice_8h_source.html">../lib/chargerMatrice.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsStructJoueur_8h_source.html">../lib/fonctionsStructJoueur.h</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0974703b3007d356551fcf7816277ef0" id="r_a0974703b3007d356551fcf7816277ef0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0974703b3007d356551fcf7816277ef0">initialiserTirArcher</a> (<a class="el" href="structt__tir.html">t_tir</a> *tir, float departX, float departY, <a class="el" href="structt__arme.html">t_arme</a> arme)</td></tr>
+<tr class="memdesc:a0974703b3007d356551fcf7816277ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui initialise le tir avec une certaine position.  <br /></td></tr>
+<tr class="memitem:abc0de39eecb67b06c640ab38a3047ed5" id="r_abc0de39eecb67b06c640ab38a3047ed5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc0de39eecb67b06c640ab38a3047ed5">collisionFrontiere</a> (<a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
+<tr class="memdesc:abc0de39eecb67b06c640ab38a3047ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui regarde si le tir entre en contact avec les frontières du jeu.  <br /></td></tr>
+<tr class="memitem:a581b523a52ebad634f75ee975af8ef7a" id="r_a581b523a52ebad634f75ee975af8ef7a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a581b523a52ebad634f75ee975af8ef7a">collisionTerrain</a> (int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
+<tr class="memdesc:a581b523a52ebad634f75ee975af8ef7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui regarde si le tir entre en contact avec le terrain.  <br /></td></tr>
+<tr class="memitem:a9737f3b07213a1c8233800e62382cde8" id="r_a9737f3b07213a1c8233800e62382cde8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9737f3b07213a1c8233800e62382cde8">collisionEau</a> (int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
+<tr class="memdesc:a9737f3b07213a1c8233800e62382cde8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui regarde si le tir entre en contact avec l'eau.  <br /></td></tr>
+<tr class="memitem:afefc8b480b09fc5cc3ba1d92ccd22311" id="r_afefc8b480b09fc5cc3ba1d92ccd22311"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afefc8b480b09fc5cc3ba1d92ccd22311">collisionDino</a> (int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
+<tr class="memdesc:afefc8b480b09fc5cc3ba1d92ccd22311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui regarde si le tir entre en contact avec un dino.  <br /></td></tr>
+<tr class="memitem:a0dfc4f14d6730e8f1d8cea365fa90093" id="r_a0dfc4f14d6730e8f1d8cea365fa90093"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dfc4f14d6730e8f1d8cea365fa90093">mettreAJourVol</a> (<a class="el" href="structt__tir.html">t_tir</a> *tir, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], float gravite, int id_tireur)</td></tr>
+<tr class="memdesc:a0dfc4f14d6730e8f1d8cea365fa90093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui met à jour le vol du tir.  <br /></td></tr>
+<tr class="memitem:a04b32daae174f2edb75589af43b0fc02" id="r_a04b32daae174f2edb75589af43b0fc02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04b32daae174f2edb75589af43b0fc02">tracerArme</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
+<tr class="memdesc:a04b32daae174f2edb75589af43b0fc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace l'arme.  <br /></td></tr>
+<tr class="memitem:a7c00cc8fae6ee8e3972b2faefd21027d" id="r_a7c00cc8fae6ee8e3972b2faefd21027d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c00cc8fae6ee8e3972b2faefd21027d">tracerTrajectoireTir</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__tir.html">t_tir</a> *tir, float gravite)</td></tr>
+<tr class="memdesc:a7c00cc8fae6ee8e3972b2faefd21027d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué  <br /></td></tr>
+<tr class="memitem:acfbb3728b1df805c202f3f5e566f6d31" id="r_acfbb3728b1df805c202f3f5e566f6d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfbb3728b1df805c202f3f5e566f6d31">AncienviserArcher</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 **etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2)</td></tr>
+<tr class="memdesc:acfbb3728b1df805c202f3f5e566f6d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancienne version d'une fonction qui permet de viser.  <br /></td></tr>
+<tr class="memitem:a47f61849cc91ca812e4e678045267e94" id="r_a47f61849cc91ca812e4e678045267e94"><td class="memItemLeft" align="right" valign="top"><a id="a47f61849cc91ca812e4e678045267e94" name="a47f61849cc91ca812e4e678045267e94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 *etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant)</td></tr>
+<tr class="memitem:a6a5d0bb8afbb394f6e36375b190f35be" id="r_a6a5d0bb8afbb394f6e36375b190f35be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a5d0bb8afbb394f6e36375b190f35be">appliquerDegats</a> (int numDinoTouche, int degats, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Corps des fonctions pour les tirs. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="acfbb3728b1df805c202f3f5e566f6d31" name="acfbb3728b1df805c202f3f5e566f6d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfbb3728b1df805c202f3f5e566f6d31">&#9670;&#160;</a></span>AncienviserArcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AncienviserArcher </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Uint8 **</td>          <td class="paramname"><span class="paramname"><em>etatClavier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ancienne version d'une fonction qui permet de viser. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 06/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir </td></tr>
+    <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
+    <tr><td class="paramname">gravite</td><td>constante de gravite utilisé sur les armes </td></tr>
+    <tr><td class="paramname">e1</td><td>pointeur sur la structure de l'équipe 1 </td></tr>
+    <tr><td class="paramname">e2</td><td>pointeur sur la structure de l'équipe 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a5d0bb8afbb394f6e36375b190f35be" name="a6a5d0bb8afbb394f6e36375b190f35be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5d0bb8afbb394f6e36375b190f35be">&#9670;&#160;</a></span>appliquerDegats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void appliquerDegats </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>numDinoTouche</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>degats</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numDinoTouche</td><td>Numéro du dinosaure touché </td></tr>
+    <tr><td class="paramname">degats</td><td>Entier pour le nombre de degats effectuer par l'arme de tir </td></tr>
+    <tr><td class="paramname">equipe1</td><td>pointeur sur la structure de l'équipe 1 afin de pouvoir accéder aux dinos de leur équipe </td></tr>
+    <tr><td class="paramname">equipe2</td><td>pointeur sur la structure de l'équipe 1 afin de pouvoir accéder aux dinos de leur équipe </td></tr>
+    <tr><td class="paramname">matrice</td><td>matrice d'entiers du jeu afin de supprimer les numéros du dino si il meurt </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afefc8b480b09fc5cc3ba1d92ccd22311" name="afefc8b480b09fc5cc3ba1d92ccd22311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefc8b480b09fc5cc3ba1d92ccd22311">&#9670;&#160;</a></span>collisionDino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collisionDino </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui regarde si le tir entre en contact avec un dino. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrice</td><td>matrice d'entiers correspondant à la terre, l'eau, l'air ou les dinos </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'avoir ses coordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Renvoie le numero du dino touché, sinon 0 </dd></dl>
+
+</div>
+</div>
+<a id="a9737f3b07213a1c8233800e62382cde8" name="a9737f3b07213a1c8233800e62382cde8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9737f3b07213a1c8233800e62382cde8">&#9670;&#160;</a></span>collisionEau()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collisionEau </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui regarde si le tir entre en contact avec l'eau. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrice</td><td>matrice d'entiers correspondant à la terre, l'eau, l'air ou les dinos </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'avoir ses coordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Renvoie 1 si le tir est entré en collision avec l'eau, sinon 0 </dd></dl>
+
+</div>
+</div>
+<a id="abc0de39eecb67b06c640ab38a3047ed5" name="abc0de39eecb67b06c640ab38a3047ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0de39eecb67b06c640ab38a3047ed5">&#9670;&#160;</a></span>collisionFrontiere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collisionFrontiere </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui regarde si le tir entre en contact avec les frontières du jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'avoir ses coordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Renvoie 1 si le tir est entré en collision avec les frontières, sinon 0 </dd></dl>
+
+</div>
+</div>
+<a id="a581b523a52ebad634f75ee975af8ef7a" name="a581b523a52ebad634f75ee975af8ef7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581b523a52ebad634f75ee975af8ef7a">&#9670;&#160;</a></span>collisionTerrain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collisionTerrain </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui regarde si le tir entre en contact avec le terrain. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrice</td><td>matrice d'entiers correspondant à la terre, l'eau, l'air ou les dinos </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'avoir ses coordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Renvoie 1 si le tir est entré en collision avec le terrain, sinon 0 </dd></dl>
+
+</div>
+</div>
+<a id="a0974703b3007d356551fcf7816277ef0" name="a0974703b3007d356551fcf7816277ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0974703b3007d356551fcf7816277ef0">&#9670;&#160;</a></span>initialiserTirArcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserTirArcher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>departX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>departY</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__arme.html">t_arme</a></td>          <td class="paramname"><span class="paramname"><em>arme</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui initialise le tir avec une certaine position. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'accéder aux vecteurs et coordonnées du tir </td></tr>
+    <tr><td class="paramname">departX</td><td>coordonnée x du départ du tir </td></tr>
+    <tr><td class="paramname">departY</td><td>coordonnée y du départ du tir </td></tr>
+    <tr><td class="paramname">arme</td><td>structure de l'arme que l'on va utiliser </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0dfc4f14d6730e8f1d8cea365fa90093" name="a0dfc4f14d6730e8f1d8cea365fa90093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dfc4f14d6730e8f1d8cea365fa90093">&#9670;&#160;</a></span>mettreAJourVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mettreAJourVol </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id_tireur</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui met à jour le vol du tir. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'avoir ses coordonnées et ses vecteurs </td></tr>
+    <tr><td class="paramname">matrice</td><td>matrice d'entiers correspondant à la terre, l'eau, l'air ou les dinos </td></tr>
+    <tr><td class="paramname">gravite</td><td>constante de gravite utilisé sur les armes </td></tr>
+    <tr><td class="paramname">id_tireur</td><td>numéro du dino entrain de tirer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a04b32daae174f2edb75589af43b0fc02" name="a04b32daae174f2edb75589af43b0fc02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b32daae174f2edb75589af43b0fc02">&#9670;&#160;</a></span>tracerArme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerArme </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui trace l'arme. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'acceder à l'arme utilisé </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7c00cc8fae6ee8e3972b2faefd21027d" name="a7c00cc8fae6ee8e3972b2faefd21027d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c00cc8fae6ee8e3972b2faefd21027d">&#9670;&#160;</a></span>tracerTrajectoireTir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerTrajectoireTir </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'acceder à l'arme utilisé </td></tr>
+    <tr><td class="paramname">graviteBase</td><td>constante de gravite utilisé sur les armes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsTirs_8c.html">fonctionsTirs.c</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

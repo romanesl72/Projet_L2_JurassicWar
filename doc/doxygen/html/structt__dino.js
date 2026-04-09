@@ -1,6 +1,7 @@
 var structt__dino =
 [
-    [ "d", "structt__dino.html#a5411b687d2caa769e496ee247f06608d", null ],
+    [ "d", "structt__dino.html#a442c176b2cf00facc5b3d59ca48f651d", null ],
+    [ "deplacement", "structt__dino.html#a90f2a46a85ea6becae0e81ddab9cc29e", null ],
     [ "etat", "structt__dino.html#a2eb3cf269b0a6976c0ccab79140bc967", null ],
     [ "hauteur", "structt__dino.html#a49c197e223fb613b204e34a30740d562", null ],
     [ "id_nuage", "structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541", null ],

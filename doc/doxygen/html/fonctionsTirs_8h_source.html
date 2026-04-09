@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/fonctionsTirs.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctionsTirs_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">fonctionsTirs.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fonctionsTirs_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _TIRER_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _TIRER_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="fonctionsMenuHIP_8h.html">../lib/fonctionsMenuHIP.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a0974703b3007d356551fcf7816277ef0">initialiserTirArcher</a>(<a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir, <span class="keywordtype">float</span> departX, <span class="keywordtype">float</span> departY, <a class="code hl_struct" href="structt__arme.html">t_arme</a> arme);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsTirs_8h.html#abc0de39eecb67b06c640ab38a3047ed5">collisionFrontiere</a>(<a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a581b523a52ebad634f75ee975af8ef7a">collisionTerrain</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a9737f3b07213a1c8233800e62382cde8">collisionEau</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsTirs_8h.html#afefc8b480b09fc5cc3ba1d92ccd22311">collisionDino</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a0dfc4f14d6730e8f1d8cea365fa90093">mettreAJourVol</a>(<a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <span class="keywordtype">float</span> gravite, <span class="keywordtype">int</span> id_tireur);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a04b32daae174f2edb75589af43b0fc02">tracerArme</a>(SDL_Renderer *zoneAffichage, <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a645ed2c88f804b301c66e3f79b8d4dd7">tracerTrajectoireTir</a>(SDL_Renderer *zoneAffichage, <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir, <span class="keywordtype">float</span> graviteBase);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsTirs_8h.html#acfbb3728b1df805c202f3f5e566f6d31">AncienviserArcher</a>(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir, <span class="keyword">const</span> Uint8 **etatClavier, <span class="keywordtype">float</span> gravite, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *e1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *e2);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keywordtype">void</span> viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, <a class="code hl_struct" href="structt__tir.html">t_tir</a> *tir, <span class="keyword">const</span> Uint8 *etatClavier, <span class="keywordtype">float</span> gravite, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *e1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *e2, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsTirs_8h.html#a6a5d0bb8afbb394f6e36375b190f35be">appliquerDegats</a>(<span class="keywordtype">int</span> numDinoTouche, <span class="keywordtype">int</span> degats, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>]);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="afonctionsMenuHIP_8h_html"><div class="ttname"><a href="fonctionsMenuHIP_8h.html">fonctionsMenuHIP.h</a></div><div class="ttdoc">Définitions des fonctions liées au menu HIP.</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a04b32daae174f2edb75589af43b0fc02"><div class="ttname"><a href="fonctionsTirs_8h.html#a04b32daae174f2edb75589af43b0fc02">tracerArme</a></div><div class="ttdeci">void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir)</div><div class="ttdoc">Fonction qui trace l&#39;arme.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:96</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a0974703b3007d356551fcf7816277ef0"><div class="ttname"><a href="fonctionsTirs_8h.html#a0974703b3007d356551fcf7816277ef0">initialiserTirArcher</a></div><div class="ttdeci">void initialiserTirArcher(t_tir *tir, float departX, float departY, t_arme arme)</div><div class="ttdoc">Fonction qui initialise le tir avec une certaine position.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:17</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a0dfc4f14d6730e8f1d8cea365fa90093"><div class="ttname"><a href="fonctionsTirs_8h.html#a0dfc4f14d6730e8f1d8cea365fa90093">mettreAJourVol</a></div><div class="ttdeci">int mettreAJourVol(t_tir *tir, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], float gravite, int id_tireur)</div><div class="ttdoc">Fonction qui met à jour le vol du tir.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:61</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a581b523a52ebad634f75ee975af8ef7a"><div class="ttname"><a href="fonctionsTirs_8h.html#a581b523a52ebad634f75ee975af8ef7a">collisionTerrain</a></div><div class="ttdeci">int collisionTerrain(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir)</div><div class="ttdoc">Fonction qui regarde si le tir entre en contact avec le terrain.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:31</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a645ed2c88f804b301c66e3f79b8d4dd7"><div class="ttname"><a href="fonctionsTirs_8h.html#a645ed2c88f804b301c66e3f79b8d4dd7">tracerTrajectoireTir</a></div><div class="ttdeci">void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase)</div><div class="ttdoc">Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:126</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a6a5d0bb8afbb394f6e36375b190f35be"><div class="ttname"><a href="fonctionsTirs_8h.html#a6a5d0bb8afbb394f6e36375b190f35be">appliquerDegats</a></div><div class="ttdeci">void appliquerDegats(int numDinoTouche, int degats, t_joueur *equipe1, t_joueur *equipe2, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:316</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_a9737f3b07213a1c8233800e62382cde8"><div class="ttname"><a href="fonctionsTirs_8h.html#a9737f3b07213a1c8233800e62382cde8">collisionEau</a></div><div class="ttdeci">int collisionEau(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir)</div><div class="ttdoc">Fonction qui regarde si le tir entre en contact avec l&#39;eau.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:40</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_abc0de39eecb67b06c640ab38a3047ed5"><div class="ttname"><a href="fonctionsTirs_8h.html#abc0de39eecb67b06c640ab38a3047ed5">collisionFrontiere</a></div><div class="ttdeci">int collisionFrontiere(t_tir *tir)</div><div class="ttdoc">Fonction qui regarde si le tir entre en contact avec les frontières du jeu.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:27</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_acfbb3728b1df805c202f3f5e566f6d31"><div class="ttname"><a href="fonctionsTirs_8h.html#acfbb3728b1df805c202f3f5e566f6d31">AncienviserArcher</a></div><div class="ttdeci">void AncienviserArcher(SDL_Renderer *zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2)</div><div class="ttdoc">Ancienne version d&#39;une fonction qui permet de viser.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:155</div></div>
+<div class="ttc" id="afonctionsTirs_8h_html_afefc8b480b09fc5cc3ba1d92ccd22311"><div class="ttname"><a href="fonctionsTirs_8h.html#afefc8b480b09fc5cc3ba1d92ccd22311">collisionDino</a></div><div class="ttdeci">int collisionDino(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_tir *tir)</div><div class="ttdoc">Fonction qui regarde si le tir entre en contact avec un dino.</div><div class="ttdef"><b>Definition</b> fonctionsTirs.c:49</div></div>
+<div class="ttc" id="astructt__arme_html"><div class="ttname"><a href="structt__arme.html">t_arme</a></div><div class="ttdoc">Caractéristiques de chaque arme.</div><div class="ttdef"><b>Definition</b> types.h:258</div></div>
+<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:171</div></div>
+<div class="ttc" id="astructt__tir_html"><div class="ttname"><a href="structt__tir.html">t_tir</a></div><div class="ttdoc">Données nécessaires pour calculer un tir.</div><div class="ttdef"><b>Definition</b> types.h:274</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
+<div class="ttc" id="atypes_8h_html_a157e93f13cbc0b4bb991d0e1e4782484"><div class="ttname"><a href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a></div><div class="ttdeci">#define LARGEUR_TERRAIN</div><div class="ttdoc">Largeur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_ab1ca77f80eef9f176701cff3bde3e273"><div class="ttname"><a href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a></div><div class="ttdeci">#define HAUTEUR_TERRAIN</div><div class="ttdoc">Hauteur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:26</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:58</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsTirs_8h.html">fonctionsTirs.h</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/tda_nuage.h</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/tda_nuage.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -91,6 +94,9 @@ $(function(){initNavTree('tda__nuage_8h.html','',''); });
   <div class="headertitle"><div class="title">Référence du fichier tda_nuage.h</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>fonctions permettant de créer/utiliser un nuage de points  
+<a href="#details">Plus de détails...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">types.h</a>&quot;</code><br />
 </div>
 <p><a href="tda__nuage_8h_source.html">Aller au code source de ce fichier.</a></p>
@@ -98,14 +104,51 @@ $(function(){initNavTree('tda__nuage_8h.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a7df22140a7211b37935299a3b169de52" id="r_a7df22140a7211b37935299a3b169de52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7df22140a7211b37935299a3b169de52">nuage_de_points</a> (int *nb_points, char nomFichier[])</td></tr>
+<tr class="memdesc:a7df22140a7211b37935299a3b169de52"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de créer le nuage  <br /></td></tr>
 <tr class="memitem:a4368f475030d62870fcda397e8c203f3" id="r_a4368f475030d62870fcda397e8c203f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4368f475030d62870fcda397e8c203f3">nuageExiste</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> *const nuage)</td></tr>
+<tr class="memdesc:a4368f475030d62870fcda397e8c203f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">retourne 1 si le nuage existe, 0 sinon  <br /></td></tr>
 <tr class="memitem:a2a5140959544de48818a78a502b13d5a" id="r_a2a5140959544de48818a78a502b13d5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a5140959544de48818a78a502b13d5a">nuageDetruire</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage)</td></tr>
-<tr class="memitem:a0cbecd5de9343d838c38d82f09313e75" id="r_a0cbecd5de9343d838c38d82f09313e75"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cbecd5de9343d838c38d82f09313e75">nuageCopier</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage_cible, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> *nuage_source, int nb_points)</td></tr>
+<tr class="memdesc:a2a5140959544de48818a78a502b13d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de détruire le nuage  <br /></td></tr>
+<tr class="memitem:ae50726126a51fb0249a9afd30e324cc3" id="r_ae50726126a51fb0249a9afd30e324cc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae50726126a51fb0249a9afd30e324cc3">afficherNuage</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> *nuage, int nb_pts)</td></tr>
+<tr class="memdesc:ae50726126a51fb0249a9afd30e324cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet d'afficher la globalité du nuage  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
-<div class="textblock"><dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<div class="textblock"><p>fonctions permettant de créer/utiliser un nuage de points </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14/03/2026 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="ae50726126a51fb0249a9afd30e324cc3" name="ae50726126a51fb0249a9afd30e324cc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50726126a51fb0249a9afd30e324cc3">&#9670;&#160;</a></span>afficherNuage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherNuage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>nuage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nb_pts</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>permet d'afficher la globalité du nuage </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>20/03/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nuage</td><td>pointeur sur le nuage de points </td></tr>
+    <tr><td class="paramname">nb_pts</td><td>nombre de points dans le nuage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a7df22140a7211b37935299a3b169de52" name="a7df22140a7211b37935299a3b169de52"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7df22140a7211b37935299a3b169de52">&#9670;&#160;</a></span>nuage_de_points()</h2>
 
@@ -124,48 +167,14 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
-<dl class="section date"><dt>Date</dt><dd></dd></dl>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nb_points</td><td></td></tr>
-    <tr><td class="paramname">nomFichier</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
-</div>
-</div>
-<a id="a0cbecd5de9343d838c38d82f09313e75" name="a0cbecd5de9343d838c38d82f09313e75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cbecd5de9343d838c38d82f09313e75">&#9670;&#160;</a></span>nuageCopier()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int nuageCopier </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> **</td>          <td class="paramname"><span class="paramname"><em>nuage_cible</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>nuage_source</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nb_points</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>permet de créer le nuage </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14/03/2026 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nuage_cible</td><td></td></tr>
-    <tr><td class="paramname">nuage_source</td><td></td></tr>
-    <tr><td class="paramname">nb_points</td><td></td></tr>
+    <tr><td class="paramname">nb_points</td><td>pointeurs sur le nombre d'éléments dans le nuage de points </td></tr>
+    <tr><td class="paramname">nomFichier</td><td>nom de l'image permettant d'extraire le nuage de points </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,11 +195,13 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>permet de détruire le nuage </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14/03/2026 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nuage</td><td></td></tr>
+    <tr><td class="paramname">nuage</td><td>pointeur de pointeur sur le nuage de points </td></tr>
   </table>
   </dd>
 </dl>
@@ -211,11 +222,13 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>retourne 1 si le nuage existe, 0 sinon </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14/03/2026 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nuage</td><td></td></tr>
+    <tr><td class="paramname">nuage</td><td>pointeur sur le nuage de points </td></tr>
   </table>
   </dd>
 </dl>
@@ -236,7 +249,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="tda__nuage_8h.html">tda_nuage.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

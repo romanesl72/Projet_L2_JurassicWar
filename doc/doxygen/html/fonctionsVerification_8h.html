@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/fonctionsVerification.h</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/fonctionsVerification.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -103,9 +106,11 @@ $(function(){initNavTree('fonctionsVerification_8h.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a0ee8dc64de65632c26bc31d06b688b73" id="r_a0ee8dc64de65632c26bc31d06b688b73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ee8dc64de65632c26bc31d06b688b73">initialisationCorrecte</a> ()</td></tr>
-<tr class="memdesc:a0ee8dc64de65632c26bc31d06b688b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction initialise SDL2, SDL2_image et SDL_ttf  <br /></td></tr>
+<tr class="memdesc:a0ee8dc64de65632c26bc31d06b688b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise SDL2, SDL2_image et SDL_ttf.  <br /></td></tr>
 <tr class="memitem:a9182107241f27a916b59349fa960c7c5" id="r_a9182107241f27a916b59349fa960c7c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9182107241f27a916b59349fa960c7c5">chargerImage</a> (SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur)</td></tr>
-<tr class="memdesc:a9182107241f27a916b59349fa960c7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction charge une image comme texture SDL.  <br /></td></tr>
+<tr class="memdesc:a9182107241f27a916b59349fa960c7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction charge une image comme une texture SDL et indique sa taille.  <br /></td></tr>
+<tr class="memitem:a9fb2ea24f4b73e732e59dc47ac645d20" id="r_a9fb2ea24f4b73e732e59dc47ac645d20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fb2ea24f4b73e732e59dc47ac645d20">chargerImageSansTaille</a> (SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier)</td></tr>
+<tr class="memdesc:a9fb2ea24f4b73e732e59dc47ac645d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction charge une image comme une texture SDL sans indiquer sa taille.  <br /></td></tr>
 <tr class="memitem:adc1c6ad4b9734d38a1be54ea9ed5ad69" id="r_adc1c6ad4b9734d38a1be54ea9ed5ad69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc1c6ad4b9734d38a1be54ea9ed5ad69">creerFenetre</a> (SDL_Window **fenetre, char *nomFenetre, int fenLargeur, int fenHauteur)</td></tr>
 <tr class="memdesc:adc1c6ad4b9734d38a1be54ea9ed5ad69"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction crée une fenêtre centrée sur l'écran.  <br /></td></tr>
 <tr class="memitem:a6b4a1426cca0b57be9b9435b0ea1b5b8" id="r_a6b4a1426cca0b57be9b9435b0ea1b5b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b4a1426cca0b57be9b9435b0ea1b5b8">initialiserPolice</a> (TTF_Font **police, char *nomFichier, int taillePolice)</td></tr>
@@ -115,6 +120,7 @@ Fonctions</h2></td></tr>
 <div class="textblock"><p>Définition de fonctions pour initialiser différents objets SDL. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.5 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
 <a id="a9182107241f27a916b59349fa960c7c5" name="a9182107241f27a916b59349fa960c7c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9182107241f27a916b59349fa960c7c5">&#9670;&#160;</a></span>chargerImage()</h2>
@@ -150,16 +156,56 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>La fonction charge une image comme texture SDL. </p>
+<p>La fonction charge une image comme une texture SDL et indique sa taille. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
-    <tr><td class="paramname">img</td><td>pointeur sur un pointeur de la texture image à charger </td></tr>
-    <tr><td class="paramname">nomFichier</td><td>nom du fichier contenant l'image </td></tr>
-    <tr><td class="paramname">imgLongueur</td><td>pointeur recevant la largeur de l'image </td></tr>
-    <tr><td class="paramname">imgHauteur</td><td>pointeur recevant la hauteur de l'image </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">img</td><td>un pointeur sur un pointeur de la texture image à charger </td></tr>
+    <tr><td class="paramname">nomFichier</td><td>le nom du fichier contenant l'image </td></tr>
+    <tr><td class="paramname">imgLongueur</td><td>un pointeur recevant la largeur de l'image </td></tr>
+    <tr><td class="paramname">imgHauteur</td><td>un pointeur recevant la hauteur de l'image </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9fb2ea24f4b73e732e59dc47ac645d20" name="a9fb2ea24f4b73e732e59dc47ac645d20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fb2ea24f4b73e732e59dc47ac645d20">&#9670;&#160;</a></span>chargerImageSansTaille()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chargerImageSansTaille </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>img</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>nomFichier</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction charge une image comme une texture SDL sans indiquer sa taille. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">img</td><td>un pointeur sur un pointeur de la texture de l'image à charger </td></tr>
+    <tr><td class="paramname">nomFichier</td><td>le nom du fichier contenant l'image </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,12 +244,13 @@ Fonctions</h2></td></tr>
 <p>La fonction crée une fenêtre centrée sur l'écran. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fenetre</td><td>pointeur sur un pointeur de la fenêtre </td></tr>
-    <tr><td class="paramname">nomFenetre</td><td>titre de la fenêtre </td></tr>
-    <tr><td class="paramname">fenLargeur</td><td>largeur de la fenêtre </td></tr>
-    <tr><td class="paramname">fenHauteur</td><td>hauteur de la fenêtre </td></tr>
+    <tr><td class="paramname">fenetre</td><td>un pointeur de pointeur sur la fenêtre </td></tr>
+    <tr><td class="paramname">nomFenetre</td><td>le titre de la fenêtre </td></tr>
+    <tr><td class="paramname">fenLargeur</td><td>la largeur de la fenêtre </td></tr>
+    <tr><td class="paramname">fenHauteur</td><td>la hauteur de la fenêtre </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,9 +272,10 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>la fonction initialise SDL2, SDL2_image et SDL_ttf </p>
+<p>La fonction initialise SDL2, SDL2_image et SDL_ttf. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé et 0 sinon </dd></dl>
 
 </div>
@@ -259,11 +307,12 @@ Fonctions</h2></td></tr>
 <p>La fonction charge une police. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 27/01/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">police</td><td>pointeur sur le pointeur de police à initialiser </td></tr>
-    <tr><td class="paramname">nomFichier</td><td>nom du fichier contenant la police </td></tr>
-    <tr><td class="paramname">taillePolice</td><td>taille de la police </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur de pointeur sur la police à initialiser </td></tr>
+    <tr><td class="paramname">nomFichier</td><td>le nom du fichier contenant la police </td></tr>
+    <tr><td class="paramname">taillePolice</td><td>la taille de la police </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,7 +333,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsVerification_8h.html">fonctionsVerification.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/src/fonctionsMenuHIP.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctionsMenuHIP_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier fonctionsMenuHIP.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Corps des fonctions liées au menu HIP.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsMenuHIP_8h_source.html">../lib/fonctionsMenuHIP.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsVerification_8h_source.html">../lib/fonctionsVerification.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a444b1142d2db60dffaa2a0e1b4707a13" id="r_a444b1142d2db60dffaa2a0e1b4707a13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a444b1142d2db60dffaa2a0e1b4707a13">chargerTexteDinos</a> (SDL_Renderer *rendu, TTF_Font *police, <a class="el" href="structt__texte__cache.html">t_texte_cache</a> *cache)</td></tr>
+<tr class="memdesc:a444b1142d2db60dffaa2a0e1b4707a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise la structure <a class="el" href="structt__texte__cache.html" title="Structure qui charge le texte à afficher pour la barre des pv.">t_texte_cache</a>.  <br /></td></tr>
+<tr class="memitem:aea4457a0f6b391bf458086cd8acb456c" id="r_aea4457a0f6b391bf458086cd8acb456c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea4457a0f6b391bf458086cd8acb456c">afficherTexte</a> (SDL_Renderer *rendu, TTF_Font *police, char *message, int x, int y, SDL_Color couleur)</td></tr>
+<tr class="memdesc:aea4457a0f6b391bf458086cd8acb456c"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche du texte sur le menu du Haut (HIP)  <br /></td></tr>
+<tr class="memitem:a2ddb74107fa8e90e4c0edb2c4852266f" id="r_a2ddb74107fa8e90e4c0edb2c4852266f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ddb74107fa8e90e4c0edb2c4852266f">afficherInventaire</a> (SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets)</td></tr>
+<tr class="memdesc:a2ddb74107fa8e90e4c0edb2c4852266f"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche les 7 Objets en haut à gauche.  <br /></td></tr>
+<tr class="memitem:a71988d0d3166d6fa34b78d12dddd303f" id="r_a71988d0d3166d6fa34b78d12dddd303f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71988d0d3166d6fa34b78d12dddd303f">afficherBarrePV</a> (SDL_Renderer *rendu, <a class="el" href="structt__dino.html">t_dino</a> dino, int x, int y)</td></tr>
+<tr class="memdesc:a71988d0d3166d6fa34b78d12dddd303f"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche une barre de vie en fonction d'un dinosaure.  <br /></td></tr>
+<tr class="memitem:a80221a62fbf959b30f280d32c78f168c" id="r_a80221a62fbf959b30f280d32c78f168c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80221a62fbf959b30f280d32c78f168c">afficherMenuPVDinos</a> (SDL_Renderer *rendu, TTF_Font *police, <a class="el" href="structt__joueur.html">t_joueur</a> e1, <a class="el" href="structt__joueur.html">t_joueur</a> e2)</td></tr>
+<tr class="memdesc:a80221a62fbf959b30f280d32c78f168c"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche le menu des PV des dinosaures.  <br /></td></tr>
+<tr class="memitem:a710039727e468ceab90661321b86dca5" id="r_a710039727e468ceab90661321b86dca5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a710039727e468ceab90661321b86dca5">afficherMenuPVDinosOp</a> (SDL_Renderer *rendu, TTF_Font *police, <a class="el" href="structt__joueur.html">t_joueur</a> e1, <a class="el" href="structt__joueur.html">t_joueur</a> e2, <a class="el" href="structt__texte__cache.html">t_texte_cache</a> *cache)</td></tr>
+<tr class="memdesc:a710039727e468ceab90661321b86dca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche le menu des PV des dinosaures de manière optimisée.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Corps des fonctions liées au menu HIP. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a71988d0d3166d6fa34b78d12dddd303f" name="a71988d0d3166d6fa34b78d12dddd303f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71988d0d3166d6fa34b78d12dddd303f">&#9670;&#160;</a></span>afficherBarrePV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherBarrePV </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a></td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche une barre de vie en fonction d'un dinosaure. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">dino</td><td>structure du dino afin d'accéder à ses points de vie </td></tr>
+    <tr><td class="paramname">x</td><td>coordonnée x de la barre de PV </td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée y de la barre de PV </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ddb74107fa8e90e4c0edb2c4852266f" name="a2ddb74107fa8e90e4c0edb2c4852266f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ddb74107fa8e90e4c0edb2c4852266f">&#9670;&#160;</a></span>afficherInventaire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherInventaire </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbObjets</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche les 7 Objets en haut à gauche. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">texObjets</td><td>un pointeur sur la texture des objets </td></tr>
+    <tr><td class="paramname">nbObjets</td><td>nombre d'objets à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a80221a62fbf959b30f280d32c78f168c" name="a80221a62fbf959b30f280d32c78f168c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80221a62fbf959b30f280d32c78f168c">&#9670;&#160;</a></span>afficherMenuPVDinos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherMenuPVDinos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche le menu des PV des dinosaures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">e1</td><td>la structure de l'équipe 1 </td></tr>
+    <tr><td class="paramname">e2</td><td>la structure de l'équipe 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a710039727e468ceab90661321b86dca5" name="a710039727e468ceab90661321b86dca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710039727e468ceab90661321b86dca5">&#9670;&#160;</a></span>afficherMenuPVDinosOp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherMenuPVDinosOp </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__texte__cache.html">t_texte_cache</a> *</td>          <td class="paramname"><span class="paramname"><em>cache</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche le menu des PV des dinosaures de manière optimisée. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 06/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">e1</td><td>la structure de l'équipe 1 </td></tr>
+    <tr><td class="paramname">e2</td><td>la structure de l'équipe 1 </td></tr>
+    <tr><td class="paramname">cache</td><td>un pointeur sur une structure contenant le texte à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea4457a0f6b391bf458086cd8acb456c" name="aea4457a0f6b391bf458086cd8acb456c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea4457a0f6b391bf458086cd8acb456c">&#9670;&#160;</a></span>afficherTexte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherTexte </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Color</td>          <td class="paramname"><span class="paramname"><em>couleur</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche du texte sur le menu du Haut (HIP) </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">message</td><td>le message que l'on souhaite afficher </td></tr>
+    <tr><td class="paramname">x</td><td>coordonnée x du début du message </td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée y du début du message </td></tr>
+    <tr><td class="paramname">couleur</td><td>la couleur du message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a444b1142d2db60dffaa2a0e1b4707a13" name="a444b1142d2db60dffaa2a0e1b4707a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a444b1142d2db60dffaa2a0e1b4707a13">&#9670;&#160;</a></span>chargerTexteDinos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chargerTexteDinos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__texte__cache.html">t_texte_cache</a> *</td>          <td class="paramname"><span class="paramname"><em>cache</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise la structure <a class="el" href="structt__texte__cache.html" title="Structure qui charge le texte à afficher pour la barre des pv.">t_texte_cache</a>. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 06/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">cache</td><td>la structure à initialiser </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsMenuHIP_8c.html">fonctionsMenuHIP.c</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

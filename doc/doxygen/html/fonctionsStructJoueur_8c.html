@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/src/fonctionsStructJoueur.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctionsStructJoueur_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier fonctionsStructJoueur.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Corps des fonctions liées à la structure joueur.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="fonctionsStructJoueur_8h_source.html">../lib/fonctionsStructJoueur.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a7483e6fa97a6912bbcbff8cb921178f5" id="r_a7483e6fa97a6912bbcbff8cb921178f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7483e6fa97a6912bbcbff8cb921178f5">rechercherDino</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:a7483e6fa97a6912bbcbff8cb921178f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction recherche si le dinosaure fait partie de l'équipe equipe à partir de son identifiant.  <br /></td></tr>
+<tr class="memitem:a1f2160de17f283d492a82db90d47a5ab" id="r_a1f2160de17f283d492a82db90d47a5ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structt__dino.html">t_dino</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f2160de17f283d492a82db90d47a5ab">recupererDinoNumero</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:a1f2160de17f283d492a82db90d47a5ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction récupère l'adresse d'une structure dinosaure à partir de son identifiant.  <br /></td></tr>
+<tr class="memitem:ab25b8d6d4f41d05d1e9b67dba7fe750b" id="r_ab25b8d6d4f41d05d1e9b67dba7fe750b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab25b8d6d4f41d05d1e9b67dba7fe750b">recupererDinoDirection</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:ab25b8d6d4f41d05d1e9b67dba7fe750b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction récupère le côté vers lequel est orienté un dinosaure à partir de son identifiant.  <br /></td></tr>
+<tr class="memitem:a4abf98b2de58fc82cd49d99b5f796a3d" id="r_a4abf98b2de58fc82cd49d99b5f796a3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4abf98b2de58fc82cd49d99b5f796a3d">supprimerDinoJoueur</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:a4abf98b2de58fc82cd49d99b5f796a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction supprime un dinosaure de l'équipe auquel il appartient.  <br /></td></tr>
+<tr class="memitem:af630dee3badcc87432431b19196c5cdd" id="r_af630dee3badcc87432431b19196c5cdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af630dee3badcc87432431b19196c5cdd">echangerImgDino</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe, int indiceDino)</td></tr>
+<tr class="memdesc:af630dee3badcc87432431b19196c5cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction échange deux images situées dans les deux tableaux d'images de la structure joueur.  <br /></td></tr>
+<tr class="memitem:ae3b964b22807361ad438719c5265a21b" id="r_ae3b964b22807361ad438719c5265a21b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3b964b22807361ad438719c5265a21b">echangerCoteDino</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe, int indiceDino)</td></tr>
+<tr class="memdesc:ae3b964b22807361ad438719c5265a21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction échange la direction du dinosaure d'indice indiceDino dans le tableau contenant la direction des dinosaures.  <br /></td></tr>
+<tr class="memitem:ab3b0dba48a56cecba8106fcddb709f39" id="r_ab3b0dba48a56cecba8106fcddb709f39"><td class="memItemLeft" align="right" valign="top"><a id="ab3b0dba48a56cecba8106fcddb709f39" name="ab3b0dba48a56cecba8106fcddb709f39"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>retournerDino</b> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero, <a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> cote, <a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> *ancienCote)</td></tr>
+<tr class="memitem:a38fd9c44451b3c326ab25ab0a509dad8" id="r_a38fd9c44451b3c326ab25ab0a509dad8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38fd9c44451b3c326ab25ab0a509dad8">initialiserContenuJoueur</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *joueur)</td></tr>
+<tr class="memdesc:a38fd9c44451b3c326ab25ab0a509dad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise le contenu d'un joueur.  <br /></td></tr>
+<tr class="memitem:ae142fde9a46310d709c8c0689e7a6c10" id="r_ae142fde9a46310d709c8c0689e7a6c10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae142fde9a46310d709c8c0689e7a6c10">afficherContenuJoueur</a> (<a class="el" href="structt__joueur.html">t_joueur</a> joueur, char *nomEquipe)</td></tr>
+<tr class="memdesc:ae142fde9a46310d709c8c0689e7a6c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche dans la console l'état détaillé de tous les dinosaures d'une équipe.  <br /></td></tr>
+<tr class="memitem:a5784557b6668ae77648c1f17089c047a" id="r_a5784557b6668ae77648c1f17089c047a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5784557b6668ae77648c1f17089c047a">detruireContenuJoueur</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *joueur)</td></tr>
+<tr class="memdesc:a5784557b6668ae77648c1f17089c047a"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit le contenu d'une structure joueur.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Corps des fonctions liées à la structure joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 18/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>4.1 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="ae142fde9a46310d709c8c0689e7a6c10" name="ae142fde9a46310d709c8c0689e7a6c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae142fde9a46310d709c8c0689e7a6c10">&#9670;&#160;</a></span>afficherContenuJoueur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherContenuJoueur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>joueur</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>nomEquipe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche dans la console l'état détaillé de tous les dinosaures d'une équipe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 9/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td>la structure joueur à inspecter. </td></tr>
+    <tr><td class="paramname">nomEquipe</td><td>une chaîne de caractères pour identifier l'équipe (ex: "Equipe 1"). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5784557b6668ae77648c1f17089c047a" name="a5784557b6668ae77648c1f17089c047a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5784557b6668ae77648c1f17089c047a">&#9670;&#160;</a></span>detruireContenuJoueur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void detruireContenuJoueur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>joueur</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détruit le contenu d'une structure joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td>un pointeur sur la structure dont on veut détruire le contenu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae3b964b22807361ad438719c5265a21b" name="ae3b964b22807361ad438719c5265a21b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b964b22807361ad438719c5265a21b">&#9670;&#160;</a></span>echangerCoteDino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void echangerCoteDino </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indiceDino</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction échange la direction du dinosaure d'indice indiceDino dans le tableau contenant la direction des dinosaures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe</td><td>un pointeur sur une structure de type joueur </td></tr>
+    <tr><td class="paramname">indiceDino</td><td>l'indice dans le tableau de direction de la direction à échanger </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af630dee3badcc87432431b19196c5cdd" name="af630dee3badcc87432431b19196c5cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af630dee3badcc87432431b19196c5cdd">&#9670;&#160;</a></span>echangerImgDino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void echangerImgDino </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indiceDino</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction échange deux images situées dans les deux tableaux d'images de la structure joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe</td><td>un pointeur sur une structure de type joueur </td></tr>
+    <tr><td class="paramname">indiceDino</td><td>l'indice dans le tableau d'images de l'image à échanger </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a38fd9c44451b3c326ab25ab0a509dad8" name="a38fd9c44451b3c326ab25ab0a509dad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38fd9c44451b3c326ab25ab0a509dad8">&#9670;&#160;</a></span>initialiserContenuJoueur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserContenuJoueur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>joueur</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise le contenu d'un joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td>un pointeur sur la structure dont on veut initialiser le contenu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7483e6fa97a6912bbcbff8cb921178f5" name="a7483e6fa97a6912bbcbff8cb921178f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7483e6fa97a6912bbcbff8cb921178f5">&#9670;&#160;</a></span>rechercherDino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rechercherDino </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction recherche si le dinosaure fait partie de l'équipe equipe à partir de son identifiant. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe</td><td>une structure correspondant aux dinosaures de l'équipe equipe </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure recherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>l'identifiant du dinosaure s'il a été trouvé et -1 sinon </dd></dl>
+
+</div>
+</div>
+<a id="ab25b8d6d4f41d05d1e9b67dba7fe750b" name="ab25b8d6d4f41d05d1e9b67dba7fe750b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25b8d6d4f41d05d1e9b67dba7fe750b">&#9670;&#160;</a></span>recupererDinoDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> recupererDinoDirection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction récupère le côté vers lequel est orienté un dinosaure à partir de son identifiant. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure dont on veut connaître le côté </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le côté vers lequel le dinosaure est orienté </dd></dl>
+
+</div>
+</div>
+<a id="a1f2160de17f283d492a82db90d47a5ab" name="a1f2160de17f283d492a82db90d47a5ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f2160de17f283d492a82db90d47a5ab">&#9670;&#160;</a></span>recupererDinoNumero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structt__dino.html">t_dino</a> * recupererDinoNumero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction récupère l'adresse d'une structure dinosaure à partir de son identifiant. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure recherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>l'adresse de la structure dinosaure correspondant au numéro d'identifiant ou un pointeur nul si le dinosaure n'existe dans aucune équipe </dd></dl>
+
+</div>
+</div>
+<a id="a4abf98b2de58fc82cd49d99b5f796a3d" name="a4abf98b2de58fc82cd49d99b5f796a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4abf98b2de58fc82cd49d99b5f796a3d">&#9670;&#160;</a></span>supprimerDinoJoueur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void supprimerDinoJoueur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction supprime un dinosaure de l'équipe auquel il appartient. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure à supprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsStructJoueur_8c.html">fonctionsStructJoueur.c</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

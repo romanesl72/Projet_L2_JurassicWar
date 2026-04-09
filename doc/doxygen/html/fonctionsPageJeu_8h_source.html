@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/fonctionsPageJeu.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctionsPageJeu_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">fonctionsPageJeu.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fonctionsPageJeu_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _FONCTIONSPAGEJEU_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _FONCTIONSPAGEJEU_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">../lib/types.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;SDL2/SDL_ttf.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a955d46bf57e99198c7e86f1b137418de">creerPageJeuBombe</a>(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">int</span> creerPageJeu(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap, SDL_Texture **texObjets, TTF_Font **policeMenuHIP);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#ac7ec6f6d4df991cb57cafe2289a64c0a">initialiserEquipes</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_struct" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Renderer *zoneAffichage);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#aa6e74ff691c65228ae83141484d0f8af">detecterEvenementsPageJeuBombe</a>(<span class="keywordtype">int</span> *enCours, <span class="keywordtype">int</span> *bombeLancee, <span class="keywordtype">int</span> *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_struct" href="structt__bombe.html">t_bombe</a> *bombe, <a class="code hl_struct" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> dinoCourant, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>]);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a7adaee70a8e8f0c5ca1cd82b939f9259">afficherJeuSansBombe</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a784306462efa51ab89173cba57c22f77">afficherJeuAvecBombe</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_struct" href="structt__bombe.html">t_bombe</a> * bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a6794eb01b4c8baa220515828111c7d54">destruireElementsJeuBombe</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Texture *texMap, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">void</span> destruireElementsJeu(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a96f69ed2a9be8a07f4b691b800510e57">lancerBombeSansHIP</a>(Uint32 *tempsPrecedent, <span class="keywordtype">int</span> * bombeLancee, <span class="keywordtype">int</span> *nombreRebonds, <a class="code hl_struct" href="structt__bombe.html">t_bombe</a> * bombe, <a class="code hl_struct" href="structt__vect.html">t_vect</a> *vectVitesse, </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_struct" href="structt__tour.html">t_tour</a> *gestionTours,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    );</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPageJeu_8h.html#a829ce6b3f0f577fdb1cdd98a5a187cc8">lancerPartieBombe</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keywordtype">void</span> lancerPartie();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a6794eb01b4c8baa220515828111c7d54"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a6794eb01b4c8baa220515828111c7d54">destruireElementsJeuBombe</a></div><div class="ttdeci">void destruireElementsJeuBombe(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu)</div><div class="ttdoc">La fonction détruit les différents objets mis en place pour le jeu.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:328</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a784306462efa51ab89173cba57c22f77"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a784306462efa51ab89173cba57c22f77">afficherJeuAvecBombe</a></div><div class="ttdeci">void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</div><div class="ttdoc">La fonction affiche l&#39;image du terrain, les dinosaures et la bombe.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:259</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a7adaee70a8e8f0c5ca1cd82b939f9259"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a7adaee70a8e8f0c5ca1cd82b939f9259">afficherJeuSansBombe</a></div><div class="ttdeci">void afficherJeuSansBombe(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</div><div class="ttdoc">La fonction affiche l&#39;image du terrain et les dinosaures.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:247</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a829ce6b3f0f577fdb1cdd98a5a187cc8"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a829ce6b3f0f577fdb1cdd98a5a187cc8">lancerPartieBombe</a></div><div class="ttdeci">void lancerPartieBombe()</div><div class="ttdoc">La fonction lance une partie.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:541</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a955d46bf57e99198c7e86f1b137418de"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a955d46bf57e99198c7e86f1b137418de">creerPageJeuBombe</a></div><div class="ttdeci">int creerPageJeuBombe(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap)</div><div class="ttdoc">La fonction crée la fenêtre du jeu pour la version ne contenant que la fonctionnalité bombe.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:29</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_a96f69ed2a9be8a07f4b691b800510e57"><div class="ttname"><a href="fonctionsPageJeu_8h.html#a96f69ed2a9be8a07f4b691b800510e57">lancerBombeSansHIP</a></div><div class="ttdeci">void lancerBombeSansHIP(Uint32 *tempsPrecedent, int *bombeLancee, int *nombreRebonds, t_bombe *bombe, t_vect *vectVitesse, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</div><div class="ttdoc">La fonction lance la bombe en appelant toutes les fonctions liées à celle-ci.</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:362</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_aa6e74ff691c65228ae83141484d0f8af"><div class="ttname"><a href="fonctionsPageJeu_8h.html#aa6e74ff691c65228ae83141484d0f8af">detecterEvenementsPageJeuBombe</a></div><div class="ttdeci">void detecterEvenementsPageJeuBombe(int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</div><div class="ttdoc">La fonction détecte si l&#39;utilisateur réalise une action dans la fenêtre (appuyer sur une touche ou en...</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:135</div></div>
+<div class="ttc" id="afonctionsPageJeu_8h_html_ac7ec6f6d4df991cb57cafe2289a64c0a"><div class="ttname"><a href="fonctionsPageJeu_8h.html#ac7ec6f6d4df991cb57cafe2289a64c0a">initialiserEquipes</a></div><div class="ttdeci">void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones *catalogue, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer *zoneAffichage)</div><div class="ttdoc">La fonction initialise les deux équipes, c&#39;est à dire chaque joueur et le placement des dinosaures su...</div><div class="ttdef"><b>Definition</b> fonctionsPageJeu.c:90</div></div>
+<div class="ttc" id="astructt__bombe_html"><div class="ttname"><a href="structt__bombe.html">t_bombe</a></div><div class="ttdoc">Structure qui contient les coordonnées et le rayon d&#39;une bombe.</div><div class="ttdef"><b>Definition</b> types.h:245</div></div>
+<div class="ttc" id="astructt__catalogue__zones_html"><div class="ttname"><a href="structt__catalogue__zones.html">t_catalogue_zones</a></div><div class="ttdoc">Structures qui contiennent les zones des différentes équipes.</div><div class="ttdef"><b>Definition</b> types.h:218</div></div>
+<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:171</div></div>
+<div class="ttc" id="astructt__tour_html"><div class="ttname"><a href="structt__tour.html">t_tour</a></div><div class="ttdoc">Structure représentant la gestion des tours.</div><div class="ttdef"><b>Definition</b> types.h:187</div></div>
+<div class="ttc" id="astructt__vect_html"><div class="ttname"><a href="structt__vect.html">t_vect</a></div><div class="ttdoc">Une structure représentant un vecteur de R carré.</div><div class="ttdef"><b>Definition</b> types.h:232</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
+<div class="ttc" id="atypes_8h_html_a157e93f13cbc0b4bb991d0e1e4782484"><div class="ttname"><a href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a></div><div class="ttdeci">#define LARGEUR_TERRAIN</div><div class="ttdoc">Largeur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_ab1ca77f80eef9f176701cff3bde3e273"><div class="ttname"><a href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a></div><div class="ttdeci">#define HAUTEUR_TERRAIN</div><div class="ttdoc">Hauteur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:26</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:58</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsPageJeu_8h.html">fonctionsPageJeu.h</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

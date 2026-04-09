@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/placer_dinos.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/placer_dinos.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -94,30 +97,36 @@ $(function(){initNavTree('placer__dinos_8h_source.html','',''); });
 <a href="placer__dinos_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _PLACER_DINOS_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _PLACER_DINOS_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a>(<a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p_sol, <span class="keywordtype">int</span> matrice[MAT_H][MAT_L]);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#af8387d13967aa5e9c2ddc8d29679eb4b">placer_une_equipe</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *joueur, <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], <span class="keywordtype">int</span> matrice[MAT_H][MAT_L], <span class="keywordtype">int</span> id_depart);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a68579d3b18a53af384c735c8fd6f3103">afficherDinos</a>(SDL_Renderer* zoneAffichage, SDL_Texture * texDinos[6], <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> * equipe);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a02079e5b331714bf076cca0677d71cf0">remplir_matrice_dino</a>(<a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> p_sol, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>]);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4">placer_une_equipe</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *joueur, <a class="code hl_struct" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> id_depart);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aplacer__dinos_8h_html_a113c74cd5b5ccdadf7b8772bb086adb9"><div class="ttname"><a href="placer__dinos_8h.html#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a></div><div class="ttdeci">void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[MAT_H][MAT_L])</div><div class="ttdoc">Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:17</div></div>
-<div class="ttc" id="aplacer__dinos_8h_html_a68579d3b18a53af384c735c8fd6f3103"><div class="ttname"><a href="placer__dinos_8h.html#a68579d3b18a53af384c735c8fd6f3103">afficherDinos</a></div><div class="ttdeci">void afficherDinos(SDL_Renderer *zoneAffichage, SDL_Texture *texDinos[6], t_joueur *equipe)</div><div class="ttdoc">La fonction affiche à l&#39;écran les dinosaures d&#39;une équipe placés précédemment sur le terrain.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:52</div></div>
-<div class="ttc" id="aplacer__dinos_8h_html_af8387d13967aa5e9c2ddc8d29679eb4b"><div class="ttname"><a href="placer__dinos_8h.html#af8387d13967aa5e9c2ddc8d29679eb4b">placer_une_equipe</a></div><div class="ttdeci">void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart)</div><div class="ttdoc">Initialise et place tous les dinosaures d&#39;une équipe sur le terrain.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:38</div></div>
-<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels)</div><div class="ttdef"><b>Definition</b> types.h:44</div></div>
-<div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdoc">Structure regroupant toutes les informations d&#39;un dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:89</div></div>
-<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:109</div></div>
-<div class="ttc" id="astructt__zone__depart_html"><div class="ttname"><a href="structt__zone__depart.html">t_zone_depart</a></div><div class="ttdoc">Zone où un dinosaure peut apparaitre.</div><div class="ttdef"><b>Definition</b> types.h:123</div></div>
-<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour Jurassic War.</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a0a36313db6ed94b23947e5eff6b90f9b">afficherDinos</a>(SDL_Renderer* zoneAffichage, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> * equipe);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">void</span> <a class="code hl_function" href="placer__dinos_8h.html#a258c8ba232a11708a52cb07ed329f9f0">afficherDinosAvecJeu</a>(SDL_Renderer* zoneAffichage, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> * equipe);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aplacer__dinos_8h_html_a02079e5b331714bf076cca0677d71cf0"><div class="ttname"><a href="placer__dinos_8h.html#a02079e5b331714bf076cca0677d71cf0">remplir_matrice_dino</a></div><div class="ttdeci">void remplir_matrice_dino(t_dino *dino, t_coordonnee p_sol, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</div><div class="ttdoc">Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:15</div></div>
+<div class="ttc" id="aplacer__dinos_8h_html_a0a36313db6ed94b23947e5eff6b90f9b"><div class="ttname"><a href="placer__dinos_8h.html#a0a36313db6ed94b23947e5eff6b90f9b">afficherDinos</a></div><div class="ttdeci">void afficherDinos(SDL_Renderer *zoneAffichage, t_joueur *equipe)</div><div class="ttdoc">La fonction affiche à l&#39;écran les dinosaures d&#39;une équipe placés précédemment sur le terrain.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:53</div></div>
+<div class="ttc" id="aplacer__dinos_8h_html_a258c8ba232a11708a52cb07ed329f9f0"><div class="ttname"><a href="placer__dinos_8h.html#a258c8ba232a11708a52cb07ed329f9f0">afficherDinosAvecJeu</a></div><div class="ttdeci">void afficherDinosAvecJeu(SDL_Renderer *zoneAffichage, t_joueur *equipe)</div><div class="ttdoc">La fonction affiche à l&#39;écran les dinosaures d&#39;une équipe placés précédemment sur le terrain avec l&#39;i...</div><div class="ttdef"><b>Definition</b> placer_dinos.c:68</div></div>
+<div class="ttc" id="aplacer__dinos_8h_html_a3bfdca7f98ad39fb3ed4eaa3ca9de4e4"><div class="ttname"><a href="placer__dinos_8h.html#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4">placer_une_equipe</a></div><div class="ttdeci">void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart)</div><div class="ttdoc">Initialise et place tous les dinosaures d&#39;une équipe sur le terrain.</div><div class="ttdef"><b>Definition</b> placer_dinos.c:34</div></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels).</div><div class="ttdef"><b>Definition</b> types.h:102</div></div>
+<div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdoc">Structure regroupant toutes les informations d&#39;un dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:151</div></div>
+<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:171</div></div>
+<div class="ttc" id="astructt__zone__depart_html"><div class="ttname"><a href="structt__zone__depart.html">t_zone_depart</a></div><div class="ttdoc">Zone où un dinosaure peut apparaitre.</div><div class="ttdef"><b>Definition</b> types.h:202</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
+<div class="ttc" id="atypes_8h_html_a157e93f13cbc0b4bb991d0e1e4782484"><div class="ttname"><a href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a></div><div class="ttdeci">#define LARGEUR_TERRAIN</div><div class="ttdoc">Largeur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_ab1ca77f80eef9f176701cff3bde3e273"><div class="ttname"><a href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a></div><div class="ttdeci">#define HAUTEUR_TERRAIN</div><div class="ttdoc">Hauteur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:26</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:58</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
@@ -125,7 +134,7 @@ $(function(){initNavTree('placer__dinos_8h_source.html','',''); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="placer__dinos_8h.html">placer_dinos.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/grappin.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('grappin_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">grappin.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="grappin_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _grappin_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _grappin_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;SDL2/SDL_ttf.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="grappin_8h.html#aa1d59e1f29f3ef8e058867d3e5c0b694">   19</a></span><span class="preprocessor">#define LONGUEUR 200</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="grappin_8h.html#a6bd07ac3fa3430e219195ccbc8b81891">   25</a></span><span class="preprocessor">#define RADIANS 3.14/180</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">int</span> <a class="code hl_function" href="grappin_8h.html#a7187545914a9bdfa42c8876422776a75">collision_grappin</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> pos, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>]);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">int</span> <a class="code hl_function" href="grappin_8h.html#a59d2050f76e81537867a1aea1e5a015a">chute</a>(<a class="code hl_struct" href="structt__dino.html">t_dino</a> **dino, <span class="keywordtype">int</span> nb_pts, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Renderer* zoneAffichage, </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], <span class="keywordtype">char</span> *nomsObjets[],</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordtype">void</span> <a class="code hl_function" href="grappin_8h.html#af289781733aa3db9b6856ef881717a81">balancier</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, SDL_Renderer* zoneAffichage, </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>               <span class="keyword">const</span> Uint8 *state, TTF_Font *police, SDL_Texture *texMap, </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>               SDL_Texture *texDinos[], SDL_Texture *texObjets[], <span class="keywordtype">char</span> *nomsObjets[], </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>               <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *pts_rotation);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>               </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">float</span> <a class="code hl_function" href="grappin_8h.html#ab7b5f03ff40ea3f8f8a95a8e3f685470">choixAngleLancer</a>(<a class="code hl_struct" href="structt__dino.html">t_dino</a> *dino, SDL_Renderer* zoneAffichage,  <span class="keyword">const</span> Uint8 *state, TTF_Font *police, SDL_Texture *texMap,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>     SDL_Texture *texDinos[], SDL_Texture *texObjets[], <span class="keywordtype">char</span> *nomsObjets[],</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>     <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> equipe2);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keywordtype">int</span> <a class="code hl_function" href="grappin_8h.html#aa4ecd86e269dd676a425cba1320b81aa">lancer</a>(<a class="code hl_struct" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *pos_precise, <span class="keywordtype">float</span> angle, <span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <span class="keywordtype">int</span> *collision, <span class="keywordtype">int</span> distance_parcourue);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keywordtype">int</span> <a class="code hl_function" href="grappin_8h.html#acc3e495d2c9420197712e18461e171d6">rappel</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__dino.html">t_dino</a> **dino, <span class="keyword">const</span> Uint8 *state, <span class="keywordtype">int</span> distance_parcourue, </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>     SDL_Renderer* zoneAffichage, <span class="keywordtype">int</span> *nb_pts, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> **nuage, <span class="keywordtype">int</span> nb_nuage, <span class="keywordtype">char</span> *nomNuage[]);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keywordtype">int</span> <a class="code hl_function" href="grappin_8h.html#a13e65d67c1f8e30bc6b12e5169b263f2">grappin</a>(<span class="keywordtype">int</span> matrice[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Renderer* zoneAffichage, <a class="code hl_struct" href="structt__dino.html">t_dino</a> **dino, </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>           <span class="keyword">const</span> Uint8 *state, SDL_Texture *texMap, TTF_Font *police,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>           SDL_Texture *texDinos[], SDL_Texture *texObjets[], <span class="keywordtype">char</span> *nomsObjets[],</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>           <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2,<span class="keywordtype">int</span> *nb_pts, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> **nuage, </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>           <span class="keywordtype">int</span> nb_nuage, <span class="keywordtype">char</span> *nomNuage[]);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agrappin_8h_html_a13e65d67c1f8e30bc6b12e5169b263f2"><div class="ttname"><a href="grappin_8h.html#a13e65d67c1f8e30bc6b12e5169b263f2">grappin</a></div><div class="ttdeci">int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer *zoneAffichage, t_dino **dino, const Uint8 *state, SDL_Texture *texMap, TTF_Font *police, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, t_joueur *equipe2, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[])</div><div class="ttdoc">on utilise le grappin</div><div class="ttdef"><b>Definition</b> grappin.c:379</div></div>
+<div class="ttc" id="agrappin_8h_html_a59d2050f76e81537867a1aea1e5a015a"><div class="ttname"><a href="grappin_8h.html#a59d2050f76e81537867a1aea1e5a015a">chute</a></div><div class="ttdeci">int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer *zoneAffichage, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, t_joueur *equipe2)</div><div class="ttdoc">Le dino chute lorsqu&#39;il percute une colinne.</div><div class="ttdef"><b>Definition</b> grappin.c:68</div></div>
+<div class="ttc" id="agrappin_8h_html_a7187545914a9bdfa42c8876422776a75"><div class="ttname"><a href="grappin_8h.html#a7187545914a9bdfa42c8876422776a75">collision_grappin</a></div><div class="ttdeci">int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</div><div class="ttdoc">regarde si le grappin accroche</div><div class="ttdef"><b>Definition</b> grappin.c:36</div></div>
+<div class="ttc" id="agrappin_8h_html_aa4ecd86e269dd676a425cba1320b81aa"><div class="ttname"><a href="grappin_8h.html#aa4ecd86e269dd676a425cba1320b81aa">lancer</a></div><div class="ttdeci">int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision, int distance_parcourue)</div><div class="ttdoc">on lance le grappin</div><div class="ttdef"><b>Definition</b> grappin.c:273</div></div>
+<div class="ttc" id="agrappin_8h_html_ab7b5f03ff40ea3f8f8a95a8e3f685470"><div class="ttname"><a href="grappin_8h.html#ab7b5f03ff40ea3f8f8a95a8e3f685470">choixAngleLancer</a></div><div class="ttdeci">float choixAngleLancer(t_dino *dino, SDL_Renderer *zoneAffichage, const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], t_joueur equipe1, t_joueur equipe2)</div><div class="ttdoc">on choisit l&#39;angle du lancers du grappin</div><div class="ttdef"><b>Definition</b> grappin.c:223</div></div>
+<div class="ttc" id="agrappin_8h_html_acc3e495d2c9420197712e18461e171d6"><div class="ttname"><a href="grappin_8h.html#acc3e495d2c9420197712e18461e171d6">rappel</a></div><div class="ttdeci">int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const Uint8 *state, int distance_parcourue, SDL_Renderer *zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[])</div><div class="ttdoc">on monte le dino en rappel</div><div class="ttdef"><b>Definition</b> grappin.c:313</div></div>
+<div class="ttc" id="agrappin_8h_html_af289781733aa3db9b6856ef881717a81"><div class="ttname"><a href="grappin_8h.html#af289781733aa3db9b6856ef881717a81">balancier</a></div><div class="ttdeci">void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer *zoneAffichage, const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation)</div><div class="ttdoc">on balance le dino pour qu&#39;il se positionne sur le dessu de la colline</div><div class="ttdef"><b>Definition</b> grappin.c:124</div></div>
+<div class="ttc" id="astructt__coordonnee__calcul_html"><div class="ttname"><a href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a></div><div class="ttdoc">Structure qui contient des coordonnées flottantes pour ne pas perdre de précision dans les calculs.</div><div class="ttdef"><b>Definition</b> types.h:115</div></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels).</div><div class="ttdef"><b>Definition</b> types.h:102</div></div>
+<div class="ttc" id="astructt__dino_html"><div class="ttname"><a href="structt__dino.html">t_dino</a></div><div class="ttdoc">Structure regroupant toutes les informations d&#39;un dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:151</div></div>
+<div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:171</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
+<div class="ttc" id="atypes_8h_html_a157e93f13cbc0b4bb991d0e1e4782484"><div class="ttname"><a href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a></div><div class="ttdeci">#define LARGEUR_TERRAIN</div><div class="ttdoc">Largeur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_ab1ca77f80eef9f176701cff3bde3e273"><div class="ttname"><a href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a></div><div class="ttdeci">#define HAUTEUR_TERRAIN</div><div class="ttdoc">Hauteur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="grappin_8h.html">grappin.h</a></li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/src/fonctionsRebonds.c</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/src/fonctionsRebonds.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -94,7 +97,9 @@ $(function(){initNavTree('fonctionsRebonds_8c.html','',''); });
 
 <p>Corps des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe.  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="fonctionsRebonds_8h_source.html">../lib/fonctionsRebonds.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="fonctionsPlacementBombe_8h_source.html">../lib/fonctionsPlacementBombe.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsRebonds_8h_source.html">../lib/fonctionsRebonds.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsStructJoueur_8h_source.html">../lib/fonctionsStructJoueur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="placer__dinos_8h_source.html">../lib/placer_dinos.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
@@ -102,39 +107,91 @@ $(function(){initNavTree('fonctionsRebonds_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:ab9d595ccc33343f48f111a9833ba97ce" id="r_ab9d595ccc33343f48f111a9833ba97ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9d595ccc33343f48f111a9833ba97ce">initialiserBombe</a> (<a class="el" href="structt__bombe.html">t_bombe</a> *bombe, float coorChoisieX, float coorChoisieY, int rayon)</td></tr>
-<tr class="memdesc:ab9d595ccc33343f48f111a9833ba97ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction initialise les valeurs d'une bombe  <br /></td></tr>
-<tr class="memitem:a4186269d9bd84687fc9f6266548ac192" id="r_a4186269d9bd84687fc9f6266548ac192"><td class="memItemLeft" align="right" valign="top"><a id="a4186269d9bd84687fc9f6266548ac192" name="a4186269d9bd84687fc9f6266548ac192"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialiserVitesse</b> (<a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, float vitesseChoisieX, float vitesseChoisieY)</td></tr>
+<tr class="memdesc:ab9d595ccc33343f48f111a9833ba97ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise toutes les valeurs d'une bombe.  <br /></td></tr>
+<tr class="memitem:a6300fd196946e3c653dac19c9e005f93" id="r_a6300fd196946e3c653dac19c9e005f93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6300fd196946e3c653dac19c9e005f93">initialiserRayonBombe</a> (<a class="el" href="structt__bombe.html">t_bombe</a> *bombe, int rayon)</td></tr>
+<tr class="memdesc:a6300fd196946e3c653dac19c9e005f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise uniquement le rayon de la bombe.  <br /></td></tr>
+<tr class="memitem:a4186269d9bd84687fc9f6266548ac192" id="r_a4186269d9bd84687fc9f6266548ac192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4186269d9bd84687fc9f6266548ac192">initialiserVitesse</a> (<a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, float vitesseChoisieX, float vitesseChoisieY)</td></tr>
+<tr class="memdesc:a4186269d9bd84687fc9f6266548ac192"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise les vitesses horizontales et verticales.  <br /></td></tr>
 <tr class="memitem:a27a9523bcc977ed4680f99edd73cb413" id="r_a27a9523bcc977ed4680f99edd73cb413"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27a9523bcc977ed4680f99edd73cb413">miseAjourTemps</a> (Uint32 *tempsPrecedent, float *tempsEcoule)</td></tr>
-<tr class="memdesc:a27a9523bcc977ed4680f99edd73cb413"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction met à jour le temps écoulé  <br /></td></tr>
-<tr class="memitem:ad9864282a11761f785378e50c3044839" id="r_ad9864282a11761f785378e50c3044839"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9864282a11761f785378e50c3044839">collisionFrontiereBombe</a> (int largeurFenetre, int hauteurFenetre, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
-<tr class="memdesc:ad9864282a11761f785378e50c3044839"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction vérifie si la bombe tape une extrémité de la fenêtre  <br /></td></tr>
-<tr class="memitem:a4acd5cd1c9e028df16217811082e68c1" id="r_a4acd5cd1c9e028df16217811082e68c1"><td class="memItemLeft" align="right" valign="top"><a id="a4acd5cd1c9e028df16217811082e68c1" name="a4acd5cd1c9e028df16217811082e68c1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>dansLimites</b> (int x, int y)</td></tr>
-<tr class="memitem:a1c47f03f7571b43fd63c05e5bf9d8b03" id="r_a1c47f03f7571b43fd63c05e5bf9d8b03"><td class="memItemLeft" align="right" valign="top"><a id="a1c47f03f7571b43fd63c05e5bf9d8b03" name="a1c47f03f7571b43fd63c05e5bf9d8b03"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>estTerrain</b> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> pixel)</td></tr>
-<tr class="memitem:a07b4227ca998c3a6e02b8a557cbbf4fa" id="r_a07b4227ca998c3a6e02b8a557cbbf4fa"><td class="memItemLeft" align="right" valign="top"><a id="a07b4227ca998c3a6e02b8a557cbbf4fa" name="a07b4227ca998c3a6e02b8a557cbbf4fa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>calculerNormale</b> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *extremiteBombe, <a class="el" href="structt__vect.html">t_vect</a> *normal)</td></tr>
-<tr class="memitem:afcd56cd3c20bcc165777ce2b37bc06ed" id="r_afcd56cd3c20bcc165777ce2b37bc06ed"><td class="memItemLeft" align="right" valign="top"><a id="afcd56cd3c20bcc165777ce2b37bc06ed" name="afcd56cd3c20bcc165777ce2b37bc06ed"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>collisionTerrainBombe</b> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse)</td></tr>
-<tr class="memitem:a20170570125dd0b6ded13a013fc02aab" id="r_a20170570125dd0b6ded13a013fc02aab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20170570125dd0b6ded13a013fc02aab">collisionEauBombe</a> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], <a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
-<tr class="memdesc:a20170570125dd0b6ded13a013fc02aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction vérifie si la bombe plonge  <br /></td></tr>
+<tr class="memdesc:a27a9523bcc977ed4680f99edd73cb413"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction met à jour le temps écoulé.  <br /></td></tr>
+<tr class="memitem:ac4d034b347b9131f08fa92677be9a484" id="r_ac4d034b347b9131f08fa92677be9a484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4d034b347b9131f08fa92677be9a484">collisionFrontiereBombe</a> (<a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
+<tr class="memdesc:ac4d034b347b9131f08fa92677be9a484"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction vérifie si la bombe heurte une extrémité de la fenêtre.  <br /></td></tr>
+<tr class="memitem:a4acd5cd1c9e028df16217811082e68c1" id="r_a4acd5cd1c9e028df16217811082e68c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4acd5cd1c9e028df16217811082e68c1">dansLimites</a> (int x, int y)</td></tr>
+<tr class="memdesc:a4acd5cd1c9e028df16217811082e68c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction vérifie si des coordonnées sont dans les limites de la matrice ou du terrain.  <br /></td></tr>
+<tr class="memitem:a1c47f03f7571b43fd63c05e5bf9d8b03" id="r_a1c47f03f7571b43fd63c05e5bf9d8b03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c47f03f7571b43fd63c05e5bf9d8b03">estTerrain</a> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> pixel)</td></tr>
+<tr class="memdesc:a1c47f03f7571b43fd63c05e5bf9d8b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction indique si un pixel contient de la terre.  <br /></td></tr>
+<tr class="memitem:a07b4227ca998c3a6e02b8a557cbbf4fa" id="r_a07b4227ca998c3a6e02b8a557cbbf4fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07b4227ca998c3a6e02b8a557cbbf4fa">calculerNormale</a> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *extremiteBombe, <a class="el" href="structt__vect.html">t_vect</a> *normal)</td></tr>
+<tr class="memdesc:a07b4227ca998c3a6e02b8a557cbbf4fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détermine un vecteur normal au terrain à partir des coordonnées d'un point.  <br /></td></tr>
+<tr class="memitem:afcd56cd3c20bcc165777ce2b37bc06ed" id="r_afcd56cd3c20bcc165777ce2b37bc06ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcd56cd3c20bcc165777ce2b37bc06ed">collisionTerrainBombe</a> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse)</td></tr>
+<tr class="memdesc:afcd56cd3c20bcc165777ce2b37bc06ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction analyse si une bombe heurte le terrain.  <br /></td></tr>
+<tr class="memitem:a20170570125dd0b6ded13a013fc02aab" id="r_a20170570125dd0b6ded13a013fc02aab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20170570125dd0b6ded13a013fc02aab">collisionEauBombe</a> (<a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
+<tr class="memdesc:a20170570125dd0b6ded13a013fc02aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction vérifie si la bombe plonge dans la mer.  <br /></td></tr>
 <tr class="memitem:af63779d9a20d9e402be1f4aa9144623b" id="r_af63779d9a20d9e402be1f4aa9144623b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af63779d9a20d9e402be1f4aa9144623b">tracerBombe</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
-<tr class="memdesc:af63779d9a20d9e402be1f4aa9144623b"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction trace une bombe dans une zone d'affichage  <br /></td></tr>
-<tr class="memitem:a7b2747f18b19c5a5b847dffd2160627f" id="r_a7b2747f18b19c5a5b847dffd2160627f"><td class="memItemLeft" align="right" valign="top"><a id="a7b2747f18b19c5a5b847dffd2160627f" name="a7b2747f18b19c5a5b847dffd2160627f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLancer</b> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *coor, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, float gravite)</td></tr>
-<tr class="memitem:a6db501710fd9fc61a485e51b681993c7" id="r_a6db501710fd9fc61a485e51b681993c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6db501710fd9fc61a485e51b681993c7">choixHauteurLancer</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, float gravite)</td></tr>
-<tr class="memdesc:a6db501710fd9fc61a485e51b681993c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur  <br /></td></tr>
-<tr class="memitem:acb0b12af4421ba80f8ba2c1858dcdee8" id="r_acb0b12af4421ba80f8ba2c1858dcdee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb0b12af4421ba80f8ba2c1858dcdee8">choixHauteurLancerAvecDinos</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, float gravite, SDL_Texture *texDinos[6], <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
-<tr class="memdesc:acb0b12af4421ba80f8ba2c1858dcdee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur  <br /></td></tr>
+<tr class="memdesc:af63779d9a20d9e402be1f4aa9144623b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace une bombe dans une zone d'affichage.  <br /></td></tr>
+<tr class="memitem:abd958b234436dcef782764b03561be84" id="r_abd958b234436dcef782764b03561be84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd958b234436dcef782764b03561be84">tracerBombeHIP</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe)</td></tr>
+<tr class="memdesc:abd958b234436dcef782764b03561be84"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace une bombe dans une zone d'affichage incluant un menu HIP.  <br /></td></tr>
+<tr class="memitem:a64142ce0cbdd5e259d8656ec545866e6" id="r_a64142ce0cbdd5e259d8656ec545866e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64142ce0cbdd5e259d8656ec545866e6">tracerTrajectoireLancer</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *coor, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse)</td></tr>
+<tr class="memdesc:a64142ce0cbdd5e259d8656ec545866e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge.  <br /></td></tr>
+<tr class="memitem:a9f579fdb7550a9a61ad09d2af70c4f03" id="r_a9f579fdb7550a9a61ad09d2af70c4f03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f579fdb7550a9a61ad09d2af70c4f03">tracerTrajectoireLancerHIP</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *coor, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse)</td></tr>
+<tr class="memdesc:a9f579fdb7550a9a61ad09d2af70c4f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge dans une fenêtre contenant un menu HIP.  <br /></td></tr>
+<tr class="memitem:ae2a7e4bc649afb7bab8f51c7c20e0f09" id="r_ae2a7e4bc649afb7bab8f51c7c20e0f09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2a7e4bc649afb7bab8f51c7c20e0f09">choixHauteurLancer</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse)</td></tr>
+<tr class="memdesc:ae2a7e4bc649afb7bab8f51c7c20e0f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur.  <br /></td></tr>
+<tr class="memitem:a883f2d03458682a85383f607acdc8944" id="r_a883f2d03458682a85383f607acdc8944"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a883f2d03458682a85383f607acdc8944">choixHauteurLancerAvecDinos</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
+<tr class="memdesc:a883f2d03458682a85383f607acdc8944"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur.  <br /></td></tr>
+<tr class="memitem:aecc1ea4dbe51bf973f65275f74c24744" id="r_aecc1ea4dbe51bf973f65275f74c24744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecc1ea4dbe51bf973f65275f74c24744">retournerLaser</a> (<a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> cote)</td></tr>
+<tr class="memdesc:aecc1ea4dbe51bf973f65275f74c24744"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détermine s'il faut retourner le laser ou non en fonction de la direction dans laquelle se trouve le dinosaure.  <br /></td></tr>
+<tr class="memitem:a0eeea0624bf51f32c5135f9bdd039677" id="r_a0eeea0624bf51f32c5135f9bdd039677"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0eeea0624bf51f32c5135f9bdd039677">choixHauteurLancerDinoCourant</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memdesc:a0eeea0624bf51f32c5135f9bdd039677"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur.  <br /></td></tr>
+<tr class="memitem:adad9f50c98db30a77aeff391a9ffc2f0" id="r_adad9f50c98db30a77aeff391a9ffc2f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adad9f50c98db30a77aeff391a9ffc2f0">choixHauteurLancerDinoCourantHIP</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rect, const Uint8 **etatClavier, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__texte__cache.html">t_texte_cache</a> *cache)</td></tr>
+<tr class="memdesc:adad9f50c98db30a77aeff391a9ffc2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Corps des fonctions pour le lancer, la trajectoire et l'affichage d'une bombe. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 5/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>5.2 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
-<a id="a6db501710fd9fc61a485e51b681993c7" name="a6db501710fd9fc61a485e51b681993c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6db501710fd9fc61a485e51b681993c7">&#9670;&#160;</a></span>choixHauteurLancer()</h2>
+<a id="a07b4227ca998c3a6e02b8a557cbbf4fa" name="a07b4227ca998c3a6e02b8a557cbbf4fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b4227ca998c3a6e02b8a557cbbf4fa">&#9670;&#160;</a></span>calculerNormale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void calculerNormale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *</td>          <td class="paramname"><span class="paramname"><em>extremiteBombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>normal</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détermine un vecteur normal au terrain à partir des coordonnées d'un point. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 23/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>7.2 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">extremiteBombe</td><td>les coordonnées flottantes d'une des extremités de la bombe </td></tr>
+    <tr><td class="paramname">normal</td><td>un vecteur qui contient les coordonnées du vecteur normal calculé </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae2a7e4bc649afb7bab8f51c7c20e0f09" name="ae2a7e4bc649afb7bab8f51c7c20e0f09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a7e4bc649afb7bab8f51c7c20e0f09">&#9670;&#160;</a></span>choixHauteurLancer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,36 +224,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur </p>
+<p>La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 11/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
     <tr><td class="paramname">texMap</td><td>l'image de la map sous forme de texture </td></tr>
-    <tr><td class="paramname">rect</td><td>les coordonnées pour placer la map dans la fenetre </td></tr>
+    <tr><td class="paramname">rect</td><td>les coordonnées pour placer la map dans la fenêtre </td></tr>
     <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
-    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
-    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur un vecteur vitesse </td></tr>
-    <tr><td class="paramname">gravite</td><td>la gravite choisie </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="acb0b12af4421ba80f8ba2c1858dcdee8" name="acb0b12af4421ba80f8ba2c1858dcdee8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb0b12af4421ba80f8ba2c1858dcdee8">&#9670;&#160;</a></span>choixHauteurLancerAvecDinos()</h2>
+<a id="a883f2d03458682a85383f607acdc8944" name="a883f2d03458682a85383f607acdc8944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883f2d03458682a85383f607acdc8944">&#9670;&#160;</a></span>choixHauteurLancerAvecDinos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,16 +286,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texDinos</em></span>[6], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
         </tr>
         <tr>
@@ -254,9 +296,89 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
       </table>
 </div><div class="memdoc">
 
-<p>la fonction ajuste la hauteur du lancer en fonction des touches pressées par le joueur </p>
-<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<p>La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur. </p>
+<p>Les dinosaures sont présents à l'affichage. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.4 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>l'image de la map sous forme de texture </td></tr>
+    <tr><td class="paramname">rect</td><td>les coordonnées pour placer la map dans la fenetre </td></tr>
+    <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>uun pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">equipe1</td><td>l'équipe1 dont on veut afficher les dinosaures </td></tr>
+    <tr><td class="paramname">equipe2</td><td>l'équipe2 dont on veut afficher les dinosaures </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0eeea0624bf51f32c5135f9bdd039677" name="a0eeea0624bf51f32c5135f9bdd039677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eeea0624bf51f32c5135f9bdd039677">&#9670;&#160;</a></span>choixHauteurLancerDinoCourant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choixHauteurLancerDinoCourant </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rect</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Uint8 **</td>          <td class="paramname"><span class="paramname"><em>etatClavier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numDinoCourant</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur. </p>
+<p>Les dinosaures sont présents à l'affichage et la bombe est lancée depuis la position d'un dinosaure. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 22/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.2 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
@@ -264,11 +386,110 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
     <tr><td class="paramname">rect</td><td>les coordonnées pour placer la map dans la fenetre </td></tr>
     <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
     <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
-    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur un vecteur vitesse </td></tr>
-    <tr><td class="paramname">gravite</td><td>la gravite choisie </td></tr>
-    <tr><td class="paramname">textDinos</td><td>tableau contenant l'image à afficher pour chaque dinosaure </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
     <tr><td class="paramname">equipe1</td><td>l'équipe1 dont on veut afficher les dinosaures </td></tr>
     <tr><td class="paramname">equipe2</td><td>l'équipe2 dont on veut afficher les dinosaures </td></tr>
+    <tr><td class="paramname">numDinoCourant</td><td>le numéro du dinosaure qui lance la bombe </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adad9f50c98db30a77aeff391a9ffc2f0" name="adad9f50c98db30a77aeff391a9ffc2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adad9f50c98db30a77aeff391a9ffc2f0">&#9670;&#160;</a></span>choixHauteurLancerDinoCourantHIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choixHauteurLancerDinoCourantHIP </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>policeMenuHIP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rect</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Uint8 **</td>          <td class="paramname"><span class="paramname"><em>etatClavier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numDinoCourant</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__texte__cache.html">t_texte_cache</a> *</td>          <td class="paramname"><span class="paramname"><em>cache</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>la fonction ajuste la hauteur du lancer de la bombe en fonction des touches pressées par le joueur. </p>
+<p>Les dinosaures sont présents à l'affichage et la bombe est lancée depuis la position d'un dinosaure. Cette fonction s'adapte à la présence du menu HIP. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 3/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>l'image de la map sous forme de texture </td></tr>
+    <tr><td class="paramname">texObjets</td><td>un tableau des textures des images de l'inventaire </td></tr>
+    <tr><td class="paramname">policeMenuHIP</td><td>un pointeur sur la police utilisée pour le texte de l'inventaire </td></tr>
+    <tr><td class="paramname">rect</td><td>les coordonnées pour placer la map dans la fenetre </td></tr>
+    <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
+    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">equipe1</td><td>l'équipe1 dont on veut afficher les dinosaures </td></tr>
+    <tr><td class="paramname">equipe2</td><td>l'équipe2 dont on veut afficher les dinosaures </td></tr>
+    <tr><td class="paramname">numDinoCourant</td><td>le numéro du dinosaure qui lance la bombe </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">cache</td><td>un pointeur sur une structure contenant le texte à afficher pour l'inventaire </td></tr>
   </table>
   </dd>
 </dl>
@@ -294,21 +515,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
       </table>
 </div><div class="memdoc">
 
-<p>la fonction vérifie si la bombe plonge </p>
+<p>La fonction vérifie si la bombe plonge dans la mer. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 23/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">matriceTerrain</td><td>matrice contenant les informations sur le terrain </td></tr>
-    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ad9864282a11761f785378e50c3044839" name="ad9864282a11761f785378e50c3044839"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9864282a11761f785378e50c3044839">&#9670;&#160;</a></span>collisionFrontiereBombe()</h2>
+<a id="ac4d034b347b9131f08fa92677be9a484" name="ac4d034b347b9131f08fa92677be9a484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d034b347b9131f08fa92677be9a484">&#9670;&#160;</a></span>collisionFrontiereBombe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -316,32 +538,126 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
         <tr>
           <td class="memname">int collisionFrontiereBombe </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>largeurFenetre</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>hauteurFenetre</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>la fonction vérifie si la bombe tape une extrémité de la fenêtre </p>
+<p>La fonction vérifie si la bombe heurte une extrémité de la fenêtre. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 6/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">largeurFenetre</td><td>largeur de la fenetre </td></tr>
-    <tr><td class="paramname">hauteurFenetre</td><td>hauteur de la fenetre </td></tr>
-    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la bombe a atteint la limite de la fenêtre et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="afcd56cd3c20bcc165777ce2b37bc06ed" name="afcd56cd3c20bcc165777ce2b37bc06ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd56cd3c20bcc165777ce2b37bc06ed">&#9670;&#160;</a></span>collisionTerrainBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collisionTerrainBombe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction analyse si une bombe heurte le terrain. </p>
+<p>Si tel est le cas, elle calcule un vecteur normal au terrain et fait rebondir la bombe par rapport à ce vecteur. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>3.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si une collision entre le terrain et la bombe a été détectée et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="a4acd5cd1c9e028df16217811082e68c1" name="a4acd5cd1c9e028df16217811082e68c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acd5cd1c9e028df16217811082e68c1">&#9670;&#160;</a></span>dansLimites()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dansLimites </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction vérifie si des coordonnées sont dans les limites de la matrice ou du terrain. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 23/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>coordoonnée des absisses </td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée des ordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si les coordonnées sont dans les limites et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="a1c47f03f7571b43fd63c05e5bf9d8b03" name="a1c47f03f7571b43fd63c05e5bf9d8b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c47f03f7571b43fd63c05e5bf9d8b03">&#9670;&#160;</a></span>estTerrain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int estTerrain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>pixel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction indique si un pixel contient de la terre. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 23/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pixel</td><td>contenu d'une case de la matrice </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>TERRE si le pixel correspond à de la terre et 0 sinon </dd></dl>
 
 </div>
 </div>
@@ -374,15 +690,88 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
       </table>
 </div><div class="memdoc">
 
-<p>la fonction initialise les valeurs d'une bombe </p>
+<p>La fonction initialise toutes les valeurs d'une bombe. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 11/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe non initialisée </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe non initialisée </td></tr>
     <tr><td class="paramname">coorChoisieX</td><td>coordonnée x de la bombe </td></tr>
     <tr><td class="paramname">coorChoisieX</td><td>coordonnée y de la bombe </td></tr>
-    <tr><td class="paramname">rayon</td><td>rayon de la bombe </td></tr>
+    <tr><td class="paramname">rayon</td><td>le rayon de la bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6300fd196946e3c653dac19c9e005f93" name="a6300fd196946e3c653dac19c9e005f93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6300fd196946e3c653dac19c9e005f93">&#9670;&#160;</a></span>initialiserRayonBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserRayonBombe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rayon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise uniquement le rayon de la bombe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 22/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe non initialisée </td></tr>
+    <tr><td class="paramname">rayon</td><td>le rayon de la bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4186269d9bd84687fc9f6266548ac192" name="a4186269d9bd84687fc9f6266548ac192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4186269d9bd84687fc9f6266548ac192">&#9670;&#160;</a></span>initialiserVitesse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserVitesse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>vitesseChoisieX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>vitesseChoisieY</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise les vitesses horizontales et verticales. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 11/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur un vecteur vitesse </td></tr>
+    <tr><td class="paramname">vitesseChoisieX</td><td>la vitesse horizontale choisie </td></tr>
+    <tr><td class="paramname">vitesseChoisieY</td><td>la vitesse verticale choisie </td></tr>
   </table>
   </dd>
 </dl>
@@ -408,13 +797,47 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
       </table>
 </div><div class="memdoc">
 
-<p>la fonction met à jour le temps écoulé </p>
+<p>La fonction met à jour le temps écoulé. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 11/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">tempsPrecedent</td><td>un pointeur sur le temps précédent </td></tr>
     <tr><td class="paramname">tempsEcoule</td><td>un pointeur sur le temps écoulé </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aecc1ea4dbe51bf973f65275f74c24744" name="aecc1ea4dbe51bf973f65275f74c24744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc1ea4dbe51bf973f65275f74c24744">&#9670;&#160;</a></span>retournerLaser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void retournerLaser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a></td>          <td class="paramname"><span class="paramname"><em>cote</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détermine s'il faut retourner le laser ou non en fonction de la direction dans laquelle se trouve le dinosaure. </p>
+<p>Le laser désigne la trajectoire de lancer de la bombe. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">cote</td><td>la direction attendue du laser </td></tr>
   </table>
   </dd>
 </dl>
@@ -440,13 +863,125 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
       </table>
 </div><div class="memdoc">
 
-<p>la fonction trace une bombe dans une zone d'affichage </p>
+<p>La fonction trace une bombe dans une zone d'affichage. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 5/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
-    <tr><td class="paramname">bombe</td><td>pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd958b234436dcef782764b03561be84" name="abd958b234436dcef782764b03561be84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd958b234436dcef782764b03561be84">&#9670;&#160;</a></span>tracerBombeHIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerBombeHIP </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction trace une bombe dans une zone d'affichage incluant un menu HIP. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 3/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a64142ce0cbdd5e259d8656ec545866e6" name="a64142ce0cbdd5e259d8656ec545866e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64142ce0cbdd5e259d8656ec545866e6">&#9670;&#160;</a></span>tracerTrajectoireLancer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerTrajectoireLancer </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *</td>          <td class="paramname"><span class="paramname"><em>coor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 11/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">coor</td><td>un pointeur sur une structure contenant les coordonnées flottantes de la bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9f579fdb7550a9a61ad09d2af70c4f03" name="a9f579fdb7550a9a61ad09d2af70c4f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f579fdb7550a9a61ad09d2af70c4f03">&#9670;&#160;</a></span>tracerTrajectoireLancerHIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerTrajectoireLancerHIP </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee__calcul.html">t_coordonnee_calcul</a> *</td>          <td class="paramname"><span class="paramname"><em>coor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction trace la trajectoire de lancer de la bombe sous la forme d'un laser de couleur rouge dans une fenêtre contenant un menu HIP. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 3/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">coor</td><td>un pointeur sur une structure contenant les coordonnées flottantes de la bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
   </table>
   </dd>
 </dl>
@@ -467,7 +1002,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>tracerTrajectoireLanc
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsRebonds_8c.html">fonctionsRebonds.c</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

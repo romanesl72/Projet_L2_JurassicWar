@@ -6,6 +6,7 @@
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JurassicWar: Référence de la structure t_joueur</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -99,47 +102,29 @@ $(function(){initNavTree('structt__joueur.html','','structt__joueur-members'); }
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
-<tr class="memitem:a9ba041bbbbbe9a5f83fe182720b8c1fb" id="r_a9ba041bbbbbe9a5f83fe182720b8c1fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structt__dino.html">t_dino</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ba041bbbbbe9a5f83fe182720b8c1fb">tab</a></td></tr>
-<tr class="memitem:ad19b27999959a0b55db58872c6a4ff27" id="r_ad19b27999959a0b55db58872c6a4ff27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad19b27999959a0b55db58872c6a4ff27">n</a></td></tr>
+<tr class="memitem:a9ba041bbbbbe9a5f83fe182720b8c1fb" id="r_a9ba041bbbbbe9a5f83fe182720b8c1fb"><td class="memItemLeft" align="right" valign="top"><a id="a9ba041bbbbbe9a5f83fe182720b8c1fb" name="a9ba041bbbbbe9a5f83fe182720b8c1fb"></a>
+<a class="el" href="structt__dino.html">t_dino</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>tab</b></td></tr>
+<tr class="memdesc:a9ba041bbbbbe9a5f83fe182720b8c1fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau de dinosaures. <br /></td></tr>
+<tr class="memitem:a69a2b65c31dcce0ec7c0395e2cf1e41b" id="r_a69a2b65c31dcce0ec7c0395e2cf1e41b"><td class="memItemLeft" align="right" valign="top"><a id="a69a2b65c31dcce0ec7c0395e2cf1e41b" name="a69a2b65c31dcce0ec7c0395e2cf1e41b"></a>
+SDL_Texture **&#160;</td><td class="memItemRight" valign="bottom"><b>texDinos</b></td></tr>
+<tr class="memdesc:a69a2b65c31dcce0ec7c0395e2cf1e41b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau contenant les images des dinosaures. <br /></td></tr>
+<tr class="memitem:aca5779436b2100fad74877084f94ef20" id="r_aca5779436b2100fad74877084f94ef20"><td class="memItemLeft" align="right" valign="top"><a id="aca5779436b2100fad74877084f94ef20" name="aca5779436b2100fad74877084f94ef20"></a>
+SDL_Texture **&#160;</td><td class="memItemRight" valign="bottom"><b>texDinosInv</b></td></tr>
+<tr class="memdesc:aca5779436b2100fad74877084f94ef20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau contenant les images des dinosaures dans le sens inverse. <br /></td></tr>
+<tr class="memitem:a62e76af8c1ecb78d6fe21d44b704dff9" id="r_a62e76af8c1ecb78d6fe21d44b704dff9"><td class="memItemLeft" align="right" valign="top"><a id="a62e76af8c1ecb78d6fe21d44b704dff9" name="a62e76af8c1ecb78d6fe21d44b704dff9"></a>
+<a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>tabCote</b></td></tr>
+<tr class="memdesc:a62e76af8c1ecb78d6fe21d44b704dff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau contenant la direction du dinosaure à l'instant t. <br /></td></tr>
+<tr class="memitem:ad19b27999959a0b55db58872c6a4ff27" id="r_ad19b27999959a0b55db58872c6a4ff27"><td class="memItemLeft" align="right" valign="top"><a id="ad19b27999959a0b55db58872c6a4ff27" name="ad19b27999959a0b55db58872c6a4ff27"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
+<tr class="memdesc:ad19b27999959a0b55db58872c6a4ff27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taille des tableaux. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Structure représentant un joueur et son équipe de dinosaure. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux Romane Saint-Léger Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 07/02/2026 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Documentation des données membres</h2>
-<a id="ad19b27999959a0b55db58872c6a4ff27" name="ad19b27999959a0b55db58872c6a4ff27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad19b27999959a0b55db58872c6a4ff27">&#9670;&#160;</a></span>n</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int t_joueur::n</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Taille du tableau </p>
-
-</div>
-</div>
-<a id="a9ba041bbbbbe9a5f83fe182720b8c1fb" name="a9ba041bbbbbe9a5f83fe182720b8c1fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ba041bbbbbe9a5f83fe182720b8c1fb">&#9670;&#160;</a></span>tab</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structt__dino.html">t_dino</a>* t_joueur::tab</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Tableau de dinosaure </p>
-
-</div>
-</div>
-<hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
-<li>/info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/<a class="el" href="types_8h_source.html">types.h</a></li>
+<dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
+</div><hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
+<li>/info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/<a class="el" href="types_8h_source.html">types.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -155,7 +140,7 @@ Attributs publics</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="structt__joueur.html">t_joueur</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

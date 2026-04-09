@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/tda_nuage.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/tda_nuage.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -107,17 +110,19 @@ $(function(){initNavTree('tda__nuage_8h_source.html','',''); });
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">int</span> <a class="code hl_function" href="tda__nuage_8h.html#a2a5140959544de48818a78a502b13d5a">nuageDetruire</a>( <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> ** nuage);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keywordtype">int</span> <a class="code hl_function" href="tda__nuage_8h.html#a0cbecd5de9343d838c38d82f09313e75">nuageCopier</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> **nuage_cible, <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage_source, <span class="keywordtype">int</span> nb_points);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keywordtype">void</span> <a class="code hl_function" href="tda__nuage_8h.html#ae50726126a51fb0249a9afd30e324cc3">afficherNuage</a>(<a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <span class="keywordtype">int</span> nb_pts);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels)</div><div class="ttdef"><b>Definition</b> types.h:44</div></div>
-<div class="ttc" id="atda__nuage_8h_html_a0cbecd5de9343d838c38d82f09313e75"><div class="ttname"><a href="tda__nuage_8h.html#a0cbecd5de9343d838c38d82f09313e75">nuageCopier</a></div><div class="ttdeci">int nuageCopier(t_coordonnee **nuage_cible, t_coordonnee *nuage_source, int nb_points)</div><div class="ttdef"><b>Definition</b> tda_nuage.c:92</div></div>
-<div class="ttc" id="atda__nuage_8h_html_a2a5140959544de48818a78a502b13d5a"><div class="ttname"><a href="tda__nuage_8h.html#a2a5140959544de48818a78a502b13d5a">nuageDetruire</a></div><div class="ttdeci">int nuageDetruire(t_coordonnee **nuage)</div><div class="ttdef"><b>Definition</b> tda_nuage.c:75</div></div>
-<div class="ttc" id="atda__nuage_8h_html_a4368f475030d62870fcda397e8c203f3"><div class="ttname"><a href="tda__nuage_8h.html#a4368f475030d62870fcda397e8c203f3">nuageExiste</a></div><div class="ttdeci">int nuageExiste(t_coordonnee *const nuage)</div><div class="ttdef"><b>Definition</b> tda_nuage.c:66</div></div>
-<div class="ttc" id="atda__nuage_8h_html_a7df22140a7211b37935299a3b169de52"><div class="ttname"><a href="tda__nuage_8h.html#a7df22140a7211b37935299a3b169de52">nuage_de_points</a></div><div class="ttdeci">t_coordonnee * nuage_de_points(int *nb_points, char nomFichier[])</div><div class="ttdef"><b>Definition</b> tda_nuage.c:14</div></div>
-<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour Jurassic War.</div></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructt__coordonnee_html"><div class="ttname"><a href="structt__coordonnee.html">t_coordonnee</a></div><div class="ttdoc">Structure de coordonnées entières classiques (pixels).</div><div class="ttdef"><b>Definition</b> types.h:102</div></div>
+<div class="ttc" id="atda__nuage_8h_html_a2a5140959544de48818a78a502b13d5a"><div class="ttname"><a href="tda__nuage_8h.html#a2a5140959544de48818a78a502b13d5a">nuageDetruire</a></div><div class="ttdeci">int nuageDetruire(t_coordonnee **nuage)</div><div class="ttdoc">permet de détruire le nuage</div><div class="ttdef"><b>Definition</b> tda_nuage.c:93</div></div>
+<div class="ttc" id="atda__nuage_8h_html_a4368f475030d62870fcda397e8c203f3"><div class="ttname"><a href="tda__nuage_8h.html#a4368f475030d62870fcda397e8c203f3">nuageExiste</a></div><div class="ttdeci">int nuageExiste(t_coordonnee *const nuage)</div><div class="ttdoc">retourne 1 si le nuage existe, 0 sinon</div><div class="ttdef"><b>Definition</b> tda_nuage.c:80</div></div>
+<div class="ttc" id="atda__nuage_8h_html_a7df22140a7211b37935299a3b169de52"><div class="ttname"><a href="tda__nuage_8h.html#a7df22140a7211b37935299a3b169de52">nuage_de_points</a></div><div class="ttdeci">t_coordonnee * nuage_de_points(int *nb_points, char nomFichier[])</div><div class="ttdoc">permet de créer le nuage</div><div class="ttdef"><b>Definition</b> tda_nuage.c:25</div></div>
+<div class="ttc" id="atda__nuage_8h_html_ae50726126a51fb0249a9afd30e324cc3"><div class="ttname"><a href="tda__nuage_8h.html#ae50726126a51fb0249a9afd30e324cc3">afficherNuage</a></div><div class="ttdeci">void afficherNuage(t_coordonnee *nuage, int nb_pts)</div><div class="ttdoc">permet d&#39;afficher la globalité du nuage</div><div class="ttdef"><b>Definition</b> tda_nuage.c:110</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
@@ -125,7 +130,7 @@ $(function(){initNavTree('tda__nuage_8h_source.html','',''); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="tda__nuage_8h.html">tda_nuage.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/Projet_L2_JurassicWar/lib/placer_dinos.h</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar5/lib/placer_dinos.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
   <td id="projectalign">
    <div id="projectname">JurassicWar
    </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
   </td>
  </tr>
  </tbody>
@@ -94,27 +97,29 @@ $(function(){initNavTree('placer__dinos_8h.html','',''); });
 
 <p>Fonctions de placement des dinosaures sur la matrice.  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &lt;SDL2/SDL.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="types_8h_source.html">types.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">types.h</a>&quot;</code><br />
 </div>
 <p><a href="placer__dinos_8h_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a113c74cd5b5ccdadf7b8772bb086adb9" id="r_a113c74cd5b5ccdadf7b8772bb086adb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a113c74cd5b5ccdadf7b8772bb086adb9">remplir_matrice_dino</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> p_sol, int matrice[MAT_H][MAT_L])</td></tr>
-<tr class="memdesc:a113c74cd5b5ccdadf7b8772bb086adb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.  <br /></td></tr>
-<tr class="memitem:af8387d13967aa5e9c2ddc8d29679eb4b" id="r_af8387d13967aa5e9c2ddc8d29679eb4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8387d13967aa5e9c2ddc8d29679eb4b">placer_une_equipe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *joueur, <a class="el" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], int matrice[MAT_H][MAT_L], int id_depart)</td></tr>
-<tr class="memdesc:af8387d13967aa5e9c2ddc8d29679eb4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise et place tous les dinosaures d'une équipe sur le terrain.  <br /></td></tr>
-<tr class="memitem:a68579d3b18a53af384c735c8fd6f3103" id="r_a68579d3b18a53af384c735c8fd6f3103"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68579d3b18a53af384c735c8fd6f3103">afficherDinos</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texDinos[6], <a class="el" href="structt__joueur.html">t_joueur</a> *equipe)</td></tr>
-<tr class="memdesc:a68579d3b18a53af384c735c8fd6f3103"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain.  <br /></td></tr>
+<tr class="memitem:a02079e5b331714bf076cca0677d71cf0" id="r_a02079e5b331714bf076cca0677d71cf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02079e5b331714bf076cca0677d71cf0">remplir_matrice_dino</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> p_sol, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memdesc:a02079e5b331714bf076cca0677d71cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.  <br /></td></tr>
+<tr class="memitem:a3bfdca7f98ad39fb3ed4eaa3ca9de4e4" id="r_a3bfdca7f98ad39fb3ed4eaa3ca9de4e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4">placer_une_equipe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *joueur, <a class="el" href="structt__zone__depart.html">t_zone_depart</a> points_spawn[10], int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> id_depart)</td></tr>
+<tr class="memdesc:a3bfdca7f98ad39fb3ed4eaa3ca9de4e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise et place tous les dinosaures d'une équipe sur le terrain.  <br /></td></tr>
+<tr class="memitem:a0a36313db6ed94b23947e5eff6b90f9b" id="r_a0a36313db6ed94b23947e5eff6b90f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a36313db6ed94b23947e5eff6b90f9b">afficherDinos</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe)</td></tr>
+<tr class="memdesc:a0a36313db6ed94b23947e5eff6b90f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain.  <br /></td></tr>
+<tr class="memitem:a258c8ba232a11708a52cb07ed329f9f0" id="r_a258c8ba232a11708a52cb07ed329f9f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a258c8ba232a11708a52cb07ed329f9f0">afficherDinosAvecJeu</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe)</td></tr>
+<tr class="memdesc:a258c8ba232a11708a52cb07ed329f9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain avec l'inventaire et les points de vie des dinos.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fonctions de placement des dinosaures sur la matrice. </p>
-<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 15/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
-<a id="a68579d3b18a53af384c735c8fd6f3103" name="a68579d3b18a53af384c735c8fd6f3103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68579d3b18a53af384c735c8fd6f3103">&#9670;&#160;</a></span>afficherDinos()</h2>
+<a id="a0a36313db6ed94b23947e5eff6b90f9b" name="a0a36313db6ed94b23947e5eff6b90f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a36313db6ed94b23947e5eff6b90f9b">&#9670;&#160;</a></span>afficherDinos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,7 +132,35 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texDinos</em></span>[6], </td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">equipe</td><td>l'équipe dont on veut afficher les dinosaures </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a258c8ba232a11708a52cb07ed329f9f0" name="a258c8ba232a11708a52cb07ed329f9f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a258c8ba232a11708a52cb07ed329f9f0">&#9670;&#160;</a></span>afficherDinosAvecJeu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherDinosAvecJeu </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -137,13 +170,13 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain. </p>
-<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<p>La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain avec l'inventaire et les points de vie des dinos. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
-    <tr><td class="paramname">textDinos</td><td>tableau contenant l'image à afficher pour chaque dinosaure </td></tr>
     <tr><td class="paramname">equipe</td><td>l'équipe dont on veut afficher les dinosaures </td></tr>
   </table>
   </dd>
@@ -151,8 +184,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a id="af8387d13967aa5e9c2ddc8d29679eb4b" name="af8387d13967aa5e9c2ddc8d29679eb4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8387d13967aa5e9c2ddc8d29679eb4b">&#9670;&#160;</a></span>placer_une_equipe()</h2>
+<a id="a3bfdca7f98ad39fb3ed4eaa3ca9de4e4" name="a3bfdca7f98ad39fb3ed4eaa3ca9de4e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4">&#9670;&#160;</a></span>placer_une_equipe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,19 +203,20 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[MAT_H][MAT_L], </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id_depart</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>id_depart</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initialise et place tous les dinosaures d'une équipe sur le terrain. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 15/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">joueur</td><td>Pointeur vers la structure du joueur (l'équipe). </td></tr>
@@ -195,8 +229,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a id="a113c74cd5b5ccdadf7b8772bb086adb9" name="a113c74cd5b5ccdadf7b8772bb086adb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a113c74cd5b5ccdadf7b8772bb086adb9">&#9670;&#160;</a></span>remplir_matrice_dino()</h2>
+<a id="a02079e5b331714bf076cca0677d71cf0" name="a02079e5b331714bf076cca0677d71cf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02079e5b331714bf076cca0677d71cf0">&#9670;&#160;</a></span>remplir_matrice_dino()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,28 +248,20 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[MAT_H][MAT_L]&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID. </p>
 <dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Crée le 17/02/2026 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 15/02/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">dino</td><td>Pointeur vers la structure du dino à placer. </td></tr>
     <tr><td class="paramname">p_sol</td><td>Coordonnées du point sol o`u les pieds du dinosaure doivent se poser. </td></tr>
-    <tr><td class="paramname">matrice</td><td>La matrice (terrain) à mettre à jour avec l'ID du dino.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Place un dinosaure aléatoirement dans une zone de spawn valide en le remplissant de son ID.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dino</td><td>Pointeur vers le dino à placer. </td></tr>
-    <tr><td class="paramname">zones</td><td>Structure contenant les coordonnées des zones possibles. </td></tr>
-    <tr><td class="paramname">matrice</td><td>La matrice à mettre à jour avec l'ID du dino. </td></tr>
+    <tr><td class="paramname">matrice</td><td>La matrice (terrain) à mettre à jour avec l'ID du dino. </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,7 +282,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="placer__dinos_8h.html">placer_dinos.h</a></li>
-    <li class="footer">Généré le Mardi 17 Mars 2026 10:55:01 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Jeudi 9 Avril 2026 15:51:51 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

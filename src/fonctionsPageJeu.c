@@ -47,9 +47,6 @@ int creerPageJeuBombe(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Tex
     return 1;
 }
 
-/* création de la page de jeu avec les armes,  J'ai ajouté initialisation de la police du menuHIP
-et la liste des images d'armes */
-
 int creerPageJeu(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap, SDL_Texture **texObjets, TTF_Font **policeMenuHIP){
 
     int i;
@@ -269,7 +266,6 @@ void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, 
 
 }
 
-/* créer des fonctions d'affichage avec toutes les armes : bombe et tirs + menuHIP */
 void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
 
     SDL_RenderClear(zoneAffichage);
