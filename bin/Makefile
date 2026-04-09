@@ -25,11 +25,10 @@ EXECUTABLES = ./main \
 ./testFonctionsVerification \
 ./testTirArmes \
 ./testRegression \
-./main_test \
+./testAffichageDinosMap\
 ./test_deplacement
 
 
-OBJETS_MAIN_TEST = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 
 OBJETS_MAIN = main.o \
 chargerMatrice.o \
@@ -56,6 +55,7 @@ OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerificati
 OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
 
 OBJETS_ARCHER = 			test_archer.o 					$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o
+OBJETS_AFFICHAGE_DINOS = testAffichageDinosMap.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_AFFICHAGE_HIP =		testAffichageMenuHIP.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2)
 OBJETS_TIRSAFFICHAGE = 		testTirsAffichageJeu.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o fonctionsRebonds.o fonctionsPlacementBombe.o fonctionSoin.o
 
@@ -134,14 +134,12 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 
-./main_test: $(OBJETS_MAIN_TEST)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
-
-
 # -------------------   FICHIERS TEST   -------------------
 
 ./test_archer: $(OBJETS_ARCHER)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testAffichageDinosMap: $(OBJETS_AFFICHAGE_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testAffichageMenuHIP: $(OBJETS_AFFICHAGE_HIP)

@@ -1,0 +1,68 @@
+# --- 1. CONFIGURATION ---
+CC = gcc
+CFLAGS = -g -Wall `sdl2-config --cflags`
+LDFLAGS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
+
+REP_SRC = ../src
+REP_TEST = ../test
+
+# --- 2. GROUPES D'OBJETS (Pour éviter les répétitions) ---
+OBJ_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o \
+              gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
+
+# Le jeu complet (utilisé par main, test_deplacement, MenuPrinc, etc.)
+OBJ_JEU_COMPLET = $(OBJ_COMMUNS) fonctionsChangementTour.o fonctionsMenuPrinc.o \
+                  fonctionSoin.o fonctionsPageJeu.o fonctionsPagesInformations.o \
+                  fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTirs.o \
+                  fonctionsTuerDinos.o deplacement.o regression.o collision_decor.o
+
+# --- 3. EXÉCUTABLES ---
+EXECUTABLES = main testAffichageMenuHIP testTirsAffichageJeu test_archer \
+              testCollisions testBombeDinosTours testBombeDinosToursV2 \
+              testFonctionsChangementTour testFonctionsMenuPrinc \
+              testFonctionsPagesInformations testFonctionsRebonds \
+              testFonctionsTuerDinos testFonctionsVerification testTirArmes \
+              testRegression testAffichageDinosMap test_deplacement
+
+all: $(EXECUTABLES)
+
+# --- 4. RÈGLE GÉNÉRIQUE POUR L'ÉDITION DE LIENS ---
+# Cette règle magique remplace toutes tes lignes "gcc $^ -o $@..."
+$(EXECUTABLES):
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+# --- 5. DÉPENDANCES SPÉCIFIQUES ---
+# On dit juste quel programme a besoin de quoi. 
+# Le Makefile fera le lien avec la règle au-dessus tout seul !
+
+main: main.o $(OBJ_JEU_COMPLET)
+
+test_archer: test_archer.o $(OBJ_COMMUNS) fonctionsTirs.o
+testAffichageDinosMap: testAffichageDinosMap.o $(OBJ_COMMUNS)
+testAffichageMenuHIP: testAffichageMenuHIP.o $(OBJ_COMMUNS)
+testTirsAffichageJeu: testTirsAffichageJeu.o $(OBJ_COMMUNS) fonctionsTirs.o fonctionsRebonds.o fonctionsPlacementBombe.o fonctionSoin.o
+testBombeDinosTours: testBombeDinosTours.o $(OBJ_COMMUNS) fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
+testBombeDinosToursV2: testBombeDinosToursV2.o $(OBJ_JEU_COMPLET)
+testFonctionsChangementTour: testFonctionsChangementTour.o placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
+testCollisions: testCollisions.o placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
+testFonctionsMenuPrinc: testFonctionsMenuPrinc.o $(OBJ_JEU_COMPLET)
+testFonctionsPagesInformations: testFonctionsPagesInformations.o $(OBJ_JEU_COMPLET)
+testFonctionsRebonds: testFonctionsRebonds.o $(OBJ_COMMUNS) fonctionsPlacementBombe.o fonctionsRebonds.o
+testFonctionsTuerDinos: testFonctionsTuerDinos.o $(OBJ_COMMUNS) fonctionsRebonds.o fonctionsTuerDinos.o fonctionsPlacementBombe.o
+testFonctionsVerification: testFonctionsVerification.o fonctionsVerification.o
+testRegression: testRegression.o tda_nuage.o regression.o
+testTirArmes: testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o fonctionsMenuHIP.o fonctionsStructJoueur.o
+test_deplacement: test_deplacement.o $(OBJ_JEU_COMPLET) fonctionsAffichage.o
+
+# --- 6. COMPILATION DES .o ---
+%.o: $(REP_SRC)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: $(REP_TEST)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# --- 7. NETTOYAGE ---
+clean:
+	rm -f *.o $(EXECUTABLES)
+
+.PHONY: all clean
