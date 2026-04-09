@@ -492,50 +492,46 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
                           SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, 
                           SDL_Texture *texMap, SDL_Texture **texObjets, 
                           TTF_Font *policeMenuHIP, t_texte_cache *cache, 
-                          t_dino *dinoActuel, int *timer, int *cgt, 
+                          t_dino **dinoActuel, int *timer, 
                           char **nomNuage, int *nb_pts, t_coordonnee **nuage) {
 
-    // 1. GESTION DU CHANGEMENT DE TOUR (Temps écoulé OU Dino Mort/Noyé)
-    // On vérifie si dinoActuel est NULL ou si son état est passé à 0 (mort)
-    if (*timer <= 0 || dinoActuel == NULL || dinoActuel->etat == 0) {
-        
-        // Si le dino est mort, on le retire proprement de la matrice et de l'équipe
-        if (dinoActuel != NULL && dinoActuel->etat == 0) {
-            printf("Le dinosaure %d est mort (noyade ou PV). Suppression...\n", dinoActuel->d);
-            supprimer_matrice_dino(dinoActuel, matriceTerrain);
-            supprimerDinoJoueur(equipe1, equipe2, dinoActuel->d);
-        }
 
-        tourSuivant(gestionTours, equipe1, equipe2);
-        dinoActuel = recupererDinoNumero(equipe1, equipe2, gestionTours->dinoCourant);
-        
-        nuageDetruire(nuage); 
-        if (dinoActuel != NULL) {
-            *nuage = nuage_de_points(nb_pts, nomNuage[dinoActuel->id_nuage]);
-            *timer = TIMER;
-            dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
-        }
-        return;
-    } 
 
-    // 2. SÉCURITÉ : Si le dino est là mais que le nuage a été oublié
-    if (*nuage == NULL && dinoActuel != NULL) {
-         *nuage = nuage_de_points(nb_pts, nomNuage[dinoActuel->id_nuage]);
+    //Si le dino est là mais que le nuage a été oublié
+    if (*nuage == NULL && (*dinoActuel) != NULL) {
+         *nuage = nuage_de_points(nb_pts, nomNuage[(*dinoActuel)->id_nuage]);
     }
 
-    // 3. LOGIQUE DE MOUVEMENT
-    if (dinoActuel != NULL && *nuage != NULL && dinoActuel->etat != 0) {
-        deplacement_dino(dinoActuel, nuage, nomNuage, 2, nb_pts, matriceTerrain, equipe1, equipe2);
+    // On vérifie si dinoActuel est NULL ou si son état est passé à 0 (mort)
+    if (*timer <= 0 || (*dinoActuel) == NULL || (*dinoActuel)->etat == 0) {
+        
+        // Si le dino est mort, on le retire proprement de la matrice et de l'équipe
+        if ((*dinoActuel) != NULL && (*dinoActuel)->etat == 0) {
+            printf("Le dinosaure %d est mort (noyade). Suppression...\n", (*dinoActuel)->d);
+            supprimer_matrice_dino((*dinoActuel), matriceTerrain);
+            supprimerDinoJoueur(equipe1, equipe2, (*dinoActuel)->d);
+        }
+        tourSuivant(gestionTours, equipe1, equipe2);
+        (*dinoActuel) = recupererDinoNumero(equipe1, equipe2, gestionTours->dinoCourant);
+        nuageDetruire(nuage); 
+        if ((*dinoActuel) != NULL) {
+            (*nuage) = nuage_de_points(nb_pts, nomNuage[(*dinoActuel)->id_nuage]);
+            (*timer) = TIMER;
+            (*dinoActuel)->deplacement->indice_reel = (float)(*dinoActuel)->indice_nuage;
+        }
+    }
+
+    if ((*dinoActuel) != NULL && *nuage != NULL && (*dinoActuel)->etat != 0) {
+        deplacement_dino((*dinoActuel), nuage, nomNuage, 2, nb_pts, matriceTerrain, equipe1, equipe2);
         
         // Vérification immédiate après le mouvement pour éviter un frame d'attente
-        if (dinoActuel->etat == 0) {
+        if ((*dinoActuel)->etat == 0) {
             *timer = 0; // Force le changement de tour au prochain appel
         }
     }
 
     if (*timer > 0) (*timer)--;
 
-    // 4. AFFICHAGE
     afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
     SDL_Delay(10);
 }
@@ -657,7 +653,6 @@ void lancerPartie(){
         // Variables pour les déplacements
         t_dino *dinoActuel = NULL;
         int timer = TIMER;
-        int cgt = 0;
         char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
         int nb_pts;
         t_coordonnee *nuage = NULL;
@@ -694,19 +689,35 @@ void lancerPartie(){
                     }
                     
                     // On arrête le tir et on change de tour
-                    tir.actif = 0; 
+                    tir.actif = 0;
                     tourSuivant(&gestionTours, &equipe1, &equipe2);
-                    printf("Collision détectée (%d). Changement de tour.\n", col);
+                    printf("  Dino n°%d\n", dinoActuel->d);
+                    dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                    printf("  Dino n°%d\n", dinoActuel->d);
+                    nuageDetruire(&nuage); 
+                    if (dinoActuel != NULL) {
+                        nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+                        timer = TIMER;
+                        dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                    }
                 }
             }
             
             // La Bombe
             if (action == 2) {
                 lancerBombe(&bombeLancee, &nombreRebonds, &bombe, &vectVitesse, matriceTerrain, &equipe1, &equipe2, &gestionTours, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
+                dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                nuageDetruire(&nuage); 
+                if (dinoActuel != NULL) {
+                    nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+                    timer = TIMER;
+                    dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                }
             }
             else if (action == 3) {
                 printf("Potion utilisee. Changement de tour.\n");
-                tourSuivant(&gestionTours, &equipe1, &equipe2);
+                // if (nuage)nuageDetruire(&nuage);
+                // tourSuivant(&gestionTours, &equipe1, &equipe2);
                 // On rafraîchit l'affichage pour voir les nouveaux PV
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 SDL_Delay(200);
@@ -716,12 +727,10 @@ void lancerPartie(){
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
             else {
-                dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
                 
-                // APPEL CORRIGÉ : on ajoute un '&' devant nuage
                 effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, 
                                     zoneAffichage, texMap, texObjets, policeMenuHIP, cache, 
-                                    dinoActuel, &timer, &cgt, nomNuage, &nb_pts, &nuage);
+                                    &dinoActuel, &timer, nomNuage, &nb_pts, &nuage);
             }
         }
 
