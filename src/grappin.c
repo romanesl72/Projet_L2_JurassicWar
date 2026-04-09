@@ -11,28 +11,29 @@
 #include "../lib/collision_decor.h"
 #include "../lib/placer_dinos.h"
 #include "../lib/tda_file.h"
-#include "../lib/grapin.h"
+#include "../lib/grappin.h"
 #include "../lib/types.h"
 #include "../lib/fonctionsStructJoueur.h"
 
 /** 
- * @file grapin.h
- * @brief Permet de lancer un grapin pour faciliter les déplacements
+ * @file grappin.h
+ * @brief Permet de lancer un grappin pour faciliter les déplacements
  * @author Solène Orieux
- * @date 3/04/2006
+ * @date 3/04/2026
+ * @version 1.0
  */
 
 
 /**
- * @fn int collision_grapin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @author Solène Orieux
- * @date 3/04/2006
- * @brief regarde si le grapin accroche
- * @param pos coordonnée du bout du grapin
+ * @date 3/04/2026
+ * @brief regarde si le grappin accroche
+ * @param pos coordonnée du bout du grappin
  * @param matrice représentation du terrain sous forme de matrice
  */
 
-int collision_grapin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){ 
+int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){ 
 
     if(pos.y >= 0 && pos.y < HAUTEUR_TERRAIN && pos.x >= 0 && pos.x < LARGEUR_TERRAIN) {
         if(matrice[pos.y][pos.x] == TERRE){
@@ -48,7 +49,7 @@ int collision_grapin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERR
     TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
     t_joueur *equipe1, t_joueur *equipe2);
  * @author Solène Orieux
- * @date 07/04/2006
+ * @date 07/04/2026
  * @brief Le dino chute lorsqu'il percute une colinne
  * @param dino pointeur de pointeur sur un dino
  * @param nb_pts nombre de points dans le nuage
@@ -105,7 +106,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
                SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], 
                t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation);
  * @author Solène Orieux
- * @date 07/04/2006
+ * @date 07/04/2026
  * @brief on balance le dino pour qu'il se positionne sur le dessu de la colline
  * @param matrice représentation du terrain sous forme de matrice
  * @param dino pointeur de pointeur sur un dino
@@ -118,7 +119,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
- * @param pts_rotation pointeur sur la coordonnée du points de rotation du grapin
+ * @param pts_rotation pointeur sur la coordonnée du points de rotation du grappin
  */
 void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
                TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], 
@@ -158,7 +159,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_
 
         // 4. GESTION DU REBOND ET DE LA PROPULSION (MUR)
         // On vérifie la collision à la position actuelle
-        if (collision_grapin(dino->pos, matrice)) {
+        if (collision_grappin(dino->pos, matrice)) {
             // Inversion de la direction + Boost de 20% (Propulsion)
             vitesse_angulaire = -vitesse_angulaire * 1.2f;
             
@@ -206,8 +207,8 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_
      SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
      t_joueur equipe1, t_joueur equipe2);
  * @author Solène Orieux
- * @date 3/04/2006
- * @brief on choisit l'angle du lancers du grapin
+ * @date 3/04/2026
+ * @brief on choisit l'angle du lancers du grappin
  * @param dino pointeur de pointeur sur un dino
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param state pointeur sur le détecteur de touche du clavier
@@ -261,13 +262,13 @@ float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *
 /**
  * @fn int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision, int distance_parcourue);
  * @author Solène Orieux
- * @date 3/04/2006
- * @brief on lance le grapin
+ * @date 3/04/2026
+ * @brief on lance le grappin
  * @param pos_precise pointeur sur la dernière position ajouté dans la file
- * @param angle angle choisi pour lancer le grapin
+ * @param angle angle choisi pour lancer le grappin
  * @param matrice représentation du terrain sous forme de matrice
  * @param collision pointeur sur une variable booléenne qui permet de savoir si on à touché une nouvelle colline
- * @param distance_parcourue On s'assure que le grapin ne va pas détecter une colision avec l'emplacement initial
+ * @param distance_parcourue On s'assure que le grappin ne va pas détecter une colision avec l'emplacement initial
  */
 int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision_detectee, int distance_parcourue) {
     
@@ -283,7 +284,7 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEU
         return 0;
     }
     if (distance_parcourue > 35) {
-        if (collision_grapin(pos_entiere, matrice)) {
+        if (collision_grappin(pos_entiere, matrice)) {
             *collision_detectee = 1;
             return 0; 
         }
@@ -297,12 +298,12 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEU
  * @fn int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const Uint8 *state, int distance_parcourue, 
      SDL_Renderer* zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[]);
  * @author Solène Orieux
- * @date 3/04/2006
+ * @date 3/04/2026
  * @brief on monte le dino en rappel
  * @param matrice représentation du terrain sous forme de matrice
  * @param dino pointeur de pointeur sur un dino
  * @param state pointeur sur le détecteur de touche du clavier
- * @param distance_parcourue On s'assure que le grapin ne va pas détecter une colision avec l'emplacement initial
+ * @param distance_parcourue On s'assure que le grappin ne va pas détecter une colision avec l'emplacement initial
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param nb_pts pointeur sur le nombre de points dans le nuage
  * @param nuage pointeur de pointeur sur le nuage de points
@@ -355,14 +356,14 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
 
 
 /**
- * @fn int grapin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
+ * @fn int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
            SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
            int nb_nuage, char *nomNuage[]);
  * @author Solène Orieux
- * @date 3/04/2006
- * @brief on utilise le grapin
+ * @date 3/04/2026
+ * @brief on utilise le grappin
  * @param matrice représentation du terrain sous forme de matrice
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param dino pointeur de pointeur sur un dino
@@ -375,7 +376,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
  * @param equipe2 structure correspondant aux dinosaures du joueur 2
  */
-int grapin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
+int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
            SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 

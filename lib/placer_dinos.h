@@ -6,7 +6,7 @@
 /** 
  * @file placer_dinos.h
  * @brief Fonctions de placement des dinosaures sur la matrice.
- * @author Romane Saint_Léger
+ * @author Romane Saint_Léger Hannah Sergent
  * @date Crée le 15/02/2026
  * @version 1.3
  */
