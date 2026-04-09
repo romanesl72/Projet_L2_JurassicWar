@@ -26,6 +26,7 @@ EXECUTABLES = ./main \
 ./testTirArmes \
 ./testRegression \
 ./main_test \
+./test_deplacement
 
 
 OBJETS_MAIN_TEST = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
@@ -188,7 +189,8 @@ all: $(EXECUTABLES)
 ./testTirArmes: $(OBJETS_TIR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-
+./test_deplacement: test_deplacement.o deplacement.o $(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsPageJeu.o fonctionsChangementTour.o regression.o fonctionsAffichage.o fonctionsTirs.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionSoin.o fonctionsTuerDinos.o fonctionsPagesInformations.o collision_decor.o fonctionsMenuPrinc.o
+	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # -------------------   COMPILATION   -------------------
 

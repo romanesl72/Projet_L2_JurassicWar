@@ -102,7 +102,6 @@ int main(int argc, char * argv[]){
         } 
         else {
             timer--; // Le temps s'écoule
-            printf("time=%d\n",timer);
         }
 
         // B. LOGIQUE DE DÉPLACEMENT ET NOYADE

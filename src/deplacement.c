@@ -107,7 +107,8 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
     dino->indice_nuage = (int)dino->deplacement->indice_reel;
     if(horsNuage(dino, *nb_pts, matrice)){
         supprimer_matrice_dino(dino, matrice);
-        dino->pos.x+=sens;
+        dino->pos.x+=sens*10;//pour s'assurer que si il marche dans l'eau il meurt
+        dino->pos.y+=10;
         remplir_matrice_dino(dino, dino->pos, matrice);
         if(!noyade(dino, matrice)){
             dino->deplacement->tomber=1;
@@ -122,18 +123,14 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
 // --- LOGIQUE DE DIRECTION ---
 
 void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
-    printf("--------------on est à gauche?----------------\n");
     if (state[SDL_SCANCODE_LEFT]){
-        printf("--------------OUI----------------\n");
         dino->deplacement->sens = GAUCHE; 
         marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, -1, 0);
     }
 }
 
 void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
-    printf("--------------on est à droite?----------------\n");
     if (state[SDL_SCANCODE_RIGHT]){
-        printf("--------------OUI----------------\n");
         dino->deplacement->sens = DROITE;
         marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, 1, 0);
     }
@@ -191,7 +188,7 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
 
 void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], t_joueur * equipe1, t_joueur * equipe2) {
     const Uint8 *state = SDL_GetKeyboardState(NULL);
-    printf("nuage=%d\nindice=%d\n(x,y)=(%d,%d)\ntomber=%d\n",dino->id_nuage,dino->indice_nuage,dino->pos.x,dino->pos.y,dino->deplacement->tomber);
+    
     // 1. On garde précieusement le sens AVANT que les fonctions ne le modifient
     t_cote sensAuDepart = dino->deplacement->sens;
 
@@ -199,10 +196,8 @@ void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int 
 
     // 2. Calcul des mouvements (Saut, Gauche, Droite)
     if (dino->deplacement->tomber) {
-        printf("--------------------On tombe?---------------------\n");
         tomberNuage(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, 0);
     } else {
-        printf("--------------------On saute?---------------------\n");
         saut(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
         if (!dino->deplacement->sautBooleen) {
             gauche(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state);
