@@ -35,7 +35,7 @@ void placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int mat
     int i;
     for(i = 0; i < joueur->n; i++) {
         /* Allocation du pointeur deplacement */
-        joueur->tab[i].deplacement = malloc(sizeof(t_deplacement));
+        //joueur->tab[i].deplacement = malloc(sizeof(t_deplacement));
         
         /* On attribue un type de dino différent pour tester les IDs (2, 3, 4...) */
         joueur->tab[i].d = id_depart + i; 

@@ -104,6 +104,10 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
 
     nuagesStockes[1] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
     generer_catalogue_depuis_nuage(nuagesStockes[1], nb_pts, catalogue, &trouves_E1, &trouves_E2, 1);
+    
+    for(i=0; i<2; i++) {
+        nuageDetruire(&(nuagesStockes[i]));
+    }
 
     printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);
 
@@ -125,10 +129,6 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
         chargerImageSansTaille(zoneAffichage, &(equipe2->texDinos[i]), "../img/dinoTransparent.png");
         chargerImageSansTaille(zoneAffichage, &(equipe1->texDinosInv[i]), "../img/dinoTransparentMiroir.png");
         chargerImageSansTaille(zoneAffichage, &(equipe2->texDinosInv[i]), "../img/dinoTransparentMiroir.png");
-    }
-
-    for(i=0; i<2; i++) {
-        nuageDetruire(&(nuagesStockes[i]));
     }
 }
 
@@ -486,9 +486,9 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
     }
 }
 
-/*
-void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_dino *dinoActuel, int *timer, int *cgt, char **nomNuage, int *nb_pts, t_coordonnee *nuage){
 
+void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_dino *dinoActuel, int *timer, int *cgt, char **nomNuage, int *nb_pts, t_coordonnee *nuage){
+    printf("nuage=%d\nindice=%d\n(x,y)=(%d,%d)\ntomber=%d\n",dinoActuel->id_nuage,dinoActuel->indice_nuage,dinoActuel->pos.x,dinoActuel->pos.y,dinoActuel->deplacement->tomber);
     int nb_nuage = 2;
     // A. GESTION AUTOMATIQUE DU TOUR
     // Si le temps est fini OU si le dinosaure actuel est inexistant/mort
@@ -520,7 +520,7 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         }
     } 
     else {
-        *timer--; // Le temps s'écoule
+        (*timer)--; // Le temps s'écoule
     }
 
     // B. LOGIQUE DE DÉPLACEMENT ET NOYADE
@@ -537,7 +537,7 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         // On affiche l'état actuel des équipes
     afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
     SDL_Delay(10);
-}*/
+}
 
 void lancerPartieBombe(){
     if (initialisationCorrecte()) {
@@ -648,6 +648,9 @@ void lancerPartie(){
         initialiserMatrice(&matriceTerrain);
         initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
 
+        afficherContenuJoueur(equipe1, "equipe1");
+        afficherContenuJoueur(equipe2, "equipe2");
+
         // Variables pour les déplacements
         t_dino *dinoActuel = NULL;
         int timer = TIMER;
@@ -701,13 +704,15 @@ void lancerPartie(){
             else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
-            /*else {
+            else {
                 dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                printf("nuage=%d\nindice=%d\n(x,y)=(%d,%d)\ntomber=%d\n",dinoActuel->id_nuage,dinoActuel->indice_nuage,dinoActuel->pos.x,dinoActuel->pos.y,dinoActuel->deplacement->tomber);
                 nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
                 dinoActuel->pos=nuage[dinoActuel->indice_nuage];
+                printf("nuage=%d\nindice=%d\n(x,y)=(%d,%d)\ntomber=%d\n",dinoActuel->id_nuage,dinoActuel->indice_nuage,dinoActuel->pos.x,dinoActuel->pos.y,dinoActuel->deplacement->tomber);
                 remplir_matrice_dino(dinoActuel, dinoActuel->pos, matriceTerrain);
                 effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, dinoActuel, &timer, &cgt, nomNuage, &nb_pts, nuage);
-            }*/
+            }
         }
 
         // --- NETTOYAGE --- 

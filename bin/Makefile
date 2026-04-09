@@ -47,6 +47,9 @@ fonctionsVerification.o \
 gestion_zones.o \
 placer_dinos.o \
 tda_nuage.o \
+deplacement.o \
+regression.o \
+collision_decor.o
 
 OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
 OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
@@ -57,11 +60,40 @@ OBJETS_TIRSAFFICHAGE = 		testTirsAffichageJeu.o 			$(OBJETS_COMMUNS) $(OBJETS_CO
 
 
 OBJETS_BOMBE_DINOS_TOURS = 	testBombeDinosTours.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
-OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o 		$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o fonctionsPageJeu.o fonctionsTirs.o fonctionSoin.o 
+
+OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o \
+$(OBJETS_COMMUNS) \
+$(OBJETS_COMMUNS2) \
+fonctionsChangementTour.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsTuerDinos.o \
+fonctionsPageJeu.o \
+fonctionsTirs.o \
+fonctionSoin.o \
+deplacement.o \
+regression.o \
+collision_decor.o
+
 OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
 OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
 
-OBJETS_PAGES_INFOS = 	testFonctionsPagesInformations.o 	$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsChangementTour.o fonctionsMenuPrinc.o fonctionsPageJeu.o fonctionsPagesInformations.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o fonctionsTirs.o fonctionSoin.o
+OBJETS_PAGES_INFOS = testFonctionsPagesInformations.o \
+$(OBJETS_COMMUNS) \
+$(OBJETS_COMMUNS2) \
+fonctionsChangementTour.o \
+fonctionsMenuPrinc.o \
+fonctionsPageJeu.o \
+fonctionsPagesInformations.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsTuerDinos.o \
+fonctionsTirs.o \
+fonctionSoin.o \
+deplacement.o \
+regression.o \
+collision_decor.o
+
 
 OBJETS_REBONDS = 			testFonctionsRebonds.o 			$(OBJETS_COMMUNS) fonctionsMenuHIP.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o
 
@@ -86,6 +118,9 @@ fonctionsVerification.o \
 gestion_zones.o \
 placer_dinos.o \
 tda_nuage.o \
+deplacement.o \
+regression.o \
+collision_decor.o
 
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
 

@@ -202,9 +202,46 @@ void initialiserContenuJoueur(t_joueur *joueur){
         joueur->tab[i].deplacement->sens = DROITE;
         joueur->tab[i].etat = 1; // Vivant
         joueur->tab[i].pv = 100;
+        printf("tomber=%d\nsaut=%d\n",joueur->tab[i].deplacement->tomber,joueur->tab[i].deplacement->sautBooleen);
+    
     }
 
 }
+
+
+/** * @fn void afficherContenuJoueur(t_joueur joueur, char * nomEquipe);
+ * @brief Affiche dans la console l'état détaillé de tous les dinosaures d'une équipe.
+ * @param joueur La structure joueur à inspecter.
+ * @param nomEquipe Une chaîne de caractères pour identifier l'équipe (ex: "Equipe 1").
+ */
+void afficherContenuJoueur(t_joueur joueur, char * nomEquipe) {
+    int i;
+    printf("\n=== État de l'unité : %s (Nombre: %d) ===\n", nomEquipe, joueur.n);
+    
+    for(i = 0; i < joueur.n; i++) {
+        t_dino *d = &joueur.tab[i];
+        printf("  Dino n°%d [ID Matrice: %d] :\n", i, d->d);
+        printf("    - État: %s | PV: %d\n", (d->etat == 1 ? "VIVANT" : "MORT"), d->pv);
+        printf("    - Position: (%d, %d) | Index Nuage: %d\n", d->pos.x, d->pos.y, d->indice_nuage);
+        
+        if(d->deplacement != NULL) {
+            printf("    - Déplacement: Tomber=%d | Saut=%d | Sens=%s | Wait=%d\n", 
+                    d->deplacement->tomber, 
+                    d->deplacement->sautBooleen,
+                    (d->deplacement->sens == DROITE ? "DROITE" : "GAUCHE"),
+                    d->deplacement->wait);
+        } else {
+            printf("    - Déplacement: NULL (ERREUR D'ALLOCATION)\n");
+        }
+        
+        // Affichage du côté stocké dans le tableau parallèle
+        printf("    - Direction Image: %s\n", (joueur.tabCote[i] == DROITE ? "DROITE" : "GAUCHE"));
+        printf("    -----------------------------------\n");
+    }
+    printf("==========================================\n\n");
+}
+
+
 
 void detruireContenuJoueur(t_joueur *joueur) {
     int i;

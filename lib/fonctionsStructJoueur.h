@@ -72,6 +72,10 @@ void retournerDino(t_joueur * equipe1, t_joueur * equipe2, t_case numero, t_cote
 
 void initialiserContenuJoueur(t_joueur *joueur);
 
+
+void afficherContenuJoueur(t_joueur joueur, char * nomEquipe);
+
+
 /** 
  * @fn void detruireContenuJoueur(t_joueur *joueur);
  * @brief La fonction détruit le contenu d'une structure joueur.
