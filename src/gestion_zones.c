@@ -5,7 +5,7 @@
 
 /** 
  * @file gestion_zones.c
- * @brief Corps des fonctions qui génère les zones de placement pour les dinosaures
+ * @brief Corps des fonctions qui génèrent les zones de placement pour les dinosaures.
  * @author Romane Saint_Léger
  * @date Crée le 17/02/2026
  * @version 1.5

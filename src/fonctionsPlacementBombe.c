@@ -7,6 +7,7 @@
  * @brief Corps des fonctions liées au placement de la bombe à côté des dinosaures.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026
+ * @version 1.2
  */
 
 /**
@@ -14,6 +15,7 @@
  * @brief La fonction vérifie si la bombe est enterrée dans le terrain aux coordonnées qu'elle possède actuellement.
  * @author Hannah Sergent
  * @date Crée le 27/03/2026
+ * @version 1.2
  * @param bombe un pointeur sur une structure de type bombe 
  * @param matriceTerrain une matrice contenant les informations sur le terrain
  */

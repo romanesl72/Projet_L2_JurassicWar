@@ -12,6 +12,7 @@
  * @brief Corps des fonctions pour l'affichage du menu principal.
  * @author Hannah Sergent
  * @date Crée le 26/03/2026
+ * @version 1.0
  */
 
 void initialiserBoutons(SDL_Rect *boutons){
@@ -31,6 +32,7 @@ void initialiserBoutons(SDL_Rect *boutons){
  * @brief La fonction trace un cercle de rayon rayon aux coordonnées coorCoin pour que le bouton ait des coins arrondis.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param zoneMenu un pointeur sur la zone du menu
  * @param coorCoin les coordonnées du coin du bouton
  * @param x la valeur que l'on veut attribuer à la coordonnée x
@@ -49,6 +51,7 @@ void initialiserCoordonnees(t_coordonnee *coor, int x, int y){
  * @brief La fonction trace un cercle de rayon rayon aux coordonnées coorCoin pour que le bouton ait des coins arrondis.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param zoneMenu un pointeur sur la zone du menu
  * @param coorCoin les coordonnées du coin du bouton
  * @param rayon le rayon du cercle à tracer

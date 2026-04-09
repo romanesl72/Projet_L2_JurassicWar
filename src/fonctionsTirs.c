@@ -8,7 +8,7 @@
 
 /** 
  * @file fonctionsTirs.c
- * @brief Corps des fonctions 
+ * @brief Corps des fonctions pour les tirs.
  * @author Romane Saint_Léger
  * @date Crée le 17/03/2026
  * @version 2.0

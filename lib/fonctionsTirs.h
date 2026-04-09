@@ -6,7 +6,7 @@
 
 /** 
  * @file fonctionsTirs.h
- * @brief Définitions des fonctions 
+ * @brief Définitions des fonctions pour les tirs.
  * @author Romane Saint_Léger
  * @date Crée le 17/03/2026
  * @version 2.0

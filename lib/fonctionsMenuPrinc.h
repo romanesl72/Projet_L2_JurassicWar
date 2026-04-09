@@ -8,6 +8,7 @@
  * @brief Définitions des fonctions pour l'affichage du menu principal.
  * @author Hannah Sergent
  * @date Crée le 26/03/2026
+ * @version 1.3
  */
 
 /**
@@ -64,6 +65,7 @@
  * @brief La fonction initialise la liste des boutons du menu.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
+ * @version 1.0
  * @param boutons un tableau de type SDL_Rect représentant chaque bouton
  */
 
@@ -74,6 +76,7 @@ void initialiserBoutons(SDL_Rect *boutons);
  * @brief La fonction trace un bouton aux bords arrondis dans le menu.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param zoneMenu un pointeur sur la zone du menu
  * @param rectBouton le rectangle du bouton à tracer
  * @param rayon le rayon choisi pour l'arrondi des bords
@@ -82,27 +85,30 @@ void initialiserBoutons(SDL_Rect *boutons);
 void tracerBouton(SDL_Renderer *zoneMenu, SDL_Rect rectBouton, int rayon);
 
 /**
- * @fn void afficherTexteCase(SDL_Renderer* zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte);
+ * @fn void afficherTexteCase(SDL_Renderer *zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte);
  * @brief La fonction écrit le texte passé en paramètre en blanc au centre d'une case du menu.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026
+ * @version 1.0
  * @param zoneMenu un pointeur sur la zone du menu
  * @param texte le texte à afficher
  * @param rectCase le rectangle de la case dans laquelle afficher le texte
  * @param tailleTexte la taille du texte à afficher
  */
 
-void afficherTexteCase(SDL_Renderer* zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte);
+void afficherTexteCase(SDL_Renderer *zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte);
 
 /**
  * @fn int creerMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir);
  * @brief La fonction initialise le menu principal du jeu.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param menuPrincipal un pointeur de pointeur sur la fenêtre du menu principal
  * @param zoneMenu un pointeur de pointeur sur la zone du menu
  * @param texImg un pointeur de pointeur sur la texture de la première image à afficher dans le menu
  * @param texImgMiroir un pointeur de pointeur sur la texture de la deuxième image à afficher dans le menu
+ * @return 1 si tout s'est bien passé et 0 sinon
  */
 
 int creerMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir);
@@ -112,6 +118,7 @@ int creerMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_
  * @brief La fonction affiche le menu principal du jeu.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param zoneMenu un pointeur sur la zone du menu
  * @param boutons un tableau de type SDL_Rect représentant chaque bouton
  * @param texImg un pointeur sur la texture de la première image à afficher dans le menu
@@ -125,8 +132,9 @@ void afficherMenuPrincipal(SDL_Renderer* zoneMenu, SDL_Rect *boutons, SDL_Textur
  * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer).
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param boutons un tableau de type SDL_Rect représentant chaque bouton
- * @return un entier entre 0 et 2 indiquant l'action qui vient de se produire 
+ * @return un entier entre 0 et 4 indiquant l'action qui vient de se produire 
  */
 
 int detecterEvenementsMenuPrincipal(SDL_Rect *boutons);
@@ -136,6 +144,7 @@ int detecterEvenementsMenuPrincipal(SDL_Rect *boutons);
  * @brief La fonction détruit le menu principal du jeu.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
+ * @version 1.0
  * @param menuPrincipal un pointeur de pointeur sur la fenêtre du menu principal
  * @param zoneMenu un pointeur de pointeur sur la zone du menu
  * @param texImg un pointeur de pointeur sur la texture de la première image à afficher dans le menu

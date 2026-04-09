@@ -6,7 +6,7 @@
 
 /** 
  * @file fonctionSoin.h
- * @brief Définition d'une fonction de soin pour les dinosaures
+ * @brief Définition d'une fonction de soin pour les dinosaures.
  * @author Romane Saint_Léger
  * @date Crée le 01/04/2026
  * @version 1.0
@@ -18,7 +18,7 @@
  * @author Romane Saint-Léger
  * @date Crée le 01/04/2026
  * @version 1.0
- * @param dino Celui que l'on va soigner
+ * @param dino Celui que l'on veut soigner
  */
 
 void utiliserPotion(t_dino *dino);

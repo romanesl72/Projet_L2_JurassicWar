@@ -59,6 +59,16 @@ int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFe
 
 }
 
+/**
+ * @fn int detecterEvenementFenInfos(SDL_Rect *boutonRetour);
+ * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre d'information.
+ * @author Hannah Sergent
+ * @date Crée le 01/04/2026
+ * @version 1.0
+ * @param boutonRetour un pointeur sur le bouton permettant de quitter la fenêtre
+ * @return un entier entre 0 et 2 indiquant l'action qui vient de se produire 
+ */
+
 int detecterEvenementFenInfos(SDL_Rect *boutonRetour){
 
     SDL_Event evenement;
@@ -82,6 +92,16 @@ int detecterEvenementFenInfos(SDL_Rect *boutonRetour){
     }
     return 1;
 }
+
+/**
+ * @fn char* lireInfosFichier(char *nomFichier)
+ * @brief La fonction lit les informations à afficher dans la fenêtre d'information.
+ * @author Hannah Sergent
+ * @date Crée le 01/04/2026
+ * @version 1.0
+ * @param nomFichier le nom du fichier à lire
+ * @return une chaîne de caractère contenant le texte à afficher dans la fenêtre d'information
+ */
 
 char* lireInfosFichier(char *nomFichier){
 
@@ -114,6 +134,18 @@ char* lireInfosFichier(char *nomFichier){
     fclose(fichier);
     return texteInfos;
 }
+
+/**
+ * @fn void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nomFen, char *nomFichier)
+ * @brief La fonction affiche une page d'information sur le jeu.
+ * @author Hannah Sergent
+ * @date Crée le 01/04/2026
+ * @version 1.1
+ * @param zoneInfos un pointeur sur la zone d'affichage d'informations
+ * @param boutonRetour un pointeur sur le bouton permettant de quitter la fenêtre
+ * @param nomFen le nom donné à la fenêtre
+ * @param nomFichier le nom du fichier contenant les informations à afficher sur le jeu
+ */
 
 void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nomFen, char *nomFichier){
 
@@ -173,6 +205,16 @@ void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nom
     SDL_RenderPresent(zoneInfos);
 
 }
+
+/**
+ * @fn void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos);
+ * @brief La fonction détruit une fenêtre d'information sur le jeu.
+ * @author Hannah Sergent
+ * @date Crée le 01/04/2026
+ * @version 1.0
+ * @param fenInfos un pointeur de pointeur sur la fenêtre du menu
+ * @param zoneMenu un pointeur de pointeur sur la zone d'affichage d'informations
+ */
 
 void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos){
 

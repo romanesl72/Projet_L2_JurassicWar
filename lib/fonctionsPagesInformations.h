@@ -5,7 +5,7 @@
 
 /** 
  * @file fonctionsPagesInformations.h
- * @brief Corps des fonctions liées aux fenêtres d'informations, c'est à dire la liste des touches et les règles du jeu.
+ * @brief Définitions des fonctions liées aux fenêtres d'informations, c'est à dire la liste des touches et les règles du jeu.
  * @author Hannah Sergent
  * @date Crée le 01/04/2026
  * @version 1.0
@@ -24,6 +24,16 @@
 */
 
 #define TAILLE_POLICE_SOUS_TITRE 23
+
+/**
+ * @fn void ouvrirFenInfos(char *nomFen, char *nomFichier);
+ * @brief La fonction ouvre une fenêtre d'information sur le jeu.
+ * @author Hannah Sergent
+ * @date Crée le 01/04/2026
+ * @version 1.0
+ * @param nomFen le nom de la fenêtre
+ * @param nomFichier le nom du fichier contenant les informations à afficher dans le jeu
+ */
 
 void ouvrirFenInfos(char *nomFen, char *nomFichier);
 

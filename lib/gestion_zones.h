@@ -5,7 +5,7 @@
 
 /** 
  * @file gestion_zones.h
- * @brief Définitions des fonctions qui génère les zones de placement pour les dinosaures
+ * @brief Définitions des fonctions qui génèrent les zones de placement pour les dinosaures.
  * @author Romane Saint_Léger
  * @date Crée le 17/02/2026
  * @version 1.5
@@ -38,4 +38,5 @@ float distance(t_coordonnee p1, t_coordonnee p2);
  */
 
 void generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalogue_zones *catalogue, int *nb_E1, int *nb_E2, int id_n);
+
 #endif

@@ -2,7 +2,7 @@
 
  /** 
  * @file fonctionSoin.c
- * @brief Corps d'une fonction de soin pour les dinosaures
+ * @brief Corps d'une fonction de soin pour les dinosaures.
  * @author Romane Saint_Léger
  * @date Crée le 01/04/2026
  * @version 1.0
