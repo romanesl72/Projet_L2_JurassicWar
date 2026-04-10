@@ -14,6 +14,14 @@
  * @version 1.2
  */
 
+/**
+ * @brief Ouvrir un menu principal qui permet de lancer une partie ou d'accéder à des informations.
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.2
+ */
+
 int main(int argc, char *argv[]) {
 
     if (initialisationCorrecte()) {

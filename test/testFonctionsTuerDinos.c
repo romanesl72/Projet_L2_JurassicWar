@@ -18,8 +18,27 @@
  * @version 4.3
  */
 
+/**
+ * @def COOR_X
+ * @brief Coordonnée x de la bombe pour les tests.
+*/
+
 #define COOR_X LARGEUR_TERRAIN/3
+
+/**
+ * @def COOR_Y
+ * @brief Coordonnée y de la bombe pour les tests.
+*/
+
 #define COOR_Y HAUTEUR_TERRAIN/2
+
+/**
+ * @brief Lancer une bombe qui peut rebondir ou tuer un dinosaure.
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 4.3
+ */
 
 int main(int argc, char * argv[]){
 

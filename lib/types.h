@@ -33,7 +33,7 @@
 #define HAUTEUR_HIP 100
 
 /**
- * @def HAUTEUR_TERRAIN
+ * @def HAUTEUR_FEN_JEU_HIP
  * @brief Hauteur de l'affichage complet du jeu.
 */
 #define HAUTEUR_FEN_JEU_HIP (HAUTEUR_HIP + HAUTEUR_TERRAIN)

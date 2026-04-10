@@ -12,7 +12,7 @@
  */
 
 /** 
- * @fn void tourSuivant(int *numeroTour, int *equipeCourante, t_case *dinoTour, t_joueur *equipe1, t_joueur *equipe2);
+ * @fn void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2);
  * @brief La fonction effectue un changement de tour. Il s'agit de changer de dinosaure, d'équipe et de numéro de tour.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026

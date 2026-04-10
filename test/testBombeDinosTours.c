@@ -20,8 +20,13 @@
  * @version 2.0
  */
 
-#define COOR_X LARGEUR_TERRAIN/3
-#define COOR_Y HAUTEUR_TERRAIN/2
+/**
+ * @brief Les dinosaures peuvent lancer une bombe tour à tour, positionnée à côté d'eux.
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 2.0
+ */
 
 int main(int argc, char * argv[]){
 

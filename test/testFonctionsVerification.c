@@ -9,8 +9,27 @@
  * @version 1.0
  */
 
-#define LARGEUR_FEN_MENU 400
-#define HAUTEUR_FEN_MENU 650
+/**
+ * @def LARGEUR_FEN_VERIF
+ * @brief Largeur de la fenêtre crée pour vérifier le fichier fonctionsVerification.c.
+*/
+
+#define LARGEUR_FEN_VERIF 400
+
+/**
+ * @def HAUTEUR_FEN_VERIF
+ * @brief Largeur de la fenêtre crée pour vérifier le fichier fonctionsVerification.c.
+*/
+
+#define HAUTEUR_FEN_VERIF 650
+
+/**
+ * @brief Création d'une fenêtre avec les fonctions du fichier fonctionsVerification.c.
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.0
+ */
 
 int main(int argc, char * argv[]){
 
@@ -19,7 +38,7 @@ int main(int argc, char * argv[]){
         int enCours = 1;
         SDL_Event evenement;
         SDL_Window *menuPrincipal; 
-        creerFenetre(&menuPrincipal, "JurassicWar - Menu Prinicpal", LARGEUR_FEN_MENU, HAUTEUR_FEN_MENU);
+        creerFenetre(&menuPrincipal, "JurassicWar - Menu Prinicpal", LARGEUR_FEN_VERIF, HAUTEUR_FEN_VERIF);
 
         while(enCours) {
             while (SDL_PollEvent(&evenement)){

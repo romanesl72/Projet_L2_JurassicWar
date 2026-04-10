@@ -19,6 +19,14 @@
  * @version 1.2
  */
 
+/**
+ * @brief Le programme réalise la même chose que testBombeDinosTours.c mais avec des fonctions pour réduire la taille du main. 
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.2
+ */
+
 int main(int argc, char * argv[]){
 
     if (initialisationCorrecte()) {

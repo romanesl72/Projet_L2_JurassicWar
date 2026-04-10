@@ -25,7 +25,7 @@
 int initialisationCorrecte();
 
 /**
- * @fn void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
+ * @fn void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLargeur, int *imgHauteur);
  * @brief La fonction charge une image comme une texture SDL et indique sa taille.
  * @author Hannah Sergent
  * @date Crée le 27/01/2026
@@ -33,11 +33,11 @@ int initialisationCorrecte();
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param img un pointeur sur un pointeur de la texture image à charger
  * @param nomFichier le nom du fichier contenant l'image
- * @param imgLongueur un pointeur recevant la largeur de l'image
+ * @param imgLargeur un pointeur recevant la largeur de l'image
  * @param imgHauteur un pointeur recevant la hauteur de l'image
  */
 
-void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLongueur, int *imgHauteur);
+void chargerImage(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier, int *imgLargeur, int *imgHauteur);
 
 /**
  * @fn void chargerImageSansTaille(SDL_Renderer *zoneAffichage, SDL_Texture **img, char *nomFichier);
