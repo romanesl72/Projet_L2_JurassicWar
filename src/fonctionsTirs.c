@@ -219,16 +219,15 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
     t_cote cote = DROITE; 
     t_cote ancienCote;
 
-    printf("Debug A\n");
     if (e1 != NULL && e2 != NULL) {
         cote = recupererDinoDirection(e1, e2, numDinoCourant);
     }
-    printf("Debug B\n");
+
     ancienCote = cote;
 
     tir->velo.u = tir->arme_source.puissance_propulsion;
     tir->velo.v = -tir->arme_source.puissance_propulsion;
-    printf("Debug C\n");
+
     if (cote == GAUCHE && tir->velo.u > 0) {
         tir->velo.u = -tir->velo.u;
     }
