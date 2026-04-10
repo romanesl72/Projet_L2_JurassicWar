@@ -712,11 +712,19 @@ void lancerPartie(){
             }
             else if (action == 3) {
                 printf("Potion utilisee. Changement de tour.\n");
-                // if (nuage)nuageDetruire(&nuage);
-                // tourSuivant(&gestionTours, &equipe1, &equipe2);
                 // On rafraîchit l'affichage pour voir les nouveaux PV
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 SDL_Delay(200);
+                tourSuivant(&gestionTours, &equipe1, &equipe2);
+                printf("  Dino n°%d\n", dinoActuel->d);
+                dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                printf("  Dino n°%d\n", dinoActuel->d);
+                nuageDetruire(&nuage); 
+                if (dinoActuel != NULL) {
+                    nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+                    timer = TIMER;
+                    dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                }
             
             }
             else if (action == 1) {
