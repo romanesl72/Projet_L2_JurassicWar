@@ -8,24 +8,43 @@
 \captionsetup{justification=centering}
 \usepackage{subcaption}
 \usepackage{amsmath}
-\usepackage{glossaries}
-% Attention toujours inclure hyperref en dernier 
+% Attention toujours inclure hyperref et glossaries en dernier 
 \usepackage{hyperref}
+\usepackage{glossaries}
 
 
 \makeglossaries
 
 % --- Entrées du glossaire ---
-\newglossaryentry{api}{
-    name=API,
-    description={Interface de programmation d'application}
+
+\newglossaryentry{gradient}{
+    name=gradient,
+    description={Vecteur qui pointe dans la direction où une fonction mathématique augmente le plus vite}
 }
 
-\newacronym{html}{HTML}{HyperText Markup Language}
+\newglossaryentry{gravite}{
+    name=gravité,
+    description={Force qui attire les objets vers le sol}
+}
 
-\newglossaryentry{serveur}{
-    name=serveur,
-    description={Ordinateur fournissant des services à d'autres machines}
+\newglossaryentry{reflexion}{
+    name=réflexion,
+    description={Description du changment de direction la vitesse d'un objet lorsqu'il heurte une paroi}
+}
+
+\newglossaryentry{regression}{
+    name=régression,
+    description={Méthode d'estimation consistant à déterminer une fonction minimisant l'écart entre les prédictions d'un modèle et les données observées}
+}
+
+\newglossaryentry{SDL}{
+    name=Simple DirectMedia Layer (SDL),
+    description={Bibliothèque multimédia permettant de gérer l'affichage, le son et les entrées dans les jeux vidéo}
+}
+
+\newglossaryentry{vecteur vitesse}{
+    name=vecteur vitesse,
+    description={Vecteur indiquant la direction et la rapidité du mouvement d'un objet}
 }
 
 \begin{document}
@@ -108,7 +127,7 @@ Cette partie rend compte de la manière dont s'enchaînent les actions dans \tex
 \subsubsection{Mécanique des changements de tours}
 Premièrement, les dinosaures jouent chacun leur tour, c'est-à-dire que l'utilisateur n'a pas la possibilité de choisir avec lequel de ses trois dinosaures il souhaite agir à un tour donné. L'instauration de cette règle augmente d'une part  la complexité du jeu, mais d'autre part  le système des changements de tours, puisque l'alternance entre tous les dinosaures doit être correcte même lorsqu'un ou plusieurs d'entre eux meurent. Afin de mettre en œuvre les changements de tours, une fonction \textit{\mbox{tourSuivant}} a été crée. Elle s'appuie sur l'identifiant associé à chaque dinosaure pour déterminer le dinosaure qui peut jouer. Cependant, comme les dinosaures de la première équipe sont numérotés de un à trois et ceux de la seconde équipe de quatre à six, à la suite du premier dinosaure, c'est au quatrième dinosaure de jouer et non pas au second dinosaure pour garantir l'alternance entre les deux équipes. Ceci nécessite de mémoriser deux identifiants : celui du dinosaure qui vient d'agir et celui du dinosaure ayant agi précédemment. Ces identifiants sont stockés dans uns structure \textit{\mbox{t\_tour}} qui contient également le numéro de l'équipe qui vient de jouer et un compteur du nombre de tours effectués. Par ailleurs, la fonction \textit{\mbox{tourSuivant}} doit tenir compte de l'état d'un dinosaure dans la mesure où un dinosaure mort ne peut plus jouer. Ainsi, une fois que la fonction a choisi un dinosaure, elle vérifie qu'il est vivant. Dans le cas contraire, elle sélectionne un autre dinosaure jusqu'à en trouver un encore dans la partie. Une sécurité a été ajoutée pour que la fonction ne renvoie aucun dinosaure en fin de partie, c'est à dire lorsque tous les dinosaures d'un joueur ont péri.
 \subsubsection{Infliger un coup mortel : bombe}
-Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arme mortelle : la bombe. Contrairement aux armes de tirs évoquées dans la section suivante, la bombe tue instantanément le dinosaure qu'elle heurte. Néanmoins, cette arme peut uniquement être employée si le dinosaure dispose d'une place suffisante à côté de lui pour la positionner. L'objectif consiste à apporter de la difficulté supplémentaire mais aussi un intérêt à utiliser chaque arme disponible dans le jeu. De surcroît, cette arme se caractérise par sa capacité à rebondir sur le terrain. Cette capacité de la bombe à rebondir induit l'utilisation de plusieurs notions mathématiques dans le code. Pour faciliter l'application de ces notions, la bombe est représentée par une structure \textit{\mbox{t\_bombe}} comportant notamment le rayon et  le vecteur vitesse du projectile, c'est à dire la vitesse sur l'axe horizontal et vertical de la bombe. Tout d'abord, la mise en place des rebonds nécessite un système de collision avec le sol précis en raison du relief particulier du terrain. Le terrain étant formé de collines et de cratères aux courbures arrondies, une détection de collisions limitée aux quatre directions haut, gauche, bas et droite ne suffit pas et manque les impacts en diagonale. En conséquence, pour élargir le nombre de directions étudiées lors des collisions, la fonction \textit{\mbox{collisionTerrainBombe}} fait recourt aux formules des coordonnées polaires pour analyser une multitude de points sur le contour de la bombe. Les points analysés sont représentés en rouge sur la figure~\ref{fig:coordonneesPolaires} accompagnés de la formule pour calculer leurs coordonnées. \gls{api}
+Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arme mortelle : la bombe. Contrairement aux armes de tirs évoquées dans la section suivante, la bombe tue instantanément le dinosaure qu'elle heurte. Néanmoins, cette arme peut uniquement être employée si le dinosaure dispose d'une place suffisante à côté de lui pour la positionner. L'objectif consiste à apporter de la difficulté supplémentaire mais aussi un intérêt à utiliser chaque arme disponible dans le jeu. De surcroît, cette arme se caractérise par sa capacité à rebondir sur le terrain. Cette capacité de la bombe à rebondir induit l'utilisation de plusieurs notions mathématiques dans le code. Pour faciliter l'application de ces notions, la bombe est représentée par une structure \textit{\mbox{t\_bombe}} comportant notamment le rayon et  le \gls{vecteur vitesse} du projectile, c'est à dire la vitesse sur l'axe horizontal et vertical de la bombe. Tout d'abord, la mise en place des rebonds nécessite un système de collision avec le sol précis en raison du relief particulier du terrain. Le terrain étant formé de collines et de cratères aux courbures arrondies, une détection de collisions limitée aux quatre directions haut, gauche, bas et droite ne suffit pas et manque les impacts en diagonale. En conséquence, pour élargir le nombre de directions étudiées lors des collisions, la fonction \textit{\mbox{collisionTerrainBombe}} fait recourt aux formules des coordonnées polaires pour analyser une multitude de points sur le contour de la bombe. Les points analysés sont représentés en rouge sur la figure~\ref{fig:coordonneesPolaires} accompagnés de la formule pour calculer leurs coordonnées.
 \begin{figure}[ht]
 	\centering
 	\begin{minipage}[c]{0.5\textwidth}
@@ -124,14 +143,14 @@ Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arm
 	\caption[schema des coordonnees polaires applique a la bombe]{Schéma des coordonnées polaires appliqué à la bombe}
 	\label{fig:coordonneesPolaires}
 \end{figure}\\
-En cas de collision avérée entre un ou plusieurs de ces points et la terre, une seconde étape consiste à étudier la pente du terrain de manière à ce que la bombe rebondisse perpendiculairement au sol. Pour cela, les valeurs dans la matrice des points voisins au lieu d'impact sont examinées et les pixels contenant de la terre sont intégrés dans le calcul d'un gradient à la surface du terrain, c'est à dire d'un vecteur qui pointe vers la direction où la densité de la terre est la plus forte. Un exemple de gradient pouvant être établi par la fonction \textit{\mbox{collisionTerrainBombe}} est représenté sur la figure~\ref{fig:vecteurNormalBombe}. Dans le calcul du gradient,  il est donné un poids important aux points jouxtant l'impact et un poids plus faible aux voisins plus éloignés afin de rendre compte au mieux du relief et pour qu'aucune éventuelle irrégularité du terrain ne fausse les résultats. De plus, dans le cas où toute une partie de la bombe est en contact avec le sol, le gradient est déterminé pour chaque point de collision. En prenant l'opposé de chacun de ces vecteurs, une famille de vecteurs normaux est formée, c'est à dire un ensemble de vecteurs perpendiculaires au terrain. Le vecteur normal finalement choisi pour le rebond constitue une moyenne de tous ces vecteurs.
+En cas de collision avérée entre un ou plusieurs de ces points et la terre, une seconde étape consiste à étudier la pente du terrain de manière à ce que la bombe rebondisse perpendiculairement au sol. Pour cela, les valeurs dans la matrice des points voisins au lieu d'impact sont examinées et les pixels contenant de la terre sont intégrés dans le calcul d'un \gls{gradient} à la surface du terrain, c'est à dire d'un vecteur qui pointe vers la direction où la densité de la terre est la plus forte. Un exemple de gradient pouvant être établi par la fonction \textit{\mbox{collisionTerrainBombe}} est représenté sur la figure~\ref{fig:vecteurNormalBombe}. Dans le calcul du gradient,  il est donné un poids important aux points jouxtant l'impact et un poids plus faible aux voisins plus éloignés afin de rendre compte au mieux du relief et pour qu'aucune éventuelle irrégularité du terrain ne fausse les résultats. De plus, dans le cas où toute une partie de la bombe est en contact avec le sol, le gradient est déterminé pour chaque point de collision. En prenant l'opposé de chacun de ces vecteurs, une famille de vecteurs normaux est formée, c'est à dire un ensemble de vecteurs perpendiculaires au terrain. Le vecteur normal finalement choisi pour le rebond constitue une moyenne de tous ces vecteurs.
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/vecteurNormalBombe.png}
         	\caption[exemple gradient et vecteur normal en un point donne du terrain]{Exemple d'un gradient et d'un vecteur normal associé à la bombe en un point donné du terrain}
 	\label{fig:vecteurNormalBombe}
 \end{figure}
- La bombe suit la direction de ce vecteur pour s'éloigner du terrain comme le recapitule la figure~\ref{fig:vecteurNormalBombe}. Par ailleurs, le choc n'impacte pas uniquement la trajectoire de la bombe mais également sa vitesse.  La nouvelle vitesse de la bombe suite au rebond est obtenue par la formule de réflexion par rapport à un plan : 
+ La bombe suit la direction de ce vecteur pour s'éloigner du terrain comme le recapitule la figure~\ref{fig:vecteurNormalBombe}. Par ailleurs, le choc n'impacte pas uniquement la trajectoire de la bombe mais également sa vitesse.  La nouvelle vitesse de la bombe suite au rebond est obtenue par la formule de \gls{reflexion} par rapport à un plan : 
 \begin{equation}
 \vec{v}^{\,\prime} = \vec{v} - 2\,(\vec{v} \cdot \vec{n})\, \vec{n}
 \label{eq:formuleReflexion}
@@ -145,7 +164,7 @@ y(t) &= y_0 + v_{y0}\,t + \frac{1}{2} g t^2
 \end{aligned}
 \label{eq:formuleMouvementBombe}
 \end{equation}
-où  $(x_0,y_0)$ désignent les coordonnées à l'instant présent de la bombe, $(x,y)$ les nouvelles coordonnées calculées, $\vec{v}=(v_{x0},v_{y0})$ le vecteur vitesse, $t$ le temps écoulé et $g$ la gravité.
+où  $(x_0,y_0)$ désignent les coordonnées à l'instant présent de la bombe, $(x,y)$ les nouvelles coordonnées calculées, $\vec{v}=(v_{x0},v_{y0})$ le vecteur vitesse, $t$ le temps écoulé et $g$ la \gls{gravite}.
 De la même manière que précédemment, l'introduction du temps et de la gravité dans l'équation a pour visée de reproduire plus fidèlement possible le comportement d'une bombe dans le monde réel.
 
 \newpage
@@ -154,12 +173,12 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 \newpage
 
 \subsection{Interface graphique et utilisateur}
-La visualisation à l'écran tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module SDL, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de \textit{JurassicWar} par les joueurs.  
+La visualisation à l'écran tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module \gls{SDL}, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de \textit{\mbox{JurassicWar}} par les joueurs.  
 \subsubsection{Utilisation du module SDL}
-En premier lieu, la sélection du module SDL pour le projet se justifie par sa portabilité. Contrairement à d'autres librairies graphiques, SDL fonctionne à la fois sur Linux, Windows et macOS et est adapté au langage C. Il est principalement employé pour afficher le terrain, les dinosaures, les armes ainsi que divers menus explicités par la suite. Toutefois, il gère également les différentes actions du joueur tel qu'appuyer une touche du clavier pour choisir une arme et la trajectoire du tir dans les fonctions \textit{\mbox{choixHauteurLancer}} et \textit{\mbox{viserArcher}}, ou encore cliquer sur les boutons du menu principal dans la fonction \textit{\mbox{detecterEvenementsMenuPrincipal}}. Sans oublier que les touches du clavier se veulent indispensables aux déplacements des dinosaures. Cependant, ce module représente également une contrainte puisqu'il requiert de gérer correctement la mémoire entre les différentes allocations et libérations que ce soit pour les fenêtres mais aussi pour les textures des dinosaures et des objets. En outre, obtenir un rendu propre lors du lancer de la bombe ou de l'envoi de flèches et des balles pendant les tirs exige des ajustements, notamment en ce qui concerne le délai d'affichage des images. D'un côté, un délai trop long engendre un visuel flou et peu esthétique pour l'utilisateur et d'un autre côté, un délai trop court consomme beaucoup de ressources. Par conséquent, cet intervalle de temps est directement lié à la vitesse des projectiles et donc aux calculs mathématiques liés à ceux-ci. Enfin, l'interface graphique de jurassicWar cumule une multitude d'images et de textes lorsque tous les élements du jeu, c'est-à-dire l'inventaire et le terrain sont réunis. Ceci impose un ordre d'affichage strict pour assurer la fiabilité de l'affichage. C'est un enjeu rencontré par les différentes versions des fonctions \textit{\mbox{afficherJeu}}.
+En premier lieu, la sélection du module SDL pour le projet se justifie par sa portabilité. Contrairement à d'autres librairies graphiques, SDL fonctionne à la fois sur Linux, Windows et macOS et est adapté au langage C. Il est principalement employé pour afficher le terrain, les dinosaures, les armes ainsi que divers menus explicités par la suite. Toutefois, il gère également les différentes actions du joueur tel qu'appuyer une touche du clavier pour choisir une arme et la trajectoire du tir dans les fonctions \textit{\mbox{choixHauteurLancer}} et \textit{\mbox{viserArcher}}, ou encore cliquer sur les boutons du menu principal dans la fonction \textit{\mbox{detecterEvenementsMenuPrincipal}}. Sans oublier que les touches du clavier se veulent indispensables aux déplacements des dinosaures. Cependant, ce module représente également une contrainte puisqu'il requiert de gérer correctement la mémoire entre les différentes allocations et libérations que ce soit pour les fenêtres mais aussi pour les textures des dinosaures et des objets. En outre, obtenir un rendu propre lors du lancer de la bombe ou de l'envoi de flèches et des balles pendant les tirs exige des ajustements, notamment en ce qui concerne le délai d'affichage des images. D'un côté, un délai trop long engendre un visuel flou et peu esthétique pour l'utilisateur et d'un autre côté, un délai trop court consomme beaucoup de ressources. Par conséquent, cet intervalle de temps est directement lié à la vitesse des projectiles et donc aux calculs mathématiques liés à ceux-ci. Enfin, l'interface graphique de \textit{\mbox{JurassicWar}} cumule une multitude d'images et de textes lorsque tous les élements du jeu, c'est-à-dire l'inventaire et le terrain sont réunis. Ceci impose un ordre d'affichage strict pour assurer la fiabilité de l'affichage. C'est un enjeu rencontré par les différentes versions des fonctions \textit{\mbox{afficherJeu}}.
  
 \subsubsection{Création d'un menu principal}
-En second lieu, un menu principal a été conçu dans \textit{JurassicWar} afin de fournir une interface intéractive centralisant l'accès aux fonctionnalités essentielles du jeu.  Il comporte quatre onglets permettant de démarrer la partie, de consulter les principales règles du jeu, d'accéder à  la liste des touches du clavier et de quitter le programme. Les règles instaurées dans la partie ainsi que la liste des touches du clavier correspondant à chaque action figurent comme indispensables dans le menu dans la mesure où ces informations sont inconnues au joueur lors de la découverte du jeu. Ces informations sont placées dans des fenêtres distinctes accessibles depuis des boutons. Leur affichage repose sur le module SDL, abordé dans la section précédente et employé dans plusieurs fonctions telles que \textit{\mbox{tracerBouton}} ou encore \textit{\mbox{afficherMenuPrincipal}}. De même, la détection des clics dans le menu est réalisé par SDL. À propos du texte contenu dans les fenêtres, celui-ci est stocké dans des fichiers, lus lorsque l'utilisateur demande l'ouverture d'une page par le biais de la fonction \textit{\mbox{lireInfosFichier}}. Le texte, rédigé en français et contenant de nombreux caractères accentués, a nécessité de tenir compte de l'encodage en UTF-8 des caractères, notamment pour obtenir un rendu correct avec SDL. L'intégration du menu principal avec le reste du code du jeu a consisté à découper le code déjà existant en fonctions et à adapter la structure du programme principal. Dans un premier temps, le programme central invoque la fonction \textit{\mbox{ouvrirMenuPrinc}} qui initialise le menu principal et sollicite toutes les fonctions liées au menu. Puis, dans un second temps, en cas d'une action de l'utilisateur dans ce sens, la fonction \textit{\mbox{lancerPartie}} s'exécute. Cette fonction orchestre tout le fonctionnement global du jeu et fait appel à toutes les fonctions rédigées dans le cadre du projet.
+En second lieu, un menu principal a été conçu dans \textit{\mbox{JurassicWar}} afin de fournir une interface intéractive centralisant l'accès aux fonctionnalités essentielles du jeu.  Il comporte quatre onglets permettant de démarrer la partie, de consulter les principales règles du jeu, d'accéder à  la liste des touches du clavier et de quitter le programme. Les règles instaurées dans la partie ainsi que la liste des touches du clavier correspondant à chaque action figurent comme indispensables dans le menu dans la mesure où ces informations sont inconnues au joueur lors de la découverte du jeu. Ces informations sont placées dans des fenêtres distinctes accessibles depuis des boutons. Leur affichage repose sur le module SDL, abordé dans la section précédente et employé dans plusieurs fonctions telles que \textit{\mbox{tracerBouton}} ou encore \textit{\mbox{afficherMenuPrincipal}}. De même, la détection des clics dans le menu est réalisé par SDL. À propos du texte contenu dans les fenêtres, celui-ci est stocké dans des fichiers, lus lorsque l'utilisateur demande l'ouverture d'une page par le biais de la fonction \textit{\mbox{lireInfosFichier}}. Le texte, rédigé en français et contenant de nombreux caractères accentués, a nécessité de tenir compte de l'encodage en UTF-8 des caractères, notamment pour obtenir un rendu correct avec SDL. L'intégration du menu principal avec le reste du code du jeu a consisté à découper le code déjà existant en fonctions et à adapter la structure du programme principal. Dans un premier temps, le programme central invoque la fonction \textit{\mbox{ouvrirMenuPrinc}} qui initialise le menu principal et sollicite toutes les fonctions liées au menu. Puis, dans un second temps, en cas d'une action de l'utilisateur dans ce sens, la fonction \textit{\mbox{lancerPartie}} s'exécute. Cette fonction orchestre tout le fonctionnement global du jeu et fait appel à toutes les fonctions rédigées dans le cadre du projet.
 
 \subsubsection{Faciliter l’utilisation du jeu pour l’utilisateur}
 \newpage
