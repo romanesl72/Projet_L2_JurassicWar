@@ -13,7 +13,7 @@
 
 // --- FONCTIONS UTILITAIRES ---
 
-int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]) {
+int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
     if(dino->indice_nuage < 0 || dino->indice_nuage >= nb_pts){
         dino->deplacement->hors_nuage = 1;
         return 1;
@@ -22,7 +22,7 @@ int horsNuage(t_dino *dino, int nb_pts, int matrice[MAT_H][MAT_L]) {
     return 0; 
 }
 
-int noyade(t_dino *dino, int matrice[MAT_H][MAT_L]){
+int noyade(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     if(matrice[dino->pos.y+30][dino->pos.x+15] == -1) {
         dino->etat = 0; 
         dino->pv = 0;
@@ -72,7 +72,7 @@ int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nua
     return 0;
 }
 
-void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], int sens) {
+void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int sens) {
     supprimer_matrice_dino(dino, matrice);
     if (dino->deplacement->tomber == 1) {
         if (replacementNuage(dino, nb_pts, nuage, nb_nuage, nomNuage, sens)) {
@@ -99,7 +99,7 @@ void tomberNuage(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nu
     remplir_matrice_dino(dino, dino->pos, matrice);
 }
 
-void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state, int sens, int booleen){
+void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state, int sens, int booleen){
     float a, b;
     regression((*nuage)[dino->indice_nuage], *nuage, &a, &b, dino->indice_nuage, *nb_pts);
     float pas = VITESSE_BASE * (1.0f + sens*(a * 0.5f));
@@ -122,21 +122,21 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
 }
 // --- LOGIQUE DE DIRECTION ---
 
-void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+void gauche(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state) {
     if (state[SDL_SCANCODE_LEFT]){
         dino->deplacement->sens = GAUCHE; 
         marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, -1, 0);
     }
 }
 
-void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state) {
     if (state[SDL_SCANCODE_RIGHT]){
         dino->deplacement->sens = DROITE;
         marcher(dino, nuage, nomNuage, nb_nuage, nb_pts, matrice, state, 1, 0);
     }
 }
 
-void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], const Uint8 *state) {
+void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state) {
     int sens = 0; 
     if (dino->deplacement->wait == 0 && !dino->deplacement->sautBooleen) {
         if (state[SDL_SCANCODE_UP]) {
@@ -186,7 +186,7 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
     }
 }
 
-void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[MAT_H][MAT_L], t_joueur * equipe1, t_joueur * equipe2) {
+void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur * equipe1, t_joueur * equipe2) {
     const Uint8 *state = SDL_GetKeyboardState(NULL);
     
     // 1. On garde précieusement le sens AVANT que les fonctions ne le modifient

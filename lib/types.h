@@ -25,11 +25,23 @@
 
 #define HAUTEUR_TERRAIN 700
 
+/**
+ * @def HAUTEUR_HIP
+ * @brief Hauteur du menu inventaire et points de vie.
+*/
+
 #define HAUTEUR_HIP 100
+
+/**
+ * @def HAUTEUR_TERRAIN
+ * @brief Hauteur de l'affichage complet du jeu.
+*/
 #define HAUTEUR_FEN_JEU_HIP (HAUTEUR_HIP + HAUTEUR_TERRAIN)
 
-#define MAT_H 700  
-#define MAT_L 1300
+/**
+ * @def TIMER
+ * @brief Constante d'initialisation du temps.
+*/
 
 #define TIMER 4000
 
@@ -153,7 +165,8 @@ typedef struct {
     t_coordonnee pos;           /**< Position actuelle */
     int id_nuage;               /**< Numéro du nuage */
     int indice_nuage;           /**< Position dans le nuage */
-    int largeur, hauteur;       /**< Dimensions du dinosaure */
+    int largeur;                /**< Largeur du dinosaure */
+    int hauteur;                /**< Hauteur du dinosaure */
     int etat;                   /**< Vivant ou Mort */
     int pv;                     /**< Points de vie restant */
     int memoire[30][30];        /**< Permet de mémoriser Ce qu'il y avait dans la matrice avant le dino */

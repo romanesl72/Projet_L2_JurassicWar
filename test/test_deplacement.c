@@ -26,7 +26,7 @@ int main(int argc, char * argv[]){
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
     t_joueur equipe1, equipe2;
-    int matrice[MAT_H][MAT_L];
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts;
     t_catalogue_zones catalogue;
     t_tour gestionTours = {1, 1, D1, D6}; // Tour 1, Equipe 1, Dino D1

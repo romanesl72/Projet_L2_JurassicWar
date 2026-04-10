@@ -13,10 +13,12 @@ var types_8h =
     [ "t_arme", "structt__arme.html", "structt__arme" ],
     [ "t_tir", "structt__tir.html", "structt__tir" ],
     [ "element", "structelement.html", "structelement" ],
+    [ "HAUTEUR_HIP", "types_8h.html#ab49a5b8e283b424b1ce3c43067200709", null ],
     [ "HAUTEUR_TERRAIN", "types_8h.html#ab1ca77f80eef9f176701cff3bde3e273", null ],
     [ "LARGEUR_TERRAIN", "types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484", null ],
     [ "NOMBRE_DINOS", "types_8h.html#af9a65248c7f8fb2091303aeab63cb3f6", null ],
     [ "TAILLE_DINO", "types_8h.html#aba0120102bf94e4310bdbf1d41d5a971", null ],
+    [ "TIMER", "types_8h.html#a599217205dc3092c26567a2bd868ef3a", null ],
     [ "t_case", "types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3", [
       [ "EAU", "types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3a27888822e7489521a065a46d95fb4acc", null ],
       [ "AIR", "types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3a2b284adc15b412cbd260beb887f2df87", null ],
