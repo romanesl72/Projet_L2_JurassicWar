@@ -121,6 +121,14 @@ Les éléments techniques nécessaires à la mise en place du jeu sont détaill�
 
 \subsection{Positionnement et mobilité des dinosaures}
 
+Le placement initial des unités est une étape importante pour assurer la non redondance de JurassicWar. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
+\\\\
+Le terrain est divisé en deux zones : le premier tiers gauche pour l'équipe 1 et le dernier tiers droit pour l'équipe 2, chaque zone a à la fin 3 dinosaures. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Tout d’abord pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable de securite limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
+\\
+Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}} place trois dinosaures dans chaque équipe. Chaque dinosaure reçoit un identifiant unique qui sera injecté dans la matrice de jeu. Cette injection dans la matrice se fait via la fonction \textit{\mbox{remplir\_matrice\_dino}}. Cette étape est très importante car la matrice est ensuite tout le temps utilisée afin de jouer. Le dinosaure, qui est représenté par un carré de 30x30 pixels, remplace les valeurs de la matrice par l'ID du dinosaure mais avant d'écraser une case de la matrice, le dinosaure stocke la valeur précédente (terre ou air) dans son tableau memoire. Cette précaution est essentielle pour "restaurer" le décor lorsque le dinosaure se déplace ou meurt, évitant ainsi de laisser des trous vides dans le terrain.
+\\
+Enfin, l'affichage avec les fonctions \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}. Une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de 100 pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision (fondée sur les coordonnées réelles de la matrice) de la logique visuelle (adaptée à la fenêtre SDL)
+
 \newpage
 \subsection{Système d’actions et outils à disposition du joueur}
 Cette partie rend compte de la manière dont s'enchaînent les actions dans \textit{JurassicWar} à travers la mécanique des changements de tours mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grappin. 
@@ -169,6 +177,56 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 
 \newpage
 \subsubsection{Blesser un dinosaure : armes de tir}
+
+Après l’implémentation de la bombe, nous avons conçu un système d’armes à distance varié. L’objectif principal était de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisis.
+Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : Son nom, sa puissance de propulsion qui va déterminer la vitesse initiale du projectile. Un fusil aura une vélocité supérieure à celle d’une flèche. Sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Sa masse, un projectile lourd comme une flèche aura une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevé lors de l’impact.
+
+
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.6\textwidth]{img/TrajectoireTirs.png}
+        	\caption[exemple trajectoire de tirs]{Exemple de la trajectoire des quatres armes}
+	\label{fig:trajectoiresTirs}
+\end{figure}
+
+\textcolor{yellow}{arc}, \textcolor{red}{arbalète}, \textcolor{green}{fusil}, \textcolor{blue}{revolver}
+\\
+L’utilisation d’une arme de tir se décompose en trois phases gérer par la fonction \textit{\mbox{viserArcher}} :
+Tout d’abord le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (tir→velo.u et tir→ velo.v). Afin de maintenir un jeu réaliste ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin la fonction tracerTrajectoireTir permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les 30 prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque frame, elle applique l’effet de la gravité selon la formule :
+
+\begin{equation}
+\begin{aligned}
+vy(t+1) &= vy(t) + gravite * poids\_projectile\\
+\end{aligned}
+\label{eq:formuleMouvementArme}
+\end{equation}
+\\
+Le vol du projectile est soumis à pleins de vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain, \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et si le projectile touche la terre ou l’eau le projectile s’arrête. Enfin la fonction \textit{\mbox{collisionDino}}, le programme parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro  d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.6\textwidth]{img/affichage_collisions.png}
+        	\caption[affichage de collisions]{Résultats suite à une collision}
+	\label{fig:collisions}
+\end{figure}\\
+Lorsqu’une collision avec un dinosaure adverse a lieu, la fonction \textit{\mbox{appliquerDegats}} intervient. Cette fonction récupère le pointeur sur la structure du dinosaure touché pour mettre à jour ses points de vie. Si les PV tombent à zéro, le dinosaure meurt, sa texture est supprimée de l’affichage et ses coordonnées effacées de la matrice de jeu.
+\\
+En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à 20 points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe. 
+
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.6\textwidth]{img/img_pdv1.png}
+        	\caption[exemple de la fonction de soin]{Dinosaures blessés}
+	\label{fig:potion_soin_avant}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.6\textwidth]{img/img_pdv2.png}
+        	\caption[exemple de la fonction de soin]{Résultats suite à un soin}
+	\label{fig:potion_soin_après}
+\end{figure}
+
+
 \subsubsection{Autre méthode de déplacement : grappin}
 \newpage
 
@@ -204,6 +262,34 @@ Disponible à : \url{https://github.com/romanesl72/Projet_L2_JurassicWar}, 2026.
 
 \section{Annexes}
 \subsection{Jeux de tests}
+
+Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont été effectués. Pour chaque fonction vérifiée, les cas de tests valides ou invalides sont énumérés dans des tableaux.
+\\\\
+\textbf{Cas de test de la fonction mettreAjourVol dans le fichier ... }(table ~\ref{tab_cas_valides_mettreAJourVol} et table ~\ref{tab_cas_invalides_mettreAJourVol}).
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|r|} \hline
+        Cas de tests valides & Données & Résultats attendus\\ \hline
+        Unix & Toutes & 32\% \\
+        Linux & Toutes & 26\% \\
+        Windows NT & Intel & 23\% \\ \hline
+        \end{tabular}
+        \caption{Ceci est un tableau représentant les cas de tests valides sur la fonction.}
+    \label{tab_cas_valides_mettreAJourVol}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|r|} \hline
+        Cas de tests Invalides & Données & Résultats attendus\\ \hline
+        Unix & Toutes & 32\% \\
+        Linux & Toutes & 26\% \\
+        Windows NT & Intel & 23\% \\ \hline
+        \end{tabular}
+        \caption{Ceci est un tableau représentant les cas de tests invalides sur la fonction.}
+    \label{tab_cas_invalides_mettreAJourVol}
+\end{table}
+
 \subsection{Traces de débogage}
 \subsubsection{Correction du système de collisions de la bombe}
 
