@@ -290,6 +290,25 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
     \label{tab_cas_invalides_mettreAJourVol}
 \end{table}
 
+\textbf{Cas de test de la fonction recupererDinoNumero dans le fichier testFonctionsStructJoueur.c}\\
+(table ~\ref{tab_cas_valides_recupererDinoNumero} et table ~\ref{tab_cas_invalides_recupererDinoNumero}).
+\begin{table}[h]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|c|r|} \hline
+        Cas de tests valides & Données & Résultats attendus\\ \hline
+        Dinosaure trouvé dans l’équipe 1 & (equipe1, equipe2, D2) & pointeur sur le dinosaure D2 \\
+        Dinosaure trouvé dans l’équipe 2 & (equipe1, equipe2, D4) & pointeur sur le dinosaure D4 \\
+        Dinosaure présent dans les deux équipes & (equipe1, equipe2, D2) & pointeur sur le dinosaure D2 de l'équipe 1\\
+        Dinosaure absent deux équipes & (equipe1, equipe2, D2) & NULL\\
+        \hline
+        \end{tabular}
+        }
+        \caption{Tableau des cas de tests valides de la fonction recupererDinoNumero}
+    \label{tab_cas_valides_recupererDinoNumero}
+\end{table}
+
+\newpage
 \subsection{Traces de débogage}
 \subsubsection{Correction du système de collisions de la bombe}
 
