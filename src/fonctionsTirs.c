@@ -73,18 +73,22 @@ int mettreAJourVol(t_tir *tir, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], fl
 
     /* Détection pour arrêter le vol par ordre de priorité*/
     if(collisionFrontiere(tir)){
+        /*printf("Collision avec une limite du jeu\n");*/
         tir->actif = 0;
         return -2;
     }
     if(resDino >= D1 && resDino != id_tireur){
+        /*printf("Collision avec le dino %d \n", resDino);*/
         tir->actif = 0;
         return resDino;
     }
     if(collisionTerrain(matrice, tir)){
+        /*printf("Collision avec une la terre !\n");*/
         tir->actif = 0;
         return TERRE;
     }
     if(collisionEau(matrice, tir)){
+        /*printf("Collision avec une l'eau !\n");*/
         tir->actif = 0;
         return EAU;
     }
