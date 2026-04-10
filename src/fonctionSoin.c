@@ -15,11 +15,11 @@ void utiliserPotion(t_dino *dino) {
     int soin;
 
     if (chance < 50) {
-        soin = 5;
-    } else if (chance < 80) {
         soin = 10;
-    } else {
+    } else if (chance < 80) {
         soin = 20;
+    } else {
+        soin = 37;
     }
 
     dino->pv += soin;
