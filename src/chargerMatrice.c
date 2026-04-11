@@ -57,3 +57,19 @@ void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_T
         }
     }
 }
+
+void afficher_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
+    /*permet de remetre à jour les anciennes zones comportant un dino*/
+    int i,j,px,py;
+    for(i = 0; i < 30; i++) {
+        for(j = 0; j < 30; j++) {
+            py = dino->pos.y + i;
+            px = dino->pos.x + j;
+            if (py >= 0 && py < HAUTEUR_TERRAIN && px >= 0 && px < LARGEUR_TERRAIN) {
+                printf("%d",matrice[dino->pos.y+i][dino->pos.x+j]);
+            }
+        }
+        printf("\n");
+    }
+    printf("\n\n\n");
+}
