@@ -6,6 +6,8 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/tda_nuage.h"
 #include "../lib/types.h"
+
+#include <stdio.h>
 #include <time.h>
 
 /** 
@@ -24,8 +26,8 @@ int main(int argc, char * argv[]){
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts;
     int w, h;
-    int trouvés_E1 = 0;
-    int trouvés_E2 = 0;
+    int trouves_E1 = 0;
+    int trouves_E2 = 0;
     float graviteMonde = 0.5f;
     int collision = 0;
 
@@ -59,12 +61,12 @@ int main(int argc, char * argv[]){
 
         /* Récupérer les zones via le nuage de points */
         nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+        generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
 
         nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+        generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
-        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouvés_E1, trouvés_E2);        
+        printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);        
 
         /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
         equipe1.n = 3;
