@@ -10,6 +10,8 @@
 #include "../lib/fonctionsPlacementBombe.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionSoin.h"
+
+#include <stdio.h>
 #include <time.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -42,7 +44,7 @@ int main(int argc, char * argv[]){
     /* ---- Initialisation de la Map ---- */
     
     int nb_pts, w, h;
-    int trouvés_E1 = 0, trouvés_E2 = 0;
+    int trouves_E1 = 0, trouves_E2 = 0;
     float graviteMonde = 0.5f;
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_coordonnee *nuages_stockes[3];
@@ -51,9 +53,9 @@ int main(int argc, char * argv[]){
 
     chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
     nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-    generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+    generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
     nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-    generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+    generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
     /* ---- Initialisation des Joueurs et des Equipes ---- */
     t_joueur equipe1, equipe2;

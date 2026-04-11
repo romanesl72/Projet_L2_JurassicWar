@@ -43,12 +43,14 @@ int main(int argc, char * argv[]){
         "../img/img_potion.png", 
         "../img/img_grappin.png"
     };
+    t_texte_cache cache[6];
     t_coordonnee *nuage = NULL;
     t_dino *dinoActuel = NULL;
     SDL_Texture *texMap = NULL;
     SDL_Texture *texObjets[7] = {NULL};
 
     creerPageJeu(&fenetre, &rendu, &texMap, texObjets, &police);
+    chargerTexteDinos(rendu, police, cache);
     chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
     
     initialiserEquipes(&equipe1, &equipe2, &catalogue, matrice, rendu);
@@ -120,9 +122,7 @@ int main(int argc, char * argv[]){
     }
 
     /* ---- 5. Nettoyage ---- */
-    nuageDetruire(&nuage);
-    nuage=NULL;
-    destruireElementsJeu(&equipe1, &equipe2, matrice, texMap, texObjets, police, rendu, fenetre);
+    destruireElementsJeu(&equipe1, &equipe2, matrice, texMap, texObjets, police, rendu, fenetre, nuage, cache);
 
     TTF_Quit();
     IMG_Quit();

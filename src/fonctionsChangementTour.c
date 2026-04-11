@@ -10,17 +10,6 @@
  * @version 2.3
  */
 
-/** 
- * @fn int finPartie(t_joueur *equipe1, t_joueur *equipe2);
- * @brief La fonction détermine si la partie est terminée.
- * @author Hannah Sergent
- * @date Crée le 23/03/2026
- * @version 1.0
- * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
- * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
- * @return 1 si la partie est terminée et 0 sinon
- */
-
 int finPartie(t_joueur *equipe1, t_joueur *equipe2){
     return ((equipe1->n == 0) || (equipe2->n == 0));
 }

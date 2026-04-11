@@ -6,8 +6,9 @@
 #include "../lib/gestion_zones.h"
 #include "../lib/fonctionsMenuHIP.h"
 #include "../lib/fonctionsStructJoueur.h"
-#include <time.h>
 
+#include <stdio.h>
+#include <time.h>
 #include <SDL2/SDL_ttf.h>
 
 /** 
@@ -35,7 +36,7 @@ int main(int argc, char * argv[]){
     /* ---- 2. Chargement de la Map et Placement ---- */
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts, w, h;
-    int trouvés_E1 = 0, trouvés_E2 = 0;
+    int trouves_E1 = 0, trouves_E2 = 0;
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
 
@@ -43,9 +44,9 @@ int main(int argc, char * argv[]){
     
     // Récupération des zones pour le placement (Placement Réel)
     nuages_stockes[1] = nuage_de_points(&nb_pts, "../img/test1_c.jpg");
-    generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 1);
+    generer_catalogue_depuis_nuage(nuages_stockes[1], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 1);
     nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
-    generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouvés_E1, &trouvés_E2, 2);
+    generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
     t_joueur equipe1, equipe2;
     equipe1.n = 3; equipe2.n = 3;

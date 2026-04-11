@@ -27,17 +27,6 @@ void initialiserBoutonRetour(SDL_Rect *boutonRetour){
     boutonRetour->y = 580;
 }
 
-/**
- * @fn int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char * titreFen);
- * @brief La fonction crée une fenêtre qui contient des informations pour l'utilisateur.
- * @author Hannah Sergent
- * @date Crée le 01/04/2026
- * @version 1.0
- * @param fenInfos un pointeur de pointeur sur la fenêtre du menu principal
- * @param zoneInfos un pointeur de pointeur sur la zone dans laquelle les informations seront affichées
- * @param titreFen le titre à afficher en haut de la fenêtre
- */
-
 int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFen){
 
     creerFenetre(fenInfos, titreFen, LARGEUR_FEN_MENU, HAUTEUR_FEN_MENU);
@@ -122,6 +111,8 @@ char* lireInfosFichier(char *nomFichier){
 
     if (!texteInfos){
         printf("L'allocation de mémoire pour lire le fichier a échoué. \n");
+        fclose(fichier);
+        return NULL;
     }
 
     rewind(fichier);
@@ -164,7 +155,7 @@ void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nom
     char *texteInfos = lireInfosFichier(nomFichier);
 
     if (texteInfos == NULL){
-        printf("Vrai ! \n");
+        printf("Erreur lors de la lecture du fichier. \n");
     }
 
     /* Couleur du fond gris foncé */
@@ -188,7 +179,7 @@ void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nom
 
     SDL_GetMouseState(&xSouris, &ySouris);
 
-    /* Tracer les 4 boutons */
+    /* Tracer le bouton retour */
 
     surBouton = (xSouris >= boutonRetour->x) && (xSouris <= boutonRetour->x + boutonRetour->w) && (ySouris >= boutonRetour->y) && (ySouris <= boutonRetour->y + boutonRetour->h);
 
@@ -205,16 +196,6 @@ void afficherFenInfos(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nom
     SDL_RenderPresent(zoneInfos);
 
 }
-
-/**
- * @fn void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos);
- * @brief La fonction détruit une fenêtre d'information sur le jeu.
- * @author Hannah Sergent
- * @date Crée le 01/04/2026
- * @version 1.0
- * @param fenInfos un pointeur de pointeur sur la fenêtre du menu
- * @param zoneMenu un pointeur de pointeur sur la zone d'affichage d'informations
- */
 
 void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos){
 

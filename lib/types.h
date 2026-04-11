@@ -304,5 +304,18 @@ typedef struct element{
 	struct element* suivant;  /**< élément suivant de la file */
 } t_element_file;
 
+/**
+ * @struct t_texte_cache
+ * @brief Structure qui charge le texte à afficher pour la barre des pv.
+ * @author Hannah Sergent
+ * @date Crée le 06/04/2026
+ * @version 1.0
+ */
+
+typedef struct {
+    SDL_Texture *tex; /**< Tableau contenant les textures de texte */
+    int largeurTex; /**< Largeur de la texture de texte */
+    int hauteurTex; /**< Hauteur de la texture de texte */
+} t_texte_cache;
 
 #endif

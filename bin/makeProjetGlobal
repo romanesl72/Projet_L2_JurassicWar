@@ -1,4 +1,4 @@
-# Non encore achevé
+# Hannah Sergent
 
 FLAGS_COMPILATION = -Wall `sdl2-config --cflags`
 FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
@@ -14,122 +14,79 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 EXECUTABLES = \
 ./main \
+./test_archer \
+./test_deplacement \
+./testAffichageDinosMap \
+./testAffichageMenuHIP \
 ./testBombeDinosTours \
 ./testBombeDinosToursV2 \
+./testCollisions \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
+./testFonctionsPageFinPartie \
 ./testFonctionsPagesInformations \
 ./testFonctionsRebonds \
+./testFonctionsStructJoueur \
 ./testFonctionsTuerDinos \
 ./testFonctionsVerification \
-./main_test
+./testRegression \
+./testTirArmes \
+./testTirsAffichageJeu
 
-OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o \
-placer_dinos.o \
-gestion_zones.o \
-tda_nuage.o \
-fonctionsChangementTour.o \
-fonctionsMenuHIP.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsVerification.o \
-fonctionsTuerDinos.o \
-chargerMatrice.o
+# Fichiers objets rangés par thème
 
-OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o \
-chargerMatrice.o \
-placer_dinos.o \
-tda_nuage.o \
-gestion_zones.o \
-fonctionsStructJoueur.o \
-fonctionsVerification.o \
-fonctionsChangementTour.o \
-fonctionsPageJeu.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsTuerDinos.o
+OBJ_COM = chargerMatrice.o fonctionsStructJoueur.o gestion_zones.o placer_dinos.o tda_nuage.o
+OBJ_AFF = fonctionsPageFinPartie.o fonctionsPageJeu.o fonctionsPagesInformations.o fonctionsMenuHIP.o fonctionsMenuPrinc.o fonctionsVerification.o
+OBJ_ARMES = fonctionsTirs.o fonctionSoin.o
+OBJ_BOMBE = fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
+OBJ_DEP = deplacement.o regression.o
+OBJ_TOUR = fonctionsChangementTour.o
+OBJ_ALL = $(OBJ_COM) $(OBJ_AFF) $(OBJ_ARMES) $(OBJ_BOMBE) $(OBJ_DEP) $(OBJ_TOUR)
+
+
+OBJETS_MAIN = main.o $(OBJ_ALL)
+
+# Fichiers objets pour les tests
+
+OBJETS_ARCHER = test_archer.o $(OBJ_ALL)
+OBJETS_DEPLA = test_deplacement.o $(OBJ_ALL) fonctionsAffichage.o 
+OBJETS_AFF_DINOS = testAffichageDinosMap.o $(OBJ_ALL)
+OBJETS_AFFICHAGE_HIP = testAffichageMenuHIP.o $(OBJ_ALL)
+OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o $(OBJ_COM) $(OBJ_BOMBE) $(OBJ_TOUR) fonctionsMenuHIP.o fonctionsVerification.o
+OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o $(OBJ_ALL)
+OBJETS_COLLISIONS = testCollisions.o placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
 
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
-
-OBJETS_PAGES_INFOS = testFonctionsPagesInformations.o \
-chargerMatrice.o \
-fonctionsChangementTour.o \
-fonctionsMenuPrinc.o \
-fonctionsPageJeu.o \
-fonctionsPagesInformations.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsTuerDinos.o \
-fonctionsVerification.o \
-gestion_zones.o \
-placer_dinos.o \
-tda_nuage.o \
-
-OBJETS_MAIN = main.o \
-chargerMatrice.o \
-fonctionsChangementTour.o \
-fonctionsMenuHIP.o \
-fonctionsMenuPrinc.o \
-fonctionsPageJeu.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsTuerDinos.o \
-fonctionsVerification.o \
-gestion_zones.o \
-placer_dinos.o \
-tda_nuage.o \
-
-OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o \
-chargerMatrice.o \
-fonctionsChangementTour.o \
-fonctionsMenuPrinc.o \
-fonctionsPageJeu.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsTuerDinos.o \
-fonctionsVerification.o \
-gestion_zones.o \
-placer_dinos.o \
-tda_nuage.o \
-
-OBJETS_PLACEMENT_DINOS = main_test.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
-
-OBJETS_REBONDS = testFonctionsRebonds.o \
-placer_dinos.o  \
-fonctionsMenuHIP.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsVerification.o \
-chargerMatrice.o
-
-OBJETS_TUER_DINOS = testFonctionsTuerDinos.o \
-placer_dinos.o \
-gestion_zones.o \
-tda_nuage.o \
-fonctionsMenuHIP.o \
-fonctionsPlacementBombe.o \
-fonctionsRebonds.o \
-fonctionsStructJoueur.o \
-fonctionsVerification.o \
-fonctionsTuerDinos.o \
-chargerMatrice.o
-
+OBJETS_PAGE_FIN_PARTIE = testFonctionsPageFinPartie.o $(OBJ_ALL)
+OBJETS_PAGES_INFOS = testFonctionsPagesInformations.o $(OBJ_ALL)
+OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o $(OBJ_ALL)
+OBJETS_REBONDS = testFonctionsRebonds.o $(OBJ_COM) $(OBJ_BOMBE) fonctionsMenuHIP.o fonctionsVerification.o
+OBJETS_TUER_DINOS = testFonctionsTuerDinos.o $(OBJ_COM) $(OBJ_BOMBE) fonctionsMenuHIP.o fonctionsVerification.o
+OBJETS_STRUCT_JOUEUR = testFonctionsStructJoueur.o chargerMatrice.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
-
+OBJETS_REGRESSION = testRegression.o tda_nuage.o regression.o
+OBJETS_TIR = testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o fonctionsMenuHIP.o fonctionsStructJoueur.o
+OBJETS_TIRSAFFICHAGE = testTirsAffichageJeu.o $(OBJ_ALL)
 
 all: $(EXECUTABLES)
 
-# faire une ligne par exécutable
+# Programme principal
 
 ./main: $(OBJETS_MAIN)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./main_test: $(OBJETS_PLACEMENT_DINOS)
+# Fichiers Tests
+
+./test_archer: $(OBJETS_ARCHER)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./test_deplacement: $(OBJETS_DEPLA)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testAffichageDinosMap: $(OBJETS_AFF_DINOS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testAffichageMenuHIP: $(OBJETS_AFFICHAGE_HIP)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testBombeDinosTours: $(OBJETS_BOMBE_DINOS_TOURS)
@@ -138,10 +95,16 @@ all: $(EXECUTABLES)
 ./testBombeDinosToursV2: $(OBJETS_BOMBE_DINOS_TOURS_V2)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testCollisions: $(OBJETS_COLLISIONS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsMenuPrinc: $(OBJETS_MENU_PRINC)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsPageFinPartie: $(OBJETS_PAGE_FIN_PARTIE)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsPagesInformations: $(OBJETS_PAGES_INFOS)
@@ -150,10 +113,22 @@ all: $(EXECUTABLES)
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testFonctionsStructJoueur: $(OBJETS_STRUCT_JOUEUR)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsVerification: $(OBJETS_VERIFICATION)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testRegression: $(OBJETS_REGRESSION)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testTirArmes: $(OBJETS_TIR)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testTirsAffichageJeu: $(OBJETS_TIRSAFFICHAGE)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 # Compilation

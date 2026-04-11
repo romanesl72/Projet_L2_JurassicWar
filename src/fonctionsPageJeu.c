@@ -2,7 +2,7 @@
 #include "../lib/deplacement.h"
 #include "../lib/fonctionsChangementTour.h"
 #include "../lib/fonctionsMenuHIP.h"
-#include "../lib/fonctionSoin.h"
+#include "../lib/fonctionsPageFinPartie.h"
 #include "../lib/fonctionsPageJeu.h"
 #include "../lib/fonctionsRebonds.h"
 #include "../lib/fonctionSoin.h"
@@ -333,10 +333,10 @@ void destruireElementsJeuBombe(t_joueur *equipe1, t_joueur *equipe2, t_case matr
     SDL_DestroyWindow(fenJeu);
 }
 
-/* Détruire les éléments que tu initialises pour tes armes */
-void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu){
+void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu, t_coordonnee *nuage, t_texte_cache *cache){
     int i;
 
+    nuageDetruire(&nuage);
     detruireContenuJoueur(equipe1);
     detruireContenuJoueur(equipe2);
  
@@ -348,6 +348,10 @@ void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTe
         if(texObjets[i]) {
             SDL_DestroyTexture(texObjets[i]);
         }
+    }
+
+    for (i = 0; i < 6; i++) {
+        SDL_DestroyTexture(cache[i].tex);
     }
 
     SDL_DestroyTexture(texMap);
@@ -662,9 +666,10 @@ void lancerPartie(){
             nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
             // On synchronise sa position
             dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+            dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
         }
                 
-        while(enCours) {
+        while(enCours && (!finPartie(&equipe1,&equipe2))) {
 
             action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, &bombeLancee, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
 
@@ -695,6 +700,7 @@ void lancerPartie(){
                         nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
                         timer = TIMER;
                         dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                        dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
                     }
                 }
             }
@@ -708,22 +714,21 @@ void lancerPartie(){
                     nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
                     timer = TIMER;
                     dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                    dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
                 }
             }
             else if (action == 3) {
-                /*printf("Potion utilisee. Changement de tour.\n");*/
                 // On rafraîchit l'affichage pour voir les nouveaux PV
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
                 SDL_Delay(200);
                 tourSuivant(&gestionTours, &equipe1, &equipe2);
-                /*printf("  Dino n°%d\n", dinoActuel->d);*/
                 dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
-                /*printf("  Dino n°%d\n", dinoActuel->d);*/
                 nuageDetruire(&nuage); 
                 if (dinoActuel != NULL) {
                     nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
                     timer = TIMER;
                     dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                    dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
                 }
             
             }
@@ -731,21 +736,16 @@ void lancerPartie(){
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
             }
             else {
-                
-                effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, 
-                                    zoneAffichage, texMap, texObjets, policeMenuHIP, cache, 
-                                    &dinoActuel, &timer, nomNuage, &nb_pts, &nuage);
+                effectuerDeplacement(&equipe1, &equipe2, &gestionTours, matriceTerrain, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache, &dinoActuel, &timer, nomNuage, &nb_pts, &nuage);
             }
         }
 
-        // --- NETTOYAGE --- 
+        destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, texObjets, policeMenuHIP, zoneAffichage, fenJeu, nuage, cache);
 
-        for (int i = 0; i < 6; i++) {
-            SDL_DestroyTexture(cache[i].tex);
+        if (finPartie(&equipe1, &equipe2)){
+            ouvrirFenFinPartie(&gestionTours);
         }
-        nuageDetruire(&nuage);
-        nuage=NULL;
-        destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, texObjets, policeMenuHIP, zoneAffichage, fenJeu);
+
         IMG_Quit();
         TTF_Quit();
         SDL_Quit();

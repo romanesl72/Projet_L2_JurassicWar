@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../lib/types.h"
 #include "../lib/tda_nuage.h"
 #include "../lib/regression.h"
 
@@ -12,7 +11,7 @@
  */
 
 
-int main() {
+int main(int argc, char * argv[]) {
     // code à modifier si le nombre d'image est différent de 2
     //pour compiler dans bin: gcc -Wall ../src/creation_nuage.c -Ilib -o nuage -lSDL2 -lm
     int n1,n2;
