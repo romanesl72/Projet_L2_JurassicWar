@@ -61,7 +61,8 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
 
 /** 
  * @fn void detecterEvenementsPageJeuBombe(int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
- * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre (appuyer sur une touche ou encore cliquer sur la croix pour fermer).
+ * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu 
+ * ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer).
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
  * @version 1.0
@@ -92,7 +93,7 @@ void detecterEvenementsPageJeuBombe(int *enCours, int *bombeLancee, int *nombreR
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
  * @param zoneAffichage un pointeur sur la zone d'affichage
- * @param texMap un pointeur sur un pointeur sur la texture de la map
+ * @param texMap un pointeur sur la texture de la map
  */
 
 void afficherJeuSansBombe(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);
@@ -122,7 +123,7 @@ void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe * bombe,
  * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param matriceTerrain la matrice contenant les informations sur le terrain
- * @param texMap un pointeur sur un pointeur sur la texture de la map
+ * @param texMap un pointeur sur la texture de la map
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param fenJeu un pointeur sur la fenêtre du jeu
  */
@@ -138,7 +139,7 @@ void destruireElementsJeuBombe(t_joueur *equipe1, t_joueur *equipe2, t_case matr
  * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param matriceTerrain la matrice contenant les informations sur le terrain
- * @param texMap un pointeur sur un pointeur sur la texture de la map
+ * @param texMap un pointeur sur la texture de la map
  * @param texObjets le tableau des textures affichées dans l'inventaire
  * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
  * @param zoneAffichage un pointeur sur la zone d'affichage
@@ -163,7 +164,7 @@ void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTe
  * @param gestionTours un pointeur sur une structure utilisée pour le changement de tour
  * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
  * @param zoneAffichage un pointeur sur la zone d'affichage
- * @param texMap un pointeur sur un pointeur sur la texture de la map
+ * @param texMap un pointeur sur la texture de la map
  */
 
 void lancerBombeSansHIP(Uint32 *tempsPrecedent, int *bombeLancee, int *nombreRebonds, t_bombe *bombe, t_vect *vectVitesse, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);

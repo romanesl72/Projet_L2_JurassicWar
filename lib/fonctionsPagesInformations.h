@@ -45,7 +45,7 @@ int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFe
  * @date Crée le 01/04/2026
  * @version 1.0
  * @param fenInfos un pointeur de pointeur sur la fenêtre du menu
- * @param zoneMenu un pointeur de pointeur sur la zone d'affichage d'informations
+ * @param zoneInfos un pointeur de pointeur sur la zone d'affichage d'informations
  */
 
 void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos);

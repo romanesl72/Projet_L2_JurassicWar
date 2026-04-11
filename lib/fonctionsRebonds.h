@@ -76,7 +76,7 @@
  * @version 1.0
  * @param bombe un pointeur sur une structure de type bombe non initialisée
  * @param coorChoisieX coordonnée x de la bombe
- * @param coorChoisieX coordonnée y de la bombe
+ * @param coorChoisieY coordonnée y de la bombe
  * @param rayon le rayon de la bombe
  */
 

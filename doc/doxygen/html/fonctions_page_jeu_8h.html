@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar6/lib/fonctionsPageJeu.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctions_page_jeu_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier fonctionsPageJeu.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Définitions des fonctions liées à la page du jeu.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">../lib/types.h</a>&quot;</code><br />
+<code>#include &lt;SDL2/SDL_ttf.h&gt;</code><br />
+</div>
+<p><a href="fonctions_page_jeu_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a955d46bf57e99198c7e86f1b137418de" id="r_a955d46bf57e99198c7e86f1b137418de"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a955d46bf57e99198c7e86f1b137418de">creerPageJeuBombe</a> (SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap)</td></tr>
+<tr class="memdesc:a955d46bf57e99198c7e86f1b137418de"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction crée la fenêtre du jeu pour la version de JurassicWar ne contenant que la fonctionnalité bombe.  <br /></td></tr>
+<tr class="memitem:a687fea2c4851620f5b69d392d58db4ca" id="r_a687fea2c4851620f5b69d392d58db4ca"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a687fea2c4851620f5b69d392d58db4ca">creerPageJeu</a> (SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture **texMap, SDL_Texture **texObjets, TTF_Font **policeMenuHIP)</td></tr>
+<tr class="memdesc:a687fea2c4851620f5b69d392d58db4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction crée la fenêtre du jeu pour la version complète du jeu.  <br /></td></tr>
+<tr class="memitem:ac7ec6f6d4df991cb57cafe2289a64c0a" id="r_ac7ec6f6d4df991cb57cafe2289a64c0a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac7ec6f6d4df991cb57cafe2289a64c0a">initialiserEquipes</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Renderer *zoneAffichage)</td></tr>
+<tr class="memdesc:ac7ec6f6d4df991cb57cafe2289a64c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise les deux équipes, c'est à dire les dinosaures de chaque joueur ainsi que leur placement sur le terrain.  <br /></td></tr>
+<tr class="memitem:aa6e74ff691c65228ae83141484d0f8af" id="r_aa6e74ff691c65228ae83141484d0f8af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa6e74ff691c65228ae83141484d0f8af">detecterEvenementsPageJeuBombe</a> (int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> dinoCourant, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memdesc:aa6e74ff691c65228ae83141484d0f8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer).  <br /></td></tr>
+<tr class="memitem:a7adaee70a8e8f0c5ca1cd82b939f9259" id="r_a7adaee70a8e8f0c5ca1cd82b939f9259"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7adaee70a8e8f0c5ca1cd82b939f9259">afficherJeuSansBombe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</td></tr>
+<tr class="memdesc:a7adaee70a8e8f0c5ca1cd82b939f9259"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche l'image du terrain et les dinosaures.  <br /></td></tr>
+<tr class="memitem:a784306462efa51ab89173cba57c22f77" id="r_a784306462efa51ab89173cba57c22f77"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a784306462efa51ab89173cba57c22f77">afficherJeuAvecBombe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</td></tr>
+<tr class="memdesc:a784306462efa51ab89173cba57c22f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche l'image du terrain, les dinosaures et la bombe.  <br /></td></tr>
+<tr class="memitem:a6794eb01b4c8baa220515828111c7d54" id="r_a6794eb01b4c8baa220515828111c7d54"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6794eb01b4c8baa220515828111c7d54">destruireElementsJeuBombe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Texture *texMap, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu)</td></tr>
+<tr class="memdesc:a6794eb01b4c8baa220515828111c7d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit les différents objets mis en place pour la version du jeu ne contenant que la fonctionnalité bombe.  <br /></td></tr>
+<tr class="memitem:ad7359570b99a8aba17a1f793f287364c" id="r_ad7359570b99a8aba17a1f793f287364c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad7359570b99a8aba17a1f793f287364c">destruireElementsJeu</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> *nuage, <a class="el" href="structt__texte__cache.html">t_texte_cache</a> *cache)</td></tr>
+<tr class="memdesc:ad7359570b99a8aba17a1f793f287364c"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit les différents objets mis en place pour le jeu.  <br /></td></tr>
+<tr class="memitem:a96f69ed2a9be8a07f4b691b800510e57" id="r_a96f69ed2a9be8a07f4b691b800510e57"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a96f69ed2a9be8a07f4b691b800510e57">lancerBombeSansHIP</a> (Uint32 *tempsPrecedent, int *bombeLancee, int *nombreRebonds, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="structt__tour.html">t_tour</a> *gestionTours, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</td></tr>
+<tr class="memdesc:a96f69ed2a9be8a07f4b691b800510e57"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction lance la bombe en appelant toutes les fonctions liées à celle-ci.  <br /></td></tr>
+<tr class="memitem:a829ce6b3f0f577fdb1cdd98a5a187cc8" id="r_a829ce6b3f0f577fdb1cdd98a5a187cc8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a829ce6b3f0f577fdb1cdd98a5a187cc8">lancerPartieBombe</a> ()</td></tr>
+<tr class="memdesc:a829ce6b3f0f577fdb1cdd98a5a187cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction lance une partie ne contenant que la fonctionnalité bombe.  <br /></td></tr>
+<tr class="memitem:af6b1c4244851dbcd28a299ad9acf67de" id="r_af6b1c4244851dbcd28a299ad9acf67de"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af6b1c4244851dbcd28a299ad9acf67de">lancerPartie</a> ()</td></tr>
+<tr class="memdesc:af6b1c4244851dbcd28a299ad9acf67de"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction lance une partie.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Définitions des fonctions liées à la page du jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent Romane Saint-Léger Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a784306462efa51ab89173cba57c22f77" name="a784306462efa51ab89173cba57c22f77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a784306462efa51ab89173cba57c22f77">&#9670;&#160;</a></span>afficherJeuAvecBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherJeuAvecBombe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rectFen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche l'image du terrain, les dinosaures et la bombe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">rectFen</td><td>un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur un pointeur sur la texture de la map </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7adaee70a8e8f0c5ca1cd82b939f9259" name="a7adaee70a8e8f0c5ca1cd82b939f9259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7adaee70a8e8f0c5ca1cd82b939f9259">&#9670;&#160;</a></span>afficherJeuSansBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherJeuSansBombe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rectFen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche l'image du terrain et les dinosaures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">rectFen</td><td>un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a687fea2c4851620f5b69d392d58db4ca" name="a687fea2c4851620f5b69d392d58db4ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a687fea2c4851620f5b69d392d58db4ca">&#9670;&#160;</a></span>creerPageJeu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int creerPageJeu </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>fenJeu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font **</td>          <td class="paramname"><span class="paramname"><em>policeMenuHIP</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction crée la fenêtre du jeu pour la version complète du jeu. </p>
+<p>Cette fonction initialise également la zone d'affichage et les images de la map et de l'inventaire. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fenJeu</td><td>un pointeur sur un pointeur de la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur un pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">texObjets</td><td>un tableau des textures de l'inventaire </td></tr>
+    <tr><td class="paramname">policeMenuHIP</td><td>un pointeur sur la police utilisée dans le menu HIP </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si les initialisations se sont correctement déroulées et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="a955d46bf57e99198c7e86f1b137418de" name="a955d46bf57e99198c7e86f1b137418de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955d46bf57e99198c7e86f1b137418de">&#9670;&#160;</a></span>creerPageJeuBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int creerPageJeuBombe </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>fenJeu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction crée la fenêtre du jeu pour la version de JurassicWar ne contenant que la fonctionnalité bombe. </p>
+<p>Cette fonction initialise également la zone d'affichage et l'image de la map. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fenJeu</td><td>un pointeur sur un pointeur de la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur un pointeur sur la texture de la map </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si les initialisations se sont correctement déroulées et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="ad7359570b99a8aba17a1f793f287364c" name="ad7359570b99a8aba17a1f793f287364c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7359570b99a8aba17a1f793f287364c">&#9670;&#160;</a></span>destruireElementsJeu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void destruireElementsJeu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>policeMenuHIP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Window *</td>          <td class="paramname"><span class="paramname"><em>fenJeu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>nuage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__texte__cache.html">t_texte_cache</a> *</td>          <td class="paramname"><span class="paramname"><em>cache</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détruit les différents objets mis en place pour le jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">texObjets</td><td>le tableau des textures affichées dans l'inventaire </td></tr>
+    <tr><td class="paramname">policeMenuHIP</td><td>un pointeur sur la police utilisée dans le menu HIP </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">fenJeu</td><td>un pointeur sur la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">nuage</td><td>un pointeur sur les coordonnées d'un nuage </td></tr>
+    <tr><td class="paramname">cache</td><td>un pointeur sur une structure contenant le texte à afficher pour le menu HIP </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6794eb01b4c8baa220515828111c7d54" name="a6794eb01b4c8baa220515828111c7d54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6794eb01b4c8baa220515828111c7d54">&#9670;&#160;</a></span>destruireElementsJeuBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void destruireElementsJeuBombe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Window *</td>          <td class="paramname"><span class="paramname"><em>fenJeu</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détruit les différents objets mis en place pour la version du jeu ne contenant que la fonctionnalité bombe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">fenJeu</td><td>un pointeur sur la fenêtre du jeu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa6e74ff691c65228ae83141484d0f8af" name="aa6e74ff691c65228ae83141484d0f8af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e74ff691c65228ae83141484d0f8af">&#9670;&#160;</a></span>detecterEvenementsPageJeuBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void detecterEvenementsPageJeuBombe </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>enCours</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>bombeLancee</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>nombreRebonds</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rectFen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>dinoCourant</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer). </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enCours</td><td>un pointeur qui indique si la fenetre doit rester ouverte </td></tr>
+    <tr><td class="paramname">bombeLancee</td><td>un pointeur qui indique si la bombe doit être lancée </td></tr>
+    <tr><td class="paramname">nombreRebonds</td><td>un pointeur sur le nombre de rebonds de la bombe </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">rectFen</td><td>un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">dinoCourant</td><td>l'identifiant du dinosaure dont c'est le tour de jouer </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7ec6f6d4df991cb57cafe2289a64c0a" name="ac7ec6f6d4df991cb57cafe2289a64c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7ec6f6d4df991cb57cafe2289a64c0a">&#9670;&#160;</a></span>initialiserEquipes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserEquipes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a> *</td>          <td class="paramname"><span class="paramname"><em>catalogue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise les deux équipes, c'est à dire les dinosaures de chaque joueur ainsi que leur placement sur le terrain. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">catalogue</td><td>une structure qui contient les zones de spawn </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a96f69ed2a9be8a07f4b691b800510e57" name="a96f69ed2a9be8a07f4b691b800510e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f69ed2a9be8a07f4b691b800510e57">&#9670;&#160;</a></span>lancerBombeSansHIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lancerBombeSansHIP </td>
+          <td>(</td>
+          <td class="paramtype">Uint32 *</td>          <td class="paramname"><span class="paramname"><em>tempsPrecedent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>bombeLancee</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>nombreRebonds</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__bombe.html">t_bombe</a> *</td>          <td class="paramname"><span class="paramname"><em>bombe</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__vect.html">t_vect</a> *</td>          <td class="paramname"><span class="paramname"><em>vectVitesse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>matriceTerrain</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tour.html">t_tour</a> *</td>          <td class="paramname"><span class="paramname"><em>gestionTours</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rectFen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction lance la bombe en appelant toutes les fonctions liées à celle-ci. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tempsPrecedent</td><td>un pointeur sur le temps précédent </td></tr>
+    <tr><td class="paramname">bombeLancee</td><td>un pointeur sur une variable indiquant si la bombe est lancée </td></tr>
+    <tr><td class="paramname">nombreRebonds</td><td>un pointeur sur le nombre de rebonds effectués par la bombe </td></tr>
+    <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
+    <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">matriceTerrain</td><td>la matrice contenant les informations sur le terrain </td></tr>
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">gestionTours</td><td>un pointeur sur une structure utilisée pour le changement de tour </td></tr>
+    <tr><td class="paramname">rectFen</td><td>un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu </td></tr>
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6b1c4244851dbcd28a299ad9acf67de" name="af6b1c4244851dbcd28a299ad9acf67de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b1c4244851dbcd28a299ad9acf67de">&#9670;&#160;</a></span>lancerPartie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lancerPartie </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction lance une partie. </p>
+<p>Elle ouvre une nouvelle fenêtre et appelle successivement toutes les fonctions du jeu. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent Romane Saint-Léger Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>4.5 </dd></dl>
+
+</div>
+</div>
+<a id="a829ce6b3f0f577fdb1cdd98a5a187cc8" name="a829ce6b3f0f577fdb1cdd98a5a187cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a829ce6b3f0f577fdb1cdd98a5a187cc8">&#9670;&#160;</a></span>lancerPartieBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lancerPartieBombe </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction lance une partie ne contenant que la fonctionnalité bombe. </p>
+<p>Elle ouvre une nouvelle fenêtre et appelle successivement toutes les fonctions du jeu liées à la bombe. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="fonctions_page_jeu_8h.html">fonctionsPageJeu.h</a></li>
+    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

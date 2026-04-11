@@ -19,7 +19,7 @@
 #define EXPLOSION_NON_CONTROLEE 1
 
 /** 
- * @fn void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @brief La fonction place la bombe entre les pattes du dinosaure précisé en paramètre.
  * @author Hannah Sergent
  * @date Crée le 20/03/2026
@@ -30,6 +30,6 @@
  * @param matriceTerrain une matrice contenant les informations sur le terrain
  */
 
-void placerBombeEntrePattes(t_dino *dino, t_bombe *bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 #endif

@@ -163,7 +163,30 @@ void detecterEvenementsPageJeuBombe(
 
 }
 
-/* Ajouter les touches pour les armes dans les évènements */
+/** 
+ * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu (appuyer sur une touche ou encore cliquer sur la croix pour fermer).
+ * @author Hannah Sergent
+ * @date Crée le 5/04/2026
+ * @version 1.3
+ * @param enCours un pointeur qui indique si la fenetre doit rester ouverte
+ * @param nombreRebonds un pointeur sur le nombre de rebonds de la bombe
+ * @param bombeLancee un pointeur qui indique si la bombe doit être lancée
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param bombe un pointeur sur une structure de type bombe
+ * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ * @param tir un pointeur sur une structure de type tir
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param dinoCourant l'identifiant du dinosaure dont c'est le tour de jouer
+ * @param matriceTerrain la matrice contenant les informations sur le terrain
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ * @param catalogue_armes un tableau d'armes
+ */
+
 int detecterEvenementsPageJeu(
     int *enCours,  
     int *nombreRebonds,
@@ -181,7 +204,7 @@ int detecterEvenementsPageJeu(
     t_case dinoCourant, 
     t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
     t_texte_cache *cache,
-    t_arme catalogue_armes[4] ){
+    t_arme catalogue_armes[4]){
 
     const Uint8 *etatClavier;
     SDL_Event evenement;
@@ -206,6 +229,7 @@ int detecterEvenementsPageJeu(
         return 2;
     }
 
+    /* Les Tirs */
     if (!tir->actif){
 
         if (etatClavier[SDL_SCANCODE_Q]) {
@@ -266,6 +290,22 @@ void afficherJeuAvecBombe(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, 
 
 }
 
+/** 
+ * @fn void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache);
+ * @brief La fonction affiche l'image du terrain, l'inventaire et les dinosaures.
+ * @author Hannah Sergent
+ * @date Crée le 5/04/2026
+ * @version 1.0
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ */
+
 void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
 
     SDL_RenderClear(zoneAffichage);
@@ -282,6 +322,23 @@ void afficherJeuSansArmes(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFe
     SDL_RenderPresent(zoneAffichage);
 
 }
+
+/** 
+ * @fn void afficherJeuAvecArmes(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache);
+ * @brief La fonction affiche l'image du terrain, l'inventaire, les dinosaures et la bombe.
+ * @author Hannah Sergent
+ * @date Crée le 5/04/2026
+ * @version 1.0
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param bombe un pointeur sur une structure de type bombe
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ */
 
 void afficherJeuAvecArmes(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache){
 
@@ -300,6 +357,23 @@ void afficherJeuAvecArmes(t_joueur *equipe1, t_joueur *equipe2, t_bombe *bombe, 
     SDL_RenderPresent(zoneAffichage);
 
 }
+
+/** 
+ * @fn void afficherJeuAvecArmesTir(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_tir *tir);
+ * @brief La fonction affiche l'image du terrain, l'inventaire, les dinosaures et une arme de tir.
+ * @author Hannah Sergent
+ * @date Crée le 5/04/2026
+ * @version 1.0
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ * @param tir un pointeur sur une structure de type tir
+ */
 
 void afficherJeuAvecArmesTir(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache, t_tir *tir){
 
@@ -332,6 +406,24 @@ void destruireElementsJeuBombe(t_joueur *equipe1, t_joueur *equipe2, t_case matr
     SDL_DestroyRenderer(zoneAffichage);
     SDL_DestroyWindow(fenJeu);
 }
+
+/** 
+ * @fn void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu, t_coordonnee *nuage, t_texte_cache *cache);
+ * @brief La fonction détruit les différents objets mis en place pour le jeu.
+ * @author Hannah Sergent
+ * @date Crée le 29/03/2026
+ * @version 1.0
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param matriceTerrain la matrice contenant les informations sur le terrain
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param fenJeu un pointeur sur la fenêtre du jeu
+ * @param nuage un pointeur sur les coordonnées d'un nuage
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ */
 
 void destruireElementsJeu(t_joueur *equipe1, t_joueur *equipe2, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Renderer *zoneAffichage, SDL_Window *fenJeu, t_coordonnee *nuage, t_texte_cache *cache){
     int i;
@@ -425,6 +517,30 @@ void lancerBombeSansHIP(Uint32 *tempsPrecedent, int * bombeLancee, int *nombreRe
     }
 }
 
+/** 
+ * @fn void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, 
+    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours,
+    SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache
+    )
+ * @brief La fonction lance la bombe en appelant toutes les fonctions liées à celle-ci avec un affichage intégrant le menu HIP.
+ * @author Hannah Sergent
+ * @date Crée le 29/03/2026
+ * @param bombeLancee un pointeur sur une variable indiquant si la bombe est lancée
+ * @param nombreRebonds un pointeur sur le nombre de rebonds effectués par la bombe
+ * @param bombe un pointeur sur une structure de type bombe
+ * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ * @param matriceTerrain la matrice contenant les informations sur le terrain
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param gestionTours un pointeur sur une structure utilisée pour le changement de tour
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ */
+
 void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect *vectVitesse, 
     t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours,
     SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, t_texte_cache *cache
@@ -486,6 +602,33 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
     }
 }
 
+/** 
+ * @fn void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, 
+                          t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
+                          SDL_Rect *rectFen, SDL_Renderer * zoneAffichage, 
+                          SDL_Texture *texMap, SDL_Texture **texObjets, 
+                          TTF_Font *policeMenuHIP, t_texte_cache *cache, 
+                          t_dino **dinoActuel, int *timer, 
+                          char **nomNuage, int *nb_pts, t_coordonnee **nuage);
+ * @brief La fonction gère les éplacements des dinosaures dans le programme principal.
+ * @author Hannah Sergent Solène Orieux
+ * @date Crée le 5/04/2026
+ * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
+ * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
+ * @param gestionTours un pointeur sur une structure utilisée pour le changement de tour
+ * @param matriceTerrain la matrice contenant les informations sur le terrain
+ * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
+ * @param zoneAffichage un pointeur sur la zone d'affichage
+ * @param texMap un pointeur sur la texture de la map
+ * @param texObjets le tableau des textures affichées dans l'inventaire
+ * @param policeMenuHIP un pointeur sur la police utilisée dans le menu HIP
+ * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
+ * @param dinoActuel un pointeur sur le dinosaure courant
+ * @param timer un pointeur sur le temps pour réaliser les actions
+ * @param nomNuage un tableau contenant les noms des nuages
+ * @param nb_pts un pointeur sur le nombre de points du nuage
+ * @param nuage un pointeur sur un pointeur sur les coordonnées du nuage
+ */
 
 void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionTours, 
                           t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 

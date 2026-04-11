@@ -1,4 +1,4 @@
-# Hannah Sergent
+# Auteur : Hannah Sergent
 
 FLAGS_COMPILATION = -Wall `sdl2-config --cflags`
 FLAGS_EDITION = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
@@ -10,7 +10,7 @@ FIC_SRC = $(wildcard $(REP_SRC)/*.c)
 FIC_TEST = $(wildcard $(REP_TEST)/*.c)
 FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
-# Edition de liens
+# Liste des exécutables
 
 EXECUTABLES = \
 ./main \
@@ -43,6 +43,7 @@ OBJ_DEP = deplacement.o regression.o
 OBJ_TOUR = fonctionsChangementTour.o
 OBJ_ALL = $(OBJ_COM) $(OBJ_AFF) $(OBJ_ARMES) $(OBJ_BOMBE) $(OBJ_DEP) $(OBJ_TOUR)
 
+# Fichiers objets du programme principal
 
 OBJETS_MAIN = main.o $(OBJ_ALL)
 
@@ -69,6 +70,9 @@ OBJETS_TIR = testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o fonc
 OBJETS_TIRSAFFICHAGE = testTirsAffichageJeu.o $(OBJ_ALL)
 
 all: $(EXECUTABLES)
+
+
+# Edition de liens
 
 # Programme principal
 
@@ -139,7 +143,7 @@ all: $(EXECUTABLES)
 %.o: $(REP_TEST)/%.c
 	gcc $(FLAGS_COMPILATION) -c $< -o $@
 
-# Suppression
+# Nettoyage
 
 clean:
 	rm -f $(FIC_OBJETS) $(EXECUTABLES)

@@ -27,7 +27,7 @@ Ce jeu reprend les principes des jeux à succès [Hedgewars](https://www.hedgewa
 
 - Un dinosaure possède 100 points de vie au départ d'une partie.
 - Un dinosaure meurt s'il a perdu tous ses points de vie, s'il tombe dans l'eau ou heurte une extrémité du terrain.
-- Un dinosaure ne peut utiliser qu'une seule arme par tour.
+- Un dinosaure ne peut utiliser qu'un seul outil par tour.
 - Un dinosaure a un temps limité pour agir.
 - Une arme frappant un dinosaure de notre équipe inflige les mêmes dégâts que si elle avait touché l'adversaire. 
 
@@ -46,13 +46,13 @@ cd Projet_L2_JurassicWar/doc/PlanningProjet.ods
 
 **Accéder à la documentation Doxygen :**
 
-- ***En local***
+- ***En local (dernière mise à jour le 11/04/2026)***
 
 ```bash
 cd Projet_L2_JurassicWar/doc/doxygen/html/index.thml
 ```
 
-- ***En ligne***
+- ***En ligne (dernière mise à jour le 9/04/2026)***
 
 [Documentation doxygen de JurassicWar](https://web-info.univ-lemans.fr/~s2400921/documentationJurassicWar/html/index.html)
 
@@ -79,6 +79,6 @@ brew install sdl2 sdl2_image sdl2_ttf
 
 ```bash
 cd Projet_L2_JurassicWar/bin
-make -f Makefile
+make -f makeProjetGlobal
 ./main
 ```

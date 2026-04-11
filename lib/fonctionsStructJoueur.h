@@ -53,7 +53,7 @@ t_cote recupererDinoDirection(t_joueur *equipe1, t_joueur *equipe2, t_case numer
 void supprimerDinoJoueur(t_joueur *equipe1, t_joueur *equipe2, t_case numero);
 
 /** 
- * @fn void retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero);
+ * @fn void retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote);
  * @brief La fonction détermine s'il faut retourner le dinosaure en fonction de la direction indiquée et de la direction précédente.
  * @author Hannah Sergent
  * @date Crée le 28/03/2026

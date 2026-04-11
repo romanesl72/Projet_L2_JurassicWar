@@ -3,7 +3,8 @@
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTirs.h"
 #include "../lib/placer_dinos.h"
-#include "../lib/types.h"
+
+#include <stdio.h>
 #include <time.h>
 
 /** 

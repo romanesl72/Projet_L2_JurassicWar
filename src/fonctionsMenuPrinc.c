@@ -28,15 +28,14 @@ void initialiserBoutons(SDL_Rect *boutons){
 }
 
 /**
- * @fn void tracerCoinBouton(SDL_Renderer *zoneMenu, t_coordonnee *coorCoin, int rayon);
- * @brief La fonction trace un cercle de rayon rayon aux coordonnées coorCoin pour que le bouton ait des coins arrondis.
+ * @fn void initialiserCoordonnees(t_coordonnee *coor, int x, int y);
+ * @brief La fonction initialise une structure t_coordonnee.
  * @author Hannah Sergent
  * @date Crée le 29/03/2026
  * @version 1.0
- * @param zoneMenu un pointeur sur la zone du menu
- * @param coorCoin les coordonnées du coin du bouton
- * @param x la valeur que l'on veut attribuer à la coordonnée x
- * @param y la valeur que l'on veut attribuer à la coordonnée y
+ * @param coor un pointeur sur une structure t_coordonnee à initialiser
+ * @param x coordonnée x
+ * @param y coordonnée y
  */
 
 void initialiserCoordonnees(t_coordonnee *coor, int x, int y){

@@ -292,7 +292,7 @@ typedef struct {
 }t_tir;
 
 /**
- * @struct t_element_file
+ * @struct element
  * @brief élement d'une file.
  * @author Solène Orieux
  * @date Crée le 25/03/2026

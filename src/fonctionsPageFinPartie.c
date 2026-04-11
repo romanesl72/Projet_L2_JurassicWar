@@ -76,7 +76,7 @@ int detecterEvenementsFenFinPartie(SDL_Rect *boutons){
 }
 
 /**
- * @fn void afficherFenFinPartie(SDL_Renderer *zoneInfos, SDL_Rect *boutonRetour, char *nomFen, t_tour *gestionTours)
+ * @fn void afficherFenFinPartie(SDL_Renderer *zoneInfos, SDL_Rect *boutons, t_tour *gestionTours);
  * @brief La fonction affiche une page de fin de partie avec le gagnant.
  * @author Hannah Sergent
  * @date Crée le 11/04/2026

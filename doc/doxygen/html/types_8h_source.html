@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de /info/etu/l2info/s2306032/Documents/L2/ProjetC/Projet_L2_JurassicWar/lib/types.h</title>
+<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar6/lib/types.h</title>
 <link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -37,7 +37,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Généré par Doxygen 1.14.0 -->
+<!-- Généré par Doxygen 1.16.1 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 </script>
@@ -109,7 +109,7 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="types_8h.html#ab49a5b8e283b424b1ce3c43067200709">   33</a></span><span class="preprocessor">#define HAUTEUR_HIP 100</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define HAUTEUR_FEN_JEU_HIP (HAUTEUR_HIP + HAUTEUR_TERRAIN)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="types_8h.html#ae3fe7dc34dccb78bfa9233327ae262f0">   39</a></span><span class="preprocessor">#define HAUTEUR_FEN_JEU_HIP (HAUTEUR_HIP + HAUTEUR_TERRAIN)</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="types_8h.html#a599217205dc3092c26567a2bd868ef3a">   46</a></span><span class="preprocessor">#define TIMER 4000</span></div>
@@ -280,16 +280,24 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="structelement.html">  302</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structelement.html">element</a>{</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">  303</a></span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *<a class="code hl_variable" href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">coordonnee</a>; </div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">  304</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structelement.html">element</a>* <a class="code hl_variable" href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">suivant</a>;  </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>} <a class="code hl_struct" href="structt__element__file.html">t_element_file</a>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>} t_element_file;</div>
 </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructelement_html"><div class="ttname"><a href="structelement.html">element</a></div><div class="ttdef"><b>Definition</b> types.h:302</div></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="foldopen" id="foldopen00315" data-start="{" data-end="};">
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="structt__texte__cache.html">  315</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="structt__texte__cache.html#ab767604709a02a2828b2f39ffe9375af">  316</a></span>    SDL_Texture *<a class="code hl_variable" href="structt__texte__cache.html#ab767604709a02a2828b2f39ffe9375af">tex</a>; </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="structt__texte__cache.html#a9deeac5c3cb4946016b37433e134b9d6">  317</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__texte__cache.html#a9deeac5c3cb4946016b37433e134b9d6">largeurTex</a>; </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="structt__texte__cache.html#a85d26b8f70f2ef0ff0153474b681a2f9">  318</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structt__texte__cache.html#a85d26b8f70f2ef0ff0153474b681a2f9">hauteurTex</a>; </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>} <a class="code hl_struct" href="structt__texte__cache.html">t_texte_cache</a>;</div>
+</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructelement_html"><div class="ttname"><a href="structelement.html">element</a></div><div class="ttdoc">élement d&#39;une file.</div><div class="ttdef"><b>Definition</b> types.h:302</div></div>
 <div class="ttc" id="astructelement_html_a4f1534ded1f9373e0843568bf94ea754"><div class="ttname"><a href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">element::suivant</a></div><div class="ttdeci">struct element * suivant</div><div class="ttdoc">élément suivant de la file</div><div class="ttdef"><b>Definition</b> types.h:304</div></div>
 <div class="ttc" id="astructelement_html_a7b8c287bb39ebccedf21be042e9e5d27"><div class="ttname"><a href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">element::coordonnee</a></div><div class="ttdeci">t_coordonnee * coordonnee</div><div class="ttdoc">coordonnée (x,y)</div><div class="ttdef"><b>Definition</b> types.h:303</div></div>
 <div class="ttc" id="astructt__arme_html"><div class="ttname"><a href="structt__arme.html">t_arme</a></div><div class="ttdoc">Caractéristiques de chaque arme.</div><div class="ttdef"><b>Definition</b> types.h:271</div></div>
-<div class="ttc" id="astructt__arme_html_a183a56307380d3076af3eb4f8dae3026"><div class="ttname"><a href="structt__arme.html#a183a56307380d3076af3eb4f8dae3026">t_arme::poids_projectile</a></div><div class="ttdeci">float poids_projectile</div><div class="ttdoc">Poids de l&#39;arme, influence sa courbe (gravité)</div><div class="ttdef"><b>Definition</b> types.h:274</div></div>
+<div class="ttc" id="astructt__arme_html_a183a56307380d3076af3eb4f8dae3026"><div class="ttname"><a href="structt__arme.html#a183a56307380d3076af3eb4f8dae3026">t_arme::poids_projectile</a></div><div class="ttdeci">float poids_projectile</div><div class="ttdoc">Poids de l&#39;arme, influence sa courbe (gravité).</div><div class="ttdef"><b>Definition</b> types.h:274</div></div>
 <div class="ttc" id="astructt__arme_html_a991b066cfb0d8a46c1eeb978299afd8b"><div class="ttname"><a href="structt__arme.html#a991b066cfb0d8a46c1eeb978299afd8b">t_arme::vitesse_max</a></div><div class="ttdeci">float vitesse_max</div><div class="ttdoc">Vitesse Maximale.</div><div class="ttdef"><b>Definition</b> types.h:276</div></div>
 <div class="ttc" id="astructt__arme_html_accc1474c1d7a4d88c63932d17575e40d"><div class="ttname"><a href="structt__arme.html#accc1474c1d7a4d88c63932d17575e40d">t_arme::puissance_propulsion</a></div><div class="ttdeci">float puissance_propulsion</div><div class="ttdoc">Vitesse de base.</div><div class="ttdef"><b>Definition</b> types.h:275</div></div>
 <div class="ttc" id="astructt__arme_html_acd9876258523e3dc49ec20c1742a527d"><div class="ttname"><a href="structt__arme.html#acd9876258523e3dc49ec20c1742a527d">t_arme::nom</a></div><div class="ttdeci">t_nom_arme nom</div><div class="ttdoc">Nom de l&#39;arme utilisée.</div><div class="ttdef"><b>Definition</b> types.h:272</div></div>
@@ -330,13 +338,16 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="ttc" id="astructt__dino_html_ad26b303d94945e7159a0945b25aac5e6"><div class="ttname"><a href="structt__dino.html#ad26b303d94945e7159a0945b25aac5e6">t_dino::indice_nuage</a></div><div class="ttdeci">int indice_nuage</div><div class="ttdoc">Position dans le nuage.</div><div class="ttdef"><b>Definition</b> types.h:167</div></div>
 <div class="ttc" id="astructt__dino_html_aed10470cf809bcb6b7f60ee8161b9541"><div class="ttname"><a href="structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541">t_dino::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdoc">Numéro du nuage.</div><div class="ttdef"><b>Definition</b> types.h:166</div></div>
 <div class="ttc" id="astructt__dino_html_af42d99f3e0462cf38d9fde55d881f9b8"><div class="ttname"><a href="structt__dino.html#af42d99f3e0462cf38d9fde55d881f9b8">t_dino::memoire</a></div><div class="ttdeci">int memoire[30][30]</div><div class="ttdoc">Permet de mémoriser Ce qu&#39;il y avait dans la matrice avant le dino.</div><div class="ttdef"><b>Definition</b> types.h:172</div></div>
-<div class="ttc" id="astructt__element__file_html"><div class="ttname"><a href="structt__element__file.html">t_element_file</a></div><div class="ttdoc">élement d&#39;une file.</div></div>
 <div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:184</div></div>
 <div class="ttc" id="astructt__joueur_html_a62e76af8c1ecb78d6fe21d44b704dff9"><div class="ttname"><a href="structt__joueur.html#a62e76af8c1ecb78d6fe21d44b704dff9">t_joueur::tabCote</a></div><div class="ttdeci">t_cote * tabCote</div><div class="ttdoc">Tableau contenant la direction du dinosaure à l&#39;instant t.</div><div class="ttdef"><b>Definition</b> types.h:188</div></div>
 <div class="ttc" id="astructt__joueur_html_a69a2b65c31dcce0ec7c0395e2cf1e41b"><div class="ttname"><a href="structt__joueur.html#a69a2b65c31dcce0ec7c0395e2cf1e41b">t_joueur::texDinos</a></div><div class="ttdeci">SDL_Texture ** texDinos</div><div class="ttdoc">Tableau contenant les images des dinosaures.</div><div class="ttdef"><b>Definition</b> types.h:186</div></div>
 <div class="ttc" id="astructt__joueur_html_a9ba041bbbbbe9a5f83fe182720b8c1fb"><div class="ttname"><a href="structt__joueur.html#a9ba041bbbbbe9a5f83fe182720b8c1fb">t_joueur::tab</a></div><div class="ttdeci">t_dino * tab</div><div class="ttdoc">Tableau de dinosaures.</div><div class="ttdef"><b>Definition</b> types.h:185</div></div>
 <div class="ttc" id="astructt__joueur_html_aca5779436b2100fad74877084f94ef20"><div class="ttname"><a href="structt__joueur.html#aca5779436b2100fad74877084f94ef20">t_joueur::texDinosInv</a></div><div class="ttdeci">SDL_Texture ** texDinosInv</div><div class="ttdoc">Tableau contenant les images des dinosaures dans le sens inverse.</div><div class="ttdef"><b>Definition</b> types.h:187</div></div>
 <div class="ttc" id="astructt__joueur_html_ad19b27999959a0b55db58872c6a4ff27"><div class="ttname"><a href="structt__joueur.html#ad19b27999959a0b55db58872c6a4ff27">t_joueur::n</a></div><div class="ttdeci">int n</div><div class="ttdoc">Taille des tableaux.</div><div class="ttdef"><b>Definition</b> types.h:189</div></div>
+<div class="ttc" id="astructt__texte__cache_html"><div class="ttname"><a href="structt__texte__cache.html">t_texte_cache</a></div><div class="ttdoc">Structure qui charge le texte à afficher pour la barre des pv.</div><div class="ttdef"><b>Definition</b> types.h:315</div></div>
+<div class="ttc" id="astructt__texte__cache_html_a85d26b8f70f2ef0ff0153474b681a2f9"><div class="ttname"><a href="structt__texte__cache.html#a85d26b8f70f2ef0ff0153474b681a2f9">t_texte_cache::hauteurTex</a></div><div class="ttdeci">int hauteurTex</div><div class="ttdoc">Hauteur de la texture de texte.</div><div class="ttdef"><b>Definition</b> types.h:318</div></div>
+<div class="ttc" id="astructt__texte__cache_html_a9deeac5c3cb4946016b37433e134b9d6"><div class="ttname"><a href="structt__texte__cache.html#a9deeac5c3cb4946016b37433e134b9d6">t_texte_cache::largeurTex</a></div><div class="ttdeci">int largeurTex</div><div class="ttdoc">Largeur de la texture de texte.</div><div class="ttdef"><b>Definition</b> types.h:317</div></div>
+<div class="ttc" id="astructt__texte__cache_html_ab767604709a02a2828b2f39ffe9375af"><div class="ttname"><a href="structt__texte__cache.html#ab767604709a02a2828b2f39ffe9375af">t_texte_cache::tex</a></div><div class="ttdeci">SDL_Texture * tex</div><div class="ttdoc">Tableau contenant les textures de texte.</div><div class="ttdef"><b>Definition</b> types.h:316</div></div>
 <div class="ttc" id="astructt__tir_html"><div class="ttname"><a href="structt__tir.html">t_tir</a></div><div class="ttdoc">Données nécessaires pour calculer un tir.</div><div class="ttdef"><b>Definition</b> types.h:287</div></div>
 <div class="ttc" id="astructt__tir_html_a076d12d8c8f691bdce0c83f65e08f27c"><div class="ttname"><a href="structt__tir.html#a076d12d8c8f691bdce0c83f65e08f27c">t_tir::pos</a></div><div class="ttdeci">t_coordonnee_calcul pos</div><div class="ttdoc">Position du projectile en cours.</div><div class="ttdef"><b>Definition</b> types.h:288</div></div>
 <div class="ttc" id="astructt__tir_html_a14b4df7ece0bd89ada6f784fbdc6e73a"><div class="ttname"><a href="structt__tir.html#a14b4df7ece0bd89ada6f784fbdc6e73a">t_tir::arme_source</a></div><div class="ttdeci">t_arme arme_source</div><div class="ttdoc">Arme utilisé pour le tir.</div><div class="ttdef"><b>Definition</b> types.h:290</div></div>
@@ -351,9 +362,9 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="ttc" id="astructt__vect_html_a65fb356efdd510b1ced6684cb6a21c00"><div class="ttname"><a href="structt__vect.html#a65fb356efdd510b1ced6684cb6a21c00">t_vect::u</a></div><div class="ttdeci">float u</div><div class="ttdoc">Première coordonnée du vecteur.</div><div class="ttdef"><b>Definition</b> types.h:246</div></div>
 <div class="ttc" id="astructt__vect_html_a8f54c1d1e9e1268e68ebc3bff16f8979"><div class="ttname"><a href="structt__vect.html#a8f54c1d1e9e1268e68ebc3bff16f8979">t_vect::v</a></div><div class="ttdeci">float v</div><div class="ttdoc">Deuxième coordonnée du vecteur.</div><div class="ttdef"><b>Definition</b> types.h:247</div></div>
 <div class="ttc" id="astructt__zone__depart_html"><div class="ttname"><a href="structt__zone__depart.html">t_zone_depart</a></div><div class="ttdoc">Zone où un dinosaure peut apparaitre.</div><div class="ttdef"><b>Definition</b> types.h:215</div></div>
-<div class="ttc" id="astructt__zone__depart_html_a2d66f918d381bc0f9192d2d36781f1f8"><div class="ttname"><a href="structt__zone__depart.html#a2d66f918d381bc0f9192d2d36781f1f8">t_zone_depart::bas_centre</a></div><div class="ttdeci">t_coordonnee bas_centre</div><div class="ttdoc">Le point de contact avec le sol (issu du nuage de Solène)</div><div class="ttdef"><b>Definition</b> types.h:216</div></div>
-<div class="ttc" id="astructt__zone__depart_html_a5a80a6ce8dc7f448dd31d8c00a1c0cbb"><div class="ttname"><a href="structt__zone__depart.html#a5a80a6ce8dc7f448dd31d8c00a1c0cbb">t_zone_depart::id_equipe</a></div><div class="ttdeci">int id_equipe</div><div class="ttdoc">ID de l&#39;équipe propriétaire (1 ou 2)</div><div class="ttdef"><b>Definition</b> types.h:217</div></div>
-<div class="ttc" id="astructt__zone__depart_html_acb56008ba27158deec34fb53e58a400b"><div class="ttname"><a href="structt__zone__depart.html#acb56008ba27158deec34fb53e58a400b">t_zone_depart::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdoc">Savoir quel fichier JPG a généré ce point (numéro du nuage)</div><div class="ttdef"><b>Definition</b> types.h:219</div></div>
+<div class="ttc" id="astructt__zone__depart_html_a2d66f918d381bc0f9192d2d36781f1f8"><div class="ttname"><a href="structt__zone__depart.html#a2d66f918d381bc0f9192d2d36781f1f8">t_zone_depart::bas_centre</a></div><div class="ttdeci">t_coordonnee bas_centre</div><div class="ttdoc">Le point de contact avec le sol (issu du nuage de Solène).</div><div class="ttdef"><b>Definition</b> types.h:216</div></div>
+<div class="ttc" id="astructt__zone__depart_html_a5a80a6ce8dc7f448dd31d8c00a1c0cbb"><div class="ttname"><a href="structt__zone__depart.html#a5a80a6ce8dc7f448dd31d8c00a1c0cbb">t_zone_depart::id_equipe</a></div><div class="ttdeci">int id_equipe</div><div class="ttdoc">ID de l&#39;équipe propriétaire (1 ou 2).</div><div class="ttdef"><b>Definition</b> types.h:217</div></div>
+<div class="ttc" id="astructt__zone__depart_html_acb56008ba27158deec34fb53e58a400b"><div class="ttname"><a href="structt__zone__depart.html#acb56008ba27158deec34fb53e58a400b">t_zone_depart::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdoc">Savoir quel fichier JPG a généré ce point (numéro du nuage).</div><div class="ttdef"><b>Definition</b> types.h:219</div></div>
 <div class="ttc" id="astructt__zone__depart_html_aeaf9e5494fc059d9b4c6ccf349d93321"><div class="ttname"><a href="structt__zone__depart.html#aeaf9e5494fc059d9b4c6ccf349d93321">t_zone_depart::indice_nuage</a></div><div class="ttdeci">int indice_nuage</div><div class="ttdoc">Retrouver le point dans le tableau.</div><div class="ttdef"><b>Definition</b> types.h:218</div></div>
 <div class="ttc" id="atypes_8h_html_a83e6498e585e66600977123e70d854e5"><div class="ttname"><a href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a></div><div class="ttdeci">t_cote</div><div class="ttdoc">Indique la direction dans laquelle pointe les dinosaures ou les armes.</div><div class="ttdef"><b>Definition</b> types.h:100</div></div>
 <div class="ttc" id="atypes_8h_html_a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86"><div class="ttname"><a href="types_8h.html#a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86">GAUCHE</a></div><div class="ttdeci">@ GAUCHE</div><div class="ttdoc">Direction gauche.</div><div class="ttdef"><b>Definition</b> types.h:101</div></div>
@@ -376,8 +387,8 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
-    <li class="footer">Généré le Vendredi 10 Avril 2026 16:06:28 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
+    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>
 </body>

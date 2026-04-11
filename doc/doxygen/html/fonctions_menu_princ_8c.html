@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar6/src/fonctionsMenuPrinc.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctions_menu_princ_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier fonctionsMenuPrinc.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Corps des fonctions pour l'affichage du menu principal.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="fonctions_menu_princ_8h_source.html">../lib/fonctionsMenuPrinc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctions_page_jeu_8h_source.html">../lib/fonctionsPageJeu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctions_pages_informations_8h_source.html">../lib/fonctionsPagesInformations.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctions_verification_8h_source.html">../lib/fonctionsVerification.h</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:aaa9028daabbea3693f654eae89505cd1" id="r_aaa9028daabbea3693f654eae89505cd1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaa9028daabbea3693f654eae89505cd1">initialiserBoutons</a> (SDL_Rect *boutons)</td></tr>
+<tr class="memdesc:aaa9028daabbea3693f654eae89505cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise la liste des boutons du menu.  <br /></td></tr>
+<tr class="memitem:ab47448dcf2f3af5ffaeb4d58ac5d3752" id="r_ab47448dcf2f3af5ffaeb4d58ac5d3752"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab47448dcf2f3af5ffaeb4d58ac5d3752">initialiserCoordonnees</a> (<a class="el" href="structt__coordonnee.html">t_coordonnee</a> *coor, int x, int y)</td></tr>
+<tr class="memdesc:ab47448dcf2f3af5ffaeb4d58ac5d3752"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise une structure <a class="el" href="structt__coordonnee.html" title="Structure de coordonnées entières classiques (pixels).">t_coordonnee</a>.  <br /></td></tr>
+<tr class="memitem:a0902b1c358c2436aa3830aa06ab53d82" id="r_a0902b1c358c2436aa3830aa06ab53d82"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0902b1c358c2436aa3830aa06ab53d82">tracerCoinBouton</a> (SDL_Renderer *zoneMenu, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> *coorCoin, int rayon)</td></tr>
+<tr class="memdesc:a0902b1c358c2436aa3830aa06ab53d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace un cercle de rayon rayon aux coordonnées coorCoin pour que le bouton ait des coins arrondis.  <br /></td></tr>
+<tr class="memitem:a7b6ad91e75fcc543b2a785bb7950fa8f" id="r_a7b6ad91e75fcc543b2a785bb7950fa8f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7b6ad91e75fcc543b2a785bb7950fa8f">tracerBouton</a> (SDL_Renderer *zoneMenu, SDL_Rect rectBouton, int rayon)</td></tr>
+<tr class="memdesc:a7b6ad91e75fcc543b2a785bb7950fa8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction trace un bouton aux bords arrondis dans le menu.  <br /></td></tr>
+<tr class="memitem:adf0f38131bcb03bdc9299359e0687c0d" id="r_adf0f38131bcb03bdc9299359e0687c0d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adf0f38131bcb03bdc9299359e0687c0d">afficherTexteCase</a> (SDL_Renderer *zoneMenu, char *texte, SDL_Rect *rectCase, int tailleTexte)</td></tr>
+<tr class="memdesc:adf0f38131bcb03bdc9299359e0687c0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction écrit le texte passé en paramètre en blanc au centre d'une case du menu.  <br /></td></tr>
+<tr class="memitem:a20b7da6d736952320bfe81d6abb62ed2" id="r_a20b7da6d736952320bfe81d6abb62ed2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a20b7da6d736952320bfe81d6abb62ed2">afficherMenuPrincipal</a> (SDL_Renderer *zoneMenu, SDL_Rect *boutons, SDL_Texture *texImg, SDL_Texture *texImgMiroir)</td></tr>
+<tr class="memdesc:a20b7da6d736952320bfe81d6abb62ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche le menu principal du jeu.  <br /></td></tr>
+<tr class="memitem:af94232fef264283a060f2bb6c3981846" id="r_af94232fef264283a060f2bb6c3981846"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af94232fef264283a060f2bb6c3981846">detecterEvenementsMenuPrincipal</a> (SDL_Rect *boutons)</td></tr>
+<tr class="memdesc:af94232fef264283a060f2bb6c3981846"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer).  <br /></td></tr>
+<tr class="memitem:ab3b85c1f02fc5b908bfa24411e2a75bc" id="r_ab3b85c1f02fc5b908bfa24411e2a75bc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab3b85c1f02fc5b908bfa24411e2a75bc">creerMenuPrincipal</a> (SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir)</td></tr>
+<tr class="memdesc:ab3b85c1f02fc5b908bfa24411e2a75bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise le menu principal du jeu.  <br /></td></tr>
+<tr class="memitem:a1ff1c57182ee797c41cf1627547aed63" id="r_a1ff1c57182ee797c41cf1627547aed63"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1ff1c57182ee797c41cf1627547aed63">detruireMenuPrincipal</a> (SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir)</td></tr>
+<tr class="memdesc:a1ff1c57182ee797c41cf1627547aed63"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit le menu principal du jeu.  <br /></td></tr>
+<tr class="memitem:aadd624a8bf7200b977696eca6d239e17" id="r_aadd624a8bf7200b977696eca6d239e17"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aadd624a8bf7200b977696eca6d239e17">ouvrirMenuPrincBombe</a> ()</td></tr>
+<tr class="memdesc:aadd624a8bf7200b977696eca6d239e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ouvre le menu principal.  <br /></td></tr>
+<tr class="memitem:aec9834ca04ddd3b234c03da300a59513" id="r_aec9834ca04ddd3b234c03da300a59513"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aec9834ca04ddd3b234c03da300a59513">ouvrirMenuPrinc</a> ()</td></tr>
+<tr class="memdesc:aec9834ca04ddd3b234c03da300a59513"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ouvre le menu principal du jeu avec toutes ses fonctionnalités.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Corps des fonctions pour l'affichage du menu principal. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 26/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a20b7da6d736952320bfe81d6abb62ed2" name="a20b7da6d736952320bfe81d6abb62ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b7da6d736952320bfe81d6abb62ed2">&#9670;&#160;</a></span>afficherMenuPrincipal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherMenuPrincipal </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>boutons</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texImg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texImgMiroir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche le menu principal du jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">boutons</td><td>un tableau de type SDL_Rect représentant chaque bouton </td></tr>
+    <tr><td class="paramname">texImg</td><td>un pointeur sur la texture de la première image à afficher dans le menu </td></tr>
+    <tr><td class="paramname">texImgMiroir</td><td>un pointeur sur la texture de la deuxième image à afficher dans le menu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf0f38131bcb03bdc9299359e0687c0d" name="adf0f38131bcb03bdc9299359e0687c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0f38131bcb03bdc9299359e0687c0d">&#9670;&#160;</a></span>afficherTexteCase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherTexteCase </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>texte</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rectCase</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>tailleTexte</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction écrit le texte passé en paramètre en blanc au centre d'une case du menu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">texte</td><td>le texte à afficher </td></tr>
+    <tr><td class="paramname">rectCase</td><td>le rectangle de la case dans laquelle afficher le texte </td></tr>
+    <tr><td class="paramname">tailleTexte</td><td>la taille du texte à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3b85c1f02fc5b908bfa24411e2a75bc" name="ab3b85c1f02fc5b908bfa24411e2a75bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3b85c1f02fc5b908bfa24411e2a75bc">&#9670;&#160;</a></span>creerMenuPrincipal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int creerMenuPrincipal </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>menuPrincipal</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texImg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texImgMiroir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise le menu principal du jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">menuPrincipal</td><td>un pointeur de pointeur sur la fenêtre du menu principal </td></tr>
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur de pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">texImg</td><td>un pointeur de pointeur sur la texture de la première image à afficher dans le menu </td></tr>
+    <tr><td class="paramname">texImgMiroir</td><td>un pointeur de pointeur sur la texture de la deuxième image à afficher dans le menu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="af94232fef264283a060f2bb6c3981846" name="af94232fef264283a060f2bb6c3981846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94232fef264283a060f2bb6c3981846">&#9670;&#160;</a></span>detecterEvenementsMenuPrincipal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int detecterEvenementsMenuPrincipal </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>boutons</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer). </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boutons</td><td>un tableau de type SDL_Rect représentant chaque bouton </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un entier entre 0 et 4 indiquant l'action qui vient de se produire </dd></dl>
+
+</div>
+</div>
+<a id="a1ff1c57182ee797c41cf1627547aed63" name="a1ff1c57182ee797c41cf1627547aed63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ff1c57182ee797c41cf1627547aed63">&#9670;&#160;</a></span>detruireMenuPrincipal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void detruireMenuPrincipal </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>menuPrincipal</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texImg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texImgMiroir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détruit le menu principal du jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">menuPrincipal</td><td>un pointeur de pointeur sur la fenêtre du menu principal </td></tr>
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur de pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">texImg</td><td>un pointeur de pointeur sur la texture de la première image à afficher dans le menu </td></tr>
+    <tr><td class="paramname">texImgMiroir</td><td>un pointeur de pointeur sur la texture de la deuxième image à afficher dans le menu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaa9028daabbea3693f654eae89505cd1" name="aaa9028daabbea3693f654eae89505cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9028daabbea3693f654eae89505cd1">&#9670;&#160;</a></span>initialiserBoutons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserBoutons </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>boutons</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise la liste des boutons du menu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boutons</td><td>un tableau de type SDL_Rect représentant chaque bouton </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab47448dcf2f3af5ffaeb4d58ac5d3752" name="ab47448dcf2f3af5ffaeb4d58ac5d3752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab47448dcf2f3af5ffaeb4d58ac5d3752">&#9670;&#160;</a></span>initialiserCoordonnees()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiserCoordonnees </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>coor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction initialise une structure <a class="el" href="structt__coordonnee.html" title="Structure de coordonnées entières classiques (pixels).">t_coordonnee</a>. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coor</td><td>un pointeur sur une structure <a class="el" href="structt__coordonnee.html" title="Structure de coordonnées entières classiques (pixels).">t_coordonnee</a> à initialiser </td></tr>
+    <tr><td class="paramname">x</td><td>coordonnée x </td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec9834ca04ddd3b234c03da300a59513" name="aec9834ca04ddd3b234c03da300a59513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec9834ca04ddd3b234c03da300a59513">&#9670;&#160;</a></span>ouvrirMenuPrinc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ouvrirMenuPrinc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction ouvre le menu principal du jeu avec toutes ses fonctionnalités. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 03/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
+<a id="aadd624a8bf7200b977696eca6d239e17" name="aadd624a8bf7200b977696eca6d239e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadd624a8bf7200b977696eca6d239e17">&#9670;&#160;</a></span>ouvrirMenuPrincBombe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ouvrirMenuPrincBombe </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction ouvre le menu principal. </p>
+<p>Le menu permet de lancer une partie où la seule arme disponible est la bombe et où les dinosaures ne peuvent pas se déplacer. </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
+
+</div>
+</div>
+<a id="a7b6ad91e75fcc543b2a785bb7950fa8f" name="a7b6ad91e75fcc543b2a785bb7950fa8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b6ad91e75fcc543b2a785bb7950fa8f">&#9670;&#160;</a></span>tracerBouton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerBouton </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect</td>          <td class="paramname"><span class="paramname"><em>rectBouton</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rayon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction trace un bouton aux bords arrondis dans le menu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">rectBouton</td><td>le rectangle du bouton à tracer </td></tr>
+    <tr><td class="paramname">rayon</td><td>le rayon choisi pour l'arrondi des bords </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0902b1c358c2436aa3830aa06ab53d82" name="a0902b1c358c2436aa3830aa06ab53d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0902b1c358c2436aa3830aa06ab53d82">&#9670;&#160;</a></span>tracerCoinBouton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tracerCoinBouton </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneMenu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> *</td>          <td class="paramname"><span class="paramname"><em>coorCoin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rayon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction trace un cercle de rayon rayon aux coordonnées coorCoin pour que le bouton ait des coins arrondis. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneMenu</td><td>un pointeur sur la zone du menu </td></tr>
+    <tr><td class="paramname">coorCoin</td><td>les coordonnées du coin du bouton </td></tr>
+    <tr><td class="paramname">rayon</td><td>le rayon du cercle à tracer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>src</b></li><li class="navelem"><a href="fonctions_menu_princ_8c.html">fonctionsMenuPrinc.c</a></li>
+    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

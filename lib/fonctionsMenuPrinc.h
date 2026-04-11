@@ -128,7 +128,7 @@ int creerMenuPrincipal(SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_
 void afficherMenuPrincipal(SDL_Renderer* zoneMenu, SDL_Rect *boutons, SDL_Texture *texImg, SDL_Texture *texImgMiroir);
 
 /**
- * @fn int detecterEvenementMenuPrincipal(SDL_Rect *boutons);
+ * @fn int detecterEvenementsMenuPrincipal(SDL_Rect *boutons);
  * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer).
  * @author Hannah Sergent
  * @date Crée le 29/03/2026

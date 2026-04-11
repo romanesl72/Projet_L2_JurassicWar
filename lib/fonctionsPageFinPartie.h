@@ -12,13 +12,13 @@
  */
 
 /**
- * @fn void ouvrirFenFinPartie();
+ * @fn void ouvrirFenFinPartie(t_tour *gestionTours);
  * @brief La fonction ouvre une fenêtre de fin de partie.
  * @author Hannah Sergent
  * @date Crée le 11/04/2026
  * @version 1.0
  */
 
-void ouvrirFenFinPartie();
+void ouvrirFenFinPartie(t_tour *gestionTours);
 
 #endif

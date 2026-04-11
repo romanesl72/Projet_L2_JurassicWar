@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar:  Fichier source de C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar6/lib/fonctionsTuerDinos.h</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fonctions_tuer_dinos_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">fonctionsTuerDinos.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fonctions_tuer_dinos_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _FONCTIONSTUERDINOS_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _FONCTIONSTUERDINOS_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> <a class="code hl_function" href="fonctions_tuer_dinos_8h.html#a155f44daadb6db52f07e2e749f055e24">collisionDinoBombe</a>(<a class="code hl_enumeration" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="code hl_define" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="code hl_define" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="code hl_struct" href="structt__bombe.html">t_bombe</a> *bombe);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="afonctions_tuer_dinos_8h_html_a155f44daadb6db52f07e2e749f055e24"><div class="ttname"><a href="fonctions_tuer_dinos_8h.html#a155f44daadb6db52f07e2e749f055e24">collisionDinoBombe</a></div><div class="ttdeci">t_case collisionDinoBombe(t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_bombe *bombe)</div><div class="ttdoc">La fonction vérifie si la bombe heurte un dinosaure.</div><div class="ttdef"><b>Definition</b> fonctionsTuerDinos.c:12</div></div>
+<div class="ttc" id="astructt__bombe_html"><div class="ttname"><a href="structt__bombe.html">t_bombe</a></div><div class="ttdoc">Structure qui contient les coordonnées et le rayon d&#39;une bombe.</div><div class="ttdef"><b>Definition</b> types.h:258</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
+<div class="ttc" id="atypes_8h_html_a157e93f13cbc0b4bb991d0e1e4782484"><div class="ttname"><a href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a></div><div class="ttdeci">#define LARGEUR_TERRAIN</div><div class="ttdoc">Largeur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_ab1ca77f80eef9f176701cff3bde3e273"><div class="ttname"><a href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a></div><div class="ttdeci">#define HAUTEUR_TERRAIN</div><div class="ttdoc">Hauteur du terrain, de la matrice et de la fenêtre.</div><div class="ttdef"><b>Definition</b> types.h:26</div></div>
+<div class="ttc" id="atypes_8h_html_ab21a60e1517c8d253cc83c12f6e027f3"><div class="ttname"><a href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></div><div class="ttdeci">t_case</div><div class="ttdoc">Représentation de chaque élément sur la matrice.</div><div class="ttdef"><b>Definition</b> types.h:70</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>lib</b></li><li class="navelem"><a href="fonctions_tuer_dinos_8h.html">fonctionsTuerDinos.h</a></li>
+    <li class="footer">Généré le <span class="timestamp"></span> pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>
