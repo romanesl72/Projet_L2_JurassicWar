@@ -50,7 +50,8 @@ placer_dinos.o \
 tda_nuage.o \
 deplacement.o \
 regression.o \
-collision_decor.o
+collision_decor.o \
+fonctionsPageFinPartie.o
 
 OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
 OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
@@ -131,6 +132,7 @@ OBJETS_GRAPPIN = testGrappin.o \
 	tda_file.o \
 	fonctionsAffichage.o \
 	fonctionsPageJeu.o \
+	fonctionsPageFinPartie.o \
 	fonctionsChangementTour.o \
 	fonctionsTirs.o \
 	fonctionsPlacementBombe.o \

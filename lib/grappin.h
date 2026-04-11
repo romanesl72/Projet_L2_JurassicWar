@@ -83,12 +83,17 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param pts_rotation pointeur sur la coordonnée du points de rotation du grappin
+* @param nb_pts pointeur sur le nombre de points dans le nuage
+ * @param nuage pointeur de pointeur sur le nuage de points
+ * @param nb_nuage nombre de nuage présent dans la map
+ * @param nomNuage liste des différents noms d'image permettant de créer le nuage
  */
 
-void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer* zoneAffichage, 
-               const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, 
-               SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], 
-               t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation);
+void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
+               TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], 
+               SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, 
+               t_joueur *equipe2, t_coordonnee *pts_rotation,int *nb_pts, t_coordonnee **nuage, 
+               int nb_nuage, char *nomNuage[]);
 
 
                

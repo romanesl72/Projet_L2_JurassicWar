@@ -121,24 +121,19 @@ void detruireFile() {
 int afficherFile(SDL_Renderer *rendu){
     if(filevide())return 1;
     t_element_file *elem_courant=tete;
-    
-    while (elem_courant!=NULL){
-        SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
-        // Ajout de HAUTEUR_HIP pour l'affichage écran par rapport à la matrice
-        SDL_RenderDrawLine(rendu, (int)queue->coordonnee->x, (int)queue->coordonnee->y+HAUTEUR_HIP, elem_courant->coordonnee->x,  elem_courant->coordonnee->y+HAUTEUR_HIP);
-        SDL_RenderPresent(rendu);
-        SDL_Delay(2);
-        elem_courant=elem_courant->suivant;
-    }
+    SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
+    SDL_RenderDrawLine(rendu,(int)queue->coordonnee->x,(int)queue->coordonnee->y+HAUTEUR_HIP,elem_courant->coordonnee->x,
+    elem_courant->coordonnee->y+HAUTEUR_HIP);
     return 0;
 }
 
 /**
- * @fn t_coordonnee *lireTete();
+ * @fn t_coordonnee *lireQueue();
  * @author Solène Orieux
- * @date 07/04/2025
- * @brief renvoie un pointeur sur la tête de file
+ * @date 11/04/2025
+ * @brief renvoie un pointeur sur la queue de file
  */
-t_coordonnee *lireTete(){
-    if(!filevide())return tete->coordonnee;
+t_coordonnee *lireQueue(){
+    if(!filevide()) return queue->coordonnee;
+    return NULL;
 }

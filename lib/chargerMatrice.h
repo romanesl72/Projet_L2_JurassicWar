@@ -58,4 +58,15 @@ void detruireMatrice(t_case (**matriceTerrain)[LARGEUR_TERRAIN]);
 
 void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
+/**
+ * @fn void afficher_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @brief la fonction supprime le dino de la matrice
+ * @author Solène Orieux
+ * @date Crée le 01/03/2026
+ * @version 1.0
+ * @param dino poiteur sur le dino à enlever
+ * @param matrice La matrice à modifier
+ */
+void afficher_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+
 #endif

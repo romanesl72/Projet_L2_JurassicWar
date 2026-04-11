@@ -48,5 +48,8 @@ int collision_cote(t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
     for(i=0;i<TAILLE_DINO;i++){
         if(matrice[dino.pos.y+i][dino.pos.x+TAILLE_DINO]==TERRE)return 1;
     }
+    for(i=0;i<TAILLE_DINO;i++){
+        if(matrice[dino.pos.y+i][dino.pos.x]==TERRE)return 1;
+    }
     return 0;
 }

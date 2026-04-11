@@ -77,6 +77,6 @@ int afficherFile(SDL_Renderer *rendu);
  * @brief renvoie un pointeur sur la tête de file
  */
 
-t_coordonnee *lireTete();
+t_coordonnee *lireQueue();
 
 #endif

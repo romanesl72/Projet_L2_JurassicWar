@@ -1,6 +1,6 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/types.h"
-#include "../lib/grapin.h"
+#include "../lib/grappin.h"
 #include "../lib/tda_file.h"
 #include "../lib/tda_nuage.h"
 #include "../lib/fonctionsVerification.h"
@@ -9,6 +9,7 @@
 #include "../lib/fonctionsMenuHIP.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsAffichage.h"
+#include "../lib/fonctionsPageJeu.h"
 #include <time.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -33,13 +34,13 @@ int main(int argc, char * argv[]){
     TTF_Font *police = NULL;
     const Uint8 *state=NULL;
 
-    creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_FEN, HAUTEUR_TOTALE);
+    creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
     rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
     initialiserPolice(&police, "../pde/arial.ttf", 16);
 
     /* ---- 2. Chargement de la Map et Placement ---- */
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
-    int nb_pts, w, h, i, sens=1;
+    int nb_pts, w, h, i;
     int trouves_E1 = 0, trouves_E2 = 0;
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
@@ -63,25 +64,17 @@ int main(int argc, char * argv[]){
     t_joueur equipe1, equipe2;
 
     /* ---- 4. Initialisation des Equipes ---- */
-    initialiserContenuJoueur(&equipe1);
-    initialiserContenuJoueur(&equipe2);
+    initialiserEquipes(&equipe1, &equipe2, &catalogue, matrice, rendu);
 
-    // Placement réel sur la matrice (C'est ce placement qui compte !)
-    if (trouves_E1 >= 3 && trouves_E2 >= 3) {
-        placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
-        placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
-        for(i = 0; i < 3; i++) {
-            equipe1.tab[i].id_nuage = 0;
-            equipe2.tab[i].id_nuage = 1;
-        }
-    }
+    afficherContenuJoueur(equipe1, "equipe1");
+    afficherContenuJoueur(equipe2, "equipe2");
+
     
     // Initialisation des PV après le placement
     for(int i=0; i<3; i++) { 
         equipe1.tab[i].pv = 100 - (i*20); 
         equipe2.tab[i].pv = 100; 
     }
-
     /* ---- 3. Chargement des Textures ---- */
     SDL_Texture *texMap = NULL;
     SDL_Texture *texDinos[6]={NULL}; // Tableau pour les 6 types de dinos
@@ -98,9 +91,18 @@ int main(int argc, char * argv[]){
     };
 
     dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+    for(i=0;i<30;i++){
+        for (int j=0; j<30; j++)
+        {
+            printf("%d",dinoActuel->memoire[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    afficher_matrice_dino(dinoActuel, matrice);
     supprimer_matrice_dino(dinoActuel, matrice);
-    dinoActuel->id_nuage=1;
-    dinoActuel->indice_nuage=30;
+    dinoActuel->id_nuage=0;
+    dinoActuel->indice_nuage=390;
     nuage= nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
     dinoActuel->pos=nuage[dinoActuel->indice_nuage];
     
@@ -120,7 +122,6 @@ int main(int argc, char * argv[]){
 
     int enCours = 1;
     SDL_Event e;
-
     /* ---- 4. Boucle de Rendu ---- */
     while(enCours) {
         while(SDL_PollEvent(&e)) {
@@ -130,13 +131,11 @@ int main(int argc, char * argv[]){
         // PROTECTION CRITIQUE
         if(dinoActuel != NULL) {
             state = SDL_GetKeyboardState(NULL);
-
             // On affiche l'état actuel des équipes
-            afficher(rendu, police, texMap, texDinos, texObjets, nomsObjets, equipe1, equipe2);
-
+            afficher(rendu, police, texMap, texObjets, nomsObjets, &equipe1, &equipe2);
             // On ne lance le grappin que si le dinosaure existe toujours
             if (state[SDL_SCANCODE_G]) {
-                grapin(matrice, rendu, &dinoActuel, state, texMap, police, texDinos, texObjets,nomsObjets, &equipe1, &equipe2 , &nb_pts, &nuage, 2, nomNuage);
+                grappin(matrice, rendu, &dinoActuel, state, texMap, police, texDinos, texObjets,nomsObjets, &equipe1, &equipe2 , &nb_pts, &nuage, 2, nomNuage);
             }
 
             SDL_RenderPresent(rendu);
