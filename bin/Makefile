@@ -26,7 +26,8 @@ EXECUTABLES = ./main \
 ./testTirArmes \
 ./testRegression \
 ./testAffichageDinosMap\
-./test_deplacement
+./test_deplacement\
+./testGrappin
 
 
 
@@ -125,6 +126,25 @@ collision_decor.o
 
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
 
+OBJETS_GRAPPIN = testGrappin.o \
+	grappin.o \
+	tda_file.o \
+	fonctionsAffichage.o \
+	fonctionsPageJeu.o \
+	fonctionsChangementTour.o \
+	fonctionsTirs.o \
+	fonctionsPlacementBombe.o \
+	fonctionsRebonds.o \
+	fonctionsTuerDinos.o \
+	fonctionsPagesInformations.o \
+	fonctionsMenuPrinc.o \
+	fonctionSoin.o \
+	deplacement.o \
+	regression.o \
+	collision_decor.o \
+	$(OBJETS_COMMUNS) \
+	$(OBJETS_COMMUNS2)
+
 all: $(EXECUTABLES)
 
 
@@ -190,6 +210,8 @@ all: $(EXECUTABLES)
 ./test_deplacement: test_deplacement.o deplacement.o $(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsPageJeu.o fonctionsChangementTour.o regression.o fonctionsAffichage.o fonctionsTirs.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionSoin.o fonctionsTuerDinos.o fonctionsPagesInformations.o collision_decor.o fonctionsMenuPrinc.o
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testGrappin: $(OBJETS_GRAPPIN)
+	gcc $^ -o $@ $(FLAGS_EDITION)
 # -------------------   COMPILATION   -------------------
 
 %.o: $(REP_SRC)/%.c
