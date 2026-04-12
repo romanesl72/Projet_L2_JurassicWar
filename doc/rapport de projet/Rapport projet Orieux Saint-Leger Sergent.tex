@@ -70,15 +70,16 @@
 
 \newpage
 \section{Introduction}
-Cette introduction présentera le sujet qui sera traité et le travail avec une présentation du plan adopté
+Cette introduction vous présente le travail collaboratif que nous avons mené pour créer un jeu vidéo. 
 \subsection{Contexte}
-Ce document présente le projet de jeu Jurassic War réalisé dans le cadre de la formation de L2 informatique de l’université du Mans pendant la période de janvier à avril 2026. Ce projet a été développé en langage C avec la librairie SDL 2. Ce jeu utilise des calculs de physiques pour lancer les différents missiles et permettre aux dinosaures de sauter. Pour les déplacements il à recourt à des calculs de régression\gls{reflexion} grâce à une modélisation en nuage de points des collines. Il pousse les joueurs à être strategique dans leurs actions en effet leur temps est limité et dès qu'une action autre que les déplacements est éffectuée, cela implique un changement de tour forcé. Ce jeu utilise une matrice qui représente les éléments essentiels du terrain pour gérer les collisions avec l'eau la terre et les dinosaures. 
+Nous avons décidé de programmer un projet de jeu que nous avons nommé Jurassic War. Il est réalisé dans le cadre de la formation de L2 informatique de l’université du Mans pendant la période de janvier à avril 2026. Ce projet a été développé en langage C avec la librairie SDL 2. Ce jeu propose de déplacer des dinosaures avec différents moyens, d'utiliser des armes afin que deux équipes s'affrontent et s'éliminent. 
 
 \subsection{Énoncé du problème}
-Ce rapport est structuré de manière à retracer le développement et la réalisation technique du projet. Nous débuterons par une présentation du concept et des objectifs initiaux. La deuxième partie détaillera l'organisation du travail, dont la répartition des tâches et les outils utilisés. La majeur partie de ce document sera consacrée au développement, où nous approfondirons la conception technique : modélisation du terrain par matrice, algorithmes de mobilité des entités et implémentation du système d'actions (armes, physique, interface SDL). Enfin, nous présenterons les résultats obtenus et notre bilan en conclusion. Une annexe complète ce rapport, vous permettant de prendre connaissances des tests et débogage effectuez. Vous pourrez retrouvez les fichiers source sur notre dépôt Git.
+Au travers de ce rapport, nous allons décrire les étapes qui nous ont permis de mener à bien ce projet et de décrire les outils utilisés.\\
+Dans une première partie, nous allons exposer nos choix de conception, avec une description des principales règles du jeu, et de ses fonctionnalités prévues. La deuxième partie, détaille l'organisation de notre travail, dont la répartition des tâches, le planning prévisionnel et les outils de programmation utilisés. Ensuite, nous abordons le développement technique du jeu. Dans cette section, nous détaillons la modélisation du terrain par matrice, les algorithmes de mobilité et de positionnement des entités, et l'implémentation du système d'actions, armes, physique, interface SDL. Enfin, nous présentons les résultats obtenus et notre bilan en conclusion. Une annexe complète ce rapport, vous permettant de prendre connaissances des tests et débogages effectués. Vous pourrez retrouver les fichiers sources sur notre dépôt Git.
 
 \subsection{Objectifs initiaux du projet}
-L'objectif principal était de concevoir un jeu de stratégie au tour par tour intégrant des mécaniques de jeu variées et une physique réaliste. Nos priorités étaient les suivantes :
+L'objectif principal de ce projet est de concevoir un jeu de stratégie au tour par tour, intégrant des mécaniques de jeu variées et une physique réaliste. Nos priorités sont les suivantes :
 
 \begin{itemize}
     \item \textbf{Système de jeu :} Implémenter un système de combat comprenant quatre armes de tir, une bombe, un grappin pour la mobilité et une potion de soin.
@@ -129,9 +130,39 @@ Des choix ont été effectués concernant les fonctionnalités à inclure dans \
 \section{Developpement}
 Les éléments techniques nécessaires à la mise en place du jeu sont détaillés dans les volets suivants. La modélisation du terrain, la gestion des déplacements ainsi que l'ensemble des actions réalisables au cours d'une partie y sont notamment décrites.
 \subsection{Représentation du terrain par une matrice}
+Afin de gérer les collisions et les interactions, le terrain est modélisé par une matrice de structures \textit{t\_case}. Chaque cellule de cette matrice, contient une constante identifiant la nature de l'élément présent : \texttt{EAU}, \texttt{AIR}, \texttt{TERRE} ou l'un des six dinosaures (\texttt{D1} à \texttt{D6}).
+Pour garantir l'adaptabilité du terrain à n'importe quel environnement, la fonction \textit{conversionMatrice} convertit une image simplifié du terrain, en matrice pour créer un masque de collision :
+\begin{itemize}
+    \item \textbf{Bleu :} représente l'eau ;
+    \item \textbf{Marron :} représente la terre ;
+    \item \textbf{Blanc :} représente l'air.
+\end{itemize}
+L'algorithme parcourt l'image pixel, par pixel (lignes et colonnes) et initialise la matrice. Une marge de tolérance sur les composantes RVB a été intégrée pour éviter des légères variations de couleur et assurer une détection robuste des éléments du décor.
+\\
 
 \subsection{Positionnement et mobilité des dinosaures}
-Cette partie rend compte des actions et méthodes permetant aux dinosaures de se placer et se déplacer en utilisant des tableaux de coordonnées nommées nuages de points.\\
+Au travers de cette partie nous allons voir comment l'utilisation des tableaux de coordonnées nommés nuages de points ont permis des actions et méthodes permettant aux dinosaures de se placer et se déplacer.\\
+
+Tout d'abord pour modéliser le relief du terrain praticable, les coordonnées $(x,y)$ de la ligne de crête sont enregistrées dans un nuage de points. Un nuage de points est associé pour chaque colline. Le jeu est limité à 5 nuages de points par carte. La trace du nuage de points est enregistée au même dimension que l'image du jeu, voir figure~\ref{fig:defNuage}.\\
+Afin de connaître la position du dinosaure par rapport aux différentes collines, l’identifiant du nuage de points et l’indice de position dans ce nuage  sont mémorisés dans la structure \textit{\mbox{t\_dino}}. L’identifiant $0$ indique qu’il s’agit de la zone de déplacement la plus à gauche, tandis que $n-1$ ($n$ le nombre de nuages)  signifie qu'il sagit de la dernière colline, celle la plus à droite. Ce système d’indexation permet au dinosaure de suivre les courbes du terrain de manière ordonnée.\\ 
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=4.2cm]{img/traceNuagePoint.jpg}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/nuageSurColline.png}
+	\end{minipage}
+	\caption[schéma de la définition du nuage de points]{schéma de la définition du nuage de points}
+	\label{fig:defNuage}
+\end{figure}
+
+Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}} parcourt sur la largeur une image représentant le tracé d'une colline. Elle fait  la moyenne $m$ des pixels noirs rencontrés, stockés dans un tableau $I$, à l'indice  $i$. Le calcul de la moyenne $m$ est ensuite enregistré dans un tableau $N$ de \textit{\mbox{t\_coordonnee}} avec $(x=i,y=m)$. Comme le tracé est forcément continue, alors les points $x$ sont reliés les uns aux autres de façons croissante et continue, voir image: figure~\ref{fig:realisationNuage} accompagné du calcul de $(x_i,y_i)$.
+
 \begin{figure}[ht]
 	\centering
 	\begin{minipage}[c]{0.5\textwidth}
@@ -142,15 +173,12 @@ Cette partie rend compte des actions et méthodes permetant aux dinosaures de se
 	\begin{minipage}[c]{0.4\textwidth}
 		\centering
         \[I=[(i,y_1),...,(i,y_j),...,(i,y_n)]\]
-        \[N=[(x_1,x_2),...,(x_i,x_i),...,(x_n,x_n)]\]
-		\[(x_i,y_i)=(i,m=\sum_{k=0}^{n}\frac{y_k}{n})\]
+        \[N=[(x_1,y_1),...,(x_i,y_i),...,(x_n,y_n)]\]
+		\[(x_i,y_i)=(i,m=\sum_{k=0}^{n-1}\frac{y_k}{n})\]
 	\end{minipage}
 	\caption[schema du calcul du tableau de nuage de points]{schema du calcul du tableau de nuage de points}
 	\label{fig:realisationNuage}
 \end{figure}
-\\
-Tout d'abord pour modéliser le relief du terrain praticable, les coordonnées $(x,y)$ de la ligne de crête sont enregistrées dans un nuage de points. Un nuage de points est associé à une seule colline, il peut y en avoir maximum 5. Afin de connaître la position du dinosaure par rapport aux différentes côtes, l’indentifiant du nuage de points et l’indice de position dans ce nuage  sont mémorisées dans la structure \textit{\mbox{t\_dino}}. L’identifiant 0 indique qu’il s’agit de la zone de déplacement la plus à gauche tandis que n-1 signifie que c’est la dernière colline de ce fait la plus à droite. Ce système d’indexation permet au dinosaure de suivre les courbes du terrain de manière fluide. Pour générer le nuage de points; la fonction \textit{\mbox{nuage\_de\_points}} parcourt sur la largeur une image représentant le tracé de la colline et si sur la colonne $j$ elle rencontre un ou des points noirs alors elle fait la moyenne m des ordonnées $i$ de tous ces points et l’enregistre dans un tableau de \textit{\mbox{t\_coordonnee}} avec $(x=j,y=m)$. Comme le tracé est forcément continue, alors les points $x$ sont reliés les uns aux autres de façons croissantes et continues, voir image: figure~\ref{fig:realisationNuage} accompagnés du calcul de $(x,y)$, $I$ est un tableau de toutes les coordonnées des points noires et $N$ est le tableau du nuage de points.
-Le placement initial des unités est une étape importante pour assurer la non redondance de JurassicWar. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
 \\\\
 Le terrain est divisé en deux zones : le premier tiers gauche pour l'équipe 1 et le dernier tiers droit pour l'équipe 2, chaque zone a à la fin 3 dinosaures. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Tout d’abord pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable de securite limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
 \\
@@ -158,16 +186,16 @@ Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}}
 \\
 Enfin, l'affichage avec les fonctions \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}. Une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de 100 pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision (fondée sur les coordonnées réelles de la matrice) de la logique visuelle (adaptée à la fenêtre SDL)
 \\
-Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} va prendre un échantillon des dix points les plus proches du dinosaure et va calculer le coefficiant directeur $\alpha$ qui indique le degrès de la pente à la position $(x_i,y_i)$, voir image: figure~\ref{fig:realisationRegression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ la courbe descend vers la gauche et monte vers la droite et inversement si $\alpha<0$, la courbe est plate sinon. De ce fait la vitesse du dinosaure dépend de l'angle de la pente $\alpha$ et on trouve le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec le calcul suivant:
+Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} prend un échantillon des dix points les plus proches du dinosaure et calcul le coefficient directeur $\alpha$ qui indique le degré de la pente à la position $(x_i,y_i)$, voir image: figure~\ref{fig:realisationRegression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ le dinosaure descend vers la gauche et monte vers la droite et inversement si $\alpha<0$. Sinon, le dinosaure marche à la vitesse de base. On trouve ainsi le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec la formule suivante:
 \begin{equation}
-pas=VITESSE\_BASSE\cdot{(1+sens\cdot{(a*0,5)})}
+pas=VITESSE\_BASE\cdot{(1+sens\cdot{(a*0,5)})}
 \label{eq:calculPas}
 \end{equation} 
 \begin{figure}[ht]
 	\centering
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-		\includegraphics[width=6.2cm]{img/regression.png}
+		\includegraphics[width=6.2cm]{img/imgRegression.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.4\textwidth}
@@ -178,7 +206,11 @@ pas=VITESSE\_BASSE\cdot{(1+sens\cdot{(a*0,5)})}
 	\label{fig:realisationRegression}
 \end{figure} \\
 
-Si le dinosaure sort des extrémité du tableau, soit il se noie ou il tombe sur une nouvelle colline la fonction \textit{\mbox{replacementNuage}} calcule l'écart entre la position x du dinosaure et la coordonnée $x'$ du point de bordure d'un nuage le plus proche du dinosaure. Le nouvel indice dans le nuage devient soit $0+ecart$ si le dinosaure est à côté du début du nouveau nuage sinon il est égale à $n-1-ecart$, $n-1$ est le dernier indice du nuage. Par sécurité elle intègre également une règle interdisant le franchissement de dénivelés verticaux trop importants. Si aucun nuage n'est trouvé le dinosaure tombe dans l'eau et se noie. Pour que le dinosaure saute, la flèche du haut doit être cliqué. La vitesse de saut, stocké dans \textit{\mbox{t\_dino}}, du dinosaure est initinialisée à FORCE\_SAUT une valeur négative qui va propulser le dinosaure vers le haut. La vitesse du saut est alors ajoutée à la position $y$ du dinosaure. Ensuite la vitesse du saut est ralentit grâce à l'accumultion de la constante GRAVITE tour par tour jusqu'à ce que le dinosaure retombe. Le saut prend fin lorsque la position $y$ du dinosaure est supérieur ou égale à la position $y'$ du nuage de points actifs à l'\textit{\mbox{indice\_nuage}} du dinosaure. Pour déplacer à gauche, ou à droite, l'indice du nuage du dinosaure est incrémenté ou décrémenté. Si en sautant le dinosaure sort du nuage, alors si un nouveau nuage de point est trouvé avec la fonction \textit{\mbox{replacementNuage}} le saut reprend normalement sinon il tombe dans l'eau. 
+Si le dinosaure sort des extrémités du tableau, alors il se noie ou il tombe sur une nouvelle colline. La fonction \textit{\mbox{replacementNuage}}, calcule l'écart entre la position x du dinosaure et la coordonnée $x'$ du point de bordure d'un nuage, le plus proche du dinosaure. Le nouvel indice dans le nuage devient $0+ecart$, si le dinosaure est à côté du début du nouveau nuage, sinon il est égale à $n-1-ecart$, $n-1$ étant le dernier indice du nuage.\\
+Par sécurité, elle intègre également une règle interdisant le franchissement de dénivelés verticaux trop importants. Si aucun nuage n'est trouvé, le dinosaure tombe dans l'eau et se noie.\\ 
+Pour que le dinosaure saute, la flèche du haut doit être cliquée. La vitesse de saut, stockée dans \textit{\mbox{t\_dino}}, du dinosaure est initinialisée à \textbf{FORCE\_SAUT}, qui est une valeur négative qui propulse le dinosaure vers le haut. La vitesse de saut est alors ajoutée à la position $y$ du dinosaure. Puis, la vitesse du saut est ralentie grâce à l'accumulation de la constante \textbf{GRAVITE} tour par tour, jusqu'à ce que le dinosaure retombe. Le saut prend fin, lorsque la position $y$ du dinosaure est supérieure ou égale à la position $y'$ du nuage de points actif à \textit{\mbox{indice\_nuage}} du dinosaure.\\ 
+Pour déplacer, à gauche, ou à droite, \textbf{lors d'un saut}, l'indice du nuage du dinosaure est incrémenté ou décrémenté. Si en sautant le dinosaure sort du nuage, alors il y a deux possibilités, soit un nouveau nuage de point est trouvé avec la fonction \textit{\mbox{replacementNuage}} et le saut reprend normalement, soit il tombe dans l'eau.
+
 \newpage
 \subsection{Système d’actions et outils à disposition du joueur}
 Cette partie rend compte de la manière dont s'enchaînent les actions dans \textit{JurassicWar} à travers la mécanique des changements de tours mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grappin. 
@@ -278,6 +310,11 @@ En opposition aux armes qui blessent, une potion de soin a été implémentée. 
 
 
 \subsubsection{Autre méthode de déplacement : grappin}
+Pour utiliser le grappin, il faut appuyer sur la touche \textbf{G}. Le joueur choisit alors l'angle pour lancer le grappin à l'aide de la fonction \textit{\mbox{choixAngleLancer}}. Elle ajoute ou enlève $0,5$ à l'angle en fonction des flèches appuyées. Puis grace aux fonctions trigonométriques, voir figure~\ref{fig:coordonneesPolaires}, elle projète les coordonnées $(x,y)$ de l'extrémité du segment de visée. \\
+Le joueur appuie ensuite sur \textbf{ESPACE} pour lancer le grappin. Les fonctions \textit{\mbox{lancer}} et \textit{\mbox{rappel}} font appel à une \textbf{file} qui mémorise chronologiquement les points de la trajectoire lors du lancer, puis les restitue lors du rappel afin de tirer le dinosaure. \\
+Si le joueur décide d'appuyer sur \textbf{ENTREE}, la traction se stoppe et le dinosaure se balance. La fonction \textit{\mbox{balancier}} simule un mouvement de pendule autour de la queue de la \textbf{file}, utilisée comme pivot fixe. Elle calcule l'accélération et la vitesse d'oscillation pour transformer les coordonnées polaires~\ref{fig:coordonneesPolaires} en positions cartésiennes. Le joueur peut alors accentuer le balancement avec les flèches directionnelles avant de stabiliser sa position finale.\\ 
+Cependant si le dinosaure touche la colline avant d'appuyer sur \textbf{ENTREE}, il y a alors deux possibilités. Premier cas de figure, le dinosaure se situe en desous de la ligne de crête, la fonction \textit{\mbox{chute}} est appelée, il peut alors atterir sur le nuage ou se noyer. Second cas de figure  c'est \textit{\mbox{replacementNuage}} qui est appelée pour replacer correctement le dinosaure sur la nouvelle colline.
+
 \newpage
 
 \subsection{Interface graphique et utilisateur}
@@ -356,6 +393,35 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
         }
         \caption{Tableau des cas de tests valides de la fonction recupererDinoNumero}
     \label{tab_cas_valides_recupererDinoNumero}
+\end{table}
+
+\textbf{Cas de test de la fonction deplacement_dino dans le fichier deplacement.c}\\
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|} \hline
+        \textbf{Cas de test Valides} & \textbf{Données (État + Action)} & \textbf{Résultats attendus} \\ \hline
+        Marche horizontale standard & \texttt{sautBooleen}=0, sur nuage + Touche \texttt{DROITE} & \texttt{pos.x} augmente, \texttt{indice\_nuage} augmente, \texttt{sens}=\texttt{DROITE}. \\ \hline
+        Initialisation d'un saut & \texttt{sautBooleen}=0, \texttt{wait}=0 + Touche \texttt{HAUT} & \texttt{sautBooleen}=1, \texttt{v\_y}=\texttt{FORCE\_SAUT}. \\ \hline
+        Saut avec déplacement & \texttt{sautBooleen}=1 + Touche \texttt{DROITE} & \texttt{pos.y} et \texttt{pos.x} évoluent selon la parabole du saut. \\ \hline
+        Atterrissage sur nuage & \texttt{sautBooleen}=1, \texttt{pos.y} $\ge$ nuage & \texttt{sautBooleen}=0, \texttt{v\_y}=0, \texttt{wait}=20. \\ \hline
+        Transition entre collines & \texttt{hors\_nuage}=1, nouveau nuage détecté & Appel \texttt{replacementNuage}, \texttt{id\_nuage} change, dino tombe sur nouveau nuage. \\ \hline
+    \end{tabular}
+    \caption{Cas de tests valides sur la fonction \textit{deplacement\_dino}.}
+    \label{tab_cas_valide_deplacements}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|} \hline
+        \textbf{Cas de test Invalides} & \textbf{Données (Condition limite)} & \textbf{Résultats attendus} \\ \hline
+        Noyade du dinosaure & \texttt{matrice}[y][x] == -1 (eau) & Appel de \texttt{noyade()}, \texttt{etat}=0, \texttt{pv}=0 et arrêt des mouvements. \\ \hline
+        Sortie du nuage de points & \texttt{hors\_nuage}=1 et \texttt{replacementNuage} échoue & Passage à l'état \texttt{tomber}=2, chute verticale jusqu'à la limite du terrain. \\ \hline
+        Action sur dinosaure mort & \texttt{dino->etat} == 0 & La fonction \texttt{deplacement\_dino} s'arrête immédiatement. \\ \hline
+        Saut impossible (Attente) & \texttt{wait} > 0 + Touche \texttt{HAUT} & La variable \texttt{sautBooleen} reste à 0, aucune impulsion verticale n'est donnée. \\ \hline
+        Blocage par décor & Collision avec \texttt{TERRE} lors d'un mouvement & La position \texttt{pos.y} est réinitialisée à sa valeur précédente pour empêcher de traverser le sol. \\ \hline
+    \end{tabular}
+    \caption{Cas de tests invalides sur la fonction \textit{deplacement\_dino}.}
+    \label{tab_cas_invalide_deplacements}
 \end{table}
 
 \newpage
@@ -439,4 +505,67 @@ bombe.coor = {x = 592, y = 131}
 (gdb) quit
 \end{verbatim}
 À l'issue de la séquence de commandes, il s'avère que l'erreur réside dans une inversion de coordonnées dans la fonction \textit{\mbox{collisionTerrainBombe}}, comme l'illustre l'arrêt au point d'arrêt numéro cinq. Cette inversion s'explique par une différence de convention entre la matrice et l'affichage dans la fenêtre avec le module SDL. Tandis que la largeur correspond à l'axe des ordonnées pour la matrice, il s'agit de l'axe des abscisses pour l'affichage et inversement pour la hauteur. La résolution du comportement incohérent de la bombe nécessite donc uniquement d'échanger les coordonnées x et y dans les tests effectués par la fonction.
+
+\subsubsection{Correction du point d'attache du Grappin}
+Lors de l’activation du balancier par la touche \textbf{ENTREE}, le grappin n’est plus attaché au bon endroit. Normalement il doit ressembler à l’image ~\ref{fig:imageCorrecteGrappin}, mais il ressemble à l'image ~\ref{fig:imageFausseGrappin}. Pour trouver l’erreur, le programme est lancé avec GDB. Les commandes suivantes sont effectuées pour localiser l’erreur:
+\begin{verbatim}
+gdb ./testGrappin
+(gdb)  break balancier
+(gdb)  print *pts_rotation  
+(gdb)  backtrace
+(gdb) quit
+\end{verbatim}
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/imgGrappinVrai.png}
+	\end{minipage}
+    \caption[Grappin correctement attaché]{Grappin correctement attaché}
+	\label{fig:imageCorrecteGrappin}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/imgGrappinFaux.png}
+	\end{minipage}
+    \caption[Grappin avec un problème d'attache]{Grappin avec un problème d'attache}
+	\label{fig:imageFausseGrappin}
+\end{figure}
+
+Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que les valeurs pointées par  \textit{\mbox{pts\_rotation}} ne rentrent pas dans les limites du terrain, elles sont donc corrompues. Avec backtrace nous comprenons que le problème vient de la fonction \textit{\mbox{grappin}}. En regardant juste au-dessus de la ligne 337, dans \textit{\mbox{grappin.c}}, nous observons que la \textbf{file} est détruite. Donc  \textit{\mbox{pts\_rotation}}, qui doit pointer vers la queue de file, devient un pointeur fou. Pour régler le problème, au lieu de passer l’adresse d’un élément qui va être supprimé, voir image ~\ref{fig:imagecodeFauxGrappin}, nous faisons une copie du contenu de cet élément dans une variable locale, voir image ~\ref{fig:imagecodeVraiGrappin}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/gdbGrappin.png}
+	\end{minipage}
+    \caption[Capture d'écran du débbogage de \textit{\mbox{test\_grappin}}]{Capture d'écran du débbogage de \textit{\mbox{test\_grappin}}}
+	\label{fig:imageGdbGrappin}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/codeFauxGrappin.png}
+	\end{minipage}
+    \caption[Code érroné de \textit{\mbox{grappin.c}}]{Image du code érroné de \textit{\mbox{grappin.c}}}
+	\label{fig:imagecodeFauxGrappin}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+		\includegraphics[width=6.2cm]{img/codeVraiGrappin.png}
+	\end{minipage}
+    \caption[Image du code corrigé de \textit{\mbox{grappin.c}}]{Code corrigé de \textit{\mbox{grappin.c}}}
+	\label{fig:imagecodeVraiGrappin}
+\end{figure}
+
 \end{document}
