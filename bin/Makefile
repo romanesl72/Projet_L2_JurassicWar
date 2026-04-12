@@ -12,6 +12,7 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 
 EXECUTABLES = ./main \
 ./testAffichageMenuHIP \
+./test_vol \
 ./testTirsAffichageJeu \
 ./test_archer \
 ./testCollisions \
@@ -30,6 +31,7 @@ EXECUTABLES = ./main \
 ./testGrappin
 
 
+OBJETS_VOL = test_vol.o fonctionsTirs.o fonctionsVerification.o
 
 OBJETS_MAIN = main.o \
 chargerMatrice.o \
@@ -76,7 +78,8 @@ fonctionsTirs.o \
 fonctionSoin.o \
 deplacement.o \
 regression.o \
-collision_decor.o
+collision_decor.o \
+fonctionsPageFinPartie.o
 
 OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
 OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
@@ -98,11 +101,28 @@ regression.o \
 collision_decor.o
 
 
-OBJETS_REBONDS = 			testFonctionsRebonds.o 			$(OBJETS_COMMUNS) fonctionsMenuHIP.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsStructJoueur.o
+OBJETS_REBONDS = testFonctionsRebonds.o \
+$(OBJETS_COMMUNS) \
+fonctionsMenuHIP.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsStructJoueur.o
 
-OBJETS_REGRESSION = 		testRegression.o 				tda_nuage.o regression.o
-OBJETS_TIR = 				testTirArmes.o 					placer_dinos.o chargerMatrice.o fonctionsTirs.o fonctionsMenuHIP.o fonctionsStructJoueur.o
-OBJETS_TUER_DINOS = 		testFonctionsTuerDinos.o 		$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsRebonds.o fonctionsTuerDinos.o fonctionsPlacementBombe.o
+OBJETS_REGRESSION = testRegression.o 	tda_nuage.o regression.o
+
+OBJETS_TIR = testTirArmes.o \
+placer_dinos.o \
+chargerMatrice.o \
+fonctionsTirs.o \
+fonctionsMenuHIP.o \
+fonctionsStructJoueur.o
+
+OBJETS_TUER_DINOS = testFonctionsTuerDinos.o \
+$(OBJETS_COMMUNS) \
+$(OBJETS_COMMUNS2) \
+fonctionsRebonds.o \
+fonctionsTuerDinos.o \
+fonctionsPlacementBombe.o
 
 OBJETS_MENU_PRINC = testFonctionsMenuPrinc.o \
 chargerMatrice.o \
@@ -128,6 +148,8 @@ collision_decor.o
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
 
 OBJETS_GRAPPIN = testGrappin.o \
+	$(OBJETS_COMMUNS) \
+	$(OBJETS_COMMUNS2) \
 	grappin.o \
 	tda_file.o \
 	fonctionsAffichage.o \
@@ -143,9 +165,8 @@ OBJETS_GRAPPIN = testGrappin.o \
 	fonctionSoin.o \
 	deplacement.o \
 	regression.o \
-	collision_decor.o \
-	$(OBJETS_COMMUNS) \
-	$(OBJETS_COMMUNS2)
+	collision_decor.o
+
 
 all: $(EXECUTABLES)
 
@@ -159,6 +180,9 @@ all: $(EXECUTABLES)
 # -------------------   FICHIERS TEST   -------------------
 
 ./test_archer: $(OBJETS_ARCHER)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./test_vol: $(OBJETS_VOL)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testAffichageDinosMap: $(OBJETS_AFFICHAGE_DINOS)

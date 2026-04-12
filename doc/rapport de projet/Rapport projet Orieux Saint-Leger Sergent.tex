@@ -286,15 +286,12 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 
 Après l’implémentation de la bombe, nous avons conçu un système d’armes à distances variées. L’objectif principal est de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisi.
 Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : Son nom, sa puissance de propulsion qui va déterminer la vitesse initiale du projectile. Un fusil aura une vélocité supérieure à celle d’une flèche. Sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Sa masse, un projectile lourd comme une flèche aura une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevés lors de l’impact.
-
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/TrajectoireTirs.png}
         	\caption[exemple trajectoire de tirs]{Exemple de la trajectoire des quatres armes}
 	\label{fig:trajectoiresTirs}
 \end{figure}
-
-\textcolor{yellow}{arc}, \textcolor{red}{arbalète}, \textcolor{green}{fusil}, \textcolor{blue}{revolver}
 \\
 L’utilisation d’une arme de tir se décompose en trois phases gérées par la fonction \textit{\mbox{viserArcher}} :
 Tout d’abord le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main, le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (tir→velo.u et tir→ velo.v). Afin de maintenir un jeu réaliste ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin la fonction tracerTrajectoireTir permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les 30 prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque frame, elle applique l’effet de la gravité selon la formule :
@@ -345,6 +342,18 @@ En second lieu, un menu principal a été conçu dans \textit{\mbox{JurassicWar}
 
 \subsubsection{Faciliter l’utilisation du jeu pour l’utilisateur}
 
+Pour finir l'adaptation en cours de partie repose sur la capacité de l'interface à transmettre des informations complexes de manière instantanée. Cette fluidité de jeu tourne autour de deux grands axes : la gestion des ressources via un inventaire dynamique et le suivi en temps réel de l'état des unités.
+\\\\
+Premièrement, la mise en œuvre d'un inventaire situé en bordure supérieure gauche de l'écran centralise les outils à disposition (voir figure  ~\ref{fig:informationsDePartie}). Cette interface, gérée par la fonction \textit{\mbox{afficherInventaire}}, segmente l'espace en 7 cases distinctes associées aux textures des objets (Arc, Arbalète, Fusil, Revolver, Bombe, Grappin ou Potion). Afin de supprimer la nécessité de consulter une notice externe durant l'action, chaque image intègre une lettre de rappel. Ce marquage visuel indique directement la touche du clavier dédiée à l'activation de l'objet. La conception de cet inventaire repose sur un calcul dynamique de la largeur des cases en fonction de la constante \textit{\mbox{LARGEUR\_INVENTAIRE}} et du nombre d'objets, assurant une adaptabilité aux futures évolutions du catalogue d'armes. L'usage de \textit{\mbox{SDL\_RenderDrawRect}} délimite chaque emplacement par une bordure grise, renforçant la clarté pour l'utilisateur.
+Deuxièmement, le suivi de l'état de santé des dinosaures constitue un facteur stratégique important. Le menu des points de vie créé par les fonctions \textit{\mbox{afficherMenuPVDinos}} et \textit{\mbox{afficherBarrePV}}, offre une idée de l'avancée de la partie. L'interface regroupe les informations sur deux lignes, une par équipe (voir figure  ~\ref{fig:informationsDePartie}). Chaque dinosaure dispose d'une jauge de santé dont la couleur évolue selon le nombre de points de vie restants. Le vert indique une santé supérieure à 50\%, l'orange un état critique supérieur à 20\% et le rouge un seuil d'urgence inférieur à 20\%. Ce changement alerte l'utilisateur sans qu'une lecture précise des valeurs numériques ne soit utilisée. De plus, la disparition immédiate de la jauge lors du décès d'un dinosaure signale une perte importante du jeu.
+Enfin l'optimisation des performances d'affichage des textes et des jauges traité par la fonction \textit{\mbox{afficherMenuPVDinosOp}} avec l'utilisation d'un système de cache de textures (\textit{\mbox{t\_texte\_cache}}) limite les opérations coûteuses de rendu textuel à chaque cycle de la boucle de jeu. En stockant en avance les étiquettes de chaque dinosaure, le programme réduit la consommation des ressources processeur tout en maintenant une interface utilisateur réactive et informative.
+
+\begin{figure}[h]
+    \centering
+            \includegraphics[width=0.8\textwidth]{img/informationsPartie.png}
+            \caption{Système de jauges de santé dynamiques avec code couleur représentatif de l'état des unités et inventaire des armes.}
+    \label{fig:informationsDePartie}
+\end{figure}
 
 \newpage
 \section{Résultats et Conclusion}
@@ -628,5 +637,61 @@ Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que 
     \caption[Image du code corrigé de \textit{\mbox{grappin.c}}]{Code corrigé de \textit{\mbox{grappin.c}}}
     \label{fig:imagecodeVraiGrappin}
 \end{figure}
+
+\newpage
+
+\subsubsection{Correction des gestions de zones pour le placement des dinosaures}
+Lors du développement du module de placement des dinosaures, une erreur logique a été identifiée dans la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}. Alors que le nuage de points contient des coordonnées valides, le programme ne parvient pas à allouer les dix zones de spawn requises pour chaque équipe, déclenchant systématiquement le message d'alerte "Attention : Zones de spawn incomplètes !" de sécurité après 5000 itérations.
+\\\\
+Ainsi puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas, on utilise gdb pour observer l'exécution 'en direct'. En utilisant la commande display dino, on s'aperçoit que même si dino.x est inférieur à LARGEUR\_TERRAIN/3 (ce qui est bien dans le tiers gauche du terrain), le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur dino.y. Comme dino.y représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
+\\\\
+\textbf{Séquence des instructions de débogage :}
+\begin{verbatim}
+gdb ./main
+
+# Mise en place des points d'arrêt
+(gdb) break ../src/gestion_zones.c:26
+Breakpoint 1 at 0xae30: file ../src/gestion_zones.c, line 26.
+
+# Lancement de l'exécution du programme
+(gdb) run
+Partie Lancée !
+
+Thread 1 "main" hit Breakpoint 1, generer_catalogue_depuis_nuage (
+    nuage=0x555559054ae0, nb_points=551, catalogue=0x7fffffffdce0,
+    nb_E1=0x7fffffffda64, nb_E2=0x7fffffffda68, id_n=0) at ../src/gestion_zones.c:26
+26          while (points_ajoutes_ce_tour < 10 && securite < 5000) {
+(gdb) step
+27 trop_proche = 0;
+(gdb) step
+28 securite++;
+(gdb) step
+30 r = rand() % nb_points;
+(gdb) next
+generer_catalogue_depuis_nuage (nuage=0x555559054ae0, nb_points=551,
+    catalogue=0x7fffffffdce0, nb_E1=0x7fffffffda64, nb_E2=0x7fffffffda68, id_n=0)
+    at ../src/gestion_zones.c:31
+31 t_coordonnee dino = nuage[r];
+(gdb) display dino
+1: dino = {x = -809228544, y = 103994526}
+(gdb) step
+34 for(i=0; i < *nb_E1; i++) {
+1: dino = {x = 315, y = 488}
+(gdb) step
+39 for(i=0; i < *nb_E2; i++) {
+1: dino = {x = 315, y = 488}
+(gdb) step
+45 if(!trop_proche) {
+1: dino = {x = 315, y = 488}
+(gdb) step
+47 if ((dino.y < (LARGEUR_TERRAIN / 3)) && (*nb_E1 < 10)) {
+1: dino = {x = 315, y = 488}
+(gdb) step
+56 else if ((dino.y > (2 * LARGEUR_TERRAIN / 3)) && (*nb_E2 < 10)) {
+1: dino = {x = 315, y = 488}
+(gdb) step
+26 while (points_ajoutes_ce_tour < 10 && securite < 5000) {
+(gdb) quit
+\end{verbatim}
 
 \end{document}
