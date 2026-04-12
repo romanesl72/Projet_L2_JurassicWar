@@ -51,11 +51,8 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
             SDL_RenderPresent(zoneAffichage);
         }
         supprimer_matrice_dino(*dino, matrice);
-        supprimerDinoJoueur(equipe1, equipe2, (*dino)->d);
-        *dino = NULL;
-        printf("tout va bien \n");
+        (*dino)->etat=0;
         afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
-        printf("oui \n");
         SDL_RenderPresent(zoneAffichage);
         return 0;
     }
@@ -92,6 +89,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
     double gravite = 0.15;
     int en_mouvement = 1;
     float force_poussee = 0.002f;
+    int ecart=(*nuage)[0].x;
 
     while (en_mouvement) {
         SDL_PumpEvents();
@@ -114,7 +112,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
         // On transforme les polaires en cartésien
         (*dino)->pos.x = (int)(pivot.x + L * cos(angle));
         (*dino)->pos.y = (int)(pivot.y - L * sin(angle));
-
+        (*dino)->indice_nuage = (int)(pivot.x + L * cos(angle))-ecart;
         remplir_matrice_dino(*dino, (*dino)->pos, matrice);
 
         if(collision_cote(**dino,matrice)){
@@ -123,6 +121,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
             supprimer_matrice_dino(*dino, matrice);
             (*dino)->pos.x = (int)(pivot.x + L * cos(angle));
             (*dino)->pos.y = (int)(pivot.y - L * sin(angle));
+            (*dino)->indice_nuage = (int)(pivot.x + L * cos(angle))-ecart;
             remplir_matrice_dino(*dino, (*dino)->pos, matrice);
         }      
 
@@ -135,9 +134,8 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(10);
     }
-    replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
+    if(horsNuage(*dino,*nb_pts,matrice))replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
     chute(dino, *nb_pts, *nuage, matrice, zoneAffichage, police,texMap,texDinos,texObjets,nomsObjets,equipe1,equipe2);
-    replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
     ((*dino)->deplacement->sens) *= -1;
     supprimer_matrice_dino(*dino, matrice);
     (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
@@ -181,7 +179,6 @@ float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *
 
     return degres*RADIANS;
 }
-
 
 int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], int *collision_detectee, int distance_parcourue) {
     
@@ -248,7 +245,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
     (*dino)->pos = pos_suivante;
     remplir_matrice_dino(*dino, (*dino)->pos, matrice);
     if(collision_decor((*dino)->deplacement->tab_res,**dino,matrice)){
-        printf("\n------------cococococo--------\n");
+        
         supprimer_matrice_dino(*dino, matrice);
         (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
         remplir_matrice_dino(*dino, (*dino)->pos, matrice);
@@ -325,6 +322,11 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
                 chute(dino, *nb_pts, *nuage, matrice,zoneAffichage, police, texMap,texDinos, texObjets,nomsObjets,
                     equipe1, equipe2);
                 etat_fini = 1; // Sortie de la boucle de rappel
+                if((*dino)->etat==0){
+                    supprimerDinoJoueur(equipe1, equipe2, (*dino)->d);
+                    *dino = NULL;
+                    return 0;
+                }
             }
             else if(etat_fini == 3) {
                 t_coordonnee *res = lireQueue();
@@ -332,8 +334,14 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
                     t_coordonnee pivot_fixe = *res; // COPIE DES VALEURS
                     detruireFile(); // On peut maintenant vider la file sans risque
                     
-                    balancier(matrice, dino, zoneAffichage, state, police, texMap, texDinos, 
-                            texObjets, nomsObjets, equipe1, equipe2, &pivot_fixe,nb_pts,nuage,nb_nuage,nomNuage);
+                    balancier(matrice, dino, zoneAffichage, state, police, texMap, 
+                        texDinos,texObjets, nomsObjets, equipe1, equipe2, &pivot_fixe,
+                        nb_pts,nuage,nb_nuage,nomNuage);
+                    if((*dino)->etat==0){
+                        supprimerDinoJoueur(equipe1, equipe2, (*dino)->d);
+                        *dino = NULL;
+                        return 0;
+                    }
                 }
             }
         }
