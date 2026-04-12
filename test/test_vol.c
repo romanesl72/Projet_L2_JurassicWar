@@ -1,0 +1,131 @@
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+#include "../lib/chargerMatrice.h"
+#include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionsTirs.h"
+#include "../lib/fonctionsVerification.h"
+#include "../lib/gestion_zones.h"
+#include "../lib/placer_dinos.h"
+#include "../lib/tda_nuage.h"
+#include "../lib/types.h"
+
+// Simulation d'une petite matrice pour le test
+int matriceTest[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] = {0};
+
+void reset_matrice() {
+    for(int y=0; y<HAUTEUR_TERRAIN; y++)
+        for(int x=0; x<LARGEUR_TERRAIN; x++)
+            matriceTest[y][x] = 0;
+}
+
+void remplir_toute_la_matrice(int type_bloc) {
+    for(int y = 0; y < HAUTEUR_TERRAIN; y++) {
+        for(int x = 0; x < LARGEUR_TERRAIN; x++) {
+            matriceTest[y][x] = type_bloc;
+        }
+    }
+}
+
+void test_collisions_vol() {
+    t_tir tir;
+    t_arme arc = {ARC, 20, 1.0f, 5.0f, 15.0f}; // exemple
+    float g = 0.5f;
+
+    // --- TEST 1 : Vol libre ---
+    reset_matrice();
+    initialiserTirArcher(&tir, 100, 100, arc);
+    tir.actif = 1;
+    tir.velo.u = 2.0f; tir.velo.v = 0.0f;
+    int res = mettreAJourVol(&tir, matriceTest, g, D1);
+    printf("Debug Test 1: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, AIR);
+    assert(res == 0);
+    assert(tir.actif == 1);
+    assert(tir.pos.x == 102.0f); // 100 + u(2)
+
+    // --- TEST 2 : Collision Frontière (Sortie gauche) ---
+    initialiserTirArcher(&tir, 1, 100, arc);
+    tir.actif = 1;
+    tir.velo.u = -5.0f; // Va sortir au prochain update
+    res = mettreAJourVol(&tir, matriceTest, g, D1);
+    printf("Debug Test 2: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, -2);
+    assert(res == -2);
+    assert(tir.actif == 0);
+
+    // --- TEST 3 : Collision Terre ---
+    remplir_toute_la_matrice(TERRE);
+    initialiserTirArcher(&tir, 105, 100, arc);
+    tir.actif = 1;
+    tir.velo.u = 5.0f; tir.velo.v = 0;
+    res = mettreAJourVol(&tir, matriceTest, g, D1);
+    printf("Debug Test 3: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, TERRE);
+    assert(res == TERRE);
+    assert(res == TERRE);
+    assert(tir.actif == 0);
+
+    // --- TEST 4 : Collision EAU ---
+    remplir_toute_la_matrice(EAU);
+    initialiserTirArcher(&tir, 105, 100, arc);
+    tir.actif = 1;
+    tir.velo.u = 5.0f; tir.velo.v = 0;
+    res = mettreAJourVol(&tir, matriceTest, g, D1);
+    printf("Debug Test 4: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, EAU);
+    assert(res == EAU);
+    assert(res == EAU);
+    assert(tir.actif == 0);
+
+    // --- TEST 5 : Collision Ennemi ---
+    reset_matrice();
+    for(int y = 40; y <= 70; y++) {
+        for(int x = 40; x <= 70; x++) {
+            matriceTest[y][x] = D2;
+        }
+    }
+    initialiserTirArcher(&tir, 45, 50, arc);
+    tir.actif = 1;
+    tir.velo.u = 5.0f; tir.velo.v = 0;
+    res = mettreAJourVol(&tir, matriceTest, g, D1); // D1 tire
+    printf("Debug Test 5: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, D2);
+    assert(res == D2);
+    assert(tir.actif == 0);
+
+    // --- TEST 6 : Auto-Collision (Le projectile traverse le tireur) ---
+    reset_matrice();
+    for(int y = 40; y <= 70; y++) {
+        for(int x = 40; x <= 70; x++) {
+            matriceTest[y][x] = D1;
+        }
+    }
+    initialiserTirArcher(&tir, 45, 50, arc);
+    tir.actif = 1;
+    tir.velo.u = 5.0f; tir.velo.v = 0;
+    res = mettreAJourVol(&tir, matriceTest, g, D1); // D1 tire sur lui-même
+    printf("Debug Test 6: Pos(%f, %f), Resultat obtenu: %d, Attendu: %d\n", tir.pos.x, tir.pos.y, res, AIR);
+    assert(res == 0); // Ne doit pas détecter de collision
+    assert(tir.actif == 1);
+
+    printf("Tous les tests de trajectoire et collision sont passés !\n");
+}
+
+int main() {
+    test_collisions_vol();
+    return 0;
+}
+
+void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe) {}
+
+void afficherDinosAvecJeu(SDL_Renderer *zoneAffichage, t_joueur *equipe) {}
+
+void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets) {}
+
+void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2) {}
+
+void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {}
+
+void supprimerDinoJoueur(t_joueur *equipe, int indice) {}
+
+int retournerDino(t_joueur *equipe, int indice) { return 0; }
+
+t_dino* recupererDinoNumero(t_joueur *e1, t_joueur *e2, t_case numero) { return NULL; }
+
+t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero) { return DROITE; }

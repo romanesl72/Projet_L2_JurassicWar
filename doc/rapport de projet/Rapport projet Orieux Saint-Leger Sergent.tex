@@ -8,6 +8,8 @@
 \captionsetup{justification=centering}
 \usepackage{subcaption}
 \usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{float}
 % Attention toujours inclure hyperref et glossaries en dernier 
 \usepackage{hyperref}
 \usepackage{glossaries}
@@ -121,11 +123,35 @@ Des choix ont été effectués concernant les fonctionnalités à inclure dans \
 
 \newpage
 \section{Organisation du travail}
+
+Cette partie montre la méthodologie structurelle adoptée pour la réalisation du projet JurassicWar, allant de la coordination du groupe à la gestion technique.
+
 \subsection{Répartition des tâches}
+
+Tout d’abord la conception du projet a été séparée en trois axes majeurs. La gestion des tours et la physique complexe des explosifs ont été confiées à Hannah. Le traitement du terrain matriciel, les déplacements et le système de grappin ont été pris en charge par Solène. Enfin, le développement des armes de tir, du système de soin, de l'inventaire et de l'interface utilisateur a été assuré par Romane. Cette répartition permet de pouvoir travailler séparément sans empiéter sur le programme de l’autre afin de ne pas perdre de temps et de ne pas se couper mutuellement le travail. Cette méthode apporte de la liberté au code et une plus grande liberté d’imagination qui aurait pu bloquer si deux personnes travaillait sur le même sujet mais sans avoir les mêmes idées.
+Ensuite la documentation étant nécessaire, chaque membre du groupe a eu la charge de documenter ses propres fonctions. Cette manière de faire garantit que chaque ligne de code est explicitée facilitant la relecture. L'organisation a été rythmée par plusieurs types de rencontres. Des réunions de répartition initiales ont permis de définir les structures communes. Par la suite, des réunions hebdomadaires de "micro-planning" ont été instaurées. Celles-ci servaient à ajuster les objectifs en fonction des blocages techniques rencontrés (par exemple, l'adaptation des trajectoires de tir au relief du terrain). Ces échanges ont assuré une synchronisation constante entre les différents modules. 
+
 \subsection{Planning prévisionnel}
+
+Le projet a été planifié sur une période de douze semaines.
+Des semaines 1 à 3 l’accent a été mis sur la définition des structures de données (t\_dino, t\_tir, t\_map) et sur la conversion du terrain image en matrice. Sans ces bases, aucun développement parallèle n’était possible. Ensuite de la semaine 4 à la semaine 7 l’implémentation des fonctions était vitale, surtout celles des détection des collisions, du lancement des armes, des déplacements et du changement de tour. Le planning montre bien une forte imbrication des tâches nécessitant des tests réguliers. Enfin les dernières semaines ont été consacrées à l’interface, la mise en commun des fonctions crées séparément et au réglage des dernières erreurs.
+\\
+L’image ci-dessous (voir figure ~\ref{fig:DiagrammeGantt}) illustre le diagramme de Gantt du projet. Il est possible d'y observer les marges de sécurité prévues pour les tâches critiques, comme la gestion des rebonds de bombes, les déplacements ou les tirs d’armes à feu, qui ont nécessité plus de temps de test que prévu. 
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{
+        \includegraphics[width=1.15\textwidth]{DiagrammeGantt.png}
+    }
+    \caption{Planning prévisionnel de JurassicWar}
+    \label{fig:DiagrammeGantt}
+\end{figure}
+
 \subsection{Outils de programmation utilisés}
 
-
+Le recours à des outils de développement professionnels a permis de maintenir une stabilité logicielle tout au long du cycle de production. 
+\\
+L'outil "git" a permis la fusion des codes provenant de trois développeurs différents et a permis à chaque personne de pouvoir coder tout en pouvant s’inspirer du code des autres. Ensuite la documentation avec "doxygen" est générée automatiquement à partir des commentaires formatés dans le code source. Exemple : l'utilisation des balises @param et @return dans le fichier fonctionsTirs.c permet d'obtenir une notice technique claire sans rédaction manuelle supplémentaire. Cela est un gain de temps et permet un meilleur visuel à la fois pour les personnes qui essayent de comprendre le code et à la fois pour les créateurs qui cherchent à retrouver l’utilité d’une fonction ou d’une strcuture, que ce soit durant le projet ou dans le futur. Après "GDB" a été utilisé pour stopper l'exécution du programme lors d'une erreur de segmentation afin d'identifier la ligne fautive et "Valgrind" a servi à détecter les fuites de mémoire. Exemple : la vérification que chaque texture SDL chargée en mémoire est correctement libérée à la fermeture du jeu. Enfin Un fichier "Makefile" a été rédigé pour compiler l'ensemble du projet en une seule commande ce qui est un gain de temps énorme pour tester toutes les fonctions de tests crées dans différents fichiers. Exemple : la commande "make" gère la compilation séparée des fichiers gestion\_zones.c et placer\_dinos.c avant de les lier dans l'exécutable final.
 
 \section{Developpement}
 Les éléments techniques nécessaires à la mise en place du jeu sont détaillés dans les volets suivants. La modélisation du terrain, la gestion des déplacements ainsi que l'ensemble des actions réalisables au cours d'une partie y sont notamment décrites.
@@ -180,9 +206,11 @@ Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}}
 	\label{fig:realisationNuage}
 \end{figure}
 \\\\
-Le terrain est divisé en deux zones : le premier tiers gauche pour l'équipe 1 et le dernier tiers droit pour l'équipe 2, chaque zone a à la fin 3 dinosaures. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Tout d’abord pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable de securite limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
+Le placement initial des unités est une étape importante pour assurer la non redondance de JurassicWar. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
+\\\\
+Le terrain est divisé en deux zones pour le placement des dinosaures : le premier tiers, à gauche pour l'équipe 1 et le dernier tiers, à droite pour l'équipe 2. Chaque zone dispose de 3 dinosaures qui correspond à une équipe. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable "securite" limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
 \\
-Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}} place trois dinosaures dans chaque équipe. Chaque dinosaure reçoit un identifiant unique qui sera injecté dans la matrice de jeu. Cette injection dans la matrice se fait via la fonction \textit{\mbox{remplir\_matrice\_dino}}. Cette étape est très importante car la matrice est ensuite tout le temps utilisée afin de jouer. Le dinosaure, qui est représenté par un carré de 30x30 pixels, remplace les valeurs de la matrice par l'ID du dinosaure mais avant d'écraser une case de la matrice, le dinosaure stocke la valeur précédente (terre ou air) dans son tableau memoire. Cette précaution est essentielle pour "restaurer" le décor lorsque le dinosaure se déplace ou meurt, évitant ainsi de laisser des trous vides dans le terrain.
+Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}} place trois dinosaures dans chaque équipe. Chaque dinosaure reçoit un identifiant unique qui sera injecté dans la matrice de jeu. Cette injection dans la matrice se fait via la fonction \textit{\mbox{remplir\_matrice\_dino}}. Cette étape est très importante car la matrice est ensuite utilisée en permanence afin de jouer. Le dinosaure, qui est représenté par un carré de 30x30 pixels, remplace les valeurs de la matrice par l'ID du dinosaure mais avant d'écraser une case de la matrice, le dinosaure stocke la valeur précédente (terre ou air) dans son tableau mémoire. Cette précaution est essentielle pour "restaurer" le décor lorsque le dinosaure se déplace ou meurt, évitant ainsi de laisser des trous vides dans le terrain.
 \\
 Enfin, l'affichage avec les fonctions \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}. Une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de 100 pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision (fondée sur les coordonnées réelles de la matrice) de la logique visuelle (adaptée à la fenêtre SDL)
 \\
@@ -260,9 +288,8 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 \newpage
 \subsubsection{Blesser un dinosaure : armes de tir}
 
-Après l’implémentation de la bombe, nous avons conçu un système d’armes à distance varié. L’objectif principal était de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisis.
-Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : Son nom, sa puissance de propulsion qui va déterminer la vitesse initiale du projectile. Un fusil aura une vélocité supérieure à celle d’une flèche. Sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Sa masse, un projectile lourd comme une flèche aura une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevé lors de l’impact.
-
+Après l’implémentation de la bombe, nous avons conçu un système d’armes à distances variées. L’objectif principal est de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisi.
+Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : Son nom, sa puissance de propulsion qui va déterminer la vitesse initiale du projectile. Un fusil aura une vélocité supérieure à celle d’une flèche. Sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Sa masse, un projectile lourd comme une flèche aura une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevés lors de l’impact.
 
 \begin{figure}[ht]
 	\centering
@@ -273,8 +300,8 @@ Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’a
 
 \textcolor{yellow}{arc}, \textcolor{red}{arbalète}, \textcolor{green}{fusil}, \textcolor{blue}{revolver}
 \\
-L’utilisation d’une arme de tir se décompose en trois phases gérer par la fonction \textit{\mbox{viserArcher}} :
-Tout d’abord le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (tir→velo.u et tir→ velo.v). Afin de maintenir un jeu réaliste ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin la fonction tracerTrajectoireTir permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les 30 prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque frame, elle applique l’effet de la gravité selon la formule :
+L’utilisation d’une arme de tir se décompose en trois phases gérées par la fonction \textit{\mbox{viserArcher}} :
+Tout d’abord le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main, le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (tir→velo.u et tir→ velo.v). Afin de maintenir un jeu réaliste ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin la fonction tracerTrajectoireTir permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les 30 prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque frame, elle applique l’effet de la gravité selon la formule :
 
 \begin{equation}
 \begin{aligned}
@@ -283,7 +310,7 @@ vy(t+1) &= vy(t) + gravite * poids\_projectile\\
 \label{eq:formuleMouvementArme}
 \end{equation}
 \\
-Le vol du projectile est soumis à pleins de vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain, \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et si le projectile touche la terre ou l’eau le projectile s’arrête. Enfin la fonction \textit{\mbox{collisionDino}}, le programme parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro  d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
+Le vol du projectile est soumis à de nombreuses vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain; \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et si le projectile touche la terre ou l’eau le projectile s’arrête. Enfin la fonction \textit{\mbox{collisionDino}}, le programme parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro  d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/affichage_collisions.png}
@@ -292,7 +319,7 @@ Le vol du projectile est soumis à pleins de vérifications via différentes fon
 \end{figure}\\
 Lorsqu’une collision avec un dinosaure adverse a lieu, la fonction \textit{\mbox{appliquerDegats}} intervient. Cette fonction récupère le pointeur sur la structure du dinosaure touché pour mettre à jour ses points de vie. Si les PV tombent à zéro, le dinosaure meurt, sa texture est supprimée de l’affichage et ses coordonnées effacées de la matrice de jeu.
 \\
-En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à 20 points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe. 
+En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à 20 points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe.
 
 \begin{figure}[ht]
 	\centering
@@ -326,6 +353,8 @@ En premier lieu, la sélection du module SDL pour le projet se justifie par sa p
 En second lieu, un menu principal a été conçu dans \textit{\mbox{JurassicWar}} afin de fournir une interface intéractive centralisant l'accès aux fonctionnalités essentielles du jeu.  Il comporte quatre onglets permettant de démarrer la partie, de consulter les principales règles du jeu, d'accéder à  la liste des touches du clavier et de quitter le programme. Les règles instaurées dans la partie ainsi que la liste des touches du clavier correspondant à chaque action figurent comme indispensables dans le menu dans la mesure où ces informations sont inconnues au joueur lors de la découverte du jeu. Ces informations sont placées dans des fenêtres distinctes accessibles depuis des boutons. Leur affichage repose sur le module SDL, abordé dans la section précédente et employé dans plusieurs fonctions telles que \textit{\mbox{tracerBouton}} ou encore \textit{\mbox{afficherMenuPrincipal}}. De même, la détection des clics dans le menu est réalisé par SDL. À propos du texte contenu dans les fenêtres, celui-ci est stocké dans des fichiers, lus lorsque l'utilisateur demande l'ouverture d'une page par le biais de la fonction \textit{\mbox{lireInfosFichier}}. Le texte, rédigé en français et contenant de nombreux caractères accentués, a nécessité de tenir compte de l'encodage en UTF-8 des caractères, notamment pour obtenir un rendu correct avec SDL. L'intégration du menu principal avec le reste du code du jeu a consisté à découper le code déjà existant en fonctions et à adapter la structure du programme principal. Dans un premier temps, le programme central invoque la fonction \textit{\mbox{ouvrirMenuPrinc}} qui initialise le menu principal et sollicite toutes les fonctions liées au menu. Puis, dans un second temps, en cas d'une action de l'utilisateur dans ce sens, la fonction \textit{\mbox{lancerPartie}} s'exécute. Cette fonction orchestre tout le fonctionnement global du jeu et fait appel à toutes les fonctions rédigées dans le cadre du projet.
 
 \subsubsection{Faciliter l’utilisation du jeu pour l’utilisateur}
+
+
 \newpage
 \section{Résultats et Conclusion}
 À l'issue du projet, un logiciel fonctionnel a été obtenu. Les joueurs peuvent lancer une partie, déplacer les dinosaures et utiliser tous les outils indiqués dans le cahier des charges initial. De plus, les interfaces graphiques prévues, c'est à dire le menu principal et l'inventaire ont été implémentées. Cependant, certaines fonctionnalités comme la possibilité pour l'utilisateur de choisir le terrain de jeu dans lequel il souhaite mener une partie ou encore la mise en place d'une limite de temps pour réaliser chaque action n'ont pas été mises en œuvre.
@@ -352,28 +381,38 @@ Disponible à : \url{https://github.com/romanesl72/Projet_L2_JurassicWar}, 2026.
 
 Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont été effectués. Pour chaque fonction vérifiée, les cas de tests valides ou invalides sont énumérés dans des tableaux.
 \\\\
-\textbf{Cas de test de la fonction mettreAjourVol dans le fichier ... }(table ~\ref{tab_cas_valides_mettreAJourVol} et table ~\ref{tab_cas_invalides_mettreAJourVol}).
-\begin{table}[h]
+\paragraph{Cas de test de la fonction mettreAjourVol dans le fichier test\_vol.c}
+(table \ref{tab_cas_valides_mettreAJourVol} et table \ref{tab_cas_invalides_mettreAJourVol}).
+\\
+Voici la définition de : \\
+\texttt{mettreAJourVol(t\_tir *tir, int matrice[HAUTEUR\_TERRAIN][LARGEUR\_TERRAIN], float gravite, int id\_tireur);}
+
+\begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|r|} \hline
-        Cas de tests valides & Données & Résultats attendus\\ \hline
-        Unix & Toutes & 32\% \\
-        Linux & Toutes & 26\% \\
-        Windows NT & Intel & 23\% \\ \hline
-        \end{tabular}
-        \caption{Ceci est un tableau représentant les cas de tests valides sur la fonction.}
+    \small % Réduit légèrement la police pour gagner de la place
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|} \hline
+        \textbf{Cas de tests valides} & \textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        Vol libre & Tir actif, pas d'obstacle & Retourne 0, position mise à jour, actif reste à 1 \\ \hline
+        Sortie Limites & Tir aux coordonnées (-1, -1) (en dehors du jeu) & Retourne -2, actif passe à 0 \\ \hline
+        Collision Terre & Matrice[y][x] = TERRE & Retourne 1 (TERRE), actif passe à 0 \\ \hline
+        Collision Eau & Matrice[y][x] = EAU & Retourne 2 (EAU), actif passe à 0 \\ \hline
+        Collision Dino & Matrice[y][x] = D2, id\_tireur = 1 & Retourne D2, actif passe à 0 \\ \hline
+        Auto-Collision & Matrice[y][x] = D1, id\_tireur = D1 & Retourne 0, actif reste à 1 \\ \hline
+        Tir Inactif & tir->actif = 0 & Retourne 0 \\ \hline
+    \end{tabularx}
+    \caption{Cas de tests valides sur la fonction mettreAJourVol.}
     \label{tab_cas_valides_mettreAJourVol}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
+    \small
     \begin{tabular}{|l|c|r|} \hline
-        Cas de tests Invalides & Données & Résultats attendus\\ \hline
-        Unix & Toutes & 32\% \\
-        Linux & Toutes & 26\% \\
-        Windows NT & Intel & 23\% \\ \hline
-        \end{tabular}
-        \caption{Ceci est un tableau représentant les cas de tests invalides sur la fonction.}
+        \textbf{Cas de tests Invalides} & \textbf{Données} & \textbf{Résultats attendus}\\ \hline
+        Pas assez d'arguments & (tir, matrice, gravite) & Erreur, données Invalides \\
+        Mauvais type d'arguments & (tir, gravite, matrice, tir) & Erreur, données Invalides \\ \hline
+    \end{tabular}
+    \caption{Cas de tests invalides sur la fonction.}
     \label{tab_cas_invalides_mettreAJourVol}
 \end{table}
 
