@@ -214,7 +214,7 @@ Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}}
 \\
 Enfin, l'affichage avec les fonctions \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}. Une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de 100 pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision (fondée sur les coordonnées réelles de la matrice) de la logique visuelle (adaptée à la fenêtre SDL)
 \\
-Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} prend un échantillon des dix points les plus proches du dinosaure et calcul le coefficient directeur $\alpha$ qui indique le degré de la pente à la position $(x_i,y_i)$, voir image: figure~\ref{fig:realisationRegression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ le dinosaure descend vers la gauche et monte vers la droite et inversement si $\alpha<0$. Sinon, le dinosaure marche à la vitesse de base. On trouve ainsi le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec la formule suivante:
+Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} prend un échantillon des dix points les plus proches du dinosaure et calcul le coefficient directeur $\alpha$ qui indique le degré de la pente à la position $(x_i,y_i)$, voir image: figure~\ref{fig:realisationRegression}\gls{regression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ le dinosaure descend vers la gauche et monte vers la droite et inversement si $\alpha<0$. Sinon, le dinosaure marche à la vitesse de base. On trouve ainsi le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec la formule suivante:
 \begin{equation}
 pas=VITESSE\_BASE\cdot{(1+sens\cdot{(a*0,5)})}
 \label{eq:calculPas}
@@ -434,7 +434,7 @@ Voici la définition de : \\
     \label{tab_cas_valides_recupererDinoNumero}
 \end{table}
 
-\textbf{Cas de test de la fonction deplacement_dino dans le fichier deplacement.c}\\
+\textbf{Cas de test de la fonction deplacement\_dino dans le fichier deplacement.c}\\
 \begin{table}[ht]
     \centering
     \begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|} \hline
