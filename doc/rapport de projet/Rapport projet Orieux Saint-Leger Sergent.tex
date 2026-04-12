@@ -72,7 +72,7 @@
 
 \newpage
 \section{Introduction}
-Cette introduction vous présente le travail collaboratif que nous avons mené pour créer un jeu vidéo. 
+Cette introduction présente le travail collaboratif que nous avons mené pour créer un jeu vidéo. 
 \subsection{Contexte}
 Nous avons décidé de programmer un projet de jeu que nous avons nommé Jurassic War. Il est réalisé dans le cadre de la formation de L2 informatique de l’université du Mans pendant la période de janvier à avril 2026. Ce projet a été développé en langage C avec la librairie SDL 2. Ce jeu propose de déplacer des dinosaures avec différents moyens, d'utiliser des armes afin que deux équipes s'affrontent et s'éliminent. 
 
@@ -120,7 +120,6 @@ Des choix ont été effectués concernant les fonctionnalités à inclure dans \
     \caption[Menus proposés dans JurassicWar]{Menus proposés dans \textit{JurassicWar}}
     \label{fig:menusJeu}
 \end{figure}
-
 \newpage
 \section{Organisation du travail}
 
@@ -141,7 +140,7 @@ L’image ci-dessous (voir figure ~\ref{fig:DiagrammeGantt}) illustre le diagram
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{
-        \includegraphics[width=1.15\textwidth]{DiagrammeGantt.png}
+        \includegraphics[width=1.15\textwidth]{img/DiagrammeGantt.png}
     }
     \caption{Planning prévisionnel de JurassicWar}
     \label{fig:DiagrammeGantt}
@@ -205,7 +204,6 @@ Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}}
 	\caption[schema du calcul du tableau de nuage de points]{schema du calcul du tableau de nuage de points}
 	\label{fig:realisationNuage}
 \end{figure}
-\\\\
 Le placement initial des unités est une étape importante pour assurer la non redondance de JurassicWar. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
 \\\\
 Le terrain est divisé en deux zones pour le placement des dinosaures : le premier tiers, à gauche pour l'équipe 1 et le dernier tiers, à droite pour l'équipe 2. Chaque zone dispose de 3 dinosaures qui correspond à une équipe. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable "securite" limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
@@ -239,7 +237,6 @@ Par sécurité, elle intègre également une règle interdisant le franchissemen
 Pour que le dinosaure saute, la flèche du haut doit être cliquée. La vitesse de saut, stockée dans \textit{\mbox{t\_dino}}, du dinosaure est initinialisée à \textbf{FORCE\_SAUT}, qui est une valeur négative qui propulse le dinosaure vers le haut. La vitesse de saut est alors ajoutée à la position $y$ du dinosaure. Puis, la vitesse du saut est ralentie grâce à l'accumulation de la constante \textbf{GRAVITE} tour par tour, jusqu'à ce que le dinosaure retombe. Le saut prend fin, lorsque la position $y$ du dinosaure est supérieure ou égale à la position $y'$ du nuage de points actif à \textit{\mbox{indice\_nuage}} du dinosaure.\\ 
 Pour déplacer, à gauche, ou à droite, \textbf{lors d'un saut}, l'indice du nuage du dinosaure est incrémenté ou décrémenté. Si en sautant le dinosaure sort du nuage, alors il y a deux possibilités, soit un nouveau nuage de point est trouvé avec la fonction \textit{\mbox{replacementNuage}} et le saut reprend normalement, soit il tombe dans l'eau.
 
-\newpage
 \subsection{Système d’actions et outils à disposition du joueur}
 Cette partie rend compte de la manière dont s'enchaînent les actions dans \textit{JurassicWar} à travers la mécanique des changements de tours mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grappin. 
 \subsubsection{Mécanique des changements de tours}
@@ -260,7 +257,7 @@ Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arm
 	\end{minipage}
 	\caption[schema des coordonnees polaires applique a la bombe]{Schéma des coordonnées polaires appliqué à la bombe}
 	\label{fig:coordonneesPolaires}
-\end{figure}\\
+\end{figure}
 En cas de collision avérée entre un ou plusieurs de ces points et la terre, une seconde étape consiste à étudier la pente du terrain de manière à ce que la bombe rebondisse perpendiculairement au sol. Pour cela, les valeurs dans la matrice des points voisins au lieu d'impact sont examinées et les pixels contenant de la terre sont intégrés dans le calcul d'un \gls{gradient} à la surface du terrain, c'est à dire d'un vecteur qui pointe vers la direction où la densité de la terre est la plus forte. Un exemple de gradient pouvant être établi par la fonction \textit{\mbox{collisionTerrainBombe}} est représenté sur la figure~\ref{fig:vecteurNormalBombe}. Dans le calcul du gradient,  il est donné un poids important aux points jouxtant l'impact et un poids plus faible aux voisins plus éloignés afin de rendre compte au mieux du relief et pour qu'aucune éventuelle irrégularité du terrain ne fausse les résultats. De plus, dans le cas où toute une partie de la bombe est en contact avec le sol, le gradient est déterminé pour chaque point de collision. En prenant l'opposé de chacun de ces vecteurs, une famille de vecteurs normaux est formée, c'est à dire un ensemble de vecteurs perpendiculaires au terrain. Le vecteur normal finalement choisi pour le rebond constitue une moyenne de tous ces vecteurs.
 \begin{figure}[ht]
 	\centering
@@ -285,7 +282,6 @@ y(t) &= y_0 + v_{y0}\,t + \frac{1}{2} g t^2
 où  $(x_0,y_0)$ désignent les coordonnées à l'instant présent de la bombe, $(x,y)$ les nouvelles coordonnées calculées, $\vec{v}=(v_{x0},v_{y0})$ le vecteur vitesse, $t$ le temps écoulé et $g$ la \gls{gravite}.
 De la même manière que précédemment, l'introduction du temps et de la gravité dans l'équation a pour visée de reproduire plus fidèlement possible le comportement d'une bombe dans le monde réel.
 
-\newpage
 \subsubsection{Blesser un dinosaure : armes de tir}
 
 Après l’implémentation de la bombe, nous avons conçu un système d’armes à distances variées. L’objectif principal est de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisi.
@@ -313,10 +309,10 @@ vy(t+1) &= vy(t) + gravite * poids\_projectile\\
 Le vol du projectile est soumis à de nombreuses vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain; \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et si le projectile touche la terre ou l’eau le projectile s’arrête. Enfin la fonction \textit{\mbox{collisionDino}}, le programme parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro  d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
 \begin{figure}[ht]
 	\centering
-        	\includegraphics[width=0.6\textwidth]{img/affichage_collisions.png}
+        	\includegraphics[width=0.6\textwidth, height=7.2cm]{img/affichage_collisions.png}
         	\caption[affichage de collisions]{Résultats suite à une collision}
 	\label{fig:collisions}
-\end{figure}\\
+\end{figure}
 Lorsqu’une collision avec un dinosaure adverse a lieu, la fonction \textit{\mbox{appliquerDegats}} intervient. Cette fonction récupère le pointeur sur la structure du dinosaure touché pour mettre à jour ses points de vie. Si les PV tombent à zéro, le dinosaure meurt, sa texture est supprimée de l’affichage et ses coordonnées effacées de la matrice de jeu.
 \\
 En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à 20 points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe.
@@ -334,16 +330,11 @@ En opposition aux armes qui blessent, une potion de soin a été implémentée. 
         	\caption[exemple de la fonction de soin]{Résultats suite à un soin}
 	\label{fig:potion_soin_après}
 \end{figure}
-
-
 \subsubsection{Autre méthode de déplacement : grappin}
 Pour utiliser le grappin, il faut appuyer sur la touche \textbf{G}. Le joueur choisit alors l'angle pour lancer le grappin à l'aide de la fonction \textit{\mbox{choixAngleLancer}}. Elle ajoute ou enlève $0,5$ à l'angle en fonction des flèches appuyées. Puis grace aux fonctions trigonométriques, voir figure~\ref{fig:coordonneesPolaires}, elle projète les coordonnées $(x,y)$ de l'extrémité du segment de visée. \\
 Le joueur appuie ensuite sur \textbf{ESPACE} pour lancer le grappin. Les fonctions \textit{\mbox{lancer}} et \textit{\mbox{rappel}} font appel à une \textbf{file} qui mémorise chronologiquement les points de la trajectoire lors du lancer, puis les restitue lors du rappel afin de tirer le dinosaure. \\
 Si le joueur décide d'appuyer sur \textbf{ENTREE}, la traction se stoppe et le dinosaure se balance. La fonction \textit{\mbox{balancier}} simule un mouvement de pendule autour de la queue de la \textbf{file}, utilisée comme pivot fixe. Elle calcule l'accélération et la vitesse d'oscillation pour transformer les coordonnées polaires~\ref{fig:coordonneesPolaires} en positions cartésiennes. Le joueur peut alors accentuer le balancement avec les flèches directionnelles avant de stabiliser sa position finale.\\ 
 Cependant si le dinosaure touche la colline avant d'appuyer sur \textbf{ENTREE}, il y a alors deux possibilités. Premier cas de figure, le dinosaure se situe en desous de la ligne de crête, la fonction \textit{\mbox{chute}} est appelée, il peut alors atterir sur le nuage ou se noyer. Second cas de figure  c'est \textit{\mbox{replacementNuage}} qui est appelée pour replacer correctement le dinosaure sur la nouvelle colline.
-
-\newpage
-
 \subsection{Interface graphique et utilisateur}
 La visualisation à l'écran tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module \gls{SDL}, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de \textit{\mbox{JurassicWar}} par les joueurs.  
 \subsubsection{Utilisation du module SDL}
@@ -364,7 +355,7 @@ Quant au planning des tâches imposé pour le projet, il n'a pas été respecté
 Une amélioration possible pour le projet consisterait en l'adaption de l'interface graphique aux différentes résolutions d'écran dans la mesure où la page de jeu est trop imposante pour certains écrans. Par ailleurs, une optimisation des calculs effectués dans le code rendrait le programme plus fluide.
 
 La réalisation du projet a permis à notre groupe de développer de nouvelles compétences. Premièrement, la conception du jeu a exigé une organisation rigoureuse ainsi qu’une communication efficace entre les membres pour éviter des malentendus. Dexièmement, une documentation claire et structurée est apparue comme un élément central pour la compréhension et la réutilisation du code réalisé par les autres membres du projet. Enfin, la création de \textit{\mbox{JurassicWar}} a constitué une occasion concrète de mettre en pratique les notions d’algorithmique étudiées préalablement.
-
+\newpage
 \section{Bibliographie}
 \begin{thebibliography}{9}
 \bibitem{git du projet}
@@ -372,26 +363,22 @@ Solène Orieux, Romane Saint-Léger, Hannah Sergent.
 \textit{Projet L2 JurassicWar}.
 Disponible à : \url{https://github.com/romanesl72/Projet_L2_JurassicWar}, 2026.
 \end{thebibliography}
-
 \printglossaries
-\newpage
 
+\newpage
 \section{Annexes}
 \subsection{Jeux de tests}
-
 Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont été effectués. Pour chaque fonction vérifiée, les cas de tests valides ou invalides sont énumérés dans des tableaux.
-\\\\
 \paragraph{Cas de test de la fonction mettreAjourVol dans le fichier test\_vol.c}
 (table \ref{tab_cas_valides_mettreAJourVol} et table \ref{tab_cas_invalides_mettreAJourVol}).
 \\
-Voici la définition de : \\
 \texttt{mettreAJourVol(t\_tir *tir, int matrice[HAUTEUR\_TERRAIN][LARGEUR\_TERRAIN], float gravite, int id\_tireur);}
 
 \begin{table}[H]
     \centering
     \small % Réduit légèrement la police pour gagner de la place
     \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|} \hline
-        \textbf{Cas de tests valides} & \textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        \textbf{Cas de test valides} & \textbf{Données} & \textbf{Résultats attendus} \\ \hline
         Vol libre & Tir actif, pas d'obstacle & Retourne 0, position mise à jour, actif reste à 1 \\ \hline
         Sortie Limites & Tir aux coordonnées (-1, -1) (en dehors du jeu) & Retourne -2, actif passe à 0 \\ \hline
         Collision Terre & Matrice[y][x] = TERRE & Retourne 1 (TERRE), actif passe à 0 \\ \hline
@@ -400,7 +387,7 @@ Voici la définition de : \\
         Auto-Collision & Matrice[y][x] = D1, id\_tireur = D1 & Retourne 0, actif reste à 1 \\ \hline
         Tir Inactif & tir->actif = 0 & Retourne 0 \\ \hline
     \end{tabularx}
-    \caption{Cas de tests valides sur la fonction mettreAJourVol.}
+    \caption{Tableau des cas de test valides de la fonction mettreAJourVol}
     \label{tab_cas_valides_mettreAJourVol}
 \end{table}
 
@@ -408,59 +395,101 @@ Voici la définition de : \\
     \centering
     \small
     \begin{tabular}{|l|c|r|} \hline
-        \textbf{Cas de tests Invalides} & \textbf{Données} & \textbf{Résultats attendus}\\ \hline
+        \textbf{Cas de test Invalides} & \textbf{Données} & \textbf{Résultats attendus}\\ \hline
         Pas assez d'arguments & (tir, matrice, gravite) & Erreur, données Invalides \\
         Mauvais type d'arguments & (tir, gravite, matrice, tir) & Erreur, données Invalides \\ \hline
     \end{tabular}
-    \caption{Cas de tests invalides sur la fonction.}
+    \caption{Tableau des cas de test valides de la fonction mettreAJourVol}
     \label{tab_cas_invalides_mettreAJourVol}
 \end{table}
-
-\textbf{Cas de test de la fonction recupererDinoNumero dans le fichier testFonctionsStructJoueur.c}\\
-(table ~\ref{tab_cas_valides_recupererDinoNumero} et table ~\ref{tab_cas_invalides_recupererDinoNumero}).
-\begin{table}[h]
+\newpage
+\textbf{Cas de test de la fonction recupererDinoNumero dans le fichier testFonctionsStructJoueur.c}
+(table \ref{tab_cas_valides_ recupererDinoNumero} et table \ref{tab_cas_invalides_ recupererDinoNumero}).\\
+\texttt{t\_dino * recupererDinoNumero(t\_joueur * equipe1, t\_joueur * equipe2, t\_case numero);}
+\begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|c|r|} \hline
-        Cas de tests valides & Données & Résultats attendus\\ \hline
-        Dinosaure trouvé dans l’équipe 1 & (equipe1, equipe2, D2) & pointeur sur le dinosaure D2 \\
-        Dinosaure trouvé dans l’équipe 2 & (equipe1, equipe2, D4) & pointeur sur le dinosaure D4 \\
-        Dinosaure présent dans les deux équipes & (equipe1, equipe2, D2) & pointeur sur le dinosaure D2 de l'équipe 1\\
-        Dinosaure absent deux équipes & (equipe1, equipe2, D2) & NULL\\
-        \hline
-        \end{tabular}
-        }
-        \caption{Tableau des cas de tests valides de la fonction recupererDinoNumero}
-    \label{tab_cas_valides_recupererDinoNumero}
+    \small
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.2cm}|
+    >{\arraybackslash}X|
+    >{\centering\arraybackslash}p{4cm}|} \hline
+        \textbf{Cas de test valides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        Dinosaure trouvé dans l’équipe 1 & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), D2 & pointeur sur le dinosaure D2 \\ \hline
+        Dinosaure trouvé dans l’équipe 2 & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), D4 & pointeur sur le dinosaure D4 \\ \hline
+        Dinosaure présent dans les deux équipes & equipe1 = (D1, D2, D3), equipe2 = (D1, D5, D6), D4 & pointeur sur le dinosaure D1 de l'équipe 1 \\ \hline
+        Dinosaure deux fois présent dans la même équipe & equipe1 = (D1, D3, D3), equipe2 = (D1, D5, D6), D3 & pointeur sur le dinosaure D3 de l'équipe 1 possédant l'indice 1 \\ \hline
+        Dinosaure absent deux équipes & equipe1 = (D1, D2, D3), equipe2 = (D1, D5, D6), D4 & NULL \\ \hline
+        Numéro valant EAU, AIR ou TERRE & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), EAU & NULL \\ \hline
+        Numéro strictement supérieur à D6 valant 7 & equipe1 = (D1,D2,D3),\newline equipe2 = (D4, D5, D6), 8 & NULL \\ \hline
+        Équipe 1 vide & equipe1 = (),\newline equipe2 = (D4, D5, D6), D2 & NULL \\ \hline
+        Équipe 1 vide & equipe1 = (),\newline equipe2 = (D4, D5, D6), D6 & D6 \\ \hline
+        Équipe 2 vide & equipe1 = (D1, D2, D3),\newline equipe2 = (),  D4 & NULL \\ \hline
+        Équipe 2 vide & equipe1 = (D1, D2, D3),\newline equipe2 = (), D2 & D2 \\ \hline
+        Les deux équipes vides & equipe1 = (),\newline equipe2 = (), D2 & NULL \\ \hline
+    \end{tabularx}
+    \caption{Tableau des cas de test valides de la fonction recupererDinoNumero}
+    \label{tab_cas_valides_ recupererDinoNumero}
 \end{table}
 
-\textbf{Cas de test de la fonction deplacement\_dino dans le fichier deplacement.c}\\
-\begin{table}[ht]
+\begin{table}[H]
     \centering
-    \begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|} \hline
+    \small
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.2cm}|
+    >{\arraybackslash}X|
+    >{\centering\arraybackslash}p{4cm}|} \hline
+        \textbf{Cas de test invalides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        Numéro non entier & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), 3.8 & données invalides \\ \hline
+        Numéro non eniter & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), ''essai'' & données invalides \\ \hline
+        Équipe 1 n'existant pas & equipe1 = NULL,\newline equipe2 = (D4, D5, D6),\newline D2 & erreur de segmentation \\ \hline
+        Équipe 1 n'existant pas & equipe1 = NULL,\newline equipe2 = (D4, D5, D6),\newline D4 & erreur de segmentation \\ \hline
+        Équipe 2 n'existant pas & equipe1 = (D1, D2, D3),\newline equipe2 = NULL,\newline D4 & erreur de segmentation \\ \hline
+        Équipe 2 n'existant pas & equipe1 = (D1, D2, D3),\newline equipe2 = NULL,\newline D2 & erreur de segmentation \\ \hline
+        Équipe 1 et  Équipe 2  n'existant pas & equipe1 = NULL,\newline equipe2 = NULL,\newline D2 & erreur de segmentation \\ \hline
+    \end{tabularx}
+    \caption{Tableau des cas de test invalides de la fonction recupererDinoNumero}
+    \label{tab_cas_invalides_ recupererDinoNumero}
+\end{table}
+
+\newpage
+\textbf{Cas de test de la fonction deplacement\_dino dans le fichier deplacement.c}
+(table \ref{tab_cas_valides_deplacements} et table \ref{tab_cas_invalides_deplacements}).\\
+\texttt{void deplacement\_dino(t\_dino *dino, t\_coordonnee **nuage, char *nomNuage[], int nb\_nuage, int *nb\_pts, int matrice[HAUTEUR\_TERRAIN][LARGEUR\_TERRAIN], t\_joueur * equipe1, t\_joueur * equipe2);}
+\begin{table}[ht]
+    \small
+    \centering
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.2cm}|
+    >{\centering\arraybackslash}p{4cm}|
+    >{\centering\arraybackslash}X|} \hline
         \textbf{Cas de test Valides} & \textbf{Données (État + Action)} & \textbf{Résultats attendus} \\ \hline
         Marche horizontale standard & \texttt{sautBooleen}=0, sur nuage + Touche \texttt{DROITE} & \texttt{pos.x} augmente, \texttt{indice\_nuage} augmente, \texttt{sens}=\texttt{DROITE}. \\ \hline
         Initialisation d'un saut & \texttt{sautBooleen}=0, \texttt{wait}=0 + Touche \texttt{HAUT} & \texttt{sautBooleen}=1, \texttt{v\_y}=\texttt{FORCE\_SAUT}. \\ \hline
         Saut avec déplacement & \texttt{sautBooleen}=1 + Touche \texttt{DROITE} & \texttt{pos.y} et \texttt{pos.x} évoluent selon la parabole du saut. \\ \hline
         Atterrissage sur nuage & \texttt{sautBooleen}=1, \texttt{pos.y} $\ge$ nuage & \texttt{sautBooleen}=0, \texttt{v\_y}=0, \texttt{wait}=20. \\ \hline
         Transition entre collines & \texttt{hors\_nuage}=1, nouveau nuage détecté & Appel \texttt{replacementNuage}, \texttt{id\_nuage} change, dino tombe sur nouveau nuage. \\ \hline
-    \end{tabular}
-    \caption{Cas de tests valides sur la fonction \textit{deplacement\_dino}.}
-    \label{tab_cas_valide_deplacements}
+    \end{tabularx}
+    \caption{Cas de test valides sur la fonction \textit{deplacement\_dino}.}
+    \label{tab_cas_valides_deplacements}
 \end{table}
 
+\newpage
 \begin{table}[ht]
+    \small
     \centering
-    \begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|} \hline
-        \textbf{Cas de test Invalides} & \textbf{Données (Condition limite)} & \textbf{Résultats attendus} \\ \hline
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.2cm}|
+    >{\centering\arraybackslash}p{4cm}|
+    >{\centering\arraybackslash}X|} \hline
+        \textbf{Cas de test invalides} & \textbf{Données (Condition limite)} & \textbf{Résultats attendus} \\ \hline
         Noyade du dinosaure & \texttt{matrice}[y][x] == -1 (eau) & Appel de \texttt{noyade()}, \texttt{etat}=0, \texttt{pv}=0 et arrêt des mouvements. \\ \hline
         Sortie du nuage de points & \texttt{hors\_nuage}=1 et \texttt{replacementNuage} échoue & Passage à l'état \texttt{tomber}=2, chute verticale jusqu'à la limite du terrain. \\ \hline
         Action sur dinosaure mort & \texttt{dino->etat} == 0 & La fonction \texttt{deplacement\_dino} s'arrête immédiatement. \\ \hline
         Saut impossible (Attente) & \texttt{wait} > 0 + Touche \texttt{HAUT} & La variable \texttt{sautBooleen} reste à 0, aucune impulsion verticale n'est donnée. \\ \hline
         Blocage par décor & Collision avec \texttt{TERRE} lors d'un mouvement & La position \texttt{pos.y} est réinitialisée à sa valeur précédente pour empêcher de traverser le sol. \\ \hline
-    \end{tabular}
-    \caption{Cas de tests invalides sur la fonction \textit{deplacement\_dino}.}
-    \label{tab_cas_invalide_deplacements}
+    \end{tabularx}
+    \caption{Cas de test invalides sur la fonction \textit{deplacement\_dino}.}
+    \label{tab_cas_invalides_deplacements}
 \end{table}
 
 \newpage
@@ -545,8 +574,11 @@ bombe.coor = {x = 592, y = 131}
 \end{verbatim}
 À l'issue de la séquence de commandes, il s'avère que l'erreur réside dans une inversion de coordonnées dans la fonction \textit{\mbox{collisionTerrainBombe}}, comme l'illustre l'arrêt au point d'arrêt numéro cinq. Cette inversion s'explique par une différence de convention entre la matrice et l'affichage dans la fenêtre avec le module SDL. Tandis que la largeur correspond à l'axe des ordonnées pour la matrice, il s'agit de l'axe des abscisses pour l'affichage et inversement pour la hauteur. La résolution du comportement incohérent de la bombe nécessite donc uniquement d'échanger les coordonnées x et y dans les tests effectués par la fonction.
 
+\newpage
 \subsubsection{Correction du point d'attache du Grappin}
-Lors de l’activation du balancier par la touche \textbf{ENTREE}, le grappin n’est plus attaché au bon endroit. Normalement il doit ressembler à l’image ~\ref{fig:imageCorrecteGrappin}, mais il ressemble à l'image ~\ref{fig:imageFausseGrappin}. Pour trouver l’erreur, le programme est lancé avec GDB. Les commandes suivantes sont effectuées pour localiser l’erreur:
+Lors de l’activation du balancier par la touche \textbf{ENTREE}, le grappin n’est plus attaché au bon endroit. Normalement il doit ressembler à l’image ~\ref{fig:imageCorrecteGrappin}, mais il ressemble à l'image ~\ref{fig:imageFausseGrappin}. Pour trouver l’erreur, le programme est lancé avec GDB.
+\\\\
+\textbf{Séquence des instructions de débogage :}
 \begin{verbatim}
 gdb ./testGrappin
 (gdb)  break balancier
@@ -576,35 +608,25 @@ gdb ./testGrappin
 \end{figure}
 
 Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que les valeurs pointées par  \textit{\mbox{pts\_rotation}} ne rentrent pas dans les limites du terrain, elles sont donc corrompues. Avec backtrace nous comprenons que le problème vient de la fonction \textit{\mbox{grappin}}. En regardant juste au-dessus de la ligne 337, dans \textit{\mbox{grappin.c}}, nous observons que la \textbf{file} est détruite. Donc  \textit{\mbox{pts\_rotation}}, qui doit pointer vers la queue de file, devient un pointeur fou. Pour régler le problème, au lieu de passer l’adresse d’un élément qui va être supprimé, voir image ~\ref{fig:imagecodeFauxGrappin}, nous faisons une copie du contenu de cet élément dans une variable locale, voir image ~\ref{fig:imagecodeVraiGrappin}.
-
 \begin{figure}[ht]
-	\centering
-	\begin{minipage}[c]{0.5\textwidth}
-		\centering
-		\includegraphics[width=6.2cm]{img/gdbGrappin.png}
-	\end{minipage}
-    \caption[Capture d'écran du débbogage de \textit{\mbox{test\_grappin}}]{Capture d'écran du débbogage de \textit{\mbox{test\_grappin}}}
-	\label{fig:imageGdbGrappin}
+    \centering
+    \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{img/gdbGrappin.png}
+    \caption[Capture d'écran du débogage de \textit{\mbox{test\_grappin}}]{Capture d'écran du débogage de \textit{\mbox{test\_grappin}}}
+    \label{fig:imageGdbGrappin}
 \end{figure}
 
 \begin{figure}[ht]
-	\centering
-	\begin{minipage}[c]{0.5\textwidth}
-		\centering
-		\includegraphics[width=6.2cm]{img/codeFauxGrappin.png}
-	\end{minipage}
-    \caption[Code érroné de \textit{\mbox{grappin.c}}]{Image du code érroné de \textit{\mbox{grappin.c}}}
-	\label{fig:imagecodeFauxGrappin}
+    \centering
+    \includegraphics[width=\textwidth, height=5cm, keepaspectratio]{img/codeFauxGrappin.png}
+    \caption[Code erroné de \textit{\mbox{grappin.c}}]{Image du code erroné de \textit{\mbox{grappin.c}}}
+    \label{fig:imagecodeFauxGrappin}
 \end{figure}
-
+\newpage
 \begin{figure}[ht]
-	\centering
-	\begin{minipage}[c]{0.5\textwidth}
-		\centering
-		\includegraphics[width=6.2cm]{img/codeVraiGrappin.png}
-	\end{minipage}
+    \centering
+    \includegraphics[width=\textwidth, height=5cm, keepaspectratio]{img/codeVraiGrappin.png}
     \caption[Image du code corrigé de \textit{\mbox{grappin.c}}]{Code corrigé de \textit{\mbox{grappin.c}}}
-	\label{fig:imagecodeVraiGrappin}
+    \label{fig:imagecodeVraiGrappin}
 \end{figure}
 
 \end{document}
