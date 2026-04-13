@@ -38,7 +38,7 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 
 
 int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
-    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
     t_joueur *equipe1, t_joueur *equipe2){
     if(horsNuage( *dino, nb_pts, matrice)){
         printf("\nhors nuage\n");
@@ -47,12 +47,12 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
             (*dino)->deplacement->v_y += GRAVITE;
             (*dino)->pos.y += (int)(*dino)->deplacement->v_y;
             remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-            afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
+            afficher(zoneAffichage, police, texMap, texObjets, equipe1, equipe2);
             SDL_RenderPresent(zoneAffichage);
         }
         supprimer_matrice_dino(*dino, matrice);
         (*dino)->etat=0;
-        afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
+        afficher(zoneAffichage, police, texMap, texObjets, equipe1, equipe2);
         SDL_RenderPresent(zoneAffichage);
         return 0;
     }
@@ -62,7 +62,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
             (*dino)->deplacement->v_y += GRAVITE;
             (*dino)->pos.y += (int)(*dino)->deplacement->v_y;
             remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-            afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
+            afficher(zoneAffichage, police, texMap, texObjets, equipe1, equipe2);
             SDL_RenderPresent(zoneAffichage);
         }
         return 1;
@@ -71,8 +71,8 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
 
 
 void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
-               TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], 
-               SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, 
+               TTF_Font *police, SDL_Texture *texMap,
+               SDL_Texture *texObjets[], t_joueur *equipe1, 
                t_joueur *equipe2, t_coordonnee *pts_rotation,int *nb_pts, t_coordonnee **nuage, 
                int nb_nuage, char *nomNuage[]) {
 
@@ -125,7 +125,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
             remplir_matrice_dino(*dino, (*dino)->pos, matrice);
         }      
 
-        afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
+        afficher(zoneAffichage, police, texMap, texObjets, equipe1, equipe2);
         
         // Dessin du câble
         SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
@@ -135,7 +135,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
         SDL_Delay(10);
     }
     if(horsNuage(*dino,*nb_pts,matrice))replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
-    chute(dino, *nb_pts, *nuage, matrice, zoneAffichage, police,texMap,texDinos,texObjets,nomsObjets,equipe1,equipe2);
+    chute(dino, *nb_pts, *nuage, matrice, zoneAffichage, police,texMap,texObjets,equipe1,equipe2);
     ((*dino)->deplacement->sens) *= -1;
     supprimer_matrice_dino(*dino, matrice);
     (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
@@ -143,8 +143,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
     printf("\n---------replacement----------\n");
 }
 
-float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state, TTF_Font *police, SDL_Texture *texMap,
-     SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
      t_joueur equipe1, t_joueur equipe2){
 
     float degres=-1;
@@ -168,7 +167,7 @@ float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *
         }else dino->deplacement->sens=1;
         
         
-        afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, &equipe1, &equipe2);
+        afficher(zoneAffichage, police, texMap, texObjets, &equipe1, &equipe2);
         x=(float)dino->pos.x +LONGUEUR*cos(degres*RADIANS);
         y=(float)dino->pos.y -LONGUEUR*sin(degres*RADIANS);
         
@@ -260,14 +259,13 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
 
 
 int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
-           const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
-           SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+           const Uint8 *state, SDL_Texture *texMap, TTF_Font *police, SDL_Texture *texObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
            int nb_nuage, char *nomNuage[]){
     
     initfile(); // Vide la file pour un nouveau tir
     
-    float angle = choixAngleLancer(*dino, zoneAffichage, state, police, texMap, texDinos, texObjets, nomsObjets, *equipe1, *equipe2);
+    float angle = choixAngleLancer(*dino, zoneAffichage, state, police, texMap, texObjets, *equipe1, *equipe2);
     
     int collision_detectee = 0;
     int etat_fini = 0;
@@ -312,14 +310,14 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
             dist_rappel += 5;
 
             // Mise à jour graphique complète pour voir l'animation
-            afficher(zoneAffichage, police, texMap, texObjets, nomsObjets, equipe1, equipe2);
+            afficher(zoneAffichage, police, texMap, texObjets, equipe1, equipe2);
             SDL_RenderPresent(zoneAffichage);
             SDL_Delay(16);
             
             // Gestion de la chute si le dino percute une paroi en montant
             printf("etat=%d",etat_fini);
             if (etat_fini == 2) {
-                chute(dino, *nb_pts, *nuage, matrice,zoneAffichage, police, texMap,texDinos, texObjets,nomsObjets,
+                chute(dino, *nb_pts, *nuage, matrice,zoneAffichage, police, texMap, texObjets,
                     equipe1, equipe2);
                 etat_fini = 1; // Sortie de la boucle de rappel
                 if((*dino)->etat==0){
@@ -334,8 +332,8 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
                     t_coordonnee pivot_fixe = *res; // COPIE DES VALEURS
                     detruireFile(); // On peut maintenant vider la file sans risque
                     
-                    balancier(matrice, dino, zoneAffichage, state, police, texMap, 
-                        texDinos,texObjets, nomsObjets, equipe1, equipe2, &pivot_fixe,
+                    balancier(matrice, dino, zoneAffichage, state, police, texMap,
+                        texObjets, equipe1, equipe2, &pivot_fixe,
                         nb_pts,nuage,nb_nuage,nomNuage);
                     if((*dino)->etat==0){
                         supprimerDinoJoueur(equipe1, equipe2, (*dino)->d);

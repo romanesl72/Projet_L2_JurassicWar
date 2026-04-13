@@ -53,7 +53,10 @@ tda_nuage.o \
 deplacement.o \
 regression.o \
 collision_decor.o \
-fonctionsPageFinPartie.o
+fonctionsPageFinPartie.o\
+grappin.o\
+tda_file.o \
+fonctionsAffichage.o
 
 OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
 OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
@@ -79,7 +82,12 @@ fonctionSoin.o \
 deplacement.o \
 regression.o \
 collision_decor.o \
-fonctionsPageFinPartie.o
+fonctionsPageFinPartie.o \
+grappin.o \
+tda_file.o \
+fonctionsAffichage.o \
+fonctionsPagesInformations.o \
+fonctionsMenuPrinc.o
 
 OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
 OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
@@ -98,7 +106,11 @@ fonctionsTirs.o \
 fonctionSoin.o \
 deplacement.o \
 regression.o \
-collision_decor.o
+collision_decor.o \
+fonctionsPageFinPartie.o \
+grappin.o \
+tda_file.o \
+fonctionsAffichage.o
 
 
 OBJETS_REBONDS = testFonctionsRebonds.o \
@@ -143,7 +155,11 @@ placer_dinos.o \
 tda_nuage.o \
 deplacement.o \
 regression.o \
-collision_decor.o
+collision_decor.o \
+fonctionsPageFinPartie.o \
+grappin.o \
+tda_file.o \
+fonctionsAffichage.o
 
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
 
@@ -233,7 +249,13 @@ all: $(EXECUTABLES)
 ./testTirArmes: $(OBJETS_TIR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./test_deplacement: test_deplacement.o deplacement.o $(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsPageJeu.o fonctionsChangementTour.o regression.o fonctionsAffichage.o fonctionsTirs.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionSoin.o fonctionsTuerDinos.o fonctionsPagesInformations.o collision_decor.o fonctionsMenuPrinc.o
+./test_deplacement: test_deplacement.o deplacement.o \
+$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsPageJeu.o \
+fonctionsChangementTour.o regression.o fonctionsAffichage.o \
+fonctionsTirs.o fonctionsPlacementBombe.o fonctionsRebonds.o \
+fonctionSoin.o fonctionsTuerDinos.o fonctionsPagesInformations.o \
+collision_decor.o fonctionsMenuPrinc.o \
+grappin.o tda_file.o fonctionsPageFinPartie.o 
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testGrappin: $(OBJETS_GRAPPIN)

@@ -34,15 +34,6 @@ int main(int argc, char * argv[]){
     int cgt=0;
     int nb_nuage=2;
     char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
-    char *nomsObjets[7] = {
-        "../img/img_arc.png", 
-        "../img/img_arbalete.png", 
-        "../img/img_bombe.png", 
-        "../img/img_fusil.png", 
-        "../img/img_revolver.png", 
-        "../img/img_potion.png", 
-        "../img/img_grappin.png"
-    };
     t_texte_cache cache[6];
     t_coordonnee *nuage = NULL;
     t_dino *dinoActuel = NULL;
@@ -115,7 +106,7 @@ int main(int argc, char * argv[]){
             }
         }
             // On affiche l'état actuel des équipes
-        afficher(rendu, police, texMap, texObjets, nomsObjets, &equipe1, &equipe2);
+        afficher(rendu, police, texMap, texObjets, &equipe1, &equipe2);
         SDL_RenderPresent(rendu);
         SDL_Delay(10);
         

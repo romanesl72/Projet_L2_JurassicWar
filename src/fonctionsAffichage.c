@@ -15,7 +15,7 @@
  * @version 1.0
  */
 
-void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, t_joueur *equipe2){
+void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], t_joueur *equipe1, t_joueur *equipe2){
 
     SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255);
     SDL_RenderClear(rendu);

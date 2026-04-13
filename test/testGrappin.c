@@ -132,10 +132,10 @@ int main(int argc, char * argv[]){
         if(dinoActuel != NULL) {
             state = SDL_GetKeyboardState(NULL);
             // On affiche l'état actuel des équipes
-            afficher(rendu, police, texMap, texObjets, nomsObjets, &equipe1, &equipe2);
+            afficher(rendu, police, texMap, texObjets, &equipe1, &equipe2);
             // On ne lance le grappin que si le dinosaure existe toujours
             if (state[SDL_SCANCODE_G]) {
-                grappin(matrice, rendu, &dinoActuel, state, texMap, police, texDinos, texObjets,nomsObjets, &equipe1, &equipe2 , &nb_pts, &nuage, 2, nomNuage);
+                grappin(matrice, rendu, &dinoActuel, state, texMap, police, texObjets, &equipe1, &equipe2 , &nb_pts, &nuage, 2, nomNuage);
             }
 
             SDL_RenderPresent(rendu);

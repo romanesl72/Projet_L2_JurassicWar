@@ -26,6 +26,6 @@
  * @param equipe2 pointeur de structure correspondant aux dinosaures du joueur 2
  */
 
-void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, t_joueur *equipe2);
+void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], t_joueur *equipe1, t_joueur *equipe2);
 
 #endif

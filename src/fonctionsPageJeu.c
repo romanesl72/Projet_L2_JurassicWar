@@ -14,6 +14,7 @@
 #include "../lib/placer_dinos.h"
 #include "../lib/regression.h"
 #include "../lib/tda_nuage.h"
+#include "../lib/grappin.h"
 
 #include <time.h>
 #include <stdio.h>
@@ -204,7 +205,10 @@ int detecterEvenementsPageJeu(
     t_case dinoCourant, 
     t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
     t_texte_cache *cache,
-    t_arme catalogue_armes[4]){
+    t_arme catalogue_armes[4],
+    char *nomNuage[],
+    t_coordonnee **nuage,
+    int *nb_pts){
 
     const Uint8 *etatClavier;
     SDL_Event evenement;
@@ -251,6 +255,10 @@ int detecterEvenementsPageJeu(
         else if (etatClavier[SDL_SCANCODE_P]) {
             utiliserPotion(tireur);
             return 3;
+        }
+        if (etatClavier[SDL_SCANCODE_G]) {
+            grappin(matriceTerrain, zoneAffichage, &tireur, etatClavier, texMap, policeMenuHIP, texObjets, equipe1, equipe2 , nb_pts, nuage, 2, nomNuage);
+            return 4;
         }
 
         if (tir->actif){
@@ -814,7 +822,8 @@ void lancerPartie(){
                 
         while(enCours && (!finPartie(&equipe1,&equipe2))) {
 
-            action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, &bombeLancee, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes);
+            action = detecterEvenementsPageJeu(&enCours, &nombreRebonds, &bombeLancee, zoneAffichage, texMap, texObjets, policeMenuHIP, &rectFen, &bombe, 
+                &vectVitesse, &tir, &equipe1, &equipe2, gestionTours.dinoCourant, matriceTerrain, cache, catalogue_armes, nomNuage, &nuage, &nb_pts);
 
             // Les Armes
             if (tir.actif) {
@@ -874,6 +883,18 @@ void lancerPartie(){
                     dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
                 }
             
+            }
+            else if (action == 4) {
+                printf("\n------------------action4---------\n");
+                tourSuivant(&gestionTours, &equipe1, &equipe2);
+                dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
+                nuageDetruire(&nuage); 
+                if (dinoActuel != NULL) {
+                    nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
+                    timer = TIMER;
+                    dinoActuel->deplacement->indice_reel = (float)dinoActuel->indice_nuage;
+                    dinoActuel->deplacement->sens = recupererDinoDirection(&equipe1, &equipe2, dinoActuel->d);
+                }
             }
             else if (action == 1) {
                 afficherJeuSansArmes(&equipe1, &equipe2, &rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);

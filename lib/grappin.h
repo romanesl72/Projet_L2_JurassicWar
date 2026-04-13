@@ -38,7 +38,7 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 
 /**
  * @fn int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
-    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[],
     t_joueur *equipe1, t_joueur *equipe2);
  * @author Solène Orieux
  * @date 07/04/2026
@@ -50,7 +50,6 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param police un pointeur sur la police du jeu
  * @param texMap pointeur sur l'image de la map
- * @param texDino un tableau de pointeur sur les images représentant le dinosaure
  * @param texObjets un tableau de pointeur sur les images des différants objets
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
@@ -59,14 +58,14 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 
 
 int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
-    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+    TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
     t_joueur *equipe1, t_joueur *equipe2);
 
 
 /**
  * @fn void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino *dino, SDL_Renderer* zoneAffichage, 
                const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, 
-               SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], 
+               SDL_Texture *texDinos[], SDL_Texture *texObjets[], 
                t_joueur *equipe1, t_joueur *equipe2, t_coordonnee *pts_rotation);
  * @author Solène Orieux
  * @date 07/04/2026
@@ -77,7 +76,6 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
  * @param state pointeur sur le détecteur de touche du clavier
  * @param police un pointeur sur la police du jeu
  * @param texMap pointeur sur l'image de la map
- * @param texDino un tableau de pointeur sur les images représentant le dinosaure
  * @param texObjets un tableau de pointeur sur les images des différants objets
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
@@ -90,8 +88,8 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
  */
 
 void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
-               TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], 
-               SDL_Texture *texObjets[], char *nomsObjets[], t_joueur *equipe1, 
+               TTF_Font *police, SDL_Texture *texMap,
+               SDL_Texture *texObjets[], t_joueur *equipe1, 
                t_joueur *equipe2, t_coordonnee *pts_rotation,int *nb_pts, t_coordonnee **nuage, 
                int nb_nuage, char *nomNuage[]);
 
@@ -99,7 +97,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
                
 /**
  * @fn float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state, TTF_Font *police, SDL_Texture *texMap,
-     SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+     SDL_Texture *texDinos[], SDL_Texture *texObjets[],
      t_joueur equipe1, t_joueur equipe2);
  * @author Solène Orieux
  * @date 3/04/2026
@@ -109,14 +107,13 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
  * @param state pointeur sur le détecteur de touche du clavier
  * @param police un pointeur sur la police du jeu
  * @param texMap pointeur sur l'image de la map
- * @param texDino un tableau de pointeur sur les images représentant le dinosaure
  * @param texObjets un tableau de pointeur sur les images des différants objets
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
  * @param equipe2 structure correspondant aux dinosaures du joueur 2
  */
 float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state, TTF_Font *police, SDL_Texture *texMap,
-     SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+     SDL_Texture *texObjets[],
      t_joueur equipe1, t_joueur equipe2);
 
 
@@ -158,7 +155,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
 /**
  * @fn int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
-           SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+           SDL_Texture *texDinos[], SDL_Texture *texObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
            int nb_nuage, char *nomNuage[]);
  * @author Solène Orieux
@@ -170,7 +167,6 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
  * @param state pointeur sur le détecteur de touche du clavier
  * @param texMap pointeur sur l'image de la map
  * @param police un pointeur sur la police du jeu
- * @param texDino un tableau de pointeur sur les images représentant le dinosaure
  * @param texObjets un tableau de pointeur sur les images des différants objets
  * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
@@ -180,7 +176,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
  
 int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, t_dino **dino, 
            const Uint8 *state, SDL_Texture *texMap, TTF_Font *police,
-           SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[],
+           SDL_Texture *texObjets[],
            t_joueur *equipe1, t_joueur *equipe2,int *nb_pts, t_coordonnee **nuage, 
            int nb_nuage, char *nomNuage[]);
 #endif
