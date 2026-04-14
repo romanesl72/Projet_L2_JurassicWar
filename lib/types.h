@@ -12,6 +12,14 @@
  */
 
 /**
+ * @def GRAVITE
+ * @brief diminue la vitesse des sauts/chute pour faire tomber de plus en plus vite le dino
+*/
+
+#undef GRAVITE
+#define GRAVITE 0.4 
+
+/**
  * @def LARGEUR_TERRAIN
  * @brief Largeur du terrain, de la matrice et de la fenêtre.
 */

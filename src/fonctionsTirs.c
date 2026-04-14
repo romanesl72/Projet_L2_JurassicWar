@@ -139,7 +139,7 @@ void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite
 
 
     /* Trajectoire de couleur rouges */
-    SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
 
     for (i = 0; i < 30; i++) {
         precX = simuX;

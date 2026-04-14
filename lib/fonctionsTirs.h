@@ -112,10 +112,10 @@ void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir);
  * @version 1.3
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param tir pointeur sur la structure de tir afin d'acceder à l'arme utilisé
- * @param graviteBase constante de gravite utilisé sur les armes
+ * @param gravite constante de gravite utilisé sur les armes
  */
 
-void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase);
+void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite);
 
 /**
  * @fn void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2);
@@ -146,6 +146,7 @@ void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *
  * @param police pointeur sur la police d'écriture
  * @param tir pointeur sur la structure de tir
  * @param etatClavier un pointeur de pointeur sur l'état du clavier
+ * @param gravite constante de gravite utilisé sur les armes
  * @param e1 pointeur sur la structure de l'équipe 1 afin de pouvoir accéder aux dinos de leur équipe
  * @param e2 pointeur sur la structure de l'équipe 2 afin de pouvoir accéder aux dinos de leur équipe
  * @param numDinoCourant Numéro du dinosaure en train de tirer
