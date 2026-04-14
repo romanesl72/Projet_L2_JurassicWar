@@ -9,5 +9,6 @@ var fonctions_tirs_8h =
     [ "initialiserTirArcher", "fonctions_tirs_8h.html#a0974703b3007d356551fcf7816277ef0", null ],
     [ "mettreAJourVol", "fonctions_tirs_8h.html#a0dfc4f14d6730e8f1d8cea365fa90093", null ],
     [ "tracerArme", "fonctions_tirs_8h.html#a04b32daae174f2edb75589af43b0fc02", null ],
-    [ "tracerTrajectoireTir", "fonctions_tirs_8h.html#a645ed2c88f804b301c66e3f79b8d4dd7", null ]
+    [ "tracerTrajectoireTir", "fonctions_tirs_8h.html#a7c00cc8fae6ee8e3972b2faefd21027d", null ],
+    [ "viserArcher", "fonctions_tirs_8h.html#a47f61849cc91ca812e4e678045267e94", null ]
 ];

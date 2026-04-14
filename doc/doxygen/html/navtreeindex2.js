@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"test_tirs_affichage_jeu_8c.html":[2,0,2,16],
+"test_tirs_affichage_jeu_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,16,0],
+"types_8h.html":[2,0,0,24],
 "types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484":[2,0,0,24,18],
 "types_8h.html#a599217205dc3092c26567a2bd868ef3a":[2,0,0,24,21],
 "types_8h.html#a834e8e3f0149162ffb14d7345be4f47e":[2,0,0,24,14],
@@ -21,10 +24,6 @@ var NAVTREEINDEX2 =
 "types_8h.html#ab49a5b8e283b424b1ce3c43067200709":[2,0,0,24,16],
 "types_8h.html#aba0120102bf94e4310bdbf1d41d5a971":[2,0,0,24,20],
 "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74":[2,0,0,24,24],
-"types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a13b9aed632d3e4c89287d515c88d9e69":[2,0,0,24,24,0],
-"types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a26b6186c8ffd3ef117efe50f1b646cf0":[2,0,0,24,24,1],
-"types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a346db8decf0879a91be17256a04b349c":[2,0,0,24,24,2],
-"types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a5eec559fd9a511e6b223d62cc279db00":[2,0,0,24,24,3],
 "types_8h.html#ae3fe7dc34dccb78bfa9233327ae262f0":[2,0,0,24,15],
 "types_8h.html#af9a65248c7f8fb2091303aeab63cb3f6":[2,0,0,24,19],
 "types_8h_source.html":[2,0,0,24]

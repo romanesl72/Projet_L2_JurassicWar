@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar6/lib/fonctionsPageJeu.h</title>
+<title>JurassicWar: Référence du fichier C:/Users/compteadmin/Documents/Travail/Université double licence maths informatique 2/Projet/jurassicWar7/lib/fonctionsPageJeu.h</title>
 <link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -111,7 +111,19 @@ Fonctions</h2></td></tr>
 <tr class="memitem:ac7ec6f6d4df991cb57cafe2289a64c0a" id="r_ac7ec6f6d4df991cb57cafe2289a64c0a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac7ec6f6d4df991cb57cafe2289a64c0a">initialiserEquipes</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="structt__catalogue__zones.html">t_catalogue_zones</a> *catalogue, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], SDL_Renderer *zoneAffichage)</td></tr>
 <tr class="memdesc:ac7ec6f6d4df991cb57cafe2289a64c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise les deux équipes, c'est à dire les dinosaures de chaque joueur ainsi que leur placement sur le terrain.  <br /></td></tr>
 <tr class="memitem:aa6e74ff691c65228ae83141484d0f8af" id="r_aa6e74ff691c65228ae83141484d0f8af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa6e74ff691c65228ae83141484d0f8af">detecterEvenementsPageJeuBombe</a> (int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, <a class="el" href="structt__vect.html">t_vect</a> *vectVitesse, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> dinoCourant, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> matriceTerrain[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
-<tr class="memdesc:aa6e74ff691c65228ae83141484d0f8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer).  <br /></td></tr>
+<tr class="memdesc:aa6e74ff691c65228ae83141484d0f8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">void <a class="el" href="#aa6e74ff691c65228ae83141484d0f8af" title="void detecterEvenementsPageJeuBombe( int *enCours,  int *bombeLancee,  int *nombreRebonds,...">detecterEvenementsPageJeuBombe(
+ int *enCours, 
+ int *bombeLancee, 
+ int *nombreRebonds, 
+ SDL_Renderer *zoneAffichage, 
+ SDL_Texture *texMap, 
+ SDL_Rect *rectFen, 
+ t_bombe *bombe, 
+ t_vect *vectVitesse, 
+ t_joueur *equipe1, 
+ t_joueur *equipe2, 
+ t_case dinoCourant, 
+ t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</a>;  <br /></td></tr>
 <tr class="memitem:a7adaee70a8e8f0c5ca1cd82b939f9259" id="r_a7adaee70a8e8f0c5ca1cd82b939f9259"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7adaee70a8e8f0c5ca1cd82b939f9259">afficherJeuSansBombe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</td></tr>
 <tr class="memdesc:a7adaee70a8e8f0c5ca1cd82b939f9259"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche l'image du terrain et les dinosaures.  <br /></td></tr>
 <tr class="memitem:a784306462efa51ab89173cba57c22f77" id="r_a784306462efa51ab89173cba57c22f77"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a784306462efa51ab89173cba57c22f77">afficherJeuAvecBombe</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="structt__bombe.html">t_bombe</a> *bombe, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap)</td></tr>
@@ -540,20 +552,35 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer). </p>
-<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<p>void <a class="el" href="#aa6e74ff691c65228ae83141484d0f8af" title="void detecterEvenementsPageJeuBombe( int *enCours,  int *bombeLancee,  int *nombreRebonds,...">detecterEvenementsPageJeuBombe(
+ int *enCours, 
+ int *bombeLancee, 
+ int *nombreRebonds, 
+ SDL_Renderer *zoneAffichage, 
+ SDL_Texture *texMap, 
+ SDL_Rect *rectFen, 
+ t_bombe *bombe, 
+ t_vect *vectVitesse, 
+ t_joueur *equipe1, 
+ t_joueur *equipe2, 
+ t_case dinoCourant, 
+ t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN])</a>; </p>
+<p>La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer). </p><dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">enCours</td><td>un pointeur qui indique si la fenetre doit rester ouverte </td></tr>
-    <tr><td class="paramname">bombeLancee</td><td>un pointeur qui indique si la bombe doit être lancée </td></tr>
     <tr><td class="paramname">nombreRebonds</td><td>un pointeur sur le nombre de rebonds de la bombe </td></tr>
+    <tr><td class="paramname">bombeLancee</td><td>un pointeur qui indique si la bombe doit être lancée </td></tr>
     <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
     <tr><td class="paramname">texMap</td><td>un pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">texObjets</td><td>un pointeur sur pointeur sur la texture des Objets </td></tr>
+    <tr><td class="paramname">policeMenuHIP</td><td>un pointeur sur la police d'écriture </td></tr>
     <tr><td class="paramname">rectFen</td><td>un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu </td></tr>
     <tr><td class="paramname">bombe</td><td>un pointeur sur une structure de type bombe </td></tr>
     <tr><td class="paramname">vectVitesse</td><td>un pointeur sur le vecteur vitesse de la bombe </td></tr>
+    <tr><td class="paramname">tir</td><td>un pointeur sur la structure de tir </td></tr>
     <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
     <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
     <tr><td class="paramname">dinoCourant</td><td>l'identifiant du dinosaure dont c'est le tour de jouer </td></tr>

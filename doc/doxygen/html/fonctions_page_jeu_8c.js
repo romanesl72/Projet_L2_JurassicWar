@@ -9,7 +9,7 @@ var fonctions_page_jeu_8c =
     [ "creerPageJeuBombe", "fonctions_page_jeu_8c.html#a955d46bf57e99198c7e86f1b137418de", null ],
     [ "destruireElementsJeu", "fonctions_page_jeu_8c.html#ad7359570b99a8aba17a1f793f287364c", null ],
     [ "destruireElementsJeuBombe", "fonctions_page_jeu_8c.html#a6794eb01b4c8baa220515828111c7d54", null ],
-    [ "detecterEvenementsPageJeu", "fonctions_page_jeu_8c.html#a2a7268cc422457e03b1434774cc165f9", null ],
+    [ "detecterEvenementsPageJeu", "fonctions_page_jeu_8c.html#a24a354ecbc57e01c76a2fe0393330fe2", null ],
     [ "detecterEvenementsPageJeuBombe", "fonctions_page_jeu_8c.html#aa6e74ff691c65228ae83141484d0f8af", null ],
     [ "effectuerDeplacement", "fonctions_page_jeu_8c.html#a1db36d76ccde63f9113cad742ee26011", null ],
     [ "initialiserEquipes", "fonctions_page_jeu_8c.html#ac7ec6f6d4df991cb57cafe2289a64c0a", null ],

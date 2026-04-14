@@ -38,10 +38,5 @@ var types_8h =
       [ "DROITE", "types_8h.html#a83e6498e585e66600977123e70d854e5a79f680205087956546ae263797bd1343", null ],
       [ "SANS_DIR", "types_8h.html#a83e6498e585e66600977123e70d854e5ab0bf1e2fb65bbf0a358656758e456c9f", null ]
     ] ],
-    [ "t_nom_arme", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74", [
-      [ "ARC", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a13b9aed632d3e4c89287d515c88d9e69", null ],
-      [ "ARBALETE", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a26b6186c8ffd3ef117efe50f1b646cf0", null ],
-      [ "FUSIL", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a346db8decf0879a91be17256a04b349c", null ],
-      [ "REVOLVER", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74a5eec559fd9a511e6b223d62cc279db00", null ]
-    ] ]
+    [ "t_nom_arme", "types_8h.html#ad23ba049619a72d7996f4f1bd70c9b74", null ]
 ];
