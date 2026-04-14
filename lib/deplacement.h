@@ -44,10 +44,9 @@
  * @brief renvoie vraie l'indice du dino n'est plus dans le nuage, faux sinon
  * @param dino pointeur sur dino
  * @param nb_pts nombre de points dans le nuage
- * @param matrice représentation du terrain sous forme de matrice
  */
 
-int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+int horsNuage(t_dino *dino, int nb_pts);
 
 /**
  * @fn int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[], int sens);

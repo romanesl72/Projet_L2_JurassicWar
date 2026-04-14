@@ -40,7 +40,7 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAffichage, 
     TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
     t_joueur *equipe1, t_joueur *equipe2){
-    if(horsNuage( *dino, nb_pts, matrice)){
+    if(horsNuage( *dino, nb_pts)){
         printf("\nhors nuage\n");
         while (!noyade( *dino, matrice)){
             supprimer_matrice_dino(*dino, matrice);
@@ -134,7 +134,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
         SDL_RenderPresent(zoneAffichage);
         SDL_Delay(10);
     }
-    if(horsNuage(*dino,*nb_pts,matrice))replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
+    if(horsNuage(*dino,*nb_pts))replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens);
     chute(dino, *nb_pts, *nuage, matrice, zoneAffichage, police,texMap,texObjets,equipe1,equipe2);
     ((*dino)->deplacement->sens) *= -1;
     supprimer_matrice_dino(*dino, matrice);
@@ -210,12 +210,14 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
     int ecart;
     t_coordonnee pos_suivante;
     printf("\n----------rappel---------------\ndistance=%d\n",distance_parcourue);
+    if (filevide())printf("\n------------------------file vide--------------\n");
     if (filevide() && (distance_parcourue < 35)){
         printf("\nfilevide\n");
         return 1;
     }  
 
     if (state[SDL_SCANCODE_RETURN]) {
+        printf("\n-------------retourner----------------------\n");
         return 3; 
     }
 
@@ -224,7 +226,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
     SDL_RenderPresent(zoneAffichage);
     SDL_Delay(16);
     
-    if (filevide()  && (distance_parcourue > 35)) {
+    if (((filevide()  && (distance_parcourue > 35))||(collision_cote(**dino,matrice)&& (distance_parcourue > 35)))) {
         printf("\ncollision\n");
         if(replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens)){
             ((*dino)->deplacement->sens) *= -1;
@@ -243,8 +245,7 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
     supprimer_matrice_dino(*dino, matrice);
     (*dino)->pos = pos_suivante;
     remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-    if(collision_decor((*dino)->deplacement->tab_res,**dino,matrice)){
-        
+    if(collision_decor((*dino)->deplacement->tab_res,**dino,matrice)&& (distance_parcourue > 35)){
         supprimer_matrice_dino(*dino, matrice);
         (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
         remplir_matrice_dino(*dino, (*dino)->pos, matrice);
@@ -317,6 +318,7 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
             // Gestion de la chute si le dino percute une paroi en montant
             printf("etat=%d",etat_fini);
             if (etat_fini == 2) {
+                printf("\n------------todo bien----------------\n");
                 chute(dino, *nb_pts, *nuage, matrice,zoneAffichage, police, texMap, texObjets,
                     equipe1, equipe2);
                 etat_fini = 1; // Sortie de la boucle de rappel

@@ -13,7 +13,7 @@
 
 // --- FONCTIONS UTILITAIRES ---
 
-int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {
+int horsNuage(t_dino *dino, int nb_pts) {
     if(dino->indice_nuage < 0 || dino->indice_nuage >= nb_pts){
         dino->deplacement->hors_nuage = 1;
         return 1;
@@ -38,6 +38,7 @@ int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nua
     int d1,d2,ecart;
     int ac_id_nuage, ac_indice;
     int nouvel_id = dino->id_nuage + sens;
+    if(!horsNuage(dino, *nb_pts))return 1;
     if (nouvel_id >= 0 && nouvel_id < nb_nuage) {
         t_coordonnee *nv_nuage = nuage_de_points(nb_pts, nomNuage[nouvel_id]);
 
@@ -58,12 +59,13 @@ int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nua
             printf("id=%d\n,indice=%d\n",dino->id_nuage,dino->indice_nuage);
             if (dino->indice_nuage < 0) dino->indice_nuage = 0;
             if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
-            if((*nuage)[dino->indice_nuage].y<(dino->pos.y-TAILLE_DINO)){
+            if(((*nuage)[dino->indice_nuage].y<(dino->pos.y-TAILLE_DINO)) || ((*nuage)[0].x>dino->pos.x) || ((*nuage)[(*nb_pts)-1].x<dino->pos.x)){
                 printf("\ndino=%d\nnuage=%d\n",dino->pos.y,(*nuage)[dino->indice_nuage].y);
                 dino->id_nuage=ac_id_nuage;
                 dino->indice_nuage=ac_indice;
                 nuageDetruire(nuage);
                 *nuage = nuage_de_points(nb_pts, nomNuage[dino->id_nuage]);
+                printf("\n-------------pas de nuage--------------\n");
                 return 0;
             }
             return 1;
@@ -105,7 +107,7 @@ void marcher(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage,
     float pas = VITESSE_BASE * (1.0f + sens*(a * 0.5f));
     dino->deplacement->indice_reel += sens*pas;
     dino->indice_nuage = (int)dino->deplacement->indice_reel;
-    if(horsNuage(dino, *nb_pts, matrice)){
+    if(horsNuage(dino, *nb_pts)){
         supprimer_matrice_dino(dino, matrice);
         dino->pos.x+=sens*10;//pour s'assurer que si il marche dans l'eau il meurt
         dino->pos.y+=10;
@@ -149,7 +151,7 @@ void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, in
         if (state[SDL_SCANCODE_RIGHT]) sens = 1, dino->deplacement->sens = DROITE;
         else if (state[SDL_SCANCODE_LEFT]) sens = -1, dino->deplacement->sens = GAUCHE;
         dino->indice_nuage += sens;
-        if(!horsNuage(dino, *nb_pts, matrice)){
+        if(!horsNuage(dino, *nb_pts)){
            
             dino->deplacement->v_y += GRAVITE;
             dino->pos.y += (int)dino->deplacement->v_y;
