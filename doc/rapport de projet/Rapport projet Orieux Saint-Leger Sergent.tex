@@ -19,6 +19,11 @@
 
 % --- Entrées du glossaire ---
 
+\newglossaryentry{file}{
+    name=file,
+    description={Structure de données telle que le premier élément ajouté dans celle-ci est le premier à être retiré}
+}
+
 \newglossaryentry{gradient}{
     name=gradient,
     description={Vecteur qui pointe dans la direction où une fonction mathématique augmente le plus vite}
@@ -74,19 +79,19 @@
 \section{Introduction}
 Cette introduction présente le travail collaboratif que nous avons mené pour créer un jeu vidéo. 
 \subsection{Contexte}
-Nous avons décidé de programmer un projet de jeu que nous avons nommé Jurassic War. Il est réalisé dans le cadre de la formation de L2 informatique de l’université du Mans pendant la période de janvier à avril 2026. Ce projet a été développé en langage C avec la librairie SDL 2. Ce jeu propose de déplacer des dinosaures avec différents moyens, d'utiliser des armes afin que deux équipes s'affrontent et s'éliminent. 
+Nous avons décidé de programmer un projet de jeu que nous avons nommé \textit{\mbox{JurassicWar}}. Il a été réalisé dans le cadre de la formation de L2 informatique de l’université du Mans pendant la période de janvier à avril 2026. Ce projet a été développé en langage C avec la librairie \gls{SDL}. Ce jeu propose de déplacer des dinosaures avec différents moyens ainsi que d'utiliser des armes afin que deux équipes s'affrontent et s'éliminent. 
 
 \subsection{Énoncé du problème}
-Au travers de ce rapport, nous allons décrire les étapes qui nous ont permis de mener à bien ce projet et de décrire les outils utilisés.\\
-Dans une première partie, nous allons exposer nos choix de conception, avec une description des principales règles du jeu, et de ses fonctionnalités prévues. La deuxième partie, détaille l'organisation de notre travail, dont la répartition des tâches, le planning prévisionnel et les outils de programmation utilisés. Ensuite, nous abordons le développement technique du jeu. Dans cette section, nous détaillons la modélisation du terrain par matrice, les algorithmes de mobilité et de positionnement des entités, et l'implémentation du système d'actions, armes, physique, interface SDL. Enfin, nous présentons les résultats obtenus et notre bilan en conclusion. Une annexe complète ce rapport, vous permettant de prendre connaissances des tests et débogages effectués. Vous pourrez retrouver les fichiers sources sur notre dépôt Git.
+Au travers de ce rapport, nous allons décrire les étapes qui nous ont permis de mener à bien ce projet et énoncer les outils utilisés.\\
+Dans une première partie, nous allons exposer nos choix de conception, avec une description des principales règles du jeu et de ses fonctionnalités prévues. La deuxième partie, détaille l'organisation de notre travail, dont la répartition des tâches, le planning prévisionnel et les outils de programmation utilisés. Ensuite, nous abordons le développement technique du jeu. Dans cette section, nous détaillons la modélisation du terrain par matrice, les algorithmes de mobilité et de positionnement des entités, et l'implémentation du système d'actions, d'armes, physique et de l'interface SDL. Enfin, nous présentons les résultats obtenus et notre bilan en conclusion. Une annexe complète ce rapport, permettant de prendre connaissance des tests et débogages effectués. Vous pouvez retrouver les fichiers sources sur le dépôt Git.
 
 \subsection{Objectifs initiaux du projet}
 L'objectif principal de ce projet est de concevoir un jeu de stratégie au tour par tour, intégrant des mécaniques de jeu variées et une physique réaliste. Nos priorités sont les suivantes :
 
 \begin{itemize}
-    \item \textbf{Système de jeu :} Implémenter un système de combat comprenant quatre armes de tir, une bombe, un grappin pour la mobilité et une potion de soin.
-    \item \textbf{Dynamique de jeu :} Gérer l'alternance des tours, déclenchée par la fin d'un chronomètre ou la réalisation d'une action.
-    \item \textbf{Environnement :} Garantir un placement aléatoire des dinosaures et des déplacements fluides qui s'adaptent automatiquement à la topographie de n'importe quel terrain.
+    \item \textbf{Système de jeu :} implémenter un système de combat comprenant quatre armes de tir, une bombe, un grappin pour la mobilité et une potion de soin.
+    \item \textbf{Dynamique de jeu :} gérer l'alternance des tours, déclenchée par la fin d'un chronomètre ou la réalisation d'une action.
+    \item \textbf{Environnement :} garantir un placement aléatoire des dinosaures et des déplacements fluides qui s'adaptent automatiquement à la topographie de n'importe quel terrain.
 \end{itemize}
 
 \newpage
@@ -105,9 +110,9 @@ De plus, ils doivent se plier à un certain nombre de règles pour survivre le p
 Des choix ont été effectués concernant les fonctionnalités à inclure dans \textit{JurassicWar}. Il s'agit d'un jeu à deux joueurs qui n'offre pas l'opportunité de mener une partie individuellement. Il utilise une matrice pour réprésenter le terrain sur lequel le jeu se déroule. Les joueurs disposent de quatre armes de tir, respectivement l'arc, l'arbalète, le revolver et le fusil ainsi que d'une arme explosive, la bombe.  Le système de tir propose une prévisualisation de la trajectoire qu'il est possible de modifier avant de valider l'envoi du projectile. Le jeu n'inclut pas uniquement des armes mais aussi d'autres outils comme une potion de soin et un grappin. Pour recourir à ces différents outils, le joueur appuie sur les touches du clavier. En outre, \textit{JurassicWar} intègre une interface utilisateur. En effet, il propose un affichage du terrain, des dinosaures et des armes en deux dimensions comme le souligne la figure~\ref{fig:illustrationEquipesReglesJeu}. Il propose également un menu principal et un menu de changement d'armes dont l'aspect est visible sur la figure~\ref{fig:menusJeu}. De surcroît, le jeu indique en temps réel le nombre de points de vie restant des dinosaures sur la fenêtre du jeu.
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.30\textwidth}
+    \begin{minipage}{0.32\textwidth}
         \centering
-        \includegraphics[height=4.7cm]{img/menuPrincipalJeu.png}
+        \includegraphics[height=5.5cm]{img/menuPrincipalJeu.png}
     \end{minipage}
     \hfill
     \begin{minipage}{0.65\textwidth}
@@ -123,34 +128,34 @@ Des choix ont été effectués concernant les fonctionnalités à inclure dans \
 \newpage
 \section{Organisation du travail}
 
-Cette partie montre la méthodologie structurelle adoptée pour la réalisation du projet JurassicWar, allant de la coordination du groupe à la gestion technique.
+Cette partie montre la méthodologie structurelle adoptée pour la réalisation du projet \textit{\mbox{JurassicWar}}, allant de la coordination du groupe à la gestion technique.
 
 \subsection{Répartition des tâches}
 
-Tout d’abord la conception du projet a été séparée en trois axes majeurs. La gestion des tours et la physique complexe des explosifs ont été confiées à Hannah. Le traitement du terrain matriciel, les déplacements et le système de grappin ont été pris en charge par Solène. Enfin, le développement des armes de tir, du système de soin, de l'inventaire et de l'interface utilisateur a été assuré par Romane. Cette répartition permet de pouvoir travailler séparément sans empiéter sur le programme de l’autre afin de ne pas perdre de temps et de ne pas se couper mutuellement le travail. Cette méthode apporte de la liberté au code et une plus grande liberté d’imagination qui aurait pu bloquer si deux personnes travaillait sur le même sujet mais sans avoir les mêmes idées.
-Ensuite la documentation étant nécessaire, chaque membre du groupe a eu la charge de documenter ses propres fonctions. Cette manière de faire garantit que chaque ligne de code est explicitée facilitant la relecture. L'organisation a été rythmée par plusieurs types de rencontres. Des réunions de répartition initiales ont permis de définir les structures communes. Par la suite, des réunions hebdomadaires de "micro-planning" ont été instaurées. Celles-ci servaient à ajuster les objectifs en fonction des blocages techniques rencontrés (par exemple, l'adaptation des trajectoires de tir au relief du terrain). Ces échanges ont assuré une synchronisation constante entre les différents modules. 
+Tout d’abord la conception du projet a été séparée en trois axes majeurs. La gestion des tours et la physique complexe des explosifs ont été confiées à Hannah. Le traitement matriciel du terrain, les déplacements et le système de grappin ont été pris en charge par Solène. Enfin, le développement des armes de tir, du système de soin, de l'inventaire a été assuré par Romane. Quant à l'interface utilisateur, il s'agit d'une collaboration entre Romane et Hannah. Cette répartition permet de pouvoir travailler séparément sans empiéter sur le programme de l’autre afin de ne pas perdre de temps et de ne pas se couper mutuellement le travail. Cette méthode apporte plus de liberté pour élaborer et imaginer le code ce qui n'est pas possible si deux personnes travaillent sur le même sujet avec des idées différentes.
+Ensuite, la documentation étant nécessaire, chaque membre du groupe a eu la charge de documenter ses propres fonctions. Cette manière de faire garantit que chaque ligne de code est explicitée facilitant ainsi la relecture. L'organisation a été rythmée par plusieurs types de rencontres. Des réunions de répartition initiales ont permis de définir les structures communes. Par la suite, des réunions hebdomadaires de « micro-planning » ont été instaurées. Celles-ci servent à ajuster les objectifs en fonction des blocages techniques rencontrés, comme par exemple, l'adaptation des trajectoires de tir au relief du terrain. Ces échanges ont assuré une synchronisation constante entre les différents modules. 
 
 \subsection{Planning prévisionnel}
 
 Le projet a été planifié sur une période de douze semaines.
-Des semaines 1 à 3 l’accent a été mis sur la définition des structures de données (t\_dino, t\_tir, t\_map) et sur la conversion du terrain image en matrice. Sans ces bases, aucun développement parallèle n’était possible. Ensuite de la semaine 4 à la semaine 7 l’implémentation des fonctions était vitale, surtout celles des détection des collisions, du lancement des armes, des déplacements et du changement de tour. Le planning montre bien une forte imbrication des tâches nécessitant des tests réguliers. Enfin les dernières semaines ont été consacrées à l’interface, la mise en commun des fonctions crées séparément et au réglage des dernières erreurs.
+Des semaines un à trois, l’accent a été mis sur la définition des structures de données telles que \textit{\mbox{t\_dino}}, \textit{\mbox{t\_tir}} ou encore  \textit{\mbox{t\_map}} et sur la conversion du terrain sous forme d'image en matrice. Sans ces bases, aucun développement parallèle n’était possible. Ensuite de la semaine quatre à la semaine sept, l’implémentation des fonctions était vitale, surtout celles de détection des collisions, du lancement des armes, des déplacements et du changement de tour. Le planning montre bien une forte imbrication des tâches nécessitant des tests réguliers. Enfin, les dernières semaines ont été consacrées à l’interface, la mise en commun des fonctions crées séparément et au réglage des dernières erreurs.
 \\
-L’image ci-dessous (voir figure ~\ref{fig:DiagrammeGantt}) illustre le diagramme de Gantt du projet. Il est possible d'y observer les marges de sécurité prévues pour les tâches critiques, comme la gestion des rebonds de bombes, les déplacements ou les tirs d’armes à feu, qui ont nécessité plus de temps de test que prévu. 
+L’image ci-dessous (voir figure ~\ref{fig:DiagrammeGantt}) illustre le diagramme de Gantt du projet. Il est possible d'y observer les marges de sécurité prévues pour les tâches critiques, comme la gestion des rebonds de la bombe, les déplacements ou les tirs d’armes à feu, qui ont nécessité plus de temps de tests que prévu. 
 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{
-        \includegraphics[width=1.15\textwidth]{img/DiagrammeGantt.png}
+        \includegraphics[width=1.20\textwidth]{img/DiagrammeGantt.png}
     }
-    \caption{Planning prévisionnel de JurassicWar}
+    \caption{Planning prévisionnel de \textit{\mbox{JurassicWar}}}
     \label{fig:DiagrammeGantt}
 \end{figure}
 
 \subsection{Outils de programmation utilisés}
 
-Le recours à des outils de développement professionnels a permis de maintenir une stabilité logicielle tout au long du cycle de production. 
+Le recours à des outils de développement professionnels a permis de maintenir une stabilité logicielle tout au long du projet. 
 \\
-L'outil "git" a permis la fusion des codes provenant de trois développeurs différents et a permis à chaque personne de pouvoir coder tout en pouvant s’inspirer du code des autres. Ensuite la documentation avec "doxygen" est générée automatiquement à partir des commentaires formatés dans le code source. Exemple : l'utilisation des balises @param et @return dans le fichier fonctionsTirs.c permet d'obtenir une notice technique claire sans rédaction manuelle supplémentaire. Cela est un gain de temps et permet un meilleur visuel à la fois pour les personnes qui essayent de comprendre le code et à la fois pour les créateurs qui cherchent à retrouver l’utilité d’une fonction ou d’une strcuture, que ce soit durant le projet ou dans le futur. Après "GDB" a été utilisé pour stopper l'exécution du programme lors d'une erreur de segmentation afin d'identifier la ligne fautive et "Valgrind" a servi à détecter les fuites de mémoire. Exemple : la vérification que chaque texture SDL chargée en mémoire est correctement libérée à la fermeture du jeu. Enfin Un fichier "Makefile" a été rédigé pour compiler l'ensemble du projet en une seule commande ce qui est un gain de temps énorme pour tester toutes les fonctions de tests crées dans différents fichiers. Exemple : la commande "make" gère la compilation séparée des fichiers gestion\_zones.c et placer\_dinos.c avant de les lier dans l'exécutable final.
+L'outil « git » a permis la fusion des codes provenant de trois développeurs différents ainsi qu'à chaque personne de pouvoir coder tout en s'inspirant du code des autres. Ensuite, la documentation avec « doxygen » est générée automatiquement à partir des commentaires formatés dans le code source. Par exemple, l'utilisation des balises \textit{\mbox{@param}} et \textit{\mbox{@return}} dans le fichier \textit{\mbox{fonctionsTirs.c}} permet d'obtenir une notice technique claire sans rédaction manuelle supplémentaire. Cela constitue un gain de temps et offre un meilleur visuel à la fois pour les personnes qui essayent de comprendre le code mais aussi pour les créateurs qui cherchent à retrouver l’utilité d’une fonction ou d’une strcuture, que ce soit durant le projet ou dans le futur. En outre, « GDB » a été utilisé pour stopper l'exécution du programme lors d'une erreur de segmentation afin d'identifier la ligne fautive et « Valgrind » a servi à détecter les fuites de mémoire. En effet, il permet de vérifier que chaque texture SDL chargée en mémoire est correctement libérée à la fermeture du jeu. Enfin, un fichier « Makefile » a été rédigé pour compiler l'ensemble du projet en une seule commande ce qui représente un gain de temps énorme pour tester toutes les fonctions crées dans différents fichiers. En particulier, la commande « make »  gère la compilation séparée des fichiers \textit{\mbox{gestion\_zones.c}} et \textit{\mbox{placer\_dinos.c}} avant de les lier dans l'exécutable final.
 
 \section{Developpement}
 Les éléments techniques nécessaires à la mise en place du jeu sont détaillés dans les volets suivants. La modélisation du terrain, la gestion des déplacements ainsi que l'ensemble des actions réalisables au cours d'une partie y sont notamment décrites.
@@ -162,14 +167,14 @@ Pour garantir l'adaptabilité du terrain à n'importe quel environnement, la fon
     \item \textbf{Marron :} représente la terre ;
     \item \textbf{Blanc :} représente l'air.
 \end{itemize}
-L'algorithme parcourt l'image pixel, par pixel (lignes et colonnes) et initialise la matrice. Une marge de tolérance sur les composantes RVB a été intégrée pour éviter des légères variations de couleur et assurer une détection robuste des éléments du décor.
+L'algorithme parcourt l'image pixel par pixel (lignes et colonnes) et initialise la matrice. Une marge de tolérance sur les composantes RVB a été intégrée pour éviter de légères variations de couleur et assurer une détection robuste des éléments du décor.
 \\
 
 \subsection{Positionnement et mobilité des dinosaures}
-Au travers de cette partie nous allons voir comment l'utilisation des tableaux de coordonnées nommés nuages de points ont permis des actions et méthodes permettant aux dinosaures de se placer et se déplacer.\\
+Au travers de cette partie, nous allons voir comment l'utilisation des tableaux de coordonnées nommés nuages de points ont permis de mettre en œuvre des actions et méthodes permettant aux dinosaures de se placer et se déplacer.\\
 
-Tout d'abord pour modéliser le relief du terrain praticable, les coordonnées $(x,y)$ de la ligne de crête sont enregistrées dans un nuage de points. Un nuage de points est associé pour chaque colline. Le jeu est limité à 5 nuages de points par carte. La trace du nuage de points est enregistée au même dimension que l'image du jeu, voir figure~\ref{fig:defNuage}.\\
-Afin de connaître la position du dinosaure par rapport aux différentes collines, l’identifiant du nuage de points et l’indice de position dans ce nuage  sont mémorisés dans la structure \textit{\mbox{t\_dino}}. L’identifiant $0$ indique qu’il s’agit de la zone de déplacement la plus à gauche, tandis que $n-1$ ($n$ le nombre de nuages)  signifie qu'il sagit de la dernière colline, celle la plus à droite. Ce système d’indexation permet au dinosaure de suivre les courbes du terrain de manière ordonnée.\\ 
+Tout d'abord, pour modéliser le relief du terrain praticable, les coordonnées $(x,y)$ de la ligne de crête sont enregistrées dans un nuage de points. Un nuage de points est associé pour chaque colline. Le jeu est limité à cinq nuages de points par carte. La trace du nuage de points est enregistée aux mêmes dimensions que l'image du jeu, voir figure~\ref{fig:defNuage}.\\
+Afin de connaître la position du dinosaure par rapport aux différentes collines, l’identifiant du nuage de points et l’indice de position dans ce nuage  sont mémorisés dans la structure \textit{\mbox{t\_dino}}. L’identifiant $0$ indique qu’il s’agit de la zone de déplacement la plus à gauche, tandis que $n-1$ où $n$ le nombre de nuages signifie qu'il s'agit de la dernière colline, celle la plus à droite. Ce système d’indexation permet au dinosaure de suivre les courbes du terrain de manière ordonnée.\\ 
 
 \begin{figure}[ht]
 	\centering
@@ -182,11 +187,11 @@ Afin de connaître la position du dinosaure par rapport aux différentes colline
 		\centering
 		\includegraphics[width=6.2cm]{img/nuageSurColline.png}
 	\end{minipage}
-	\caption[schéma de la définition du nuage de points]{schéma de la définition du nuage de points}
+	\caption[schéma de la définition du nuage de points]{Schéma de la définition du nuage de points}
 	\label{fig:defNuage}
 \end{figure}
 
-Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}} parcourt sur la largeur une image représentant le tracé d'une colline. Elle fait  la moyenne $m$ des pixels noirs rencontrés, stockés dans un tableau $I$, à l'indice  $i$. Le calcul de la moyenne $m$ est ensuite enregistré dans un tableau $N$ de \textit{\mbox{t\_coordonnee}} avec $(x=i,y=m)$. Comme le tracé est forcément continue, alors les points $x$ sont reliés les uns aux autres de façons croissante et continue, voir image: figure~\ref{fig:realisationNuage} accompagné du calcul de $(x_i,y_i)$.
+Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}} parcourt sur la largeur une image représentant le tracé d'une colline. Elle fait  la moyenne $m$ des pixels noirs rencontrés, stockés dans un tableau $I$, à l'indice  $i$. Le calcul de la moyenne $m$ est ensuite enregistré dans un tableau $N$ de \textit{\mbox{t\_coordonnee}} avec $(x=i,y=m)$. Comme le tracé est forcément continu, les points $x$ sont reliés les uns aux autres de façons croissante et continue, voir l'image: figure~\ref{fig:realisationNuage} accompagné du calcul de $(x_i,y_i)$.
 
 \begin{figure}[ht]
 	\centering
@@ -201,18 +206,18 @@ Pour générer le nuage de points, la fonction \textit{\mbox{nuage\_de\_points}}
         \[N=[(x_1,y_1),...,(x_i,y_i),...,(x_n,y_n)]\]
 		\[(x_i,y_i)=(i,m=\sum_{k=0}^{n-1}\frac{y_k}{n})\]
 	\end{minipage}
-	\caption[schema du calcul du tableau de nuage de points]{schema du calcul du tableau de nuage de points}
+	\caption[schema du calcul du tableau de nuage de points]{Schéma du calcul du tableau de nuage de points}
 	\label{fig:realisationNuage}
 \end{figure}
-Le placement initial des unités est une étape importante pour assurer la non redondance de JurassicWar. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
-\\\\
-Le terrain est divisé en deux zones pour le placement des dinosaures : le premier tiers, à gauche pour l'équipe 1 et le dernier tiers, à droite pour l'équipe 2. Chaque zone dispose de 3 dinosaures qui correspond à une équipe. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points (représentant la surface du sol) pour extraire des coordonnées viables. Pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à 30 pixels, le point est rejeté. Ensuite afin de prévenir tout risque de boucle infinie (dans le cas d'un terrain trop accidenté ou exigu), une variable "securite" limite l'algorithme à 5000 tentatives. Enfin le programme remplit un catalogue de 10 zones potentielles par équipe, permettant de multiples configurations de départ possibles.
+Le placement initial des unités est une étape importante pour assurer la non redondance de  \textit{\mbox{JurassicWar}}. Plutôt que d'imposer des positions fixes, le jeu a un système de génération de zones de départ basé sur l'analyse topographique du terrain. 
 \\
-Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}} place trois dinosaures dans chaque équipe. Chaque dinosaure reçoit un identifiant unique qui sera injecté dans la matrice de jeu. Cette injection dans la matrice se fait via la fonction \textit{\mbox{remplir\_matrice\_dino}}. Cette étape est très importante car la matrice est ensuite utilisée en permanence afin de jouer. Le dinosaure, qui est représenté par un carré de 30x30 pixels, remplace les valeurs de la matrice par l'ID du dinosaure mais avant d'écraser une case de la matrice, le dinosaure stocke la valeur précédente (terre ou air) dans son tableau mémoire. Cette précaution est essentielle pour "restaurer" le décor lorsque le dinosaure se déplace ou meurt, évitant ainsi de laisser des trous vides dans le terrain.
+Le terrain est divisé en deux zones pour le placement des dinosaures : la première moitié à gauche pour l'équipe 1 et la deuxième moitié à droite pour l'équipe 2. Chaque zone dispose de trois dinosaures qui correspondent à une équipe. La fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}} parcourt le nuage de points représentant la surface du sol pour extraire des coordonnées viables. Pour éviter que les dinosaures ne se chevauchent dès le départ, la fonction \textit{\mbox{distance}} calcule l'écart euclidien entre chaque nouveau point et ceux déjà sélectionnés. Si la distance est inférieure à trente pixels, le point est rejeté. Ensuite, afin de prévenir tout risque de boucle infinie comme dans le cas d'un terrain trop accidenté ou exigu, une variable \textit{\mbox{securite}} limite l'algorithme à 5000 tentatives. Enfin, le programme remplit un catalogue de dix zones potentielles par équipe, permettant de multiples configurations de départ possibles.
 \\
-Enfin, l'affichage avec les fonctions \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}. Une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de 100 pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision (fondée sur les coordonnées réelles de la matrice) de la logique visuelle (adaptée à la fenêtre SDL)
+Une fois le catalogue généré, la fonction \textit{\mbox{placer\_une\_equipe}} place trois dinosaures dans chaque équipe. Chaque dinosaure reçoit un identifiant unique qui est injecté dans la matrice de jeu. Cette injection dans la matrice se fait via la fonction \textit{\mbox{remplir\_matrice\_dino}}. Cette étape est très importante car la matrice est utilisée tout au long du programme. Le dinosaure, qui est représenté par un carré de 30x30 pixels, remplace les valeurs de la matrice par l'identifiant du dinosaure mais avant d'écraser une case de la matrice, le dinosaure stocke la valeur précédente c'est à dire \texttt{AIR} ou \texttt{TERRE} dans son tableau mémoire. Cette précaution est essentielle pour restaurer le décor lorsque le dinosaure se déplace ou meurt, évitant ainsi de laisser des trous vides dans le terrain.
 \\
-Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} prend un échantillon des dix points les plus proches du dinosaure et calcul le coefficient directeur $\alpha$ qui indique le degré de la pente à la position $(x_i,y_i)$, voir image: figure~\ref{fig:realisationRegression}\gls{regression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ le dinosaure descend vers la gauche et monte vers la droite et inversement si $\alpha<0$. Sinon, le dinosaure marche à la vitesse de base. On trouve ainsi le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec la formule suivante:
+Enfin, dans les fonctions d'affichage \textit{\mbox{afficherDinos}} et \textit{\mbox{afficherDinosAvecJeu}}, une distinction a été faite avec la deuxième fonction pour prendre en compte le décalage vertical de cent pixels lié à l'interface utilisateur. Cela permet de séparer la logique de collision fondée sur les coordonnées réelles de la matrice de la logique visuelle adaptée à la fenêtre SDL.
+\\
+Afin de créer un mouvement réaliste lorsque le dino marche, la fonction \textit{\mbox{regression}} prend un échantillon des dix points les plus proches du dinosaure et calcul le coefficient directeur $\alpha$ qui indique le degré de la pente à la position $(x_i,y_i)$, voir l'image: figure~\ref{fig:realisationRegression}\gls{regression} accompagné du calcul de $\alpha$. La fonction \textit{\mbox{marcher}} adapte la vitesse du pas en fonction de $\alpha$. En effet si  $\alpha>0$ le dinosaure descend vers la gauche et monte vers la droite et inversement si $\alpha<0$. Sinon, le dinosaure marche à la vitesse de base. On trouve ainsi le pas qui permet d'incrémenter ou de décrémenter plus ou moins vite l'indice du dino dans le nuage de points avec la formule suivante:
 \begin{equation}
 pas=VITESSE\_BASE\cdot{(1+sens\cdot{(a*0,5)})}
 \label{eq:calculPas}
@@ -231,16 +236,15 @@ pas=VITESSE\_BASE\cdot{(1+sens\cdot{(a*0,5)})}
 	\caption[schema du calcul de la pente $\alpha$]{schema du calcul de la pente $\alpha$}
 	\label{fig:realisationRegression}
 \end{figure} \\
-
-Si le dinosaure sort des extrémités du tableau, alors il se noie ou il tombe sur une nouvelle colline. La fonction \textit{\mbox{replacementNuage}}, calcule l'écart entre la position x du dinosaure et la coordonnée $x'$ du point de bordure d'un nuage, le plus proche du dinosaure. Le nouvel indice dans le nuage devient $0+ecart$, si le dinosaure est à côté du début du nouveau nuage, sinon il est égale à $n-1-ecart$, $n-1$ étant le dernier indice du nuage.\\
+Si le dinosaure sort des extrémités du tableau, alors il se noie ou il tombe sur une nouvelle colline. La fonction \textit{\mbox{replacementNuage}}, calcule l'écart entre la position $x$ du dinosaure et la coordonnée $x'$ du point de bordure d'un nuage, le plus proche du dinosaure. Le nouvel indice dans le nuage devient $0+ecart$, si le dinosaure est à côté du début du nouveau nuage, sinon il est égal à $n - 1 - ecart$, $n-1$ étant le dernier indice du nuage.\\
 Par sécurité, elle intègre également une règle interdisant le franchissement de dénivelés verticaux trop importants. Si aucun nuage n'est trouvé, le dinosaure tombe dans l'eau et se noie.\\ 
-Pour que le dinosaure saute, la flèche du haut doit être cliquée. La vitesse de saut, stockée dans \textit{\mbox{t\_dino}}, du dinosaure est initinialisée à \textbf{FORCE\_SAUT}, qui est une valeur négative qui propulse le dinosaure vers le haut. La vitesse de saut est alors ajoutée à la position $y$ du dinosaure. Puis, la vitesse du saut est ralentie grâce à l'accumulation de la constante \textbf{GRAVITE} tour par tour, jusqu'à ce que le dinosaure retombe. Le saut prend fin, lorsque la position $y$ du dinosaure est supérieure ou égale à la position $y'$ du nuage de points actif à \textit{\mbox{indice\_nuage}} du dinosaure.\\ 
+Pour que le dinosaure saute, la flèche du haut doit être cliquée. La vitesse de saut, stockée dans \textit{\mbox{t\_dino}}, du dinosaure est initinialisée à \texttt{FORCE\_SAUT}, qui est une valeur négative qui propulse le dinosaure vers le haut. La vitesse de saut est alors ajoutée à la position $y$ du dinosaure. Puis, la vitesse du saut est ralentie grâce à l'accumulation de la constante \texttt{GRAVITE} tour par tour, jusqu'à ce que le dinosaure retombe. Le saut prend fin, lorsque la position $y$ du dinosaure est supérieure ou égale à la position $y'$ du nuage de points actif à \textit{\mbox{indice\_nuage}} du dinosaure.\\ 
 Pour déplacer, à gauche, ou à droite, \textbf{lors d'un saut}, l'indice du nuage du dinosaure est incrémenté ou décrémenté. Si en sautant le dinosaure sort du nuage, alors il y a deux possibilités, soit un nouveau nuage de point est trouvé avec la fonction \textit{\mbox{replacementNuage}} et le saut reprend normalement, soit il tombe dans l'eau.
 
 \subsection{Système d’actions et outils à disposition du joueur}
-Cette partie rend compte de la manière dont s'enchaînent les actions dans \textit{JurassicWar} à travers la mécanique des changements de tours mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grappin. 
-\subsubsection{Mécanique des changements de tours}
-Premièrement, les dinosaures jouent chacun leur tour, c'est-à-dire que l'utilisateur n'a pas la possibilité de choisir avec lequel de ses trois dinosaures il souhaite agir à un tour donné. L'instauration de cette règle augmente d'une part  la complexité du jeu, mais d'autre part  le système des changements de tours, puisque l'alternance entre tous les dinosaures doit être correcte même lorsqu'un ou plusieurs d'entre eux meurent. Afin de mettre en œuvre les changements de tours, une fonction \textit{\mbox{tourSuivant}} a été crée. Elle s'appuie sur l'identifiant associé à chaque dinosaure pour déterminer le dinosaure qui peut jouer. Cependant, comme les dinosaures de la première équipe sont numérotés de un à trois et ceux de la seconde équipe de quatre à six, à la suite du premier dinosaure, c'est au quatrième dinosaure de jouer et non pas au second dinosaure pour garantir l'alternance entre les deux équipes. Ceci nécessite de mémoriser deux identifiants : celui du dinosaure qui vient d'agir et celui du dinosaure ayant agi précédemment. Ces identifiants sont stockés dans uns structure \textit{\mbox{t\_tour}} qui contient également le numéro de l'équipe qui vient de jouer et un compteur du nombre de tours effectués. Par ailleurs, la fonction \textit{\mbox{tourSuivant}} doit tenir compte de l'état d'un dinosaure dans la mesure où un dinosaure mort ne peut plus jouer. Ainsi, une fois que la fonction a choisi un dinosaure, elle vérifie qu'il est vivant. Dans le cas contraire, elle sélectionne un autre dinosaure jusqu'à en trouver un encore dans la partie. Une sécurité a été ajoutée pour que la fonction ne renvoie aucun dinosaure en fin de partie, c'est à dire lorsque tous les dinosaures d'un joueur ont péri.
+Cette partie rend compte de la manière dont s'enchaînent les actions dans \textit{JurassicWar} à travers la mécanique des changements de tour mais aussi de la nature des actions possibles dans le jeu. Un dinosaure peut en effet user de différents outils tels que la bombe, les armes de tirs ou encore le grappin. 
+\subsubsection{Mécanique des changements de tour}
+Premièrement, les dinosaures jouent chacun leur tour, c'est-à-dire que l'utilisateur n'a pas la possibilité de choisir avec lequel de ses trois dinosaures il souhaite agir à un tour donné. L'instauration de cette règle augmente d'une part  la complexité du jeu, mais d'autre part  le système des changements de tours, puisque l'alternance entre tous les dinosaures doit être correcte même lorsqu'un ou plusieurs d'entre eux meurent. Afin de mettre en œuvre les changements de tour, une fonction \textit{\mbox{tourSuivant}} a été crée. Elle s'appuie sur l'identifiant associé à chaque dinosaure pour déterminer le dinosaure qui peut jouer. Cependant, comme les dinosaures de la première équipe sont numérotés de un à trois et ceux de la seconde équipe de quatre à six, à la suite du premier dinosaure, c'est au quatrième dinosaure de jouer et non pas au second dinosaure pour garantir l'alternance entre les deux équipes. Ceci nécessite de mémoriser deux identifiants : celui du dinosaure qui vient d'agir et celui du dinosaure ayant agi précédemment. Ces identifiants sont stockés dans uns structure \textit{\mbox{t\_tour}} qui contient également le numéro de l'équipe qui vient de jouer et un compteur du nombre de tours effectués. Par ailleurs, la fonction \textit{\mbox{tourSuivant}} doit tenir compte de l'état d'un dinosaure dans la mesure où un dinosaure mort ne peut plus jouer. Ainsi, une fois que la fonction a choisi un dinosaure, elle vérifie qu'il est vivant. Dans le cas contraire, elle sélectionne un autre dinosaure jusqu'à en trouver un encore dans la partie. Une sécurité a été ajoutée pour que la fonction ne renvoie aucun dinosaure en fin de partie, c'est à dire lorsque tous les dinosaures d'un joueur ont péri.
 \subsubsection{Infliger un coup mortel : bombe}
 Deuxièmement, au cours d'une partie, les joueurs peuvent faire appel à une arme mortelle : la bombe. Contrairement aux armes de tirs évoquées dans la section suivante, la bombe tue instantanément le dinosaure qu'elle heurte. Néanmoins, cette arme peut uniquement être employée si le dinosaure dispose d'une place suffisante à côté de lui pour la positionner. L'objectif consiste à apporter de la difficulté supplémentaire mais aussi un intérêt à utiliser chaque arme disponible dans le jeu. De surcroît, cette arme se caractérise par sa capacité à rebondir sur le terrain. Cette capacité de la bombe à rebondir induit l'utilisation de plusieurs notions mathématiques dans le code. Pour faciliter l'application de ces notions, la bombe est représentée par une structure \textit{\mbox{t\_bombe}} comportant notamment le rayon et  le \gls{vecteur vitesse} du projectile, c'est à dire la vitesse sur l'axe horizontal et vertical de la bombe. Tout d'abord, la mise en place des rebonds nécessite un système de collision avec le sol précis en raison du relief particulier du terrain. Le terrain étant formé de collines et de cratères aux courbures arrondies, une détection de collisions limitée aux quatre directions haut, gauche, bas et droite ne suffit pas et manque les impacts en diagonale. En conséquence, pour élargir le nombre de directions étudiées lors des collisions, la fonction \textit{\mbox{collisionTerrainBombe}} fait recourt aux formules des coordonnées polaires pour analyser une multitude de points sur le contour de la bombe. Les points analysés sont représentés en rouge sur la figure~\ref{fig:coordonneesPolaires} accompagnés de la formule pour calculer leurs coordonnées.
 \begin{figure}[ht]
@@ -284,8 +288,8 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 
 \subsubsection{Blesser un dinosaure : armes de tir}
 
-Après l’implémentation de la bombe, nous avons conçu un système d’armes à distances variées. L’objectif principal est de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisi.
-Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : Son nom, sa puissance de propulsion qui va déterminer la vitesse initiale du projectile. Un fusil aura une vélocité supérieure à celle d’une flèche. Sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Sa masse, un projectile lourd comme une flèche aura une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevés lors de l’impact.
+À la suite de l’implémentation de la bombe, nous avons conçu un système d’armes à distances variées. L’objectif principal est de proposer une alternative à la bombe en introduisant une gestion balistique différenciée selon l’équipement choisi.
+Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : son nom, sa puissance de propulsion qui détermine la vitesse initiale du projectile. Par exemple, un fusil a une vélocité supérieure à celle d’une flèche. De plus, sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Enfin, sa masse, puisqu'un projectile lourd comme une flèche a une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevés lors de l’impact.
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/TrajectoireTirs.png}
@@ -294,7 +298,7 @@ Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’a
 \end{figure}
 \\
 L’utilisation d’une arme de tir se décompose en trois phases gérées par la fonction \textit{\mbox{viserArcher}} :
-Tout d’abord le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main, le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (tir→velo.u et tir→ velo.v). Afin de maintenir un jeu réaliste ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin la fonction tracerTrajectoireTir permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les 30 prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque frame, elle applique l’effet de la gravité selon la formule :
+Tout d’abord, le joueur choisit son arme via des touches dédiées pour chacune d’entre elles, Q pour l’arc, A pour l’arbalète, F pour le fusil et R pour le revolver. Une fois l’arme en main, le dinosaure ne peut plus bouger afin de se concentrer sur son tir. Ensuite, à l’aide des flèches directionnelles, l’utilisateur modifie le vecteur vitesse (\textit{\mbox{tir→velo.u}} et \textit{\mbox{tir→velo.v}}). Afin de maintenir un jeu réaliste, ces valeurs ont une vitesse maximale qui ne peut être dépassée. Enfin, la fonction \textit{\mbox{tracerTrajectoireTir}} permet d’afficher en temps réel une courbe prédictive en pointillés rouges. Cette simulation calcule les trente prochaines positions théoriques du projectile en appliquant la gravité à chaque itération, offrant ainsi une aide à la visée. Une fois la touche Espace pressée, le projectile passe à l’état actif avec la fonction \textit{\mbox{mettreAJourVol}}. À chaque affichage, elle applique l’effet de la gravité selon la formule :
 
 \begin{equation}
 \begin{aligned}
@@ -303,17 +307,16 @@ vy(t+1) &= vy(t) + gravite * poids\_projectile\\
 \label{eq:formuleMouvementArme}
 \end{equation}
 \\
-Le vol du projectile est soumis à de nombreuses vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain; \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et si le projectile touche la terre ou l’eau le projectile s’arrête. Enfin la fonction \textit{\mbox{collisionDino}}, le programme parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro  d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
+Le vol du projectile est soumis à de nombreuses vérifications via différentes fonctions de détection comme \textit{\mbox{collisionFrontière}} qui désactive le tir s’il sort des limites du terrain, \textit{\mbox{collisionTerrain}} et \textit{\mbox{collisionEau}} qui analysent la matrice du terrain et arêtent le projectile s'il touche la terre ou l’eau. Enfin, la fonction \textit{\mbox{collisionDino}} parcourt la matrice afin de vérifier si les coordonnées du tir correspondent au numéro d’un dinosaure. Une sécurité est rajoutée ici afin d’empêcher le tireur de se tirer dessus et de se blesser.
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth, height=7.2cm]{img/affichage_collisions.png}
         	\caption[affichage de collisions]{Résultats suite à une collision}
 	\label{fig:collisions}
 \end{figure}
-Lorsqu’une collision avec un dinosaure adverse a lieu, la fonction \textit{\mbox{appliquerDegats}} intervient. Cette fonction récupère le pointeur sur la structure du dinosaure touché pour mettre à jour ses points de vie. Si les PV tombent à zéro, le dinosaure meurt, sa texture est supprimée de l’affichage et ses coordonnées effacées de la matrice de jeu.
+Lorsqu’une collision avec un dinosaure adverse a lieu, la fonction \textit{\mbox{appliquerDegats}} intervient. Cette fonction récupère le pointeur sur la structure du dinosaure touché pour mettre à jour ses points de vie. Si les points de vie tombent à zéro, le dinosaure meurt, sa texture est supprimée de l’affichage et ses coordonnées effacées de la matrice de jeu.
 \\
-En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à 20 points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe.
-
+En opposition aux armes qui blessent, une potion de soin a été implémentée. Le joueur peut choisir, lors de son tour, d'utiliser une potion au lieu de tirer. Le soin est aléatoire : il peut redonner jusqu'à vingt points de vie, soit 20\% de la vie totale (voir figure ~\ref{fig:potion_soin_avant} et figure ~\ref{fig:potion_soin_après}). Cette incertitude ajoute un élément de risque, le joueur devant choisir entre tenter d'achever un adversaire ou espérer un soin salvateur pour prolonger la survie de son équipe.
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/img_pdv1.png}
@@ -328,12 +331,12 @@ En opposition aux armes qui blessent, une potion de soin a été implémentée. 
 	\label{fig:potion_soin_après}
 \end{figure}
 \subsubsection{Autre méthode de déplacement : grappin}
-Pour utiliser le grappin, il faut appuyer sur la touche \textbf{G}. Le joueur choisit alors l'angle pour lancer le grappin à l'aide de la fonction \textit{\mbox{choixAngleLancer}}. Elle ajoute ou enlève $0,5$ à l'angle en fonction des flèches appuyées. Puis grace aux fonctions trigonométriques, voir figure~\ref{fig:coordonneesPolaires}, elle projète les coordonnées $(x,y)$ de l'extrémité du segment de visée. \\
-Le joueur appuie ensuite sur \textbf{ESPACE} pour lancer le grappin. Les fonctions \textit{\mbox{lancer}} et \textit{\mbox{rappel}} font appel à une \textbf{file} qui mémorise chronologiquement les points de la trajectoire lors du lancer, puis les restitue lors du rappel afin de tirer le dinosaure. \\
-Si le joueur décide d'appuyer sur \textbf{ENTREE}, la traction se stoppe et le dinosaure se balance. La fonction \textit{\mbox{balancier}} simule un mouvement de pendule autour de la queue de la \textbf{file}, utilisée comme pivot fixe. Elle calcule l'accélération et la vitesse d'oscillation pour transformer les coordonnées polaires~\ref{fig:coordonneesPolaires} en positions cartésiennes. Le joueur peut alors accentuer le balancement avec les flèches directionnelles avant de stabiliser sa position finale.\\ 
-Cependant si le dinosaure touche la colline avant d'appuyer sur \textbf{ENTREE}, il y a alors deux possibilités. Premier cas de figure, le dinosaure se situe en desous de la ligne de crête, la fonction \textit{\mbox{chute}} est appelée, il peut alors atterir sur le nuage ou se noyer. Second cas de figure  c'est \textit{\mbox{replacementNuage}} qui est appelée pour replacer correctement le dinosaure sur la nouvelle colline.
+Pour utiliser le grappin, il faut appuyer sur la touche G. Le joueur choisit alors l'angle pour lancer le grappin à l'aide de la fonction \textit{\mbox{choixAngleLancer}}. Elle ajoute ou enlève $0,5$ à l'angle en fonction des flèches appuyées. Puis grâce aux fonctions trigonométriques, voir figure~\ref{fig:coordonneesPolaires}, elle projette les coordonnées $(x,y)$ de l'extrémité du segment de visée. \\
+Le joueur appuie ensuite sur Espace pour lancer le grappin. Les fonctions \textit{\mbox{lancer}} et \textit{\mbox{rappel}} font appel à une \gls{file} qui mémorise chronologiquement les points de la trajectoire lors du lancer, puis les restitue lors du rappel afin de tirer le dinosaure. \\
+Si le joueur décide d'appuyer sur Entree, la traction se stoppe et le dinosaure se balance. La fonction \textit{\mbox{balancier}} simule un mouvement de pendule autour de la queue de la file, utilisée comme pivot fixe. Elle calcule l'accélération et la vitesse d'oscillation pour transformer les coordonnées polaires~\ref{fig:coordonneesPolaires} en positions cartésiennes. Le joueur peut alors accentuer le balancement avec les flèches directionnelles avant de stabiliser sa position finale.\\ 
+Cependant, si le dinosaure touche la colline avant d'appuyer sur Entrée, il y a alors deux possibilités. Premier cas de figure, le dinosaure se situe en desous de la ligne de crête, la fonction \textit{\mbox{chute}} est appelée, il peut alors atterir sur le nuage ou se noyer. Second cas de figure,  c'est \textit{\mbox{replacementNuage}} qui est appelée pour replacer correctement le dinosaure sur la nouvelle colline.
 \subsection{Interface graphique et utilisateur}
-La visualisation à l'écran tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module \gls{SDL}, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de \textit{\mbox{JurassicWar}} par les joueurs.  
+La visualisation à l'écran de tous les éléments créés dans le cadre du projet tels que la matrice, le positionnement des dinosaures ou encore les outils, nécessite une interface graphique. Cette interface, développée grâce au module \gls{SDL}, constitue la base de l'interface utilisateur du jeu en intégrant divers menus et boutons qui facilitent la prise en main de \textit{\mbox{JurassicWar}} par les joueurs.  
 \subsubsection{Utilisation du module SDL}
 En premier lieu, la sélection du module SDL pour le projet se justifie par sa portabilité. Contrairement à d'autres librairies graphiques, SDL fonctionne à la fois sur Linux, Windows et macOS et est adapté au langage C. Il est principalement employé pour afficher le terrain, les dinosaures, les armes ainsi que divers menus explicités par la suite. Toutefois, il gère également les différentes actions du joueur tel qu'appuyer une touche du clavier pour choisir une arme et la trajectoire du tir dans les fonctions \textit{\mbox{choixHauteurLancer}} et \textit{\mbox{viserArcher}}, ou encore cliquer sur les boutons du menu principal dans la fonction \textit{\mbox{detecterEvenementsMenuPrincipal}}. Sans oublier que les touches du clavier se veulent indispensables aux déplacements des dinosaures. Cependant, ce module représente également une contrainte puisqu'il requiert de gérer correctement la mémoire entre les différentes allocations et libérations que ce soit pour les fenêtres mais aussi pour les textures des dinosaures et des objets. En outre, obtenir un rendu propre lors du lancer de la bombe ou de l'envoi de flèches et des balles pendant les tirs exige des ajustements, notamment en ce qui concerne le délai d'affichage des images. D'un côté, un délai trop long engendre un visuel flou et peu esthétique pour l'utilisateur et d'un autre côté, un délai trop court consomme beaucoup de ressources. Par conséquent, cet intervalle de temps est directement lié à la vitesse des projectiles et donc aux calculs mathématiques liés à ceux-ci. Enfin, l'interface graphique de \textit{\mbox{JurassicWar}} cumule une multitude d'images et de textes lorsque tous les élements du jeu, c'est-à-dire l'inventaire et le terrain sont réunis. Ceci impose un ordre d'affichage strict pour assurer la fiabilité de l'affichage. C'est un enjeu rencontré par les différentes versions des fonctions \textit{\mbox{afficherJeu}}.
  
@@ -342,15 +345,15 @@ En second lieu, un menu principal a été conçu dans \textit{\mbox{JurassicWar}
 
 \subsubsection{Faciliter l’utilisation du jeu pour l’utilisateur}
 
-Pour finir l'adaptation en cours de partie repose sur la capacité de l'interface à transmettre des informations complexes de manière instantanée. Cette fluidité de jeu tourne autour de deux grands axes : la gestion des ressources via un inventaire dynamique et le suivi en temps réel de l'état des unités.
-\\\\
-Premièrement, la mise en œuvre d'un inventaire situé en bordure supérieure gauche de l'écran centralise les outils à disposition (voir figure  ~\ref{fig:informationsDePartie}). Cette interface, gérée par la fonction \textit{\mbox{afficherInventaire}}, segmente l'espace en 7 cases distinctes associées aux textures des objets (Arc, Arbalète, Fusil, Revolver, Bombe, Grappin ou Potion). Afin de supprimer la nécessité de consulter une notice externe durant l'action, chaque image intègre une lettre de rappel. Ce marquage visuel indique directement la touche du clavier dédiée à l'activation de l'objet. La conception de cet inventaire repose sur un calcul dynamique de la largeur des cases en fonction de la constante \textit{\mbox{LARGEUR\_INVENTAIRE}} et du nombre d'objets, assurant une adaptabilité aux futures évolutions du catalogue d'armes. L'usage de \textit{\mbox{SDL\_RenderDrawRect}} délimite chaque emplacement par une bordure grise, renforçant la clarté pour l'utilisateur.
-Deuxièmement, le suivi de l'état de santé des dinosaures constitue un facteur stratégique important. Le menu des points de vie créé par les fonctions \textit{\mbox{afficherMenuPVDinos}} et \textit{\mbox{afficherBarrePV}}, offre une idée de l'avancée de la partie. L'interface regroupe les informations sur deux lignes, une par équipe (voir figure  ~\ref{fig:informationsDePartie}). Chaque dinosaure dispose d'une jauge de santé dont la couleur évolue selon le nombre de points de vie restants. Le vert indique une santé supérieure à 50\%, l'orange un état critique supérieur à 20\% et le rouge un seuil d'urgence inférieur à 20\%. Ce changement alerte l'utilisateur sans qu'une lecture précise des valeurs numériques ne soit utilisée. De plus, la disparition immédiate de la jauge lors du décès d'un dinosaure signale une perte importante du jeu.
-Enfin l'optimisation des performances d'affichage des textes et des jauges traité par la fonction \textit{\mbox{afficherMenuPVDinosOp}} avec l'utilisation d'un système de cache de textures (\textit{\mbox{t\_texte\_cache}}) limite les opérations coûteuses de rendu textuel à chaque cycle de la boucle de jeu. En stockant en avance les étiquettes de chaque dinosaure, le programme réduit la consommation des ressources processeur tout en maintenant une interface utilisateur réactive et informative.
+Pour finir, l'adaptation en cours de partie repose sur la capacité de l'interface à transmettre des informations complexes de manière instantanée. Cette fluidité de jeu tourne autour de deux grands axes : la gestion des ressources via un inventaire dynamique et le suivi en temps réel de l'état des unités.
+\\
+Premièrement, la mise en œuvre d'un inventaire situé en bordure supérieure gauche de l'écran centralise les outils à disposition (voir figure  ~\ref{fig:informationsDePartie}). Cette interface, gérée par la fonction \textit{\mbox{afficherInventaire}}, segmente l'espace en sept cases distinctes associées aux textures des objets (Arc, Arbalète, Fusil, Revolver, Bombe, Grappin ou Potion). Afin de supprimer la nécessité de consulter une notice externe durant l'action, chaque image intègre une lettre de rappel. Ce marquage visuel indique directement la touche du clavier dédiée à l'activation de l'objet. La conception de cet inventaire repose sur un calcul dynamique de la largeur des cases en fonction de la constante \texttt{\mbox{LARGEUR\_INVENTAIRE}} et du nombre d'objets, assurant une adaptabilité aux futures évolutions du catalogue d'armes. L'usage de \textit{\mbox{SDL\_RenderDrawRect}} délimite chaque emplacement par une bordure grise, renforçant la clarté pour l'utilisateur.
+Deuxièmement, le suivi de l'état de santé des dinosaures constitue un facteur stratégique important. Le menu des points de vie créé par les fonctions \textit{\mbox{afficherMenuPVDinos}} et \textit{\mbox{afficherBarrePV}}, offre une idée de l'avancée de la partie. L'interface regroupe les informations sur deux lignes, une par équipe (voir figure  ~\ref{fig:informationsDePartie}). Chaque dinosaure dispose d'une jauge de santé dont la couleur évolue selon le nombre de points de vie restants. Le vert indique une santé supérieure à 50\%, l'orange un état critique supérieur à 20\% et le rouge un seuil d'urgence inférieur à 20\%. Ce changement alerte l'utilisateur sans qu'une lecture précise des valeurs numériques ne soit nécessaire. De plus, la disparition immédiate de la jauge lors du décès d'un dinosaure signale une perte importante du jeu.
+Enfin, l'optimisation des performances d'affichage des textes et des jauges traité par la fonction \textit{\mbox{afficherMenuPVDinosOp}} avec l'utilisation d'un système de cache de textures (\textit{\mbox{t\_texte\_cache}}) limite les opérations coûteuses de rendu textuel à chaque cycle de la boucle de jeu. En stockant en avance les étiquettes de chaque dinosaure, le programme réduit la consommation des ressources du processeur tout en maintenant une interface utilisateur réactive et informative.
 
 \begin{figure}[h]
     \centering
-            \includegraphics[width=0.8\textwidth]{img/informationsPartie.png}
+            \includegraphics[width=\textwidth]{img/informationsPartie.png}
             \caption{Système de jauges de santé dynamiques avec code couleur représentatif de l'état des unités et inventaire des armes.}
     \label{fig:informationsDePartie}
 \end{figure}
@@ -378,7 +381,7 @@ Disponible à : \url{https://github.com/romanesl72/Projet_L2_JurassicWar}, 2026.
 \section{Annexes}
 \subsection{Jeux de tests}
 Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont été effectués. Pour chaque fonction vérifiée, les cas de tests valides ou invalides sont énumérés dans des tableaux.
-\paragraph{Cas de test de la fonction mettreAjourVol dans le fichier test\_vol.c}
+\paragraph{Cas de tests de la fonction mettreAjourVol dans le fichier test\_vol.c}
 (table \ref{tab_cas_valides_mettreAJourVol} et table \ref{tab_cas_invalides_mettreAJourVol}).
 \\
 \texttt{mettreAJourVol(t\_tir *tir, int matrice[HAUTEUR\_TERRAIN][LARGEUR\_TERRAIN], float gravite, int id\_tireur);}
@@ -386,33 +389,39 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
 \begin{table}[H]
     \centering
     \small % Réduit légèrement la police pour gagner de la place
-    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|} \hline
-        \textbf{Cas de test valides} & \textbf{Données} & \textbf{Résultats attendus} \\ \hline
-        Vol libre & Tir actif, pas d'obstacle & Retourne 0, position mise à jour, actif reste à 1 \\ \hline
-        Sortie Limites & Tir aux coordonnées (-1, -1) (en dehors du jeu) & Retourne -2, actif passe à 0 \\ \hline
-        Collision Terre & Matrice[y][x] = TERRE & Retourne 1 (TERRE), actif passe à 0 \\ \hline
-        Collision Eau & Matrice[y][x] = EAU & Retourne 2 (EAU), actif passe à 0 \\ \hline
-        Collision Dino & Matrice[y][x] = D2, id\_tireur = 1 & Retourne D2, actif passe à 0 \\ \hline
-        Auto-Collision & Matrice[y][x] = D1, id\_tireur = D1 & Retourne 0, actif reste à 1 \\ \hline
-        Tir Inactif & tir->actif = 0 & Retourne 0 \\ \hline
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.2cm}|
+    >{\raggedright\arraybackslash}X|
+    >{\centering\arraybackslash}p{4cm}|} \hline
+        \textbf{Cas de tests valides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        Vol libre & Tir actif, pas d'obstacle & retourne 0, position mise à jour, actif reste à 1 \\ \hline
+        Sortie des limites & Tir aux coordonnées (-1, -1) (en dehors du jeu) & retourne -2, actif passe à 0 \\ \hline
+        Collision avec la terre & Matrice[y][x] = TERRE & retourne 1 (TERRE), actif passe à 0 \\ \hline
+        Collision avec l'eau & Matrice[y][x] = EAU & retourne 2 (EAU), actif passe à 0 \\ \hline
+        Collision avec  un dinosaure & Matrice[y][x] = D2, id\_tireur = 1 & retourne D2, actif passe à 0 \\ \hline
+        Auto-collision & Matrice[y][x] = D1, id\_tireur = D1 & retourne 0, actif reste à 1 \\ \hline
+        Tir inactif & tir->actif = 0 & retourne 0 \\ \hline
     \end{tabularx}
-    \caption{Tableau des cas de test valides de la fonction mettreAJourVol}
+    \caption{Tableau des cas de tests valides de la fonction \textit{\mbox{mettreAJourVol}}}
     \label{tab_cas_valides_mettreAJourVol}
 \end{table}
 
 \begin{table}[H]
     \centering
     \small
-    \begin{tabular}{|l|c|r|} \hline
-        \textbf{Cas de test Invalides} & \textbf{Données} & \textbf{Résultats attendus}\\ \hline
-        Pas assez d'arguments & (tir, matrice, gravite) & Erreur, données Invalides \\
-        Mauvais type d'arguments & (tir, gravite, matrice, tir) & Erreur, données Invalides \\ \hline
-    \end{tabular}
-    \caption{Tableau des cas de test valides de la fonction mettreAJourVol}
+    \begin{tabularx}{\textwidth}{|
+    >{\centering\arraybackslash}p{3.5cm}|
+    >{\centering\arraybackslash}X|
+    >{\centering\arraybackslash}p{4cm}|} \hline
+        \textbf{Cas de tests invalides} & \textbf{Données} & \textbf{Résultats attendus}\\ \hline
+        Pas assez d'arguments & (tir, matrice, gravite) & Erreur, données invalides \\ \hline
+        Mauvais type d'arguments & (tir, gravite, matrice, tir) & Erreur, données invalides \\ \hline
+    \end{tabularx}
+    \caption{Tableau des cas de tests valides de la fonction \textit{\mbox{mettreAJourVol}}}
     \label{tab_cas_invalides_mettreAJourVol}
 \end{table}
 \newpage
-\textbf{Cas de test de la fonction recupererDinoNumero dans le fichier testFonctionsStructJoueur.c}
+\textbf{Cas de tests de la fonction recupererDinoNumero dans le fichier testFonctionsStructJoueur.c}
 (table \ref{tab_cas_valides_ recupererDinoNumero} et table \ref{tab_cas_invalides_ recupererDinoNumero}).\\
 \texttt{t\_dino * recupererDinoNumero(t\_joueur * equipe1, t\_joueur * equipe2, t\_case numero);}
 \begin{table}[H]
@@ -422,7 +431,7 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
     >{\centering\arraybackslash}p{3.2cm}|
     >{\arraybackslash}X|
     >{\centering\arraybackslash}p{4cm}|} \hline
-        \textbf{Cas de test valides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        \textbf{Cas de tests valides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
         Dinosaure trouvé dans l’équipe 1 & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), D2 & pointeur sur le dinosaure D2 \\ \hline
         Dinosaure trouvé dans l’équipe 2 & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), D4 & pointeur sur le dinosaure D4 \\ \hline
         Dinosaure présent dans les deux équipes & equipe1 = (D1, D2, D3), equipe2 = (D1, D5, D6), D4 & pointeur sur le dinosaure D1 de l'équipe 1 \\ \hline
@@ -436,7 +445,7 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
         Équipe 2 vide & equipe1 = (D1, D2, D3),\newline equipe2 = (), D2 & D2 \\ \hline
         Les deux équipes vides & equipe1 = (),\newline equipe2 = (), D2 & NULL \\ \hline
     \end{tabularx}
-    \caption{Tableau des cas de test valides de la fonction recupererDinoNumero}
+    \caption{Tableau des cas de tests valides de la fonction \textit{\mbox{recupererDinoNumero}}}
     \label{tab_cas_valides_ recupererDinoNumero}
 \end{table}
 
@@ -447,7 +456,7 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
     >{\centering\arraybackslash}p{3.2cm}|
     >{\arraybackslash}X|
     >{\centering\arraybackslash}p{4cm}|} \hline
-        \textbf{Cas de test invalides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
+        \textbf{Cas de tests invalides} & \centering\textbf{Données} & \textbf{Résultats attendus} \\ \hline
         Numéro non entier & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), 3.8 & données invalides \\ \hline
         Numéro non eniter & equipe1 = (D1, D2, D3), equipe2 = (D4, D5, D6), ''essai'' & données invalides \\ \hline
         Équipe 1 n'existant pas & equipe1 = NULL,\newline equipe2 = (D4, D5, D6),\newline D2 & erreur de segmentation \\ \hline
@@ -456,12 +465,12 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
         Équipe 2 n'existant pas & equipe1 = (D1, D2, D3),\newline equipe2 = NULL,\newline D2 & erreur de segmentation \\ \hline
         Équipe 1 et  Équipe 2  n'existant pas & equipe1 = NULL,\newline equipe2 = NULL,\newline D2 & erreur de segmentation \\ \hline
     \end{tabularx}
-    \caption{Tableau des cas de test invalides de la fonction recupererDinoNumero}
+    \caption{Tableau des cas de tests invalides de la fonction \textit{\mbox{recupererDinoNumero}}}
     \label{tab_cas_invalides_ recupererDinoNumero}
 \end{table}
 
 \newpage
-\textbf{Cas de test de la fonction deplacement\_dino dans le fichier deplacement.c}
+\textbf{Cas de tests de la fonction deplacement\_dino dans le fichier deplacement.c}
 (table \ref{tab_cas_valides_deplacements} et table \ref{tab_cas_invalides_deplacements}).\\
 \texttt{void deplacement\_dino(t\_dino *dino, t\_coordonnee **nuage, char *nomNuage[], int nb\_nuage, int *nb\_pts, int matrice[HAUTEUR\_TERRAIN][LARGEUR\_TERRAIN], t\_joueur * equipe1, t\_joueur * equipe2);}
 \begin{table}[ht]
@@ -471,14 +480,14 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
     >{\centering\arraybackslash}p{3.2cm}|
     >{\centering\arraybackslash}p{4cm}|
     >{\centering\arraybackslash}X|} \hline
-        \textbf{Cas de test Valides} & \textbf{Données (État + Action)} & \textbf{Résultats attendus} \\ \hline
+        \textbf{Cas de tests valides} & \textbf{Données (État + Action)} & \textbf{Résultats attendus} \\ \hline
         Marche horizontale standard & \texttt{sautBooleen}=0, sur nuage + Touche \texttt{DROITE} & \texttt{pos.x} augmente, \texttt{indice\_nuage} augmente, \texttt{sens}=\texttt{DROITE}. \\ \hline
         Initialisation d'un saut & \texttt{sautBooleen}=0, \texttt{wait}=0 + Touche \texttt{HAUT} & \texttt{sautBooleen}=1, \texttt{v\_y}=\texttt{FORCE\_SAUT}. \\ \hline
         Saut avec déplacement & \texttt{sautBooleen}=1 + Touche \texttt{DROITE} & \texttt{pos.y} et \texttt{pos.x} évoluent selon la parabole du saut. \\ \hline
         Atterrissage sur nuage & \texttt{sautBooleen}=1, \texttt{pos.y} $\ge$ nuage & \texttt{sautBooleen}=0, \texttt{v\_y}=0, \texttt{wait}=20. \\ \hline
         Transition entre collines & \texttt{hors\_nuage}=1, nouveau nuage détecté & Appel \texttt{replacementNuage}, \texttt{id\_nuage} change, dino tombe sur nouveau nuage. \\ \hline
     \end{tabularx}
-    \caption{Cas de test valides sur la fonction \textit{deplacement\_dino}.}
+    \caption{Tableau des cas de tests valides sur la fonction \textit{deplacement\_dino}}
     \label{tab_cas_valides_deplacements}
 \end{table}
 
@@ -490,14 +499,14 @@ Afin de vérifier la comportement de certaines fonctions, des jeux de tests ont 
     >{\centering\arraybackslash}p{3.2cm}|
     >{\centering\arraybackslash}p{4cm}|
     >{\centering\arraybackslash}X|} \hline
-        \textbf{Cas de test invalides} & \textbf{Données (Condition limite)} & \textbf{Résultats attendus} \\ \hline
+        \textbf{Cas de tests invalides} & \textbf{Données (Condition limite)} & \textbf{Résultats attendus} \\ \hline
         Noyade du dinosaure & \texttt{matrice}[y][x] == -1 (eau) & Appel de \texttt{noyade()}, \texttt{etat}=0, \texttt{pv}=0 et arrêt des mouvements. \\ \hline
         Sortie du nuage de points & \texttt{hors\_nuage}=1 et \texttt{replacementNuage} échoue & Passage à l'état \texttt{tomber}=2, chute verticale jusqu'à la limite du terrain. \\ \hline
         Action sur dinosaure mort & \texttt{dino->etat} == 0 & La fonction \texttt{deplacement\_dino} s'arrête immédiatement. \\ \hline
         Saut impossible (Attente) & \texttt{wait} > 0 + Touche \texttt{HAUT} & La variable \texttt{sautBooleen} reste à 0, aucune impulsion verticale n'est donnée. \\ \hline
         Blocage par décor & Collision avec \texttt{TERRE} lors d'un mouvement & La position \texttt{pos.y} est réinitialisée à sa valeur précédente pour empêcher de traverser le sol. \\ \hline
     \end{tabularx}
-    \caption{Cas de test invalides sur la fonction \textit{deplacement\_dino}.}
+    \caption{Tableau des cas tests invalides sur la fonction \textit{deplacement\_dino}}
     \label{tab_cas_invalides_deplacements}
 \end{table}
 
@@ -531,7 +540,7 @@ La bombe interrompt sa trajectoire au milieu du ciel avant d'avoir heurté la te
 	\caption[extrait du makefile utilise pour le debogage des collisions]{Extrait du makefile utilisé pour le débogage des collisions}
 	\label{fig:compilationCollisionBombe}
 \end{figure}\\
-Les lignes qui suivent constituent la séquence des instructions de débogage mise en oeuvre pour corriger le système de collision. Cette séquence de commande nécessite de provoquer artificiellement l'évènement clavier déclenchant le lancer de la bombe afin d'analyser le contenu des variables lorsque l'arme est en mouvement puis lors de la collision. Dans le jeu, c'est la touche b du clavier, représentée par la macro SDL\_SCANCODE\_B dans le module SDL qui amorce le tir de la bombe. Cette macro possédant pour valeur cinq, l'élément d'indice cinq du tableau \textit{etatClavier} qui consigne les touches actionnées par l'utilisateur est par conséquent positionné à un au cours de l'exécution du programme sous gdb.\\\\
+Les lignes qui suivent constituent la séquence des instructions de débogage mise en oeuvre pour corriger le système de collision. Cette séquence de commande nécessite de provoquer artificiellement l'évènement clavier déclenchant le lancer de la bombe afin d'analyser le contenu des variables lorsque l'arme est en mouvement puis lors de la collision. Dans le jeu, c'est la touche b du clavier, représentée par la macro \texttt{SDL\_SCANCODE\_B} dans le module SDL qui amorce le tir de la bombe. Cette macro possédant pour valeur cinq, l'élément d'indice cinq du tableau \textit{etatClavier} qui consigne les touches actionnées par l'utilisateur est par conséquent positionné à un au cours de l'exécution du programme sous gdb.\\\\
 \textbf{Séquence des instructions de débogage :}
 \begin{verbatim}
 gdb bombe
@@ -581,11 +590,11 @@ bombeLancee = 0
 bombe.coor = {x = 592, y = 131}
 (gdb) quit
 \end{verbatim}
-À l'issue de la séquence de commandes, il s'avère que l'erreur réside dans une inversion de coordonnées dans la fonction \textit{\mbox{collisionTerrainBombe}}, comme l'illustre l'arrêt au point d'arrêt numéro cinq. Cette inversion s'explique par une différence de convention entre la matrice et l'affichage dans la fenêtre avec le module SDL. Tandis que la largeur correspond à l'axe des ordonnées pour la matrice, il s'agit de l'axe des abscisses pour l'affichage et inversement pour la hauteur. La résolution du comportement incohérent de la bombe nécessite donc uniquement d'échanger les coordonnées x et y dans les tests effectués par la fonction.
+À l'issue de la séquence de commandes, il s'avère que l'erreur réside dans une inversion de coordonnées dans la fonction \textit{\mbox{collisionTerrainBombe}}, comme l'illustre l'arrêt au point d'arrêt numéro cinq. Cette inversion s'explique par une différence de convention entre la matrice et l'affichage dans la fenêtre avec le module SDL. Tandis que la largeur correspond à l'axe des ordonnées pour la matrice, il s'agit de l'axe des abscisses pour l'affichage et inversement pour la hauteur. La résolution du comportement incohérent de la bombe nécessite donc uniquement d'échanger les coordonnées $x$ et $y$ dans les tests effectués par la fonction.
 
 \newpage
 \subsubsection{Correction du point d'attache du Grappin}
-Lors de l’activation du balancier par la touche \textbf{ENTREE}, le grappin n’est plus attaché au bon endroit. Normalement il doit ressembler à l’image ~\ref{fig:imageCorrecteGrappin}, mais il ressemble à l'image ~\ref{fig:imageFausseGrappin}. Pour trouver l’erreur, le programme est lancé avec GDB.
+Lors de l’activation du balancier par la touche Entrée, le grappin n’est plus attaché au bon endroit. Normalement il doit ressembler à l’image ~\ref{fig:imageCorrecteGrappin}, mais il ressemble à l'image ~\ref{fig:imageFausseGrappin}. Pour trouver l’erreur, le programme est lancé avec GDB.
 \\\\
 \textbf{Séquence des instructions de débogage :}
 \begin{verbatim}
@@ -616,7 +625,7 @@ gdb ./testGrappin
 	\label{fig:imageFausseGrappin}
 \end{figure}
 
-Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que les valeurs pointées par  \textit{\mbox{pts\_rotation}} ne rentrent pas dans les limites du terrain, elles sont donc corrompues. Avec backtrace nous comprenons que le problème vient de la fonction \textit{\mbox{grappin}}. En regardant juste au-dessus de la ligne 337, dans \textit{\mbox{grappin.c}}, nous observons que la \textbf{file} est détruite. Donc  \textit{\mbox{pts\_rotation}}, qui doit pointer vers la queue de file, devient un pointeur fou. Pour régler le problème, au lieu de passer l’adresse d’un élément qui va être supprimé, voir image ~\ref{fig:imagecodeFauxGrappin}, nous faisons une copie du contenu de cet élément dans une variable locale, voir image ~\ref{fig:imagecodeVraiGrappin}.
+Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que les valeurs pointées par  \textit{\mbox{pts\_rotation}} ne rentrent pas dans les limites du terrain, elles sont donc corrompues. Avec backtrace nous comprenons que le problème vient de la fonction \textit{\mbox{grappin}}. En regardant juste au-dessus de la ligne 337, dans \textit{\mbox{grappin.c}}, nous observons que la file est détruite. Donc  \textit{\mbox{pts\_rotation}}, qui doit pointer vers la queue de file, devient un pointeur fou. Pour régler le problème, au lieu de passer l’adresse d’un élément qui va être supprimé, voir image ~\ref{fig:imagecodeFauxGrappin}, nous faisons une copie du contenu de cet élément dans une variable locale, voir image ~\ref{fig:imagecodeVraiGrappin}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{img/gdbGrappin.png}
@@ -641,9 +650,9 @@ Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que 
 \newpage
 
 \subsubsection{Correction des gestions de zones pour le placement des dinosaures}
-Lors du développement du module de placement des dinosaures, une erreur logique a été identifiée dans la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}. Alors que le nuage de points contient des coordonnées valides, le programme ne parvient pas à allouer les dix zones de spawn requises pour chaque équipe, déclenchant systématiquement le message d'alerte "Attention : Zones de spawn incomplètes !" de sécurité après 5000 itérations.
+Lors du développement du module de placement des dinosaures, une erreur logique a été identifiée dans la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}. Alors que le nuage de points contient des coordonnées valides, le programme ne parvient pas à allouer les dix zones de spawn requises pour chaque équipe, déclenchant systématiquement le message d'alerte « Attention : Zones de spawn incomplètes ! » de sécurité après 5000 itérations.
 \\\\
-Ainsi puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas, on utilise gdb pour observer l'exécution 'en direct'. En utilisant la commande display dino, on s'aperçoit que même si dino.x est inférieur à LARGEUR\_TERRAIN/3 (ce qui est bien dans le tiers gauche du terrain), le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur dino.y. Comme dino.y représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
+Ainsi, puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas, on utilise gdb pour observer l'exécution. En utilisant la commande display dino, on s'aperçoit que même si \textit{\mbox{dino.x}} est inférieur à \texttt{ LARGEUR\_TERRAIN/3}, ce qui correspond bien à la moitié gauche du terrain, le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur  \textit{\mbox{dino.y}}. Comme  \textit{\mbox{dino.y}} représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
 \\\\
 \textbf{Séquence des instructions de débogage :}
 \begin{verbatim}
