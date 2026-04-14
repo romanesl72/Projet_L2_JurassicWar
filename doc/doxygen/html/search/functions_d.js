@@ -9,6 +9,7 @@ var searchData=
   ['remplir_5ftoute_5fla_5fmatrice_6',['remplir_toute_la_matrice',['../test__vol_8c.html#a93e4dba2884564f22a459bb189953aaa',1,'test_vol.c']]],
   ['replacementnuage_7',['replacementNuage',['../deplacement_8h.html#ae3e6b24b72ee075f5645b2991fd91736',1,'deplacement.c']]],
   ['reset_5fmatrice_8',['reset_matrice',['../test__vol_8c.html#a8c710f7fc530ba89c6bf96ab90f5c5c9',1,'test_vol.c']]],
-  ['retournerdino_9',['retournerDino',['../fonctionsStructJoueur_8h.html#ab3b0dba48a56cecba8106fcddb709f39',1,'retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote):&#160;fonctionsStructJoueur.c'],['../fonctionsStructJoueur_8c.html#ab3b0dba48a56cecba8106fcddb709f39',1,'retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote):&#160;fonctionsStructJoueur.c']]],
-  ['retournerlaser_10',['retournerLaser',['../fonctionsRebonds_8c.html#aecc1ea4dbe51bf973f65275f74c24744',1,'fonctionsRebonds.c']]]
+  ['retirer_9',['retirer',['../tda__file_8h.html#a9151c4bda24e89f782103daa714ac7cb',1,'retirer(t_coordonnee *v):&#160;tda_file.c'],['../tda__file_8c.html#a9151c4bda24e89f782103daa714ac7cb',1,'retirer(t_coordonnee *v):&#160;tda_file.c']]],
+  ['retournerdino_10',['retournerDino',['../fonctionsStructJoueur_8h.html#ab3b0dba48a56cecba8106fcddb709f39',1,'retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote):&#160;fonctionsStructJoueur.c'],['../fonctionsStructJoueur_8c.html#ab3b0dba48a56cecba8106fcddb709f39',1,'retournerDino(t_joueur *equipe1, t_joueur *equipe2, t_case numero, t_cote cote, t_cote *ancienCote):&#160;fonctionsStructJoueur.c']]],
+  ['retournerlaser_11',['retournerLaser',['../fonctionsRebonds_8c.html#aecc1ea4dbe51bf973f65275f74c24744',1,'fonctionsRebonds.c']]]
 ];

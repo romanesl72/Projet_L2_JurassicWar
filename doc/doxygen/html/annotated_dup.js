@@ -9,6 +9,7 @@ var annotated_dup =
     [ "t_coordonnee_calcul", "structt__coordonnee__calcul.html", "structt__coordonnee__calcul" ],
     [ "t_deplacement", "structt__deplacement.html", "structt__deplacement" ],
     [ "t_dino", "structt__dino.html", "structt__dino" ],
+    [ "t_element_file", "structt__element__file.html", null ],
     [ "t_joueur", "structt__joueur.html", "structt__joueur" ],
     [ "t_texte_cache", "structt__texte__cache.html", "structt__texte__cache" ],
     [ "t_tir", "structt__tir.html", "structt__tir" ],

@@ -22,7 +22,6 @@
 
 void initfile(void);
 
-
 /**
  * @fn int filevide(void);
  * @author Solène Orieux
@@ -31,6 +30,7 @@ void initfile(void);
  */
 
 int filevide(void);
+
 /**
  * @fn void ajouter(t_coordonnee v);
  * @author Solène Orieux
@@ -58,7 +58,6 @@ void retirer(t_coordonnee *v);
  * @brief destruction globale de la file
  */
 void detruireFile();
-
 
 /**
  * @fn int afficherFile(SDL_Renderer *rendu);

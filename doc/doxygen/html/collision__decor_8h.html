@@ -105,8 +105,8 @@ $(function(){initNavTree('collision__decor_8h.html','',''); });
 Fonctions</h2></td></tr>
 <tr class="memitem:a0df69d4d6224eb5863f9b50f8026561f" id="r_a0df69d4d6224eb5863f9b50f8026561f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0df69d4d6224eb5863f9b50f8026561f">collision_decor</a> (int tab_res[4], <a class="el" href="structt__dino.html">t_dino</a> dino, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
 <tr class="memdesc:a0df69d4d6224eb5863f9b50f8026561f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie les collisions autour du dinosaure.  <br /></td></tr>
-<tr class="memitem:a233db352e47ab4c3346a2fcc11ea2a8d" id="r_a233db352e47ab4c3346a2fcc11ea2a8d"><td class="memItemLeft" align="right" valign="top"><a id="a233db352e47ab4c3346a2fcc11ea2a8d" name="a233db352e47ab4c3346a2fcc11ea2a8d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_cote</b> (<a class="el" href="structt__dino.html">t_dino</a> dino, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memitem:a233db352e47ab4c3346a2fcc11ea2a8d" id="r_a233db352e47ab4c3346a2fcc11ea2a8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a233db352e47ab4c3346a2fcc11ea2a8d">collision_cote</a> (<a class="el" href="structt__dino.html">t_dino</a> dino, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memdesc:a233db352e47ab4c3346a2fcc11ea2a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie les collisions sur les cotés du dinosaure.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Définitions des fonctions de détection de collision du dino avec la matrice. </p>
@@ -114,6 +114,40 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_cote</b> (<a
 <dl class="section date"><dt>Date</dt><dd>Crée le 07/02/2026 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a233db352e47ab4c3346a2fcc11ea2a8d" name="a233db352e47ab4c3346a2fcc11ea2a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233db352e47ab4c3346a2fcc11ea2a8d">&#9670;&#160;</a></span>collision_cote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collision_cote </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a></td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie les collisions sur les cotés du dinosaure. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 06/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dino</td><td>La structure du dinosaure. </td></tr>
+    <tr><td class="paramname">matrice</td><td>La matrice représentant le terrain. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 1 si la terre est détectée, 0 sinon. </dd></dl>
+
+</div>
+</div>
 <a id="a0df69d4d6224eb5863f9b50f8026561f" name="a0df69d4d6224eb5863f9b50f8026561f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0df69d4d6224eb5863f9b50f8026561f">&#9670;&#160;</a></span>collision_decor()</h2>
 
@@ -139,7 +173,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_cote</b> (<a
 </div><div class="memdoc">
 
 <p>Vérifie les collisions autour du dinosaure. </p>
-<p>Vérifie les collisions sur les cotés du dinosaure.</p>
 <dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Crée le 07/02/2026 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
@@ -151,18 +184,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_cote</b> (<a
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 1 si au moins une collision (terre) est détectée, 0 sinon.</dd></dl>
-<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Crée le 06/04/2026 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dino</td><td>La structure du dinosaure. </td></tr>
-    <tr><td class="paramname">matrice</td><td>La matrice représentant le terrain. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 1 si la terre est détectée, 0 sinon. </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 1 si au moins une collision (terre) est détectée, 0 sinon. </dd></dl>
 
 </div>
 </div>
@@ -180,7 +202,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>collision_cote</b> (<a
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="collision__decor_8h.html">collision_decor.h</a></li>
-    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 19:20:29 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

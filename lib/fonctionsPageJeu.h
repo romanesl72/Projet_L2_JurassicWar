@@ -60,7 +60,7 @@ int creerPageJeu(SDL_Window **fenJeu, SDL_Renderer **zoneAffichage, SDL_Texture 
 void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones *catalogue, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer *zoneAffichage);
 
 /** 
- * @fn void detecterEvenementsPageJeuBombe(int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn void detecterEvenementsPageJeuBombe(int *enCours, int *nombreRebonds, int *bombeLancee, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP, SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_tir *tir, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_texte_cache *cache, t_arme catalogue_armes[4], char *nomNuage[], t_coordonnee **nuage, int *nb_pts);
  * @brief La fonction détecte si l'utilisateur réalise une action dans la fenêtre du jeu 
  * ne contenant que la fonctionnalité bombe (appuyer sur une touche ou encore cliquer sur la croix pour fermer).
  * @author Hannah Sergent

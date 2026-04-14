@@ -164,8 +164,7 @@ void test_chute_libre() {
 
 /**
  * @brief Tests des fonctions de collisions du dino sur la matrice
- * @param argc nombre d'arguments de la ligne de commande
- * @param argv tableau des arguments
+ * @author Romane Saint_Léger
  * @return 0
  * @version 1.0
  */

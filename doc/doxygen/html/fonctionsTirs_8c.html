@@ -124,8 +124,7 @@ Fonctions</h2></td></tr>
 <tr class="memdesc:a7c00cc8fae6ee8e3972b2faefd21027d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué  <br /></td></tr>
 <tr class="memitem:acfbb3728b1df805c202f3f5e566f6d31" id="r_acfbb3728b1df805c202f3f5e566f6d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfbb3728b1df805c202f3f5e566f6d31">AncienviserArcher</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 **etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2)</td></tr>
 <tr class="memdesc:acfbb3728b1df805c202f3f5e566f6d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancienne version d'une fonction qui permet de viser.  <br /></td></tr>
-<tr class="memitem:a47f61849cc91ca812e4e678045267e94" id="r_a47f61849cc91ca812e4e678045267e94"><td class="memItemLeft" align="right" valign="top"><a id="a47f61849cc91ca812e4e678045267e94" name="a47f61849cc91ca812e4e678045267e94"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 *etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant)</td></tr>
+<tr class="memitem:a47f61849cc91ca812e4e678045267e94" id="r_a47f61849cc91ca812e4e678045267e94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47f61849cc91ca812e4e678045267e94">viserArcher</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 *etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numDinoCourant)</td></tr>
 <tr class="memitem:a6a5d0bb8afbb394f6e36375b190f35be" id="r_a6a5d0bb8afbb394f6e36375b190f35be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a5d0bb8afbb394f6e36375b190f35be">appliquerDegats</a> (int numDinoTouche, int degats, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
@@ -540,6 +539,85 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_
 
 </div>
 </div>
+<a id="a47f61849cc91ca812e4e678045267e94" name="a47f61849cc91ca812e4e678045267e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f61849cc91ca812e4e678045267e94">&#9670;&#160;</a></span>viserArcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viserArcher </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *</td>          <td class="paramname"><span class="paramname"><em>texMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__tir.html">t_tir</a> *</td>          <td class="paramname"><span class="paramname"><em>tir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Uint8 *</td>          <td class="paramname"><span class="paramname"><em>etatClavier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gravite</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numDinoCourant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>3.1 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">texMap</td><td>pointeur sur la texture de la map </td></tr>
+    <tr><td class="paramname">texObjets</td><td>pointeur sur la texture des Objets </td></tr>
+    <tr><td class="paramname">police</td><td>pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir </td></tr>
+    <tr><td class="paramname">etatClavier</td><td>un pointeur de pointeur sur l'état du clavier </td></tr>
+    <tr><td class="paramname">gravite</td><td>constante de gravite utilisé sur les armes </td></tr>
+    <tr><td class="paramname">e1</td><td>pointeur sur la structure de l'équipe 1 afin de pouvoir accéder aux dinos de leur équipe </td></tr>
+    <tr><td class="paramname">e2</td><td>pointeur sur la structure de l'équipe 2 afin de pouvoir accéder aux dinos de leur équipe </td></tr>
+    <tr><td class="paramname">numDinoCourant</td><td>Numéro du dinosaure en train de tirer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -554,7 +632,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsTirs_8c.html">fonctionsTirs.c</a></li>
-    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:53 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 19:20:29 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

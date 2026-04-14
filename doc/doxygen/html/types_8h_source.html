@@ -284,7 +284,7 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="structelement.html">  310</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structelement.html">element</a>{</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">  311</a></span>    <a class="code hl_struct" href="structt__coordonnee.html">t_coordonnee</a> *<a class="code hl_variable" href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">coordonnee</a>; </div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">  312</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structelement.html">element</a>* <a class="code hl_variable" href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">suivant</a>;  </div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>} t_element_file;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>} <a class="code hl_struct" href="structt__element__file.html">t_element_file</a>;</div>
 </div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span></div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
@@ -297,7 +297,7 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructelement_html"><div class="ttname"><a href="structelement.html">element</a></div><div class="ttdoc">élement d&#39;une file.</div><div class="ttdef"><b>Definition</b> types.h:310</div></div>
+<div class="ttc" id="astructelement_html"><div class="ttname"><a href="structelement.html">element</a></div><div class="ttdef"><b>Definition</b> types.h:310</div></div>
 <div class="ttc" id="astructelement_html_a4f1534ded1f9373e0843568bf94ea754"><div class="ttname"><a href="structelement.html#a4f1534ded1f9373e0843568bf94ea754">element::suivant</a></div><div class="ttdeci">struct element * suivant</div><div class="ttdoc">élément suivant de la file</div><div class="ttdef"><b>Definition</b> types.h:312</div></div>
 <div class="ttc" id="astructelement_html_a7b8c287bb39ebccedf21be042e9e5d27"><div class="ttname"><a href="structelement.html#a7b8c287bb39ebccedf21be042e9e5d27">element::coordonnee</a></div><div class="ttdeci">t_coordonnee * coordonnee</div><div class="ttdoc">coordonnée (x,y)</div><div class="ttdef"><b>Definition</b> types.h:311</div></div>
 <div class="ttc" id="astructt__arme_html"><div class="ttname"><a href="structt__arme.html">t_arme</a></div><div class="ttdoc">Caractéristiques de chaque arme.</div><div class="ttdef"><b>Definition</b> types.h:279</div></div>
@@ -342,6 +342,7 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div class="ttc" id="astructt__dino_html_ad26b303d94945e7159a0945b25aac5e6"><div class="ttname"><a href="structt__dino.html#ad26b303d94945e7159a0945b25aac5e6">t_dino::indice_nuage</a></div><div class="ttdeci">int indice_nuage</div><div class="ttdoc">Position dans le nuage.</div><div class="ttdef"><b>Definition</b> types.h:175</div></div>
 <div class="ttc" id="astructt__dino_html_aed10470cf809bcb6b7f60ee8161b9541"><div class="ttname"><a href="structt__dino.html#aed10470cf809bcb6b7f60ee8161b9541">t_dino::id_nuage</a></div><div class="ttdeci">int id_nuage</div><div class="ttdoc">Numéro du nuage.</div><div class="ttdef"><b>Definition</b> types.h:174</div></div>
 <div class="ttc" id="astructt__dino_html_af42d99f3e0462cf38d9fde55d881f9b8"><div class="ttname"><a href="structt__dino.html#af42d99f3e0462cf38d9fde55d881f9b8">t_dino::memoire</a></div><div class="ttdeci">int memoire[30][30]</div><div class="ttdoc">Permet de mémoriser Ce qu&#39;il y avait dans la matrice avant le dino.</div><div class="ttdef"><b>Definition</b> types.h:180</div></div>
+<div class="ttc" id="astructt__element__file_html"><div class="ttname"><a href="structt__element__file.html">t_element_file</a></div><div class="ttdoc">élement d&#39;une file.</div></div>
 <div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:192</div></div>
 <div class="ttc" id="astructt__joueur_html_a62e76af8c1ecb78d6fe21d44b704dff9"><div class="ttname"><a href="structt__joueur.html#a62e76af8c1ecb78d6fe21d44b704dff9">t_joueur::tabCote</a></div><div class="ttdeci">t_cote * tabCote</div><div class="ttdoc">Tableau contenant la direction du dinosaure à l&#39;instant t.</div><div class="ttdef"><b>Definition</b> types.h:196</div></div>
 <div class="ttc" id="astructt__joueur_html_a69a2b65c31dcce0ec7c0395e2cf1e41b"><div class="ttname"><a href="structt__joueur.html#a69a2b65c31dcce0ec7c0395e2cf1e41b">t_joueur::texDinos</a></div><div class="ttdeci">SDL_Texture ** texDinos</div><div class="ttdoc">Tableau contenant les images des dinosaures.</div><div class="ttdef"><b>Definition</b> types.h:194</div></div>
@@ -392,7 +393,7 @@ $(function(){initNavTree('types_8h_source.html','',''); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="types_8h.html">types.h</a></li>
-    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 19:20:29 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

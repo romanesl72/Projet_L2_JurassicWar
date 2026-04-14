@@ -13,7 +13,7 @@ var dir_13e138d54eb8818da29c3992edef070a =
     [ "testFonctionsRebonds.c", "testFonctionsRebonds_8c.html", "testFonctionsRebonds_8c" ],
     [ "testFonctionsStructJoueur.c", "testFonctionsStructJoueur_8c.html", "testFonctionsStructJoueur_8c" ],
     [ "testFonctionsTuerDinos.c", "testFonctionsTuerDinos_8c.html", "testFonctionsTuerDinos_8c" ],
-    [ "testPlacement.c", "testPlacement_8c.html", null ],
+    [ "testPlacement.c", "testPlacement_8c.html", "testPlacement_8c" ],
     [ "testTirArmes.c", "testTirArmes_8c.html", "testTirArmes_8c" ],
     [ "testTirsAffichageJeu.c", "testTirsAffichageJeu_8c.html", "testTirsAffichageJeu_8c" ]
 ];
