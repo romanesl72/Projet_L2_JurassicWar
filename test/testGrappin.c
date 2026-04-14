@@ -22,8 +22,13 @@
  * @date Crée le 03/04/2026
  */
 
+/**
+ * @brief Déplacer le dinosaure à l'aide d'un grappin.
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1
+ */
 
-int main(int argc, char * argv[]){
+int main(){
 
     /* ---- 1. Initialisation ---- */
     if (!initialisationCorrecte()) return 1;

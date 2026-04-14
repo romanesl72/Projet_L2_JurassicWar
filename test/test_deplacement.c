@@ -14,9 +14,21 @@
 
 #include <SDL2/SDL_ttf.h>
 
+/** 
+ * @file test_deplacement.c
+ * @brief Test des fonctions pour déplacer et changer de tours des dinosaures.
+ * @author Solène Orieux
+ * @date Crée le 14/04/2026
+ * @version 1.3
+ */
 
+/**
+ * @brief Déplacer les dinosaures à l'aide des flèches.
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.3
+ */
 
-int main(int argc, char * argv[]){
+int main(){
 
     /* ---- 1. Initialisation ---- */
     if (!initialisationCorrecte()) return 1;

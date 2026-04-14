@@ -51,7 +51,6 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
  * @param police un pointeur sur la police du jeu
  * @param texMap pointeur sur l'image de la map
  * @param texObjets un tableau de pointeur sur les images des différants objets
- * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  */
@@ -81,10 +80,10 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
  * @param equipe1 pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param pts_rotation pointeur sur la coordonnée du points de rotation du grappin
-* @param nb_pts pointeur sur le nombre de points dans le nuage
+ * @param nb_pts pointeur sur le nombre de points dans le nuage
  * @param nuage pointeur de pointeur sur le nuage de points
  * @param nb_nuage nombre de nuage présent dans la map
- * @param nomNuage liste des différents noms d'image permettant de créer le nuage
+ * @param nomNuage tableaux de pointeurs des différents noms d'image permettant de créer le nuage
  */
 
 void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL_Renderer* zoneAffichage, const Uint8 *state, 
@@ -106,9 +105,8 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
  * @param zoneAffichage pointeur sur la zone d'affichage
  * @param state pointeur sur le détecteur de touche du clavier
  * @param police un pointeur sur la police du jeu
- * @param texMap pointeur sur l'image de la map
+ * @param texMap tableaux de pointeurs pointeur sur l'image de la map
  * @param texObjets un tableau de pointeur sur les images des différants objets
- * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
  * @param equipe2 structure correspondant aux dinosaures du joueur 2
  */
@@ -144,7 +142,7 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle, int matrice[HAUTEUR_TE
  * @param nb_pts pointeur sur le nombre de points dans le nuage
  * @param nuage pointeur de pointeur sur le nuage de points
  * @param nb_nuage nombre de nuage présent dans la map
- * @param nomNuage liste des différents noms d'image permettant de créer le nuage
+ * @param nomNuage tableaux de pointeurs de pointeurs des différents noms d'image permettant de créer le nuage
  */
 
 
@@ -168,9 +166,12 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
  * @param texMap pointeur sur l'image de la map
  * @param police un pointeur sur la police du jeu
  * @param texObjets un tableau de pointeur sur les images des différants objets
- * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 structure correspondant aux dinosaures du joueur 1
  * @param equipe2 structure correspondant aux dinosaures du joueur 2
+ * @param nb_pts pointeur sur le nombre de points dans le nuage
+ * @param nuage pointeur de pointeur sur le nuage de points
+ * @param nb_nuage nombre de nuage présent dans la map
+ * @param nomNuage tableaux de pointeurs des différents noms d'image permettant de créer le nuage
  */
 
  

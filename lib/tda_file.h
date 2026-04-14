@@ -71,7 +71,7 @@ void detruireFile();
 int afficherFile(SDL_Renderer *rendu);
 
 /**
- * @fn t_coordonnee *lireTete();
+ * @fn t_coordonnee *lireQueue();
  * @author Solène Orieux
  * @date 07/04/2025
  * @brief renvoie un pointeur sur la tête de file

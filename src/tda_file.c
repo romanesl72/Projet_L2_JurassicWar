@@ -4,7 +4,7 @@
 #include "../lib/tda_file.h"
 
 /** 
- * @file tda_file.h
+ * @file tda_file.c
  * @brief fonction permettant la création d'une file
  * @author Solène Orieux
  * @date 25/03/2025
@@ -14,12 +14,6 @@
 t_element_file* tete = NULL;
 t_element_file* queue = NULL;
 
-/**
- * @fn void initfile(void);
- * @author Solène Orieux
- * @date 25/03/2025
- * @brief initialisation de la file
- */
 
 void initfile(void) {
     detruireFile();
@@ -27,23 +21,11 @@ void initfile(void) {
     queue = NULL;
 }
 
-/**
- * @fn int filevide(void);
- * @author Solène Orieux
- * @date 25/03/2025
- * @brief vérifie si la file est vide
- */
+
 int filevide(void) {
     return tete == NULL;
 }
 
-/**
- * @fn void ajouter(int v);
- * @author Solène Orieux
- * @date 25/03/2025
- * @brief ajout dans la file
- * @param v valeur à ajouter
- */
 
 void ajouter(t_coordonnee v) {
     t_element_file* nouv = malloc(sizeof(t_element_file));
@@ -62,14 +44,6 @@ void ajouter(t_coordonnee v) {
     queue = nouv;
 }
 
-/**
- * @fn void retirer(int* v);
- * @author Solène Orieux
- * @date 25/03/2025
- * @brief ajout dans la file
- * @param v poiteur sur la valeur à supprimer
- */
-
 void retirer(t_coordonnee *v) {
     if (!filevide()) {
         t_element_file* a_supprimer = tete;
@@ -87,12 +61,6 @@ void retirer(t_coordonnee *v) {
     }
 }
 
-/**
- * @fn void detruireFile();
- * @author Solène Orieux
- * @date 05/04/2025
- * @brief destruction globale de la file
- */
 void detruireFile() {
     t_element_file* courant = tete;
     t_element_file* a_supprimer;
@@ -111,13 +79,7 @@ void detruireFile() {
     queue = NULL;
 }
 
-/**
- * @fn int afficherFile(SDL_Renderer *rendu);
- * @author Solène Orieux
- * @date 05/04/2025
- * @brief affiche l'entiéreté de la file
- * @param rendu pointeur sur la fenêtre de jeu
- */
+
 int afficherFile(SDL_Renderer *rendu){
     if(filevide())return 1;
     t_element_file *elem_courant=tete;
@@ -127,12 +89,6 @@ int afficherFile(SDL_Renderer *rendu){
     return 0;
 }
 
-/**
- * @fn t_coordonnee *lireQueue();
- * @author Solène Orieux
- * @date 11/04/2025
- * @brief renvoie un pointeur sur la queue de file
- */
 t_coordonnee *lireQueue(){
     if(!filevide()) return queue->coordonnee;
     return NULL;
