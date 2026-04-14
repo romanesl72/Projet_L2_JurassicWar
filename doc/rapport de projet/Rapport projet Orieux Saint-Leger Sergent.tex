@@ -292,7 +292,7 @@ De la même manière que précédemment, l'introduction du temps et de la gravit
 Afin d’apporter du choix, quatre armes de tir ont été implémentées : l’arc, l’arbalète, le fusil et le revolver. Contrairement à la bombe, ces armes ne sont pas mortelles au premier contact mais retirent une quantité définie de points de vie. Pour améliorer le réalisme du jeu, chaque projectile possède des propriétés physiques propres définies dans la structure \textit{\mbox{t\_arme}} : son nom, sa puissance de propulsion qui détermine la vitesse initiale du projectile. Par exemple, un fusil a une vélocité supérieure à celle d’une flèche. De plus, sa vitesse maximale car chaque arme ne peut dépasser une certaine vitesse. Enfin, sa masse, puisqu'un projectile lourd comme une flèche a une courbe de chute plus marquée qu’une munition de revolver et sa dangerosité, c’est à dire le nombre de points de vie enlevés lors de l’impact.
 \begin{figure}[ht]
 	\centering
-        	\includegraphics[width=0.6\textwidth]{img/TrajectoireTirs.png}
+        	\includegraphics[width=0.6\textwidth]{img/TrajectoireTirs2.png}
         	\caption[exemple trajectoire de tirs]{Exemple de la trajectoire des quatres armes}
 	\label{fig:trajectoiresTirs}
 \end{figure}
@@ -652,8 +652,14 @@ Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que 
 \subsubsection{Correction des gestions de zones pour le placement des dinosaures}
 Lors du développement du module de placement des dinosaures, une erreur logique a été identifiée dans la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}. Alors que le nuage de points contient des coordonnées valides, le programme ne parvient pas à allouer les dix zones de spawn requises pour chaque équipe, déclenchant systématiquement le message d'alerte « Attention : Zones de spawn incomplètes ! » de sécurité après 5000 itérations.
 \\\\
-Ainsi, puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas, on utilise gdb pour observer l'exécution. En utilisant la commande display dino, on s'aperçoit que même si \textit{\mbox{dino.x}} est inférieur à \texttt{ LARGEUR\_TERRAIN/3}, ce qui correspond bien à la moitié gauche du terrain, le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur  \textit{\mbox{dino.y}}. Comme  \textit{\mbox{dino.y}} représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
+Ainsi, puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas (voir figure ~\ref{fig:ProblèmeGestionZones}), on utilise gdb pour observer l'exécution. En utilisant la commande display dino, on s'aperçoit que même si \textit{\mbox{dino.x}} est inférieur à \texttt{ LARGEUR\_TERRAIN/3}, ce qui correspond bien à la moitié gauche du terrain, le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur  \textit{\mbox{dino.y}}. Comme  \textit{\mbox{dino.y}} représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
 \\\\
+\begin{figure}[ht]
+	\centering
+        	\includegraphics[width=0.6\textwidth]{img/debuggage_generer_un_catalogue.png}
+        	\caption[Image du problème d'affichage des dinos]{Problème d'affichage de tout les dinos à cause de \textit{\mbox{generer\_catalogue\_depuis\_nuage}}}
+	\label{fig:ProblèmeGestionZones}
+\end{figure}
 \textbf{Séquence des instructions de débogage :}
 \begin{verbatim}
 gdb ./main
