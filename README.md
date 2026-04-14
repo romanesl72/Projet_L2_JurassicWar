@@ -46,7 +46,7 @@ cd Projet_L2_JurassicWar/doc/PlanningProjet.ods
 
 **Accéder à la documentation Doxygen :**
 
-- ***En local (dernière mise à jour le 11/04/2026)***
+- ***En local (dernière mise à jour le 14/04/2026)***
 
 ```bash
 cd Projet_L2_JurassicWar/doc/doxygen/html/index.thml
