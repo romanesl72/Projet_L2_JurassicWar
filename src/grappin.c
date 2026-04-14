@@ -28,7 +28,6 @@ int collision_grappin(t_coordonnee pos, int matrice[HAUTEUR_TERRAIN][LARGEUR_TER
 
     if(pos.y >= 0 && pos.y < HAUTEUR_TERRAIN && pos.x >= 0 && pos.x < LARGEUR_TERRAIN) {
         if(matrice[pos.y][pos.x] == TERRE){
-            printf("\n--------TERRE-------\n");
             return 1;
         } 
     }
@@ -41,7 +40,7 @@ int chute(t_dino **dino, int nb_pts, t_coordonnee *nuage, int matrice[HAUTEUR_TE
     TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
     t_joueur *equipe1, t_joueur *equipe2){
     if(horsNuage( *dino, nb_pts)){
-        printf("\nhors nuage\n");
+
         while (!noyade( *dino, matrice)){
             supprimer_matrice_dino(*dino, matrice);
             (*dino)->deplacement->v_y += GRAVITE;
@@ -140,7 +139,7 @@ void balancier(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, SDL
     supprimer_matrice_dino(*dino, matrice);
     (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
     remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-    printf("\n---------replacement----------\n");
+
 }
 
 float choixAngleLancer(t_dino *dino, SDL_Renderer* zoneAffichage,  const Uint8 *state, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[],
@@ -187,14 +186,14 @@ int lancer(t_coordonnee_calcul *pos_precise, float angle_rad, int matrice[HAUTEU
     
     // Conversion en entier uniquement pour la vérification de collision et le stockage
     t_coordonnee pos_entiere = {(int)pos_precise->x, (int)pos_precise->y};
-    printf("case:%d\n",matrice[pos_entiere.y][pos_entiere.x]);
+
     if((pos_entiere.x<0)||(pos_entiere.x>=LARGEUR_TERRAIN)||(pos_entiere.y<0)){
         detruireFile();
         return 0;
     }
     if (distance_parcourue > 35) {
         if (collision_grappin(pos_entiere, matrice)) {
-            printf("-----------------colision-----------");
+
             *collision_detectee = 1;
             return 0; 
         }
@@ -209,15 +208,14 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
      SDL_Renderer* zoneAffichage, int *nb_pts, t_coordonnee **nuage, int nb_nuage, char *nomNuage[]) {
     int ecart;
     t_coordonnee pos_suivante;
-    printf("\n----------rappel---------------\ndistance=%d\n",distance_parcourue);
-    if (filevide())printf("\n------------------------file vide--------------\n");
+
     if (filevide() && (distance_parcourue < 35)){
-        printf("\nfilevide\n");
+
         return 1;
     }  
 
     if (state[SDL_SCANCODE_RETURN]) {
-        printf("\n-------------retourner----------------------\n");
+
         return 3; 
     }
 
@@ -227,13 +225,13 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
     SDL_Delay(16);
     
     if (((filevide()  && (distance_parcourue > 35))||(collision_cote(**dino,matrice)&& (distance_parcourue > 35)))) {
-        printf("\ncollision\n");
+
         if(replacementNuage(*dino, nb_pts, nuage,nb_nuage, nomNuage,(*dino)->deplacement->sens)){
             ((*dino)->deplacement->sens) *= -1;
             supprimer_matrice_dino(*dino, matrice);
             (*dino)->pos=(*nuage)[(*dino)->indice_nuage];
             remplir_matrice_dino(*dino, (*dino)->pos, matrice);
-            printf("\n---------replacement----------\n");
+
             return 1;
         }
         return 2; 
@@ -252,7 +250,6 @@ int rappel(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_dino **dino, const U
         return 1;
     }
     (*dino)->indice_nuage += ecart;
-    printf("indice nuage=%d\n",(*dino)->indice_nuage);
 
     return 0; 
 }
@@ -316,9 +313,9 @@ int grappin(int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], SDL_Renderer* zoneAff
             SDL_Delay(16);
             
             // Gestion de la chute si le dino percute une paroi en montant
-            printf("etat=%d",etat_fini);
+
             if (etat_fini == 2) {
-                printf("\n------------todo bien----------------\n");
+
                 chute(dino, *nb_pts, *nuage, matrice,zoneAffichage, police, texMap, texObjets,
                     equipe1, equipe2);
                 etat_fini = 1; // Sortie de la boucle de rappel

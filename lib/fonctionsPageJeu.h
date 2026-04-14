@@ -81,11 +81,6 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param dinoCourant l'identifiant du dinosaure dont c'est le tour de jouer
  * @param matriceTerrain la matrice contenant les informations sur le terrain
- * @param cache un pointeur sur une structure contenant le texte à afficher
- * @param catalogue_armes une structure qui contient les armes
- * @param nomNuage un pointeur sur le nom du nuage de points
- * @param nuage un pointeur de pointeur sur les coordonnées du nuage
- * @param nb_pts un pointeur sur le nombre de points du nuage
  */
 
 void detecterEvenementsPageJeuBombe(

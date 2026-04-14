@@ -566,7 +566,6 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
         if (collisionFrontiereBombe(bombe)) {
             *bombeLancee = -1;
             afficherJeuSansArmes(equipe1, equipe2, rectFen, zoneAffichage, texMap, texObjets, policeMenuHIP, cache);
-            printf("Collision avec la frontière. \n");
 
         }
 
@@ -574,10 +573,10 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
 
         if (((dinoTouche >= D1) && (dinoTouche <= D6)) || collisionEauBombe(matriceTerrain, bombe)) {
             *bombeLancee = -1;
-            printf("Collision avec eau ou dinosaure. \n");
+
 
             if ((dinoTouche >= D1) && (dinoTouche <= D6)){
-                printf("Collision avec un dinosaure. \n");
+
                 supprimer_matrice_dino(recupererDinoNumero(equipe1, equipe2, dinoTouche), matriceTerrain);
                 supprimerDinoJoueur(equipe1, equipe2, dinoTouche);
                 dinoTouche = AIR;
@@ -588,7 +587,6 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
         }
         if (collisionTerrainBombe(matriceTerrain, bombe, vectVitesse)) {
             (*nombreRebonds) ++;
-            printf("Collision avec le terrain. \n");
 
             if (*nombreRebonds > 1){
                 *bombeLancee = -1;
@@ -603,7 +601,6 @@ void lancerBombe(int * bombeLancee, int *nombreRebonds, t_bombe * bombe, t_vect 
         
         if (*bombeLancee == -1){
             tourSuivant(gestionTours, equipe1, equipe2);
-            printf("Passage au dinosaure %d, tour numéro %d, équipe numéro %d \n", gestionTours->dinoCourant, gestionTours->numeroTour, gestionTours->equipeCourante);
             initialiserVitesse(vectVitesse, VITESSE_X_MAIN, VITESSE_Y_MAIN);
         }
         SDL_Delay(4);
@@ -658,7 +655,6 @@ void effectuerDeplacement(t_joueur *equipe1, t_joueur *equipe2, t_tour *gestionT
         
         // Si le dino est mort, on le retire proprement de la matrice et de l'équipe
         if ((*dinoActuel) != NULL && (*dinoActuel)->etat == 0) {
-            printf("Le dinosaure %d est mort (noyade). Suppression...\n", (*dinoActuel)->d);
             supprimer_matrice_dino((*dinoActuel), matriceTerrain);
             supprimerDinoJoueur(equipe1, equipe2, (*dinoActuel)->d);
         }
@@ -798,9 +794,6 @@ void lancerPartie(){
         initialiserMatrice(&matriceTerrain);
         initialiserEquipes(&equipe1, &equipe2, &catalogue, matriceTerrain, zoneAffichage);
 
-        afficherContenuJoueur(equipe1, "equipe1");
-        afficherContenuJoueur(equipe2, "equipe2");
-
         // Variables pour les déplacements
         t_dino *dinoActuel = NULL;
         int timer = TIMER;
@@ -844,9 +837,8 @@ void lancerPartie(){
                     // On arrête le tir et on change de tour
                     tir.actif = 0;
                     tourSuivant(&gestionTours, &equipe1, &equipe2);
-                    /*printf("  Dino n°%d\n", dinoActuel->d);*/
                     dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
-                    /*printf("  Dino n°%d\n", dinoActuel->d);*/
+
                     nuageDetruire(&nuage); 
                     if (dinoActuel != NULL) {
                         nuage = nuage_de_points(&nb_pts, nomNuage[dinoActuel->id_nuage]);
@@ -885,7 +877,7 @@ void lancerPartie(){
             
             }
             else if (action == 4) {
-                printf("\n------------------action4---------\n");
+
                 tourSuivant(&gestionTours, &equipe1, &equipe2);
                 dinoActuel = recupererDinoNumero(&equipe1, &equipe2, gestionTours.dinoCourant);
                 nuageDetruire(&nuage); 

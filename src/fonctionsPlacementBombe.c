@@ -77,13 +77,11 @@ void placerBombeEntrePattes(t_dino *dino, t_bombe * bombe, t_cote *cote, t_case 
 
     bombe->coor.x = coorDino.x + TAILLE_DINO + bombe->rayon + EXPLOSION_NON_CONTROLEE;
     cotesEnterres[DROITE] = enterreeBombe(bombe, matriceTerrain);
-    printf("Enterree à droite : %d \n", cotesEnterres[DROITE]);
 
     /* La gauche est le côté par défaut. */
 
     bombe->coor.x = coorDino.x - bombe->rayon - EXPLOSION_NON_CONTROLEE;
     cotesEnterres[GAUCHE] = enterreeBombe(bombe, matriceTerrain);
-    printf("Enterree à gauche : %d \n", cotesEnterres[GAUCHE]);
 
     /* On veut lancer la bombe vers la gauche et il y a assez de place à gauche. */
 
