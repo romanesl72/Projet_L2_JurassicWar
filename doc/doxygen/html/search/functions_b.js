@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['noyade_0',['noyade',['../deplacement_8h.html#a2d82ab85fb0abd7e7871c8b849c94015',1,'deplacement.c']]],
-  ['nuage_5fde_5fpoints_1',['nuage_de_points',['../tda__nuage_8h.html#a7df22140a7211b37935299a3b169de52',1,'tda_nuage.c']]],
-  ['nuagedetruire_2',['nuageDetruire',['../tda__nuage_8h.html#a2a5140959544de48818a78a502b13d5a',1,'tda_nuage.c']]],
-  ['nuageexiste_3',['nuageExiste',['../tda__nuage_8h.html#a4368f475030d62870fcda397e8c203f3',1,'tda_nuage.c']]]
+  ['ouvrirfenfinpartie_0',['ouvrirFenFinPartie',['../fonctionsPageFinPartie_8h.html#aa09f0d3ea2d03d8c19b0c27437ff4bcc',1,'ouvrirFenFinPartie(t_tour *gestionTours):&#160;fonctionsPageFinPartie.c'],['../fonctionsPageFinPartie_8c.html#aa09f0d3ea2d03d8c19b0c27437ff4bcc',1,'ouvrirFenFinPartie(t_tour *gestionTours):&#160;fonctionsPageFinPartie.c']]],
+  ['ouvrirfeninfos_1',['ouvrirFenInfos',['../fonctionsPagesInformations_8h.html#a1bc0f497fd7b9a4b171f4db990f0ad46',1,'ouvrirFenInfos(char *nomFen, char *nomFichier):&#160;fonctionsPagesInformations.c'],['../fonctionsPagesInformations_8c.html#a1bc0f497fd7b9a4b171f4db990f0ad46',1,'ouvrirFenInfos(char *nomFen, char *nomFichier):&#160;fonctionsPagesInformations.c']]],
+  ['ouvrirmenuprinc_2',['ouvrirMenuPrinc',['../fonctionsMenuPrinc_8h.html#aec9834ca04ddd3b234c03da300a59513',1,'ouvrirMenuPrinc():&#160;fonctionsMenuPrinc.c'],['../fonctionsMenuPrinc_8c.html#aec9834ca04ddd3b234c03da300a59513',1,'ouvrirMenuPrinc():&#160;fonctionsMenuPrinc.c']]],
+  ['ouvrirmenuprincbombe_3',['ouvrirMenuPrincBombe',['../fonctionsMenuPrinc_8h.html#aadd624a8bf7200b977696eca6d239e17',1,'ouvrirMenuPrincBombe():&#160;fonctionsMenuPrinc.c'],['../fonctionsMenuPrinc_8c.html#aadd624a8bf7200b977696eca6d239e17',1,'ouvrirMenuPrincBombe():&#160;fonctionsMenuPrinc.c']]]
 ];

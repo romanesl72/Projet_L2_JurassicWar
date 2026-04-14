@@ -21,7 +21,6 @@
  * @param police un pointeur sur la police du jeu
  * @param texMap un pointeur l'image principal du jeu
  * @param texObjets un tableau de pointeur sur les images des différants objets
- * @param nomObjets un tableau de pointeur sur les noms des images des différants objets
  * @param equipe1 pointeur de structure correspondant aux dinosaures du joueur 1
  * @param equipe2 pointeur de structure correspondant aux dinosaures du joueur 2
  */

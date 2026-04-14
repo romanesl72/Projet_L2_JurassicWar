@@ -112,6 +112,10 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:a55291b08b9429e30b38385f8f22f59bc" id="r_a55291b08b9429e30b38385f8f22f59bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55291b08b9429e30b38385f8f22f59bc">creerFenInfos</a> (SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFen)</td></tr>
+<tr class="memdesc:a55291b08b9429e30b38385f8f22f59bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction crée une fenêtre qui contient des informations pour l'utilisateur.  <br /></td></tr>
+<tr class="memitem:adc9021f0c99f20f297c488f3cc768306" id="r_adc9021f0c99f20f297c488f3cc768306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc9021f0c99f20f297c488f3cc768306">detruireFenInfos</a> (SDL_Window **fenInfos, SDL_Renderer **zoneInfos)</td></tr>
+<tr class="memdesc:adc9021f0c99f20f297c488f3cc768306"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit une fenêtre d'information sur le jeu.  <br /></td></tr>
 <tr class="memitem:a1bc0f497fd7b9a4b171f4db990f0ad46" id="r_a1bc0f497fd7b9a4b171f4db990f0ad46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bc0f497fd7b9a4b171f4db990f0ad46">ouvrirFenInfos</a> (char *nomFen, char *nomFichier)</td></tr>
 <tr class="memdesc:a1bc0f497fd7b9a4b171f4db990f0ad46"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction ouvre une fenêtre d'information sur le jeu.  <br /></td></tr>
 </table>
@@ -121,6 +125,78 @@ Fonctions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a55291b08b9429e30b38385f8f22f59bc" name="a55291b08b9429e30b38385f8f22f59bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55291b08b9429e30b38385f8f22f59bc">&#9670;&#160;</a></span>creerFenInfos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int creerFenInfos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>fenInfos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneInfos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>titreFen</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction crée une fenêtre qui contient des informations pour l'utilisateur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fenInfos</td><td>un pointeur de pointeur sur la fenêtre du menu principal </td></tr>
+    <tr><td class="paramname">zoneInfos</td><td>un pointeur de pointeur sur la zone dans laquelle les informations seront affichées </td></tr>
+    <tr><td class="paramname">titreFen</td><td>le titre à afficher en haut de la fenêtre </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adc9021f0c99f20f297c488f3cc768306" name="adc9021f0c99f20f297c488f3cc768306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9021f0c99f20f297c488f3cc768306">&#9670;&#160;</a></span>detruireFenInfos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void detruireFenInfos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **</td>          <td class="paramname"><span class="paramname"><em>fenInfos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **</td>          <td class="paramname"><span class="paramname"><em>zoneInfos</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détruit une fenêtre d'information sur le jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fenInfos</td><td>un pointeur de pointeur sur la fenêtre du menu </td></tr>
+    <tr><td class="paramname">zoneInfos</td><td>un pointeur de pointeur sur la zone d'affichage d'informations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1bc0f497fd7b9a4b171f4db990f0ad46" name="a1bc0f497fd7b9a4b171f4db990f0ad46"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bc0f497fd7b9a4b171f4db990f0ad46">&#9670;&#160;</a></span>ouvrirFenInfos()</h2>
 
@@ -168,7 +244,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsPagesInformations_8h.html">fonctionsPagesInformations.h</a></li>
-    <li class="footer">Généré le Vendredi 10 Avril 2026 16:06:28 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

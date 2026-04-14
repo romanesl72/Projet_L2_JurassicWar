@@ -137,8 +137,8 @@ Fonctions</h2></td></tr>
 <tr class="memdesc:ab3b85c1f02fc5b908bfa24411e2a75bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction initialise le menu principal du jeu.  <br /></td></tr>
 <tr class="memitem:a20b7da6d736952320bfe81d6abb62ed2" id="r_a20b7da6d736952320bfe81d6abb62ed2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20b7da6d736952320bfe81d6abb62ed2">afficherMenuPrincipal</a> (SDL_Renderer *zoneMenu, SDL_Rect *boutons, SDL_Texture *texImg, SDL_Texture *texImgMiroir)</td></tr>
 <tr class="memdesc:a20b7da6d736952320bfe81d6abb62ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche le menu principal du jeu.  <br /></td></tr>
-<tr class="memitem:af94232fef264283a060f2bb6c3981846" id="r_af94232fef264283a060f2bb6c3981846"><td class="memItemLeft" align="right" valign="top"><a id="af94232fef264283a060f2bb6c3981846" name="af94232fef264283a060f2bb6c3981846"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>detecterEvenementsMenuPrincipal</b> (SDL_Rect *boutons)</td></tr>
+<tr class="memitem:af94232fef264283a060f2bb6c3981846" id="r_af94232fef264283a060f2bb6c3981846"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af94232fef264283a060f2bb6c3981846">detecterEvenementsMenuPrincipal</a> (SDL_Rect *boutons)</td></tr>
+<tr class="memdesc:af94232fef264283a060f2bb6c3981846"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer).  <br /></td></tr>
 <tr class="memitem:a1ff1c57182ee797c41cf1627547aed63" id="r_a1ff1c57182ee797c41cf1627547aed63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ff1c57182ee797c41cf1627547aed63">detruireMenuPrincipal</a> (SDL_Window **menuPrincipal, SDL_Renderer **zoneMenu, SDL_Texture **texImg, SDL_Texture **texImgMiroir)</td></tr>
 <tr class="memdesc:a1ff1c57182ee797c41cf1627547aed63"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détruit le menu principal du jeu.  <br /></td></tr>
 <tr class="memitem:aadd624a8bf7200b977696eca6d239e17" id="r_aadd624a8bf7200b977696eca6d239e17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadd624a8bf7200b977696eca6d239e17">ouvrirMenuPrincBombe</a> ()</td></tr>
@@ -285,6 +285,35 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>detecterEvenementsMenu
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé et 0 sinon </dd></dl>
+
+</div>
+</div>
+<a id="af94232fef264283a060f2bb6c3981846" name="af94232fef264283a060f2bb6c3981846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94232fef264283a060f2bb6c3981846">&#9670;&#160;</a></span>detecterEvenementsMenuPrincipal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int detecterEvenementsMenuPrincipal </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>boutons</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détecte si l'utilisateur réalise une action dans la fenêtre du menu (cliquer sur un bouton, sur la croix pour fermer). </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 29/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boutons</td><td>un tableau de type SDL_Rect représentant chaque bouton </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un entier entre 0 et 4 indiquant l'action qui vient de se produire </dd></dl>
 
 </div>
 </div>
@@ -458,7 +487,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>detecterEvenementsMenu
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsMenuPrinc_8h.html">fonctionsMenuPrinc.h</a></li>
-    <li class="footer">Généré le Vendredi 10 Avril 2026 16:06:28 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

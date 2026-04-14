@@ -50,7 +50,7 @@ void calculPente(t_coordonnee *T, int n, float *a, float x, float y);
  * @param a coefficient directeur
  * @param b ordonnée à l'origine
  * @param indice indice du point dont on veut calculer la pente
- * @param nb_points nombre de points sur le nuage
+ * @param nb_point nombre de points sur le nuage
  */
 
 

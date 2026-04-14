@@ -8,5 +8,6 @@ var fonctionsStructJoueur_8c =
     [ "rechercherDino", "fonctionsStructJoueur_8c.html#a7483e6fa97a6912bbcbff8cb921178f5", null ],
     [ "recupererDinoDirection", "fonctionsStructJoueur_8c.html#ab25b8d6d4f41d05d1e9b67dba7fe750b", null ],
     [ "recupererDinoNumero", "fonctionsStructJoueur_8c.html#a1f2160de17f283d492a82db90d47a5ab", null ],
+    [ "retournerDino", "fonctionsStructJoueur_8c.html#ab3b0dba48a56cecba8106fcddb709f39", null ],
     [ "supprimerDinoJoueur", "fonctionsStructJoueur_8c.html#a4abf98b2de58fc82cd49d99b5f796a3d", null ]
 ];

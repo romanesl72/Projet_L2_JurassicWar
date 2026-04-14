@@ -26,7 +26,7 @@
 int collision_decor(int tab_res[4], t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 /**
- * @fn int collision_decor(int tab_res[4], t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn int collision_cote(t_dino dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
  * @brief Vérifie les collisions sur les cotés du dinosaure.
  * @author Solène Orieux
  * @date Crée le 06/04/2026

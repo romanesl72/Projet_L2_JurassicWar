@@ -135,7 +135,7 @@ void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite
 void AncienviserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, t_tir *tir, const Uint8 **etatClavier, float gravite, t_joueur *e1, t_joueur *e2);
 
 /**
- * @fn void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, int armeSelectionnee, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant);
+ * @fn void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *police, t_tir *tir, const Uint8 *etatClavier, float gravite, t_joueur *e1, t_joueur *e2, t_case numDinoCourant);
  * @brief 
  * @author Romane Saint-Léger
  * @date Crée le 17/03/2026

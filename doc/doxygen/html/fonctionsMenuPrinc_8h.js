@@ -10,6 +10,7 @@ var fonctionsMenuPrinc_8h =
     [ "afficherMenuPrincipal", "fonctionsMenuPrinc_8h.html#a20b7da6d736952320bfe81d6abb62ed2", null ],
     [ "afficherTexteCase", "fonctionsMenuPrinc_8h.html#adf0f38131bcb03bdc9299359e0687c0d", null ],
     [ "creerMenuPrincipal", "fonctionsMenuPrinc_8h.html#ab3b85c1f02fc5b908bfa24411e2a75bc", null ],
+    [ "detecterEvenementsMenuPrincipal", "fonctionsMenuPrinc_8h.html#af94232fef264283a060f2bb6c3981846", null ],
     [ "detruireMenuPrincipal", "fonctionsMenuPrinc_8h.html#a1ff1c57182ee797c41cf1627547aed63", null ],
     [ "initialiserBoutons", "fonctionsMenuPrinc_8h.html#aaa9028daabbea3693f654eae89505cd1", null ],
     [ "ouvrirMenuPrinc", "fonctionsMenuPrinc_8h.html#aec9834ca04ddd3b234c03da300a59513", null ],

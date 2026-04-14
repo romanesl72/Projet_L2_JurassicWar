@@ -106,11 +106,19 @@ $(function(){initNavTree('fonctionsPagesInformations_8h_source.html','',''); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="fonctionsPagesInformations_8h.html#a46834d50398eb892185c2bacdd3cad4a">   26</a></span><span class="preprocessor">#define TAILLE_POLICE_SOUS_TITRE 23</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPagesInformations_8h.html#a1bc0f497fd7b9a4b171f4db990f0ad46">ouvrirFenInfos</a>(<span class="keywordtype">char</span> *nomFen, <span class="keywordtype">char</span> *nomFichier);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="afonctionsPagesInformations_8h_html_a1bc0f497fd7b9a4b171f4db990f0ad46"><div class="ttname"><a href="fonctionsPagesInformations_8h.html#a1bc0f497fd7b9a4b171f4db990f0ad46">ouvrirFenInfos</a></div><div class="ttdeci">void ouvrirFenInfos(char *nomFen, char *nomFichier)</div><div class="ttdoc">La fonction ouvre une fenêtre d&#39;information sur le jeu.</div><div class="ttdef"><b>Definition</b> fonctionsPagesInformations.c:232</div></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsPagesInformations_8h.html#a55291b08b9429e30b38385f8f22f59bc">creerFenInfos</a>(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, <span class="keywordtype">char</span> *titreFen);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPagesInformations_8h.html#adc9021f0c99f20f297c488f3cc768306">detruireFenInfos</a>(SDL_Window **fenInfos, SDL_Renderer **zoneInfos);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsPagesInformations_8h.html#a1bc0f497fd7b9a4b171f4db990f0ad46">ouvrirFenInfos</a>(<span class="keywordtype">char</span> *nomFen, <span class="keywordtype">char</span> *nomFichier);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="afonctionsPagesInformations_8h_html_a1bc0f497fd7b9a4b171f4db990f0ad46"><div class="ttname"><a href="fonctionsPagesInformations_8h.html#a1bc0f497fd7b9a4b171f4db990f0ad46">ouvrirFenInfos</a></div><div class="ttdeci">void ouvrirFenInfos(char *nomFen, char *nomFichier)</div><div class="ttdoc">La fonction ouvre une fenêtre d&#39;information sur le jeu.</div><div class="ttdef"><b>Definition</b> fonctionsPagesInformations.c:213</div></div>
+<div class="ttc" id="afonctionsPagesInformations_8h_html_a55291b08b9429e30b38385f8f22f59bc"><div class="ttname"><a href="fonctionsPagesInformations_8h.html#a55291b08b9429e30b38385f8f22f59bc">creerFenInfos</a></div><div class="ttdeci">int creerFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos, char *titreFen)</div><div class="ttdoc">La fonction crée une fenêtre qui contient des informations pour l&#39;utilisateur.</div><div class="ttdef"><b>Definition</b> fonctionsPagesInformations.c:30</div></div>
+<div class="ttc" id="afonctionsPagesInformations_8h_html_adc9021f0c99f20f297c488f3cc768306"><div class="ttname"><a href="fonctionsPagesInformations_8h.html#adc9021f0c99f20f297c488f3cc768306">detruireFenInfos</a></div><div class="ttdeci">void detruireFenInfos(SDL_Window **fenInfos, SDL_Renderer **zoneInfos)</div><div class="ttdoc">La fonction détruit une fenêtre d&#39;information sur le jeu.</div><div class="ttdef"><b>Definition</b> fonctionsPagesInformations.c:200</div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Définition des structures de données pour JurassicWar.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -119,7 +127,7 @@ $(function(){initNavTree('fonctionsPagesInformations_8h_source.html','',''); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsPagesInformations_8h.html">fonctionsPagesInformations.h</a></li>
-    <li class="footer">Généré le Vendredi 10 Avril 2026 16:06:28 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

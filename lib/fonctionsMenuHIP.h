@@ -87,7 +87,7 @@ void afficherTexte(SDL_Renderer *rendu, TTF_Font *police, char *message, int x, 
  * @version 1.0
  * @param rendu un pointeur sur le rendu de l'affichage
  * @param police un pointeur sur la police d'écriture
- * @param cache la structure à initialiser
+ * @param cache un pointeur sur une structure contenant le texte à afficher
  */
 
 

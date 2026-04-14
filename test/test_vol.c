@@ -18,7 +18,11 @@
  * @version 1.2
  */
 
-// Simulation d'une petite matrice pour le test
+
+/**
+ * @def matriceTest
+ * @brief Simulation d'une petite matrice pour le test
+*/
 int matriceTest[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] = {0};
 
  /**
@@ -41,7 +45,7 @@ void reset_matrice() {
  * @brief Test des collisions sur la fonction MettreAJourVol
  * @author Romane Saint_Léger
  * @date Crée le 12/04/2026
- * @param int type_bloc entier représentant le type de bloc
+ * @param type_bloc entier représentant le type de bloc
  * @version 1.2
  */
 

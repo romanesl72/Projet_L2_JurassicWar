@@ -67,21 +67,30 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
  * @date Crée le 29/03/2026
  * @version 1.0
  * @param enCours un pointeur qui indique si la fenetre doit rester ouverte
- * @param bombeLancee un pointeur qui indique si la bombe doit être lancée
  * @param nombreRebonds un pointeur sur le nombre de rebonds de la bombe
+ * @param bombeLancee un pointeur qui indique si la bombe doit être lancée
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param texMap un pointeur sur la texture de la map
+ * @param texObjets un pointeur sur pointeur sur la texture des Objets
+ * @param policeMenuHIP un pointeur sur la police d'écriture
  * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
  * @param bombe un pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
+ * @param tir un pointeur sur la structure de tir
  * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param dinoCourant l'identifiant du dinosaure dont c'est le tour de jouer
  * @param matriceTerrain la matrice contenant les informations sur le terrain
+ * @param cache un pointeur sur une structure contenant le texte à afficher
+ * @param catalogue_armes une structure qui contient les armes
+ * @param nomNuage un pointeur sur le nom du nuage de points
+ * @param nuage un pointeur de pointeur sur les coordonnées du nuage
+ * @param nb_pts un pointeur sur le nombre de points du nuage
  */
 
-void detecterEvenementsPageJeuBombe(int *enCours, int *bombeLancee, int *nombreRebonds, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Rect *rectFen, 
-    t_bombe *bombe, t_vect *vectVitesse, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+void detecterEvenementsPageJeuBombe(int *enCours, int *nombreRebonds, int *bombeLancee, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP,
+    SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_tir *tir, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
+    t_texte_cache *cache, t_arme catalogue_armes[4], char *nomNuage[], t_coordonnee **nuage, int *nb_pts);
 
 /** 
  * @fn void afficherJeuSansBombe(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);

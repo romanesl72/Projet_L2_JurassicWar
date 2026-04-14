@@ -13,7 +13,6 @@
  */
 
 
-
 /**
  * @fn void initfile(void);
  * @author Solène Orieux
@@ -33,7 +32,7 @@ void initfile(void);
 
 int filevide(void);
 /**
- * @fn void ajouter(int v);
+ * @fn void ajouter(t_coordonnee v);
  * @author Solène Orieux
  * @date 25/03/2025
  * @brief ajout dans la file
@@ -43,7 +42,7 @@ int filevide(void);
 void ajouter(t_coordonnee v);
 
 /**
- * @fn void retirer(int* v);
+ * @fn void retirer(t_coordonnee *v);
  * @author Solène Orieux
  * @date 25/03/2025
  * @brief ajout dans la file

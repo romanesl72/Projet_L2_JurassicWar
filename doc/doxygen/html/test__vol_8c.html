@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2306032/Documents/L2/ProjetC/Projet_L2_JurassicWar/test/test_vol.c</title>
+<link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="dinoMenu.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">JurassicWar
+   </div>
+   <div id="projectbrief">Jeu de combat entre deux équipes de dinosaures</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('test__vol_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Référence du fichier test_vol.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Corps des fonctions de test sur les collisions durant le vol.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="chargerMatrice_8h_source.html">../lib/chargerMatrice.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsMenuHIP_8h_source.html">../lib/fonctionsMenuHIP.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsTirs_8h_source.html">../lib/fonctionsTirs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fonctionsVerification_8h_source.html">../lib/fonctionsVerification.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gestion__zones_8h_source.html">../lib/gestion_zones.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="placer__dinos_8h_source.html">../lib/placer_dinos.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tda__nuage_8h_source.html">../lib/tda_nuage.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8h_source.html">../lib/types.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a8c710f7fc530ba89c6bf96ab90f5c5c9" id="r_a8c710f7fc530ba89c6bf96ab90f5c5c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c710f7fc530ba89c6bf96ab90f5c5c9">reset_matrice</a> ()</td></tr>
+<tr class="memdesc:a8c710f7fc530ba89c6bf96ab90f5c5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un dinosaure peut tirer à l'arc et le terrain est affiché  <br /></td></tr>
+<tr class="memitem:a93e4dba2884564f22a459bb189953aaa" id="r_a93e4dba2884564f22a459bb189953aaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93e4dba2884564f22a459bb189953aaa">remplir_toute_la_matrice</a> (int type_bloc)</td></tr>
+<tr class="memdesc:a93e4dba2884564f22a459bb189953aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test des collisions sur la fonction MettreAJourVol.  <br /></td></tr>
+<tr class="memitem:a745bdc00881f708efda1c9ede9284bd5" id="r_a745bdc00881f708efda1c9ede9284bd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a745bdc00881f708efda1c9ede9284bd5">test_collisions_vol</a> ()</td></tr>
+<tr class="memdesc:a745bdc00881f708efda1c9ede9284bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test des collisions sur la fonction MettreAJourVol.  <br /></td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test des collisions sur la fonction MettreAJourVol.  <br /></td></tr>
+<tr class="memitem:a0a36313db6ed94b23947e5eff6b90f9b" id="r_a0a36313db6ed94b23947e5eff6b90f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a36313db6ed94b23947e5eff6b90f9b">afficherDinos</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe)</td></tr>
+<tr class="memdesc:a0a36313db6ed94b23947e5eff6b90f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain.  <br /></td></tr>
+<tr class="memitem:a258c8ba232a11708a52cb07ed329f9f0" id="r_a258c8ba232a11708a52cb07ed329f9f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a258c8ba232a11708a52cb07ed329f9f0">afficherDinosAvecJeu</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe)</td></tr>
+<tr class="memdesc:a258c8ba232a11708a52cb07ed329f9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain avec l'inventaire et les points de vie des dinos.  <br /></td></tr>
+<tr class="memitem:a2ddb74107fa8e90e4c0edb2c4852266f" id="r_a2ddb74107fa8e90e4c0edb2c4852266f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ddb74107fa8e90e4c0edb2c4852266f">afficherInventaire</a> (SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets)</td></tr>
+<tr class="memdesc:a2ddb74107fa8e90e4c0edb2c4852266f"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche les 7 Objets en haut à gauche.  <br /></td></tr>
+<tr class="memitem:a80221a62fbf959b30f280d32c78f168c" id="r_a80221a62fbf959b30f280d32c78f168c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80221a62fbf959b30f280d32c78f168c">afficherMenuPVDinos</a> (SDL_Renderer *rendu, TTF_Font *police, <a class="el" href="structt__joueur.html">t_joueur</a> e1, <a class="el" href="structt__joueur.html">t_joueur</a> e2)</td></tr>
+<tr class="memdesc:a80221a62fbf959b30f280d32c78f168c"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction affiche le menu des PV des dinosaures.  <br /></td></tr>
+<tr class="memitem:a14cdea242c40683bac95b850d619d519" id="r_a14cdea242c40683bac95b850d619d519"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14cdea242c40683bac95b850d619d519">supprimer_matrice_dino</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
+<tr class="memdesc:a14cdea242c40683bac95b850d619d519"><td class="mdescLeft">&#160;</td><td class="mdescRight">la fonction supprime le dino de la matrice  <br /></td></tr>
+<tr class="memitem:a2369fbaeefd1c94ff3c5f8aeebc5f5c0" id="r_a2369fbaeefd1c94ff3c5f8aeebc5f5c0"><td class="memItemLeft" align="right" valign="top"><a id="a2369fbaeefd1c94ff3c5f8aeebc5f5c0" name="a2369fbaeefd1c94ff3c5f8aeebc5f5c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>supprimerDinoJoueur</b> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe, int indice)</td></tr>
+<tr class="memitem:af7131af78d719241edd85392b61ec3b1" id="r_af7131af78d719241edd85392b61ec3b1"><td class="memItemLeft" align="right" valign="top"><a id="af7131af78d719241edd85392b61ec3b1" name="af7131af78d719241edd85392b61ec3b1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>retournerDino</b> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe, int indice)</td></tr>
+<tr class="memitem:ae2cddd274b8127db8eda8ea4d4af36f7" id="r_ae2cddd274b8127db8eda8ea4d4af36f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structt__dino.html">t_dino</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2cddd274b8127db8eda8ea4d4af36f7">recupererDinoNumero</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:ae2cddd274b8127db8eda8ea4d4af36f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction récupère l'adresse d'une structure dinosaure à partir de son identifiant.  <br /></td></tr>
+<tr class="memitem:ab25b8d6d4f41d05d1e9b67dba7fe750b" id="r_ab25b8d6d4f41d05d1e9b67dba7fe750b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab25b8d6d4f41d05d1e9b67dba7fe750b">recupererDinoDirection</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> numero)</td></tr>
+<tr class="memdesc:ab25b8d6d4f41d05d1e9b67dba7fe750b"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction récupère le côté vers lequel est orienté un dinosaure à partir de son identifiant.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab00d307cccf5c1ea09de1e9b80e28990" id="r_ab00d307cccf5c1ea09de1e9b80e28990"><td class="memItemLeft" align="right" valign="top"><a id="ab00d307cccf5c1ea09de1e9b80e28990" name="ab00d307cccf5c1ea09de1e9b80e28990"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>matriceTest</b> [<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>] = {0}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Corps des fonctions de test sur les collisions durant le vol. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 12/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="a0a36313db6ed94b23947e5eff6b90f9b" name="a0a36313db6ed94b23947e5eff6b90f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a36313db6ed94b23947e5eff6b90f9b">&#9670;&#160;</a></span>afficherDinos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherDinos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 17/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.3 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">equipe</td><td>l'équipe dont on veut afficher les dinosaures </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a258c8ba232a11708a52cb07ed329f9f0" name="a258c8ba232a11708a52cb07ed329f9f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a258c8ba232a11708a52cb07ed329f9f0">&#9670;&#160;</a></span>afficherDinosAvecJeu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherDinosAvecJeu </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>zoneAffichage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche à l'écran les dinosaures d'une équipe placés précédemment sur le terrain avec l'inventaire et les points de vie des dinos. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zoneAffichage</td><td>pointeur sur la zone d'affichage </td></tr>
+    <tr><td class="paramname">equipe</td><td>l'équipe dont on veut afficher les dinosaures </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ddb74107fa8e90e4c0edb2c4852266f" name="a2ddb74107fa8e90e4c0edb2c4852266f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ddb74107fa8e90e4c0edb2c4852266f">&#9670;&#160;</a></span>afficherInventaire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherInventaire </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texObjets</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbObjets</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche les 7 Objets en haut à gauche. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">texObjets</td><td>un pointeur sur la texture des objets </td></tr>
+    <tr><td class="paramname">nbObjets</td><td>nombre d'objets à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a80221a62fbf959b30f280d32c78f168c" name="a80221a62fbf959b30f280d32c78f168c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80221a62fbf959b30f280d32c78f168c">&#9670;&#160;</a></span>afficherMenuPVDinos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherMenuPVDinos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>rendu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TTF_Font *</td>          <td class="paramname"><span class="paramname"><em>police</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a></td>          <td class="paramname"><span class="paramname"><em>e2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction affiche le menu des PV des dinosaures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint-Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 31/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rendu</td><td>un pointeur sur le rendu de l'affichage </td></tr>
+    <tr><td class="paramname">police</td><td>un pointeur sur la police d'écriture </td></tr>
+    <tr><td class="paramname">e1</td><td>la structure de l'équipe 1 </td></tr>
+    <tr><td class="paramname">e2</td><td>la structure de l'équipe 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test des collisions sur la fonction MettreAJourVol. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>nombre d'arguments de la ligne de commande </td></tr>
+    <tr><td class="paramname">argv</td><td>tableau des arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
+<a id="ab25b8d6d4f41d05d1e9b67dba7fe750b" name="ab25b8d6d4f41d05d1e9b67dba7fe750b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25b8d6d4f41d05d1e9b67dba7fe750b">&#9670;&#160;</a></span>recupererDinoDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a83e6498e585e66600977123e70d854e5">t_cote</a> recupererDinoDirection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction récupère le côté vers lequel est orienté un dinosaure à partir de son identifiant. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 28/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure dont on veut connaître le côté </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le côté vers lequel le dinosaure est orienté </dd></dl>
+
+</div>
+</div>
+<a id="ae2cddd274b8127db8eda8ea4d4af36f7" name="ae2cddd274b8127db8eda8ea4d4af36f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2cddd274b8127db8eda8ea4d4af36f7">&#9670;&#160;</a></span>recupererDinoNumero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structt__dino.html">t_dino</a> * recupererDinoNumero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>e2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a></td>          <td class="paramname"><span class="paramname"><em>numero</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction récupère l'adresse d'une structure dinosaure à partir de son identifiant. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 19/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+    <tr><td class="paramname">numero</td><td>l'identifiant du dinosaure recherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>l'adresse de la structure dinosaure correspondant au numéro d'identifiant ou un pointeur nul si le dinosaure n'existe dans aucune équipe </dd></dl>
+
+</div>
+</div>
+<a id="a93e4dba2884564f22a459bb189953aaa" name="a93e4dba2884564f22a459bb189953aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93e4dba2884564f22a459bb189953aaa">&#9670;&#160;</a></span>remplir_toute_la_matrice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void remplir_toute_la_matrice </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>type_bloc</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test des collisions sur la fonction MettreAJourVol. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 12/04/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>type_bloc entier représentant le type de bloc </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
+
+</div>
+</div>
+<a id="a8c710f7fc530ba89c6bf96ab90f5c5c9" name="a8c710f7fc530ba89c6bf96ab90f5c5c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c710f7fc530ba89c6bf96ab90f5c5c9">&#9670;&#160;</a></span>reset_matrice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reset_matrice </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Un dinosaure peut tirer à l'arc et le terrain est affiché </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>nombre d'arguments de la ligne de commande </td></tr>
+    <tr><td class="paramname">argv</td><td>tableau des arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si tout s'est bien passé et 1 sinon </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.2 </dd></dl>
+
+</div>
+</div>
+<a id="a14cdea242c40683bac95b850d619d519" name="a14cdea242c40683bac95b850d619d519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14cdea242c40683bac95b850d619d519">&#9670;&#160;</a></span>supprimer_matrice_dino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void supprimer_matrice_dino </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a> *</td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>la fonction supprime le dino de la matrice </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 01/03/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dino</td><td>poiteur sur le dino à enlever </td></tr>
+    <tr><td class="paramname">matrice</td><td>La matrice à modifier </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a745bdc00881f708efda1c9ede9284bd5" name="a745bdc00881f708efda1c9ede9284bd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745bdc00881f708efda1c9ede9284bd5">&#9670;&#160;</a></span>test_collisions_vol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_collisions_vol </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test des collisions sur la fonction MettreAJourVol. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Romane Saint_Léger </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 12/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.2 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a href="test__vol_8c.html">test_vol.c</a></li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:53 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

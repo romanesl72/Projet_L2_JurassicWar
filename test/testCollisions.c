@@ -12,9 +12,13 @@
  * @version 1.3
  */
 
-
-// On déclare la matrice de test en global pour qu'elle soit accessible
-int matrice_test[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
+ /** 
+ * @fn test_placement_multi_zones();
+ * @brief Corps d'une fonction de test sur les placements des dinosaures
+ * @author Romane Saint_Léger
+ * @date Crée le 07/02/2026
+ * @version 1.3
+ */
 
 void test_placement_multi_zones();
 
@@ -28,6 +32,7 @@ void test_placement_multi_zones();
 
 void test_collision_eau() {
     printf("--- Test Collision Eau ---\n");
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_dino dino;
     dino.d = D1;
     dino.etat = 1;
@@ -40,11 +45,11 @@ void test_collision_eau() {
 
     // On vide la matrice et on place de l'eau au SUD
     for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
-        matrice_test[i][j] = 0;
+        matrice[i][j] = 0;
     }
-    matrice_test[22][21] = EAU; 
+    matrice[22][21] = EAU; 
 
-    collision_decor(res, dino, matrice_test);
+    collision_decor(res, dino, matrice);
     if (res[0] == -1) {
         printf("Succes : Eau detectee au SUD. Le dino va etre supprime.\n");
     } else {
@@ -63,6 +68,7 @@ void test_collision_eau() {
 void test_collision_sol() {
     printf("\n--- Test Collision Sol (Verticale) ---\n");
     // Dino posé sur le sol (y=20, hauteur=2, donc pieds à y=22)
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_dino dino;
     dino.d = D1;
     dino.etat = 1;
@@ -74,9 +80,9 @@ void test_collision_sol() {
     int res[4];
 
     // On place de la TERRE juste sous ses pieds
-    matrice_test[22][21] = TERRE; 
+    matrice[22][21] = TERRE; 
 
-    collision_decor(res, dino, matrice_test);
+    collision_decor(res, dino, matrice);
     
     // res[0] doit être égal à 1 (collision détectée au SUD)
     if (res[0] == 1) {
@@ -97,6 +103,7 @@ void test_collision_sol() {
 void test_collision_mur_cote() {
     printf("\n--- Test Collision Mur (Horizontale) ---\n");
     // Dino à x=20, largeur=2. Le côté droit est à x=22
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_dino dino;
     dino.d = D1;
     dino.etat = 1;
@@ -109,9 +116,9 @@ void test_collision_mur_cote() {
 
     // On place un mur (TERRE) à sa droite (EST)
     // On le met à la hauteur de son corps (y=21)
-    matrice_test[21][22] = TERRE; 
+    matrice[21][22] = TERRE; 
 
-    collision_decor(res, dino, matrice_test);
+    collision_decor(res, dino, matrice);
     
     // res[2] gère la collision à l'EST (droite)
     if (res[2] == 1) {
@@ -131,6 +138,7 @@ void test_collision_mur_cote() {
 
 void test_chute_libre() {
     printf("\n--- Test Chute Libre (Ciel) ---\n");
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     t_dino dino;
     dino.d = D1;
     dino.etat = 1;
@@ -143,9 +151,9 @@ void test_chute_libre() {
 
     // On s'assure que tout est VIDE (0) autour du dino
     for(int i=48; i<55; i++) 
-        for(int j=48; j<55; j++) matrice_test[i][j] = 0; 
+        for(int j=48; j<55; j++) matrice[i][j] = 0; 
 
-    collision_decor(res, dino, matrice_test);
+    collision_decor(res, dino, matrice);
 
     if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 0) {
         printf("Succes : Le dino est bien dans le vide, il peut tomber.\n");
@@ -163,11 +171,12 @@ void test_chute_libre() {
  */
 
 int main() {
+    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     srand(time(NULL));
     
     // On réinitialise la matrice avant chaque test ou on la vide ici
     for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
-        matrice_test[i][j] = 0;
+        matrice[i][j] = 0;
     }
 
     test_collision_eau();

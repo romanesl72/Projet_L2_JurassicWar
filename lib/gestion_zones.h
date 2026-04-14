@@ -31,7 +31,7 @@ float distance(t_coordonnee p1, t_coordonnee p2);
  * @version 1.5
  * @param nuage nuage de points afin d'avoir le "sol" pour les dinosaures
  * @param nb_points 
- * @param catalogue une structure qui contient les zones de spawn
+ * @param catalogue une structure qui contient les zones d'apparition
  * @param nb_E1 nombre de zones de spawn pour l'équipe 1
  * @param nb_E2 nombre de zones de spawn pour l'équipe 2
  * @param id_n numéro du nuage de point utilisé

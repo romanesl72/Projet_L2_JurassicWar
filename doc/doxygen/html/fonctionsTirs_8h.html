@@ -118,8 +118,8 @@ Fonctions</h2></td></tr>
 <tr class="memdesc:a0dfc4f14d6730e8f1d8cea365fa90093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui met à jour le vol du tir.  <br /></td></tr>
 <tr class="memitem:a04b32daae174f2edb75589af43b0fc02" id="r_a04b32daae174f2edb75589af43b0fc02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04b32daae174f2edb75589af43b0fc02">tracerArme</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__tir.html">t_tir</a> *tir)</td></tr>
 <tr class="memdesc:a04b32daae174f2edb75589af43b0fc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace l'arme.  <br /></td></tr>
-<tr class="memitem:a645ed2c88f804b301c66e3f79b8d4dd7" id="r_a645ed2c88f804b301c66e3f79b8d4dd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a645ed2c88f804b301c66e3f79b8d4dd7">tracerTrajectoireTir</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__tir.html">t_tir</a> *tir, float graviteBase)</td></tr>
-<tr class="memdesc:a645ed2c88f804b301c66e3f79b8d4dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué  <br /></td></tr>
+<tr class="memitem:a7c00cc8fae6ee8e3972b2faefd21027d" id="r_a7c00cc8fae6ee8e3972b2faefd21027d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c00cc8fae6ee8e3972b2faefd21027d">tracerTrajectoireTir</a> (SDL_Renderer *zoneAffichage, <a class="el" href="structt__tir.html">t_tir</a> *tir, float gravite)</td></tr>
+<tr class="memdesc:a7c00cc8fae6ee8e3972b2faefd21027d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué  <br /></td></tr>
 <tr class="memitem:acfbb3728b1df805c202f3f5e566f6d31" id="r_acfbb3728b1df805c202f3f5e566f6d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfbb3728b1df805c202f3f5e566f6d31">AncienviserArcher</a> (SDL_Renderer *zoneAffichage, SDL_Texture *texMap, <a class="el" href="structt__tir.html">t_tir</a> *tir, const Uint8 **etatClavier, float gravite, <a class="el" href="structt__joueur.html">t_joueur</a> *e1, <a class="el" href="structt__joueur.html">t_joueur</a> *e2)</td></tr>
 <tr class="memdesc:acfbb3728b1df805c202f3f5e566f6d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancienne version d'une fonction qui permet de viser.  <br /></td></tr>
 <tr class="memitem:a47f61849cc91ca812e4e678045267e94" id="r_a47f61849cc91ca812e4e678045267e94"><td class="memItemLeft" align="right" valign="top"><a id="a47f61849cc91ca812e4e678045267e94" name="a47f61849cc91ca812e4e678045267e94"></a>
@@ -499,8 +499,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_
 
 </div>
 </div>
-<a id="a645ed2c88f804b301c66e3f79b8d4dd7" name="a645ed2c88f804b301c66e3f79b8d4dd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a645ed2c88f804b301c66e3f79b8d4dd7">&#9670;&#160;</a></span>tracerTrajectoireTir()</h2>
+<a id="a7c00cc8fae6ee8e3972b2faefd21027d" name="a7c00cc8fae6ee8e3972b2faefd21027d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c00cc8fae6ee8e3972b2faefd21027d">&#9670;&#160;</a></span>tracerTrajectoireTir()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -531,7 +531,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_
   <table class="params">
     <tr><td class="paramname">zoneAffichage</td><td>un pointeur sur la zone d'affichage </td></tr>
     <tr><td class="paramname">tir</td><td>pointeur sur la structure de tir afin d'acceder à l'arme utilisé </td></tr>
-    <tr><td class="paramname">graviteBase</td><td>constante de gravite utilisé sur les armes </td></tr>
+    <tr><td class="paramname">gravite</td><td>constante de gravite utilisé sur les armes </td></tr>
   </table>
   </dd>
 </dl>
@@ -552,7 +552,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>viserArcher</b> (SDL_
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsTirs_8h.html">fonctionsTirs.h</a></li>
-    <li class="footer">Généré le Vendredi 10 Avril 2026 16:06:28 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mardi 14 Avril 2026 18:18:52 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>
