@@ -142,7 +142,7 @@ void detecterEvenementsPageJeuBombe(
     t_joueur *equipe1, 
     t_joueur *equipe2, 
     t_case dinoCourant, 
-    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] ){
+    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]){
 
     const Uint8 *etatClavier;
     SDL_Event evenement;

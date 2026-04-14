@@ -169,7 +169,7 @@ void test_chute_libre() {
  * @version 1.0
  */
 
-int main() {
+int main(int argc, char * argv[]) {
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     srand(time(NULL));
     

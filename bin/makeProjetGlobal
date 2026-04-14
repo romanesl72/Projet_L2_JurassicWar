@@ -40,8 +40,9 @@ OBJ_AFF = fonctionsPageFinPartie.o fonctionsPageJeu.o fonctionsPagesInformations
 OBJ_ARMES = fonctionsTirs.o fonctionSoin.o
 OBJ_BOMBE = fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
 OBJ_DEP = deplacement.o regression.o
+OBJ_GRAPPIN = collision_decor.o fonctionsAffichage.o grappin.o tda_file.o
 OBJ_TOUR = fonctionsChangementTour.o
-OBJ_ALL = $(OBJ_COM) $(OBJ_AFF) $(OBJ_ARMES) $(OBJ_BOMBE) $(OBJ_DEP) $(OBJ_TOUR)
+OBJ_ALL = $(OBJ_COM) $(OBJ_AFF) $(OBJ_ARMES) $(OBJ_BOMBE) $(OBJ_DEP) $(OBJ_TOUR) $(OBJ_GRAPPIN)
 
 # Fichiers objets du programme principal
 

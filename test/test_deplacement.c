@@ -28,7 +28,7 @@
  * @version 1.3
  */
 
-int main(){
+int main(int argc, char * argv[]){
 
     /* ---- 1. Initialisation ---- */
     if (!initialisationCorrecte()) return 1;

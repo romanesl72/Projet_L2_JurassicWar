@@ -10,9 +10,9 @@
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsAffichage.h"
 #include "../lib/fonctionsPageJeu.h"
-#include <time.h>
-#include <SDL2/SDL_ttf.h>
 
+#include <stdio.h>
+#include <time.h>
 #include <SDL2/SDL_ttf.h>
 
 /** 
@@ -28,7 +28,7 @@
  * @version 1
  */
 
-int main(){
+int main(int argc, char * argv[]){
 
     /* ---- 1. Initialisation ---- */
     if (!initialisationCorrecte()) return 1;

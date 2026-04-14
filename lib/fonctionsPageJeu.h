@@ -88,9 +88,19 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
  * @param nb_pts un pointeur sur le nombre de points du nuage
  */
 
-void detecterEvenementsPageJeuBombe(int *enCours, int *nombreRebonds, int *bombeLancee, SDL_Renderer *zoneAffichage, SDL_Texture *texMap, SDL_Texture **texObjets, TTF_Font *policeMenuHIP,
-    SDL_Rect *rectFen, t_bombe *bombe, t_vect *vectVitesse, t_tir *tir, t_joueur *equipe1, t_joueur *equipe2, t_case dinoCourant, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], 
-    t_texte_cache *cache, t_arme catalogue_armes[4], char *nomNuage[], t_coordonnee **nuage, int *nb_pts);
+void detecterEvenementsPageJeuBombe(
+    int *enCours, 
+    int *bombeLancee, 
+    int *nombreRebonds, 
+    SDL_Renderer *zoneAffichage, 
+    SDL_Texture *texMap, 
+    SDL_Rect *rectFen, 
+    t_bombe *bombe, 
+    t_vect *vectVitesse, 
+    t_joueur *equipe1, 
+    t_joueur *equipe2, 
+    t_case dinoCourant, 
+    t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
 
 /** 
  * @fn void afficherJeuSansBombe(t_joueur *equipe1, t_joueur *equipe2, SDL_Rect *rectFen, SDL_Renderer *zoneAffichage, SDL_Texture *texMap);
