@@ -10,14 +10,40 @@
 #include "../lib/tda_nuage.h"
 #include "../lib/types.h"
 
+/** 
+ * @file test_vol.c
+ * @brief Corps des fonctions de test sur les collisions durant le vol
+ * @author Romane Saint_Léger
+ * @date Crée le 12/04/2026
+ * @version 1.2
+ */
+
 // Simulation d'une petite matrice pour le test
 int matriceTest[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] = {0};
+
+ /**
+ * @fn void reset_matrice();
+ * @brief Un dinosaure peut tirer à l'arc et le terrain est affiché
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 2.2
+ */
 
 void reset_matrice() {
     for(int y=0; y<HAUTEUR_TERRAIN; y++)
         for(int x=0; x<LARGEUR_TERRAIN; x++)
             matriceTest[y][x] = 0;
 }
+
+/**
+ * @fn remplir_toute_la_matrice(int type_bloc);
+ * @brief Test des collisions sur la fonction MettreAJourVol
+ * @author Romane Saint_Léger
+ * @date Crée le 12/04/2026
+ * @param int type_bloc entier représentant le type de bloc
+ * @version 1.2
+ */
 
 void remplir_toute_la_matrice(int type_bloc) {
     for(int y = 0; y < HAUTEUR_TERRAIN; y++) {
@@ -26,6 +52,14 @@ void remplir_toute_la_matrice(int type_bloc) {
         }
     }
 }
+
+/**
+ * @fn test_collisions_vol();
+ * @brief Test des collisions sur la fonction MettreAJourVol
+ * @author Romane Saint_Léger
+ * @date Crée le 12/04/2026
+ * @version 1.2
+ */
 
 void test_collisions_vol() {
     t_tir tir;
@@ -106,6 +140,14 @@ void test_collisions_vol() {
 
     printf("Tous les tests de trajectoire et collision sont passés !\n");
 }
+
+/**
+ * @brief Test des collisions sur la fonction MettreAJourVol
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0
+ * @version 1.0
+ */
 
 int main() {
     test_collisions_vol();

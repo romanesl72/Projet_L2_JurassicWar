@@ -139,7 +139,7 @@ void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite
 
 
     /* Trajectoire de couleur rouges */
-    SDL_SetRenderDrawColor(zoneAffichage, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(zoneAffichage, 255, 255, 255, 255);
 
     for (i = 0; i < 30; i++) {
         precX = simuX;
@@ -273,7 +273,7 @@ void viserArcher(SDL_Renderer* zoneAffichage, SDL_Texture *texMap, SDL_Texture *
         if (tir->velo.u > vMax) tir->velo.u = vMax;
         if (tir->velo.u < -vMax) tir->velo.u = -vMax;
 
-        SDL_SetRenderDrawColor(zoneAffichage, 50, 50, 50, 255);
+        SDL_SetRenderDrawColor(zoneAffichage, 0, 0, 0, 255);
         SDL_RenderClear(zoneAffichage);
 
         /* On dessine la map avec le décalage de 100px (HIP) */

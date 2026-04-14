@@ -24,6 +24,14 @@
  * @version 1.3
  */
 
+/**
+ * @brief Test de tir des armes avec choix d'ames et l'affichage des armes
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0
+ * @version 2.2
+ */
+
 int main(int argc, char * argv[]){
 
     int i,j;

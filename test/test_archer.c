@@ -18,6 +18,14 @@
  * @version 1.5
  */
 
+ /**
+ * @brief Un dinosaure peut tirer à l'arc et le terrain est affiché
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 2.2
+ */
+
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation des variables ---- */

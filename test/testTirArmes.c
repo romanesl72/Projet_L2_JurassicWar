@@ -15,6 +15,14 @@
  * @version 1.3
  */
 
+ /**
+ * @brief Test de tir des armes sans affichage du terrain
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0
+ * @version 3.2
+ */
+
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation simplifiée ---- */
@@ -90,7 +98,7 @@ int main(int argc, char * argv[]){
         }
 
         // --- AFFICHAGE ---
-        SDL_SetRenderDrawColor(rendu, 50, 50, 50, 255); // Fond gris
+        SDL_SetRenderDrawColor(rendu, 0, 0, 0, 255); // Fond gris
         SDL_RenderClear(rendu);
 
         

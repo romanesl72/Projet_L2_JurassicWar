@@ -154,6 +154,14 @@ void test_chute_libre() {
     }
 }
 
+/**
+ * @brief Tests des fonctions de collisions du dino sur la matrice
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0
+ * @version 1.0
+ */
+
 int main() {
     srand(time(NULL));
     

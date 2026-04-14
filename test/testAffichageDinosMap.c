@@ -15,6 +15,14 @@
  * @version 1.5
  */
 
+/**
+ * @brief Test de l'affichage des dinosaures sur le terrain
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 2.0
+ */
+
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation des variables ---- */
