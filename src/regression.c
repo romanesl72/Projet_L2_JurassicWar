@@ -17,16 +17,7 @@
  * @date 24/03/2026
  */
 
-/**
- * @fn void moyenne(t_coordonnee *T, int n, float *x, float *y);
- * @author Solène Orieux
- * @date 24/03/2026
- * @brief Calcule la moyenne des coordonnées X et Y d'un échantillon de points.
- * @param T Tableau de coordonnées (échantillon).
- * @param n Nombre de points dans l'échantillon.
- * @param x Pointeur pour stocker la moyenne des abscisses (X) calculée.
- * @param y Pointeur pour stocker la moyenne des ordonnées (Y) calculée.
- */
+
 void moyenne(t_coordonnee *T, int n, float *x, float *y){
     (*x)=0.0, (*y)=0.0;
     int i;
@@ -38,18 +29,6 @@ void moyenne(t_coordonnee *T, int n, float *x, float *y){
     (*y)/=n;
 }
 
-/**
- * @fn void calculPente(t_coordonnee *T, int n, float *a, float x, float y);
- * @author Solène Orieux
- * @date 24/03/2026
- * @brief Calcule le coefficient directeur par la méthode des moindres carrées* 
- * @param T Tableau de coordonnées (échantillon).
- * @param n Nombre de points dans l'échantillon.
- * @param a Pointeur pour stocker le coefficient directeur résultant.
- * @param x Moyenne des abscisses (X) de l'échantillon.
- * @param y Moyenne des ordonnées (Y) de l'échantillon.
- */
-
 void calculPente(t_coordonnee *T, int n, float *a, float x, float y){
     *a=0;
     int i;
@@ -60,19 +39,6 @@ void calculPente(t_coordonnee *T, int n, float *a, float x, float y){
     }
     (*a)/=d;
 }
-
-/**
- * @fn void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point);
- * @author Solène Orieux
- * @date 24/03/2026
- * @brief calcul la régression d'un échantillon de 10 points
- * @param dino structure du dinosaure
- * @param nuage pointeur sur le nuage de points
- * @param a coefficient directeur
- * @param b ordonnée à l'origine
- * @param indice indice du point dont on veut calculer la pente
- * @param nb_points nombre de points sur le nuage
- */
 
 void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int indice, int nb_point){
     t_coordonnee tab[10];
@@ -91,15 +57,6 @@ void regression(t_coordonnee dino, t_coordonnee * nuage, float *a, float *b, int
     calculPente(tab, n, a, m_x, m_y);
     *b=m_y-((*a)*m_x);
 }
-
-/**
- * @fn int tracerCourbe( t_coordonnee *nuage, int nbPoints);
- * @author Solène Orieux
- * @date 24/03/2026
- * @brief permet d'afficher la pente
- * @param nuage pointeur sur le nuage de points
- * @param nbPoints nombre de points sur le nuage
- */
 
 int tracerCourbe( t_coordonnee *nuage, int nbPoints) {
      float a,b;

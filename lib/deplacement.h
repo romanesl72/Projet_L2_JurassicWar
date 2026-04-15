@@ -38,7 +38,7 @@
 
 
 /**
- * @fn int horsNuage(t_dino *dino, int nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]);
+ * @fn int horsNuage(t_dino *dino, int nb_pts);
  * @author Solène Orieux
  * @date 11/03/2026
  * @brief renvoie vraie l'indice du dino n'est plus dans le nuage, faux sinon
@@ -56,7 +56,6 @@ int horsNuage(t_dino *dino, int nb_pts);
  * @param dino pointeur sur dino
  * @param nb_pts nombre de points dans le nuage
  * @param nuage pointeur de pointeur sur le nuage de points
- * @param matrice représentation du terrain sous forme de matrice
  * @param nb_nuage nombre de nuage présent dans la map
  * @param nomNuage liste des différents noms d'image permettant de créer le nuage
  * @param sens permet de savoir vers quels nuage on se dirige
@@ -155,7 +154,7 @@ void droite(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, 
 void saut(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], const Uint8 *state);
 
 /**
- * @fn void deplacement_dino();
+ * @fn void deplacement_dino(t_dino *dino, t_coordonnee **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_joueur * equipe1, t_joueur * equipe2);
  * @author Solène Orieux
  * @date 26/03/2026
  * @brief fonction qui appelle toutes les fonctions de déplacements

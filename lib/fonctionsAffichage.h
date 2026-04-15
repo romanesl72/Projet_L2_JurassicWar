@@ -12,7 +12,7 @@
  */
 
 /**
- * @fn void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texDinos[], SDL_Texture *texObjets[], char *nomsObjets[], t_joueur equipe1, t_joueur equipe2);
+ * @fn void afficher(SDL_Renderer *rendu, TTF_Font *police, SDL_Texture *texMap, SDL_Texture *texObjets[], t_joueur *equipe1, t_joueur *equipe2);
  * @brief La fonction affiche la map.
  * @author Solène Orieux
  * @date 4/04/2026
