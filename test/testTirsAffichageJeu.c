@@ -67,18 +67,8 @@ int main(int argc, char * argv[]){
 
     /* ---- Initialisation des Joueurs et des Equipes ---- */
     t_joueur equipe1, equipe2;
-    equipe1.n = 3; equipe2.n = 3;
-    equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-    equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
-
-    equipe1.tabCote = malloc(sizeof(t_cote) * equipe1.n);
-    equipe2.tabCote = malloc(sizeof(t_cote) * equipe2.n);
-
-    // Initialise les directions par défaut pour éviter des valeurs aléatoires
-    for(i = 0; i < 3; i++) {
-        equipe1.tabCote[i] = DROITE;
-        equipe2.tabCote[i] = GAUCHE;
-    }
+    initialiserContenuJoueur(&equipe1);
+    initialiserContenuJoueur(&equipe2);
     
     placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
     placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
@@ -214,14 +204,8 @@ int main(int argc, char * argv[]){
         SDL_RenderCopy(rendu, texMap, NULL, &rectJeu);
 
         // DINOS (Position Y + 100)
-        for(i=0; i<equipe1.n; i++) {
-            SDL_Rect r1 = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
-            SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d - D1], NULL, &r1);
-        }
-        for(i=0; i<equipe2.n; i++) {
-            SDL_Rect r2 = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y + HAUTEUR_HIP, 30, 30};
-            SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d - D1], NULL, &r2);
-        }
+        afficherDinosAvecJeu(rendu, &equipe1);
+        afficherDinosAvecJeu(rendu, &equipe2);
 
         if(tir.actif) {
             // On décale aussi l'affichage de la flèche de 100px en Y
@@ -234,16 +218,10 @@ int main(int argc, char * argv[]){
         SDL_Delay(16);
     }
 
-    /* ---- 6. Nettoyage ---- */
-    for(i = 0; i < equipe1.n; i++) {
-        if(equipe1.tab[i].deplacement) free(equipe1.tab[i].deplacement);
-    }
-    for(i = 0; i < equipe2.n; i++) {
-        if(equipe2.tab[i].deplacement) free(equipe2.tab[i].deplacement);
-    }
+    /* Nettoyage */
 
-    free(equipe1.tab);
-    free(equipe2.tab);
+    detruireContenuJoueur(&equipe1);
+    detruireContenuJoueur(&equipe2);
 
     TTF_CloseFont(police);
 
@@ -251,9 +229,7 @@ int main(int argc, char * argv[]){
     for(i=0; i<7; i++){
         if(texObjets[i]) SDL_DestroyTexture(texObjets[i]);
     }
-    for(i=0; i<6; i++){
-        SDL_DestroyTexture(texDinos[i]);
-    }
+
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(fenetre);
 
