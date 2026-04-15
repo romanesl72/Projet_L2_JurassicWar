@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['placer_5fune_5fequipe_0',['placer_une_equipe',['../placer__dinos_8h.html#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4',1,'placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart):&#160;placer_dinos.c'],['../placer__dinos_8c.html#a3bfdca7f98ad39fb3ed4eaa3ca9de4e4',1,'placer_une_equipe(t_joueur *joueur, t_zone_depart points_spawn[10], int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], t_case id_depart):&#160;placer_dinos.c']]],
-  ['placerbombeentrepattes_1',['placerBombeEntrePattes',['../fonctionsPlacementBombe_8h.html#ada466134ec0fa9c6b8115a0a8ff13171',1,'placerBombeEntrePattes(t_dino *dino, t_bombe *bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]):&#160;fonctionsPlacementBombe.c'],['../fonctionsPlacementBombe_8c.html#ada466134ec0fa9c6b8115a0a8ff13171',1,'placerBombeEntrePattes(t_dino *dino, t_bombe *bombe, t_cote *cote, t_case matriceTerrain[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]):&#160;fonctionsPlacementBombe.c']]]
+  ['noyade_0',['noyade',['../deplacement_8h.html#a2d82ab85fb0abd7e7871c8b849c94015',1,'deplacement.c']]],
+  ['nuage_5fde_5fpoints_1',['nuage_de_points',['../tda__nuage_8h.html#a7df22140a7211b37935299a3b169de52',1,'tda_nuage.c']]],
+  ['nuagedetruire_2',['nuageDetruire',['../tda__nuage_8h.html#a2a5140959544de48818a78a502b13d5a',1,'tda_nuage.c']]],
+  ['nuageexiste_3',['nuageExiste',['../tda__nuage_8h.html#a4368f475030d62870fcda397e8c203f3',1,'tda_nuage.c']]]
 ];

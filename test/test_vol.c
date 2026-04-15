@@ -19,17 +19,17 @@
 
 
 /**
- * @def matriceTest
  * @brief Simulation d'une petite matrice pour le test
+ * @author Romane Saint_Léger
+ * @date Crée le 12/04/2026
 */
 int matriceTest[HAUTEUR_TERRAIN][LARGEUR_TERRAIN] = {0};
 
  /**
  * @fn void reset_matrice();
  * @brief Un dinosaure peut tirer à l'arc et le terrain est affiché
- * @param argc nombre d'arguments de la ligne de commande
- * @param argv tableau des arguments
- * @return 0 si tout s'est bien passé et 1 sinon
+ * @author Romane Saint_Léger
+ * @date Crée le 12/04/2026
  * @version 2.2
  */
 
@@ -146,8 +146,6 @@ void test_collisions_vol() {
 
 /**
  * @brief Test des collisions sur la fonction MettreAJourVol
- * @param argc nombre d'arguments de la ligne de commande
- * @param argv tableau des arguments
  * @return 0
  * @version 1.0
  */

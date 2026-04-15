@@ -2,7 +2,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "chargerMatrice.c", "chargerMatrice_8c.html", "chargerMatrice_8c" ],
     [ "collision_decor.c", "collision__decor_8c.html", "collision__decor_8c" ],
-    [ "fonctionsAffichage.c", "fonctionsAffichage_8c.html", null ],
+    [ "fonctionsAffichage.c", "fonctionsAffichage_8c.html", "fonctionsAffichage_8c" ],
     [ "fonctionsChangementTour.c", "fonctionsChangementTour_8c.html", "fonctionsChangementTour_8c" ],
     [ "fonctionsMenuHIP.c", "fonctionsMenuHIP_8c.html", "fonctionsMenuHIP_8c" ],
     [ "fonctionsMenuPrinc.c", "fonctionsMenuPrinc_8c.html", "fonctionsMenuPrinc_8c" ],

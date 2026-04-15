@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar8/lib/deplacement.h</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2306032/Documents/L2/ProjetC/Projet_L2_JurassicWar/lib/deplacement.h</title>
 <link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -115,8 +115,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:aca14395913d2cb69563087ec867268c6" id="r_aca14395913d2cb69563087ec867268c6"><td class="memItemLeft" align="right" valign="top"><a id="aca14395913d2cb69563087ec867268c6" name="aca14395913d2cb69563087ec867268c6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>horsNuage</b> (<a class="el" href="structt__dino.html">t_dino</a> *dino, int nb_pts)</td></tr>
+<tr class="memitem:aca14395913d2cb69563087ec867268c6" id="r_aca14395913d2cb69563087ec867268c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca14395913d2cb69563087ec867268c6">horsNuage</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, int nb_pts)</td></tr>
+<tr class="memdesc:aca14395913d2cb69563087ec867268c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">renvoie vraie l'indice du dino n'est plus dans le nuage, faux sinon  <br /></td></tr>
 <tr class="memitem:ae3e6b24b72ee075f5645b2991fd91736" id="r_ae3e6b24b72ee075f5645b2991fd91736"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e6b24b72ee075f5645b2991fd91736">replacementNuage</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, int *nb_pts, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage, int nb_nuage, char *nomNuage[], int sens)</td></tr>
 <tr class="memdesc:ae3e6b24b72ee075f5645b2991fd91736"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de retrouver la position du dino sur le nuage de points lorsqu'on change de colline  <br /></td></tr>
 <tr class="memitem:a2d82ab85fb0abd7e7871c8b849c94015" id="r_a2d82ab85fb0abd7e7871c8b849c94015"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d82ab85fb0abd7e7871c8b849c94015">noyade</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>])</td></tr>
@@ -131,14 +131,82 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>horsNuage</b> (<a clas
 <tr class="memdesc:afe0aafa7957d6d3c29a80a9a0afc997b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le dino se dirige à droite.  <br /></td></tr>
 <tr class="memitem:a7dc70806e39ead5a6c8d19067d9e705b" id="r_a7dc70806e39ead5a6c8d19067d9e705b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dc70806e39ead5a6c8d19067d9e705b">saut</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], const Uint8 *state)</td></tr>
 <tr class="memdesc:a7dc70806e39ead5a6c8d19067d9e705b"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet au dino de sauter  <br /></td></tr>
-<tr class="memitem:ab81ea004307c88d0da17066c9465b877" id="r_ab81ea004307c88d0da17066c9465b877"><td class="memItemLeft" align="right" valign="top"><a id="ab81ea004307c88d0da17066c9465b877" name="ab81ea004307c88d0da17066c9465b877"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deplacement_dino</b> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
+<tr class="memitem:ab81ea004307c88d0da17066c9465b877" id="r_ab81ea004307c88d0da17066c9465b877"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab81ea004307c88d0da17066c9465b877">deplacement_dino</a> (<a class="el" href="structt__dino.html">t_dino</a> *dino, <a class="el" href="structt__coordonnee.html">t_coordonnee</a> **nuage, char *nomNuage[], int nb_nuage, int *nb_pts, int matrice[<a class="el" href="types_8h.html#ab1ca77f80eef9f176701cff3bde3e273">HAUTEUR_TERRAIN</a>][<a class="el" href="types_8h.html#a157e93f13cbc0b4bb991d0e1e4782484">LARGEUR_TERRAIN</a>], <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
+<tr class="memdesc:ab81ea004307c88d0da17066c9465b877"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui appelle toutes les fonctions de déplacements  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>fonctions permettant au dino de se déplacer </p>
 <dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>25/02/2026 </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentation des fonctions</h2>
+<a id="ab81ea004307c88d0da17066c9465b877" name="ab81ea004307c88d0da17066c9465b877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab81ea004307c88d0da17066c9465b877">&#9670;&#160;</a></span>deplacement_dino()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deplacement_dino </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a> *</td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__coordonnee.html">t_coordonnee</a> **</td>          <td class="paramname"><span class="paramname"><em>nuage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>nomNuage</em></span>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nb_nuage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>nb_pts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>matrice</em></span>[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui appelle toutes les fonctions de déplacements </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>26/03/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dino</td><td>pointeur sur dino </td></tr>
+    <tr><td class="paramname">nuage</td><td>pointeur de pointeur sur le nuage de points </td></tr>
+    <tr><td class="paramname">nomNuage</td><td>liste des différents noms d'image permettant de créer le nuage </td></tr>
+    <tr><td class="paramname">nb_nuage</td><td>nombre de nuage présent dans la map </td></tr>
+    <tr><td class="paramname">nb_pts</td><td>pointeur sur le nombre de points dans le nuage </td></tr>
+    <tr><td class="paramname">matrice</td><td>représentation du terrain sous forme de matrice </td></tr>
+    <tr><td class="paramname">equipe1</td><td>pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="afe0aafa7957d6d3c29a80a9a0afc997b" name="afe0aafa7957d6d3c29a80a9a0afc997b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe0aafa7957d6d3c29a80a9a0afc997b">&#9670;&#160;</a></span>droite()</h2>
 
@@ -257,6 +325,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>deplacement_dino</b> 
     <tr><td class="paramname">nb_pts</td><td>pointeur sur le nombre de points dans le nuage </td></tr>
     <tr><td class="paramname">matrice</td><td>représentation du terrain sous forme de matrice </td></tr>
     <tr><td class="paramname">state</td><td>pointeur sur l'état du clavier </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aca14395913d2cb69563087ec867268c6" name="aca14395913d2cb69563087ec867268c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca14395913d2cb69563087ec867268c6">&#9670;&#160;</a></span>horsNuage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int horsNuage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__dino.html">t_dino</a> *</td>          <td class="paramname"><span class="paramname"><em>dino</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nb_pts</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>renvoie vraie l'indice du dino n'est plus dans le nuage, faux sinon </p>
+<dl class="section author"><dt>Auteur</dt><dd>Solène Orieux </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>11/03/2026 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dino</td><td>pointeur sur dino </td></tr>
+    <tr><td class="paramname">nb_pts</td><td>nombre de points dans le nuage </td></tr>
   </table>
   </dd>
 </dl>
@@ -415,7 +515,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>deplacement_dino</b> 
     <tr><td class="paramname">dino</td><td>pointeur sur dino </td></tr>
     <tr><td class="paramname">nb_pts</td><td>nombre de points dans le nuage </td></tr>
     <tr><td class="paramname">nuage</td><td>pointeur de pointeur sur le nuage de points </td></tr>
-    <tr><td class="paramname">matrice</td><td>représentation du terrain sous forme de matrice </td></tr>
     <tr><td class="paramname">nb_nuage</td><td>nombre de nuage présent dans la map </td></tr>
     <tr><td class="paramname">nomNuage</td><td>liste des différents noms d'image permettant de créer le nuage </td></tr>
     <tr><td class="paramname">sens</td><td>permet de savoir vers quels nuage on se dirige </td></tr>
@@ -563,7 +662,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>deplacement_dino</b> 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="deplacement_8h.html">deplacement.h</a></li>
-    <li class="footer">Généré le Mercredi 15 Avril 2026 08:52:13 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mercredi 15 Avril 2026 10:20:42 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

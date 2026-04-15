@@ -3,7 +3,7 @@ var dir_97aefd0d527b934f1d99a682da8fe6a9 =
     [ "chargerMatrice.h", "chargerMatrice_8h.html", "chargerMatrice_8h" ],
     [ "collision_decor.h", "collision__decor_8h.html", "collision__decor_8h" ],
     [ "deplacement.h", "deplacement_8h.html", "deplacement_8h" ],
-    [ "fonctionsAffichage.h", "fonctionsAffichage_8h.html", null ],
+    [ "fonctionsAffichage.h", "fonctionsAffichage_8h.html", "fonctionsAffichage_8h" ],
     [ "fonctionsChangementTour.h", "fonctionsChangementTour_8h.html", "fonctionsChangementTour_8h" ],
     [ "fonctionsMenuHIP.h", "fonctionsMenuHIP_8h.html", "fonctionsMenuHIP_8h" ],
     [ "fonctionsMenuPrinc.h", "fonctionsMenuPrinc_8h.html", "fonctionsMenuPrinc_8h" ],

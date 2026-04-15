@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gauche_0',['gauche',['../deplacement_8h.html#a56ce9f17dafffd8539bc37a71caded77',1,'deplacement.c']]],
-  ['generer_5fcatalogue_5fdepuis_5fnuage_1',['generer_catalogue_depuis_nuage',['../gestion__zones_8h.html#adcfffe72ec09e5ad98b2998b21e6c97d',1,'generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalogue_zones *catalogue, int *nb_E1, int *nb_E2, int id_n):&#160;gestion_zones.c'],['../gestion__zones_8c.html#adcfffe72ec09e5ad98b2998b21e6c97d',1,'generer_catalogue_depuis_nuage(t_coordonnee *nuage, int nb_points, t_catalogue_zones *catalogue, int *nb_E1, int *nb_E2, int id_n):&#160;gestion_zones.c']]]
+  ['filevide_0',['filevide',['../tda__file_8h.html#a4b48b65698f5783adf206700444ea9bd',1,'filevide(void):&#160;tda_file.c'],['../tda__file_8c.html#a4b48b65698f5783adf206700444ea9bd',1,'filevide(void):&#160;tda_file.c']]],
+  ['finpartie_1',['finPartie',['../fonctionsChangementTour_8h.html#acd14ffe10d4da225f76f12f8c2de9518',1,'finPartie(t_joueur *equipe1, t_joueur *equipe2):&#160;fonctionsChangementTour.c'],['../fonctionsChangementTour_8c.html#acd14ffe10d4da225f76f12f8c2de9518',1,'finPartie(t_joueur *equipe1, t_joueur *equipe2):&#160;fonctionsChangementTour.c']]]
 ];

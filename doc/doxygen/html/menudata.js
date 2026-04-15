@@ -75,6 +75,7 @@ var menudata={children:[
 {text:"Membres de fichier",url:"globals.html",children:[
 {text:"Tout",url:"globals.html",children:[
 {text:"a",url:"globals.html#index_a"},
+{text:"b",url:"globals_b.html#index_b"},
 {text:"c",url:"globals_c.html#index_c"},
 {text:"d",url:"globals_d.html#index_d"},
 {text:"e",url:"globals_e.html#index_e"},
@@ -94,11 +95,13 @@ var menudata={children:[
 {text:"v",url:"globals_v.html#index_v"}]},
 {text:"Fonctions",url:"globals_func.html",children:[
 {text:"a",url:"globals_func.html#index_a"},
+{text:"b",url:"globals_func_b.html#index_b"},
 {text:"c",url:"globals_func_c.html#index_c"},
 {text:"d",url:"globals_func_d.html#index_d"},
 {text:"e",url:"globals_func_e.html#index_e"},
 {text:"f",url:"globals_func_f.html#index_f"},
 {text:"g",url:"globals_func_g.html#index_g"},
+{text:"h",url:"globals_func_h.html#index_h"},
 {text:"i",url:"globals_func_i.html#index_i"},
 {text:"l",url:"globals_func_l.html#index_l"},
 {text:"m",url:"globals_func_m.html#index_m"},
@@ -110,6 +113,7 @@ var menudata={children:[
 {text:"t",url:"globals_func_t.html#index_t"},
 {text:"u",url:"globals_func_u.html#index_u"},
 {text:"v",url:"globals_func_v.html#index_v"}]},
+{text:"Variables",url:"globals_vars.html"},
 {text:"Énumérations",url:"globals_enum.html"},
 {text:"Valeurs énumérées",url:"globals_eval.html"},
 {text:"Macros",url:"globals_defs.html",children:[
