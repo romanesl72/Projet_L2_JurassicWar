@@ -899,6 +899,7 @@ void lancerPartie(){
         destruireElementsJeu(&equipe1, &equipe2, matriceTerrain, texMap, texObjets, policeMenuHIP, zoneAffichage, fenJeu, nuage, cache);
 
         if (finPartie(&equipe1, &equipe2)){
+            gestionTours.equipeCourante = equipeGagnante(&equipe1,&equipe2);
             ouvrirFenFinPartie(&gestionTours);
         }
 

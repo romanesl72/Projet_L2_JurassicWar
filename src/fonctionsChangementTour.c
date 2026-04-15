@@ -14,6 +14,16 @@ int finPartie(t_joueur *equipe1, t_joueur *equipe2){
     return ((equipe1->n == 0) || (equipe2->n == 0));
 }
 
+int equipeGagnante(t_joueur *equipe1, t_joueur *equipe2){
+    if (equipe1->n == 0){
+        return 2;
+    }
+    else {
+        return 1;
+    }
+}
+
+
 /** 
  * @fn void dinoSuivantEquipe(int equipeCourante, t_case *dinoTour);
  * @brief La fonction sélectionne le dinosaure suivant de la même équipe.

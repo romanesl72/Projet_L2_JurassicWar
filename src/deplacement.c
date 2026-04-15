@@ -56,16 +56,15 @@ int replacementNuage(t_dino *dino, int *nb_pts, t_coordonnee **nuage, int nb_nua
             ac_indice=dino->indice_nuage;
 
             dino->indice_nuage = (sens == 1) ? (0 + ecart) : (*nb_pts - 1 - ecart);
-            printf("id=%d\n,indice=%d\n",dino->id_nuage,dino->indice_nuage);
             if (dino->indice_nuage < 0) dino->indice_nuage = 0;
             if (dino->indice_nuage >= *nb_pts) dino->indice_nuage = *nb_pts - 1;
             if(((*nuage)[dino->indice_nuage].y<(dino->pos.y-TAILLE_DINO)) || ((*nuage)[0].x>dino->pos.x) || ((*nuage)[(*nb_pts)-1].x<dino->pos.x)){
-                printf("\ndino=%d\nnuage=%d\n",dino->pos.y,(*nuage)[dino->indice_nuage].y);
+
                 dino->id_nuage=ac_id_nuage;
                 dino->indice_nuage=ac_indice;
                 nuageDetruire(nuage);
                 *nuage = nuage_de_points(nb_pts, nomNuage[dino->id_nuage]);
-                printf("\n-------------pas de nuage--------------\n");
+
                 return 0;
             }
             return 1;

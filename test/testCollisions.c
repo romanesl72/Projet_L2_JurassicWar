@@ -170,13 +170,8 @@ void test_chute_libre() {
  */
 
 int main(int argc, char * argv[]) {
-    int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
+
     srand(time(NULL));
-    
-    // On réinitialise la matrice avant chaque test ou on la vide ici
-    for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
-        matrice[i][j] = 0;
-    }
 
     test_collision_eau();
     test_collision_sol();
