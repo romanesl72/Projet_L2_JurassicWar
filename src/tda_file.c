@@ -20,7 +20,7 @@
 static t_element_file* tete = NULL;
 
 /**
- * @brief tête de la file.
+ * @brief queue de la file.
  * @author Solène Orieux
  * @date Crée le 25/03/2026
  * @version 1.0
