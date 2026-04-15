@@ -3,6 +3,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/** 
+ * @file testConversionMatrice.c
+ * @brief Test qui transforme l'image en matrice
+ * @author Solène Orieux
+ * @date Crée le 07/02/2026
+ * @version 1.0
+ */
+
+/**
+ * @brief Test qui transforme l'image en matrice
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.0
+ */
+
 int main() {
     int largeur, hauteur, canaux;
 
