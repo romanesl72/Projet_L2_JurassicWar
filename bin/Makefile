@@ -31,7 +31,7 @@ EXECUTABLES = ./main \
 ./testGrappin
 
 
-OBJETS_VOL = test_vol.o fonctionsTirs.o fonctionsVerification.o
+OBJETS_VOL = test_vol.o chargerMatrice.o fonctionsMenuHIP.o fonctionsTirs.o fonctionsVerification.o fonctionsStructJoueur.o placer_dinos.o
 
 OBJETS_MAIN = main.o \
 chargerMatrice.o \

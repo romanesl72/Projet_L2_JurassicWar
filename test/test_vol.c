@@ -5,10 +5,9 @@
 #include "../lib/fonctionsMenuHIP.h"
 #include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsVerification.h"
-#include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
-#include "../lib/tda_nuage.h"
 #include "../lib/types.h"
+
 
 /** 
  * @file test_vol.c
