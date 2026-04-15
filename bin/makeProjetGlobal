@@ -24,6 +24,8 @@ EXECUTABLES = \
 ./testBombeDinosTours \
 ./testBombeDinosToursV2 \
 ./testCollisions \
+./testConversionMatrice \
+./testDino \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
 ./testFonctionsPageFinPartie \
@@ -64,6 +66,8 @@ OBJETS_AFFICHAGE_HIP = testAffichageMenuHIP.o $(OBJ_ALL)
 OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o $(OBJ_COM) $(OBJ_BOMBE) $(OBJ_TOUR) fonctionsMenuHIP.o fonctionsVerification.o
 OBJETS_BOMBE_DINOS_TOURS_V2 = testBombeDinosToursV2.o $(OBJ_ALL)
 OBJETS_COLLISIONS = testCollisions.o placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
+OBJETS_CONVERSIONMATRCIE = testConversionMatrice.o
+OBJETS_DINO = testDino.o placer_dinos.o chargerMatrice.o
 
 OBJETS_CHANGEMENT_TOUR = testFonctionsChangementTour.o  chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_PAGE_FIN_PARTIE = testFonctionsPageFinPartie.o $(OBJ_ALL)
@@ -118,6 +122,12 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testCollisions: $(OBJETS_COLLISIONS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testConversionMatrice: $(OBJETS_CONVERSIONMATRCIE)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testDino: $(OBJETS_DINO)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
