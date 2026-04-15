@@ -1,5 +1,6 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/tda_nuage.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
 #include "../lib/placer_dinos.h"
@@ -8,7 +9,7 @@
 #include <stdio.h>
 
 /** 
- * @file testAffichageMenuHIP.c
+ * @file testAffichageDinosMap.c
  * @brief Corps d'une fonction de test sur l'affichage des dinos avec la map
  * @author Romane Saint_Léger
  * @date Crée le 01/04/2026
@@ -75,11 +76,10 @@ int main(int argc, char * argv[]){
             printf("Texture map chargee avec succes !\n");
         }
 
-        /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
-        equipe1.n = 3;
-        equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-        equipe2.n = 3;
-        equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
+        /* Initialiser les joueurs et leurs dinosaures (3 dinosaures par équipe) */
+
+        initialiserContenuJoueur(&equipe1);
+        initialiserContenuJoueur(&equipe2);
 
         /* Placer les dinos sur la matrice */
         /* Équipe 1 (IDs matrice 3, 4, 5) */
@@ -87,16 +87,10 @@ int main(int argc, char * argv[]){
         /* Équipe 2 (IDs matrice 6, 7, 8) */
         placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, 3);
 
-        /* Charger les images (Textures) */
-        SDL_Texture *texDinos[6];
-        chargerImage(rendu, &texDinos[0], "../img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[1], "../img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[2], "../img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[3], "../img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[4], "../img/dino_test.png", &w, &h);
-        chargerImage(rendu, &texDinos[5], "../img/dino_test.png", &w, &h);
-
-        
+        for(i=0; i<3; i++) {
+            chargerImageSansTaille(rendu, &(equipe1.texDinos[i]), "../img/dinoTransparent.png");
+            chargerImageSansTaille(rendu, &(equipe2.texDinos[i]), "../img/dinoTransparent.png");
+        }
         
         while(enCours) {
             while (SDL_PollEvent(&evenement)){
@@ -114,25 +108,17 @@ int main(int argc, char * argv[]){
             
             /* --- AFFICHAGE DES DINOS --- */
             /* Équipe 1 */
-            for(i = 0; i < equipe1.n; i++) {
-                SDL_Rect r = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y, 30, 30};
-                SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d], NULL, &r);
-            }
+            afficherDinos(rendu, &equipe1);
             /* Équipe 2 */
-            for(i = 0; i < equipe2.n; i++) {
-                SDL_Rect r = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y, 30, 30};
-                SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d], NULL, &r);
-            }
+            afficherDinos(rendu, &equipe2);
 
             SDL_RenderPresent(rendu);
         }
 
         /* --- NETTOYAGE --- */
-        free(equipe1.tab);
-        free(equipe2.tab);
-        for(i=0; i<6; i++) {
-            SDL_DestroyTexture(texDinos[i]);
-        }
+        detruireContenuJoueur(&equipe1);
+        detruireContenuJoueur(&equipe2);
+
         for(i=1; i<3; i++) {
             free(nuages_stockes[i]);
         }

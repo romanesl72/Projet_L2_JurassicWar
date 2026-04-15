@@ -13,7 +13,7 @@ int main(){
     printf("nb=%d\n",nb_pts1);
 
     if(nuageDetruire(&nuage1)){
-        printf("Destruction réussi\n");
+        printf("Destruction réussie\n");
         return 0;
     }
     return 1;

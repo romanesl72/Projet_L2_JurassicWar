@@ -8,10 +8,11 @@
 #include "../lib/fonctionsMenuHIP.h"
 #include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsAffichage.h"
+
+#include <stdio.h>
 #include <time.h>
 #include <SDL2/SDL_ttf.h>
 
-#include <SDL2/SDL_ttf.h>
 
 
 
@@ -24,15 +25,14 @@ int main(int argc, char * argv[]){
     SDL_Window *fenetre = NULL;
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
-    const Uint8 *state=NULL;
 
-    creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_FEN, HAUTEUR_TOTALE);
+    creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_TERRAIN, HAUTEUR_FEN_JEU_HIP);
     rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
     initialiserPolice(&police, "../pde/arial.ttf", 16);
 
     /* ---- 2. Chargement de la Map et Placement ---- */
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
-    int nb_pts, w, h, i, sens=1;
+    int nb_pts, w, h, i;
     int trouves_E1 = 0, trouves_E2 = 0;
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
@@ -41,6 +41,7 @@ int main(int argc, char * argv[]){
     char *nomNuage[2] = {"../img/test1_c.jpg", "../img/test2_c.jpg"};
     t_coordonnee *nuage = NULL;
     t_dino *dinoActuel = NULL;
+    int nb_nuage = 2;
 
     chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
     
@@ -119,10 +120,9 @@ int main(int argc, char * argv[]){
 
         // PROTECTION CRITIQUE
         if(dinoActuel != NULL) {
-            state = SDL_GetKeyboardState(NULL);
 
             // On affiche l'état actuel des équipes
-            afficher(rendu, police, texMap, texDinos, texObjets, nomsObjets, equipe1, equipe2);
+            afficher(rendu, police, texMap, texObjets, &equipe1, &equipe2);
 
             if (dinoActuel != NULL && dinoActuel->etat == 0) {
                 supprimerDinoJoueur(&equipe1, &equipe2, dinoActuel->d);
@@ -131,7 +131,7 @@ int main(int argc, char * argv[]){
             // B. LOGIQUE DE DÉPLACEMENT ET NOYADE
             if (dinoActuel != NULL && nuage != NULL && dinoActuel->etat != 0) {
                 printf("\nid nuage=%d\nindice=%d\n",dinoActuel->id_nuage,dinoActuel->indice_nuage);
-                deplacement_dino(dinoActuel, &nuage, nomNuage, 2, &nb_pts, matrice);
+                deplacement_dino(dinoActuel, &nuage, nomNuage, nb_nuage, &nb_pts, matrice,&equipe1, &equipe2);
                 
                 // Si le dinosaure vient de se noyer (état passé à 0 dans deplacement.c)
                 if(dinoActuel->etat == 0) {

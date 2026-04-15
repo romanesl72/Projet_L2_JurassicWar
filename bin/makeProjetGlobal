@@ -15,7 +15,9 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 EXECUTABLES = \
 ./main \
 ./test_archer \
+./test_deplacement_solo \
 ./test_deplacement \
+./test_nuage \
 ./test_vol \
 ./testAffichageDinosMap \
 ./testAffichageMenuHIP \
@@ -54,6 +56,8 @@ OBJETS_MAIN = main.o $(OBJ_ALL)
 
 OBJETS_ARCHER = test_archer.o $(OBJ_ALL)
 OBJETS_DEPLA = test_deplacement.o $(OBJ_ALL) fonctionsAffichage.o 
+OBJETS_DEPLA_SOLO = test_deplacement_solo.o $(OBJ_ALL) fonctionsAffichage.o
+OBJETS_NUAGE = test_nuage.o tda_nuage.o
 OBJETS_VOL = test_vol.o $(OBJ_ALL)
 OBJETS_AFF_DINOS = testAffichageDinosMap.o $(OBJ_ALL)
 OBJETS_AFFICHAGE_HIP = testAffichageMenuHIP.o $(OBJ_ALL)
@@ -89,7 +93,13 @@ all: $(EXECUTABLES)
 ./test_archer: $(OBJETS_ARCHER)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./test_deplacement_solo: $(OBJETS_DEPLA_SOLO)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./test_deplacement: $(OBJETS_DEPLA)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./test_nuage: $(OBJETS_NUAGE)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./test_vol: $(OBJETS_VOL)
