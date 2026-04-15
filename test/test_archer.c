@@ -1,5 +1,6 @@
 #include "../lib/chargerMatrice.h"
 #include "../lib/fonctionsMenuHIP.h"
+#include "../lib/fonctionsStructJoueur.h"
 #include "../lib/fonctionsTirs.h"
 #include "../lib/fonctionsVerification.h"
 #include "../lib/gestion_zones.h"
@@ -11,7 +12,7 @@
 #include <time.h>
 
 /** 
- * @file testAffichageMenuHIP.c
+ * @file test_archer.c
  * @brief Corps d'une fonction de test sur l'affichage des dinos avec le tir à l'arc
  * @author Romane Saint_Léger
  * @date Crée le 17/03/2026
@@ -29,7 +30,7 @@
 int main(int argc, char * argv[]){
 
     /* ---- Initialisation des variables ---- */
-    int i, j, k;
+    int i, j;
     int enCours;
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts;
@@ -45,9 +46,6 @@ int main(int argc, char * argv[]){
     t_arme arc = {ARC, 20, 1.0f, 5.0f, 15.0f};
     t_tir tirEncours;
     tirEncours.actif = 0;
-    TTF_Font *police = NULL;
-
-    initialiserPolice(&police, "../pde/arial.ttf", 16);
 
     if (initialisationCorrecte()) {
         srand(time(NULL)); /* Initialisation de l'aléatoire */
@@ -56,6 +54,9 @@ int main(int argc, char * argv[]){
         SDL_Event evenement;
         SDL_Window *menuPrincipal; 
         SDL_Renderer *rendu;
+        TTF_Font *police = NULL;
+
+        initialiserPolice(&police, "../pde/arial.ttf", 16);
         
         creerFenetre(&menuPrincipal, "Page du Jeu", LARGEUR_TERRAIN, HAUTEUR_TERRAIN);
         //rendu = SDL_CreateRenderer(menuPrincipal, -1, SDL_RENDERER_ACCELERATED);
@@ -76,12 +77,10 @@ int main(int argc, char * argv[]){
 
         printf("Total de zones trouvées : E1=%d, E2=%d\n", trouves_E1, trouves_E2);        
 
-        /* Initialiser les joueurs et leurs dinos (3 dinos par équipe) */
-        equipe1.n = 3;
-        equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-        if (equipe1.tab == NULL) { printf("Erreur malloc equipe1\n"); exit(1); }
-        equipe2.n = 3;
-        equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
+        /* Initialiser les joueurs et leurs dinosaures (3 dinosaures par équipe) */
+
+        initialiserContenuJoueur(&equipe1);
+        initialiserContenuJoueur(&equipe2);
 
         /* Placer les dinos sur la matrice */
         /* Équipe 1 (IDs matrice 2, 3, 4) */
@@ -92,7 +91,7 @@ int main(int argc, char * argv[]){
 
         /* Charger les images (Textures) */
         printf("Chargement de la texture map...\n");
-        SDL_Texture *texMap = NULL, *texDinos[6], *texObjets[7];
+        SDL_Texture *texMap = NULL, *texObjets[7];
         char *nomsObjets[7] = {"../img/img_arc.png", "../img/img_arbalete.png", "../img/img_bombe.png", 
                             "../img/img_fusil.png", "../img/img_revolver.png", "../img/img_potion.png", "../img/img_grappin.png"};
 
@@ -102,27 +101,14 @@ int main(int argc, char * argv[]){
         } else {
             printf("Texture map chargee avec succes !\n");
         }
+
         
-        equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
-        equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
-        
-        for(j=0; j<6; j++) {
-            chargerImage(rendu, &texDinos[j], "../img/dinoTransparent.png", &w, &h);
-            // On lie les textures aux structures joueurs
-            equipe1.texDinos[j] = texDinos[j];
-            equipe2.texDinos[j] = texDinos[j];
+        for(j=0; j<3; j++) {
+            chargerImageSansTaille(rendu, &(equipe1.texDinos[j]), "../img/dinoTransparent.png");
+            chargerImageSansTaille(rendu, &(equipe2.texDinos[j]), "../img/dinoTransparent.png");
         }
-        
         
         for(i=0; i<7; i++) chargerImage(rendu, &texObjets[i], nomsObjets[i], &w, &h);
-
-        equipe1.texDinos = malloc(sizeof(SDL_Texture*) * 6);
-        equipe2.texDinos = malloc(sizeof(SDL_Texture*) * 6);
-
-        for(k = 0; k < 6; k++) {
-            equipe1.texDinos[k] = texDinos[k];
-            equipe2.texDinos[k] = texDinos[k];
-        }
 
         tirEncours.pos.x = equipe1.tab[0].pos.x + 15;
         tirEncours.pos.y = equipe1.tab[0].pos.y + 15;
@@ -178,15 +164,9 @@ int main(int argc, char * argv[]){
             
             /* --- AFFICHAGE DES DINOS --- */
             /* Équipe 1 */
-            for(i = 0; i < equipe1.n; i++) {
-                SDL_Rect r = {equipe1.tab[i].pos.x, equipe1.tab[i].pos.y, 30, 30};
-                SDL_RenderCopy(rendu, texDinos[equipe1.tab[i].d - D1], NULL, &r);
-            }
+            afficherDinos(rendu, &equipe1);
             /* Équipe 2 */
-            for(i = 0; i < equipe2.n; i++) {
-                SDL_Rect r = {equipe2.tab[i].pos.x, equipe2.tab[i].pos.y, 30, 30};
-                SDL_RenderCopy(rendu, texDinos[equipe2.tab[i].d - D1], NULL, &r);
-            }
+            afficherDinos(rendu, &equipe2);
 
             if(tirEncours.actif) {
                 tracerArme(rendu, &tirEncours);
@@ -197,11 +177,10 @@ int main(int argc, char * argv[]){
         }
 
         /* --- NETTOYAGE --- */
-        free(equipe1.tab);
-        free(equipe2.tab);
-        for(i=0; i<6; i++) {
-            SDL_DestroyTexture(texDinos[i]);
-        }
+
+        detruireContenuJoueur(&equipe1);
+        detruireContenuJoueur(&equipe2);
+
         for(i=1; i<3; i++) {
             free(nuages_stockes[i]);
         }

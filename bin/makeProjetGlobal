@@ -16,6 +16,7 @@ EXECUTABLES = \
 ./main \
 ./test_archer \
 ./test_deplacement \
+./test_vol \
 ./testAffichageDinosMap \
 ./testAffichageMenuHIP \
 ./testBombeDinosTours \
@@ -29,6 +30,7 @@ EXECUTABLES = \
 ./testFonctionsStructJoueur \
 ./testFonctionsTuerDinos \
 ./testFonctionsVerification \
+./testGrappin \
 ./testRegression \
 ./testTirArmes \
 ./testTirsAffichageJeu
@@ -52,6 +54,7 @@ OBJETS_MAIN = main.o $(OBJ_ALL)
 
 OBJETS_ARCHER = test_archer.o $(OBJ_ALL)
 OBJETS_DEPLA = test_deplacement.o $(OBJ_ALL) fonctionsAffichage.o 
+OBJETS_VOL = test_vol.o $(OBJ_ALL)
 OBJETS_AFF_DINOS = testAffichageDinosMap.o $(OBJ_ALL)
 OBJETS_AFFICHAGE_HIP = testAffichageMenuHIP.o $(OBJ_ALL)
 OBJETS_BOMBE_DINOS_TOURS = testBombeDinosTours.o $(OBJ_COM) $(OBJ_BOMBE) $(OBJ_TOUR) fonctionsMenuHIP.o fonctionsVerification.o
@@ -66,6 +69,7 @@ OBJETS_REBONDS = testFonctionsRebonds.o $(OBJ_COM) $(OBJ_BOMBE) fonctionsMenuHIP
 OBJETS_TUER_DINOS = testFonctionsTuerDinos.o $(OBJ_COM) $(OBJ_BOMBE) fonctionsMenuHIP.o fonctionsVerification.o
 OBJETS_STRUCT_JOUEUR = testFonctionsStructJoueur.o chargerMatrice.o fonctionsStructJoueur.o placer_dinos.o
 OBJETS_VERIFICATION = testFonctionsVerification.o fonctionsVerification.o
+OBJETS_GRAPPIN = testGrappin.o $(OBJ_ALL)
 OBJETS_REGRESSION = testRegression.o tda_nuage.o regression.o
 OBJETS_TIR = testTirArmes.o placer_dinos.o chargerMatrice.o fonctionsTirs.o fonctionsMenuHIP.o fonctionsStructJoueur.o
 OBJETS_TIRSAFFICHAGE = testTirsAffichageJeu.o $(OBJ_ALL)
@@ -86,6 +90,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./test_deplacement: $(OBJETS_DEPLA)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./test_vol: $(OBJETS_VOL)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testAffichageDinosMap: $(OBJETS_AFF_DINOS)
@@ -125,6 +132,9 @@ all: $(EXECUTABLES)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsVerification: $(OBJETS_VERIFICATION)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testGrappin: $(OBJETS_GRAPPIN)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testRegression: $(OBJETS_REGRESSION)
