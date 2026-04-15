@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar:  Fichier source de /info/etu/l2info/s2306032/Documents/L2/ProjetC/Projet_L2_JurassicWar/lib/fonctionsChangementTour.h</title>
+<title>JurassicWar:  Fichier source de /info/etu/l2info/s2400921/Documents/Projet/jurassicWar8/lib/fonctionsChangementTour.h</title>
 <link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -104,10 +104,14 @@ $(function(){initNavTree('fonctionsChangementTour_8h_source.html','',''); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsChangementTour_8h.html#acd14ffe10d4da225f76f12f8c2de9518">finPartie</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsChangementTour_8h.html#a1a98718841d16524b9b8f164e670b777">tourSuivant</a>(<a class="code hl_struct" href="structt__tour.html">t_tour</a> *tour, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="afonctionsChangementTour_8h_html_a1a98718841d16524b9b8f164e670b777"><div class="ttname"><a href="fonctionsChangementTour_8h.html#a1a98718841d16524b9b8f164e670b777">tourSuivant</a></div><div class="ttdeci">void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2)</div><div class="ttdoc">La fonction effectue un changement de tour.</div><div class="ttdef"><b>Definition</b> fonctionsChangementTour.c:52</div></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">int</span> <a class="code hl_function" href="fonctionsChangementTour_8h.html#ac4688eeb31c7e2724c5e49aea6220c32">equipeGagnante</a>(<a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span> <a class="code hl_function" href="fonctionsChangementTour_8h.html#a1a98718841d16524b9b8f164e670b777">tourSuivant</a>(<a class="code hl_struct" href="structt__tour.html">t_tour</a> *tour, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="code hl_struct" href="structt__joueur.html">t_joueur</a> *equipe2);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="afonctionsChangementTour_8h_html_a1a98718841d16524b9b8f164e670b777"><div class="ttname"><a href="fonctionsChangementTour_8h.html#a1a98718841d16524b9b8f164e670b777">tourSuivant</a></div><div class="ttdeci">void tourSuivant(t_tour *tour, t_joueur *equipe1, t_joueur *equipe2)</div><div class="ttdoc">La fonction effectue un changement de tour.</div><div class="ttdef"><b>Definition</b> fonctionsChangementTour.c:62</div></div>
+<div class="ttc" id="afonctionsChangementTour_8h_html_ac4688eeb31c7e2724c5e49aea6220c32"><div class="ttname"><a href="fonctionsChangementTour_8h.html#ac4688eeb31c7e2724c5e49aea6220c32">equipeGagnante</a></div><div class="ttdeci">int equipeGagnante(t_joueur *equipe1, t_joueur *equipe2)</div><div class="ttdoc">La fonction détermine l&#39;équipe gagnante.</div><div class="ttdef"><b>Definition</b> fonctionsChangementTour.c:17</div></div>
 <div class="ttc" id="afonctionsChangementTour_8h_html_acd14ffe10d4da225f76f12f8c2de9518"><div class="ttname"><a href="fonctionsChangementTour_8h.html#acd14ffe10d4da225f76f12f8c2de9518">finPartie</a></div><div class="ttdeci">int finPartie(t_joueur *equipe1, t_joueur *equipe2)</div><div class="ttdoc">La fonction détermine si la partie est terminée.</div><div class="ttdef"><b>Definition</b> fonctionsChangementTour.c:13</div></div>
 <div class="ttc" id="astructt__joueur_html"><div class="ttname"><a href="structt__joueur.html">t_joueur</a></div><div class="ttdoc">Structure représentant un joueur et son équipe de dinosaure.</div><div class="ttdef"><b>Definition</b> types.h:192</div></div>
 <div class="ttc" id="astructt__tour_html"><div class="ttname"><a href="structt__tour.html">t_tour</a></div><div class="ttdoc">Structure représentant la gestion des tours.</div><div class="ttdef"><b>Definition</b> types.h:208</div></div>
@@ -119,7 +123,7 @@ $(function(){initNavTree('fonctionsChangementTour_8h_source.html','',''); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="fonctionsChangementTour_8h.html">fonctionsChangementTour.h</a></li>
-    <li class="footer">Généré le Mardi 14 Avril 2026 19:20:29 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mercredi 15 Avril 2026 08:52:13 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

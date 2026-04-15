@@ -1,7 +1,6 @@
 var annotated_dup =
 [
     [ "element", "structelement.html", "structelement" ],
-    [ "stbi_io_callbacks", "structstbi__io__callbacks.html", null ],
     [ "t_arme", "structt__arme.html", "structt__arme" ],
     [ "t_bombe", "structt__bombe.html", "structt__bombe" ],
     [ "t_catalogue_zones", "structt__catalogue__zones.html", "structt__catalogue__zones" ],

@@ -186,6 +186,9 @@ void detecterEvenementsPageJeuBombe(
  * @param matriceTerrain la matrice contenant les informations sur le terrain
  * @param cache un pointeur sur une structure contenant le texte à afficher pour le menu HIP
  * @param catalogue_armes un tableau d'armes
+ * @param nomNuage un tableau avec le nom des nuages
+ * @param nuage un pointeur sur un pointeur des coordonnées du nuage
+ * @param nb_pts un pointeur sur le nombre de points du nuage
  */
 
 int detecterEvenementsPageJeu(

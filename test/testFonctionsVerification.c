@@ -2,7 +2,7 @@
 #include "../lib/fonctionsVerification.h"
 
 /**
- * @file TestFonctionsVerification.c
+ * @file testFonctionsVerification.c
  * @brief Test des fonctions crées dans le fichier fonctionsVerification.c
  * @author Hannah Sergent
  * @date Crée le 27/01/2026

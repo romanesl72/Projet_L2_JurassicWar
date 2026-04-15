@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JurassicWar: Référence du fichier /info/etu/l2info/s2306032/Documents/L2/ProjetC/Projet_L2_JurassicWar/src/fonctionsChangementTour.c</title>
+<title>JurassicWar: Référence du fichier /info/etu/l2info/s2400921/Documents/Projet/jurassicWar8/src/fonctionsChangementTour.c</title>
 <link rel="icon" href="dinoTransparent.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -105,6 +105,8 @@ $(function(){initNavTree('fonctionsChangementTour_8c.html','',''); });
 Fonctions</h2></td></tr>
 <tr class="memitem:acd14ffe10d4da225f76f12f8c2de9518" id="r_acd14ffe10d4da225f76f12f8c2de9518"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd14ffe10d4da225f76f12f8c2de9518">finPartie</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
 <tr class="memdesc:acd14ffe10d4da225f76f12f8c2de9518"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détermine si la partie est terminée.  <br /></td></tr>
+<tr class="memitem:ac4688eeb31c7e2724c5e49aea6220c32" id="r_ac4688eeb31c7e2724c5e49aea6220c32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4688eeb31c7e2724c5e49aea6220c32">equipeGagnante</a> (<a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
+<tr class="memdesc:ac4688eeb31c7e2724c5e49aea6220c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction détermine l'équipe gagnante.  <br /></td></tr>
 <tr class="memitem:abda688ed39e85442508d854454e8ee03" id="r_abda688ed39e85442508d854454e8ee03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abda688ed39e85442508d854454e8ee03">dinoSuivantEquipe</a> (int equipeCourante, <a class="el" href="types_8h.html#ab21a60e1517c8d253cc83c12f6e027f3">t_case</a> *dinoTour)</td></tr>
 <tr class="memdesc:abda688ed39e85442508d854454e8ee03"><td class="mdescLeft">&#160;</td><td class="mdescRight">La fonction sélectionne le dinosaure suivant de la même équipe.  <br /></td></tr>
 <tr class="memitem:a1a98718841d16524b9b8f164e670b777" id="r_a1a98718841d16524b9b8f164e670b777"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a98718841d16524b9b8f164e670b777">tourSuivant</a> (<a class="el" href="structt__tour.html">t_tour</a> *tour, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe1, <a class="el" href="structt__joueur.html">t_joueur</a> *equipe2)</td></tr>
@@ -146,6 +148,40 @@ Fonctions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ac4688eeb31c7e2724c5e49aea6220c32" name="ac4688eeb31c7e2724c5e49aea6220c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4688eeb31c7e2724c5e49aea6220c32">&#9670;&#160;</a></span>equipeGagnante()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int equipeGagnante </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structt__joueur.html">t_joueur</a> *</td>          <td class="paramname"><span class="paramname"><em>equipe2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>La fonction détermine l'équipe gagnante. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Hannah Sergent </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Crée le 15/04/2026 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">equipe1</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 1 </td></tr>
+    <tr><td class="paramname">equipe2</td><td>un pointeur sur la structure correspondant aux dinosaures du joueur 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si l'équipe 1 a gagné et 2 si l'équipe 2 a gagné </dd></dl>
 
 </div>
 </div>
@@ -236,7 +272,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fonctionsChangementTour_8c.html">fonctionsChangementTour.c</a></li>
-    <li class="footer">Généré le Mardi 14 Avril 2026 19:20:29 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+    <li class="footer">Généré le Mercredi 15 Avril 2026 08:52:13 pour JurassicWar par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

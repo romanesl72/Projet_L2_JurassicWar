@@ -105,7 +105,7 @@ int mettreAJourVol(t_tir *tir, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN], fl
 void tracerArme(SDL_Renderer *zoneAffichage, t_tir *tir);
 
 /**
- * @fn void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float graviteBase);
+ * @fn void tracerTrajectoireTir(SDL_Renderer *zoneAffichage, t_tir *tir, float gravite);
  * @brief Fonction qui trace la trajectoire du tir avant que celui-ci ne soit effectué
  * @author Romane Saint-Léger
  * @date Crée le 17/03/2026

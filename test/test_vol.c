@@ -157,21 +157,3 @@ int main() {
     test_collisions_vol();
     return 0;
 }
-
-void afficherDinos(SDL_Renderer* zoneAffichage, t_joueur * equipe) {}
-
-void afficherDinosAvecJeu(SDL_Renderer *zoneAffichage, t_joueur *equipe) {}
-
-void afficherInventaire(SDL_Renderer *rendu, SDL_Texture **texObjets, int nbObjets) {}
-
-void afficherMenuPVDinos(SDL_Renderer *rendu, TTF_Font *police, t_joueur e1, t_joueur e2) {}
-
-void supprimer_matrice_dino(t_dino *dino, int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN]) {}
-
-void supprimerDinoJoueur(t_joueur *equipe, int indice) {}
-
-int retournerDino(t_joueur *equipe, int indice) { return 0; }
-
-t_dino* recupererDinoNumero(t_joueur *e1, t_joueur *e2, t_case numero) { return NULL; }
-
-t_cote recupererDinoDirection(t_joueur * equipe1, t_joueur * equipe2, t_case numero) { return DROITE; }

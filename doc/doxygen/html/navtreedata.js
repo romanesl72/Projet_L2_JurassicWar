@@ -50,8 +50,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"fonctions_tuer_dinos_8c.html#a155f44daadb6db52f07e2e749f055e24",
-"test_tirs_affichage_jeu_8c.html"
+"fonctionsTirs_8h_source.html",
+"types_8h.html#a83e6498e585e66600977123e70d854e5a4ee960d97b04a1f22ed7ff81c7aa2e86"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

@@ -82,12 +82,9 @@ void initialiserEquipes(t_joueur *equipe1, t_joueur *equipe2, t_catalogue_zones 
  * @param bombeLancee un pointeur qui indique si la bombe doit être lancée
  * @param zoneAffichage un pointeur sur la zone d'affichage
  * @param texMap un pointeur sur la texture de la map
- * @param texObjets un pointeur sur pointeur sur la texture des Objets
- * @param policeMenuHIP un pointeur sur la police d'écriture
  * @param rectFen un rectangle de type SDL_Rect contenant les informations sur la fenêtre du jeu
  * @param bombe un pointeur sur une structure de type bombe
  * @param vectVitesse un pointeur sur le vecteur vitesse de la bombe
- * @param tir un pointeur sur la structure de tir
  * @param equipe1 un pointeur sur la structure correspondant aux dinosaures du joueur 1
  * @param equipe2 un pointeur sur la structure correspondant aux dinosaures du joueur 2
  * @param dinoCourant l'identifiant du dinosaure dont c'est le tour de jouer
