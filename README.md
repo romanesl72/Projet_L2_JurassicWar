@@ -39,20 +39,29 @@ Le but est de tuer tous les dinosaures de l'équipe adverse en perdant le moins 
 
 **Accéder au Diagramme de GANTT :**
 
+- ***Prévisionnel***
+
 ```bash
 cd Projet_L2_JurassicWar/doc/DiagrammeDeGanttPlanningProjet.ods
 cd Projet_L2_JurassicWar/doc/PlanningProjet.ods
 ```
 
+- ***Réel***
+
+```bash
+cd Projet_L2_JurassicWar/doc/DiagrammeDeGanttReel.ods
+cd Projet_L2_JurassicWar/doc/PlanningProjetReel.ods
+```
+
 **Accéder à la documentation Doxygen :**
 
-- ***En local (dernière mise à jour le 14/04/2026)***
+- ***En local (dernière mise à jour le 15/04/2026)***
 
 ```bash
 cd Projet_L2_JurassicWar/doc/doxygen/html/index.thml
 ```
 
-- ***En ligne (dernière mise à jour le 9/04/2026)***
+- ***En ligne (dernière mise à jour le 15/04/2026)***
 
 [Documentation doxygen de JurassicWar](https://web-info.univ-lemans.fr/~s2400921/documentationJurassicWar/html/index.html)
 
