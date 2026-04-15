@@ -11,6 +11,13 @@
  * @brief Test des fonctions crées dans le fichier chargerMatrice.c
  * @author Solène Orieux
  * @date Crée le 15/03/2026
+ * @version 1.0
+ */
+
+/**
+ * @brief Test des fonctions de chargerMatrice.c
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.0
  */
 
 int main(){

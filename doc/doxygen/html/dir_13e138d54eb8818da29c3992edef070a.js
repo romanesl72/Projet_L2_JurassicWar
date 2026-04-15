@@ -8,7 +8,7 @@ var dir_13e138d54eb8818da29c3992edef070a =
     [ "testBombeDinosTours.c", "testBombeDinosTours_8c.html", "testBombeDinosTours_8c" ],
     [ "testBombeDinosToursV2.c", "testBombeDinosToursV2_8c.html", "testBombeDinosToursV2_8c" ],
     [ "testCollisions.c", "testCollisions_8c.html", "testCollisions_8c" ],
-    [ "testDino.c", "testDino_8c.html", null ],
+    [ "testDino.c", "testDino_8c.html", "testDino_8c" ],
     [ "testFonctionsChangementTour.c", "testFonctionsChangementTour_8c.html", "testFonctionsChangementTour_8c" ],
     [ "testFonctionsMenuPrinc.c", "testFonctionsMenuPrinc_8c.html", "testFonctionsMenuPrinc_8c" ],
     [ "testFonctionsPageFinPartie.c", "testFonctionsPageFinPartie_8c.html", "testFonctionsPageFinPartie_8c" ],
@@ -19,7 +19,7 @@ var dir_13e138d54eb8818da29c3992edef070a =
     [ "testFonctionsVerification.c", "testFonctionsVerification_8c.html", "testFonctionsVerification_8c" ],
     [ "testGrappin.c", "testGrappin_8c.html", "testGrappin_8c" ],
     [ "testPlacement.c", "testPlacement_8c.html", "testPlacement_8c" ],
-    [ "testRegression.c", "testRegression_8c.html", null ],
+    [ "testRegression.c", "testRegression_8c.html", "testRegression_8c" ],
     [ "testTirArmes.c", "testTirArmes_8c.html", "testTirArmes_8c" ],
     [ "testTirsAffichageJeu.c", "testTirsAffichageJeu_8c.html", "testTirsAffichageJeu_8c" ]
 ];

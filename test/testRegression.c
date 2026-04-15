@@ -8,6 +8,15 @@
  * @brief Test des fonctions crées dans le fichier tda_nuage.c
  * @author Solène Orieux
  * @date Crée le 17/03/2026
+ * @version 1.0
+ */
+
+/**
+ * @brief Tracé d'une courbe de régression
+ * @param argc nombre d'arguments de la ligne de commande
+ * @param argv tableau des arguments
+ * @return 0 si tout s'est bien passé et 1 sinon
+ * @version 1.0
  */
 
 

@@ -1,7 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"testPlacement_8c.html":[2,0,2,18],
 "testPlacement_8c.html#afb303b5cfdb2f27e2892941b92e798eb":[2,0,2,18,0],
 "testRegression_8c.html":[2,0,2,19],
+"testRegression_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,19,0],
 "testTirArmes_8c.html":[2,0,2,20],
 "testTirArmes_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,20,0],
 "testTirsAffichageJeu_8c.html":[2,0,2,21],

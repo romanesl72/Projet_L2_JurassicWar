@@ -225,6 +225,7 @@ var NAVTREEINDEX1 =
 "testCollisions_8c.html#ad416a30206f1ecb7189c7e1a209b7d0e":[2,0,2,7,4],
 "testCollisions_8c.html#afb303b5cfdb2f27e2892941b92e798eb":[2,0,2,7,5],
 "testDino_8c.html":[2,0,2,8],
+"testDino_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[2,0,2,8,0],
 "testFonctionsChangementTour_8c.html":[2,0,2,9],
 "testFonctionsChangementTour_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,9,0],
 "testFonctionsMenuPrinc_8c.html":[2,0,2,10],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "testFonctionsVerification_8c.html#a209ac351ba46be6fed69bafb5ce1b186":[2,0,2,16,0],
 "testFonctionsVerification_8c.html#a462363ee17835ff32b58dfd7812404b4":[2,0,2,16,1],
 "testGrappin_8c.html":[2,0,2,17],
-"testGrappin_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,17,0],
-"testPlacement_8c.html":[2,0,2,18]
+"testGrappin_8c.html#a0ddf1224851353fc92bfbff6f499fa97":[2,0,2,17,0]
 };
