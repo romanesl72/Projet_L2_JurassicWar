@@ -4,7 +4,7 @@
 #include "../lib/regression.h"
 
 /** 
- * @file test_deplacement.c
+ * @file testRegression.c
  * @brief Test des fonctions crées dans le fichier tda_nuage.c
  * @author Solène Orieux
  * @date Crée le 17/03/2026

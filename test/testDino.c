@@ -7,7 +7,7 @@
 
 
 /** 
- * @file test_deplacement.c
+ * @file testDino.c
  * @brief Test des fonctions crées dans le fichier chargerMatrice.c
  * @author Solène Orieux
  * @date Crée le 15/03/2026

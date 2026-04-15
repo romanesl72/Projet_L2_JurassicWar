@@ -16,7 +16,7 @@
 #include <SDL2/SDL_ttf.h>
 
 /** 
- * @file test_deplacement.c
+ * @file testGrappin.c
  * @brief Test des fonctions crées dans le fichier grapin.c
  * @author Solène Orieux
  * @date Crée le 03/04/2026

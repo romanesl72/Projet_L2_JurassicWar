@@ -32,7 +32,7 @@ int main(int argc, char * argv[]){
     /* ---- 1. Initialisation ---- */
     if (!initialisationCorrecte()) return 1;
     srand(time(NULL));
-
+    
     SDL_Window *fenetre = NULL;
     SDL_Renderer *rendu = NULL;
     TTF_Font *police = NULL;
@@ -40,13 +40,14 @@ int main(int argc, char * argv[]){
     creerFenetre(&fenetre, "Jurassic War - HIP Mode", LARGEUR_TERRAIN, HAUTEUR_FEN_JEU_HIP);
     rendu = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE);
     initialiserPolice(&police, "../pde/arial.ttf", 16);
-
+    
     /* ---- 2. Chargement de la Map et Placement ---- */
     int matrice[HAUTEUR_TERRAIN][LARGEUR_TERRAIN];
     int nb_pts, w, h;
     int trouves_E1 = 0, trouves_E2 = 0;
     t_coordonnee *nuages_stockes[5];
     t_catalogue_zones catalogue;
+    t_joueur equipe1, equipe2;
 
     chargerMatriceDepuisFichier("../res/matrice.txt", matrice);
     
@@ -56,11 +57,10 @@ int main(int argc, char * argv[]){
     nuages_stockes[2] = nuage_de_points(&nb_pts, "../img/test2_c.jpg");
     generer_catalogue_depuis_nuage(nuages_stockes[2], nb_pts, &catalogue, &trouves_E1, &trouves_E2, 2);
 
-    t_joueur equipe1, equipe2;
-    equipe1.n = 3; equipe2.n = 3;
-    equipe1.tab = malloc(sizeof(t_dino) * equipe1.n);
-    equipe2.tab = malloc(sizeof(t_dino) * equipe2.n);
+    initialiserContenuJoueur(&equipe1);
+    initialiserContenuJoueur(&equipe2);
 
+    printf("Ok\n");
     // Placement réel sur la matrice (C'est ce placement qui compte !)
     placer_une_equipe(&equipe1, catalogue.zones_E1, matrice, D1);
     placer_une_equipe(&equipe2, catalogue.zones_E2, matrice, D4);
@@ -137,8 +137,10 @@ int main(int argc, char * argv[]){
     }
 
     /* ---- 5. Nettoyage ---- */
-    free(equipe1.tab);
-    free(equipe2.tab);
+
+    detruireContenuJoueur(&equipe1);
+    detruireContenuJoueur(&equipe2);
+    
     for(int k=0; k<6; k++) SDL_DestroyTexture(texDinos[k]);
     TTF_CloseFont(police);
     SDL_DestroyTexture(texMap);

@@ -11,24 +11,26 @@ FIC_OBJETS = $(notdir $(FIC_SRC:.c=.o)) $(notdir $(FIC_TEST:.c=.o))
 # Edition de liens
 
 EXECUTABLES = ./main \
-./testAffichageMenuHIP \
-./test_vol \
-./testTirsAffichageJeu \
 ./test_archer \
-./testCollisions \
+./test_deplacement\
+./test_vol \
+./testAffichageDinosMap\
+./testAffichageMenuHIP \
 ./testBombeDinosTours \
 ./testBombeDinosToursV2 \
+./testCollisions \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
 ./testFonctionsPagesInformations \
 ./testFonctionsRebonds \
 ./testFonctionsTuerDinos \
 ./testFonctionsVerification \
-./testTirArmes \
+./testGrappin \
 ./testRegression \
-./testAffichageDinosMap\
-./test_deplacement\
-./testGrappin
+./testTirArmes \
+./testTirsAffichageJeu
+
+
 
 
 OBJETS_VOL = test_vol.o chargerMatrice.o fonctionsMenuHIP.o fonctionsTirs.o fonctionsVerification.o fonctionsStructJoueur.o placer_dinos.o

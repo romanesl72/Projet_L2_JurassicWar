@@ -39,15 +39,18 @@ void test_collision_eau() {
     dino.pv = 100;
     dino.pos.x = 20;
     dino.pos.y = 20;
-    dino.largeur = 2;
-    dino.hauteur = 2;
+    dino.largeur = TAILLE_DINO;
+    dino.hauteur = TAILLE_DINO;
     int res[4];
 
     // On vide la matrice et on place de l'eau au SUD
     for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
         matrice[i][j] = 0;
     }
-    matrice[22][21] = EAU; 
+
+    for(int i=20; i<100; i++) for(int j=20; j<100; j++){
+        matrice[i][j] = EAU;
+    }
 
     collision_decor(res, dino, matrice);
     if (res[0] == -1) {
@@ -79,8 +82,14 @@ void test_collision_sol() {
     dino.hauteur = 2;
     int res[4];
 
-    // On place de la TERRE juste sous ses pieds
-    matrice[22][21] = TERRE; 
+    // On vide la matrice
+    for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
+        matrice[i][j] = 0;
+    }
+
+    for(int i=20; i<HAUTEUR_TERRAIN; i++) for(int j=20; j<LARGEUR_TERRAIN; j++){
+        matrice[i][j] = TERRE;
+    }
 
     collision_decor(res, dino, matrice);
     
@@ -114,9 +123,15 @@ void test_collision_mur_cote() {
     dino.hauteur = 2;
     int res[4];
 
+    // On vide la matrice
+    for(int i=0; i<HAUTEUR_TERRAIN; i++) for(int j=0; j<LARGEUR_TERRAIN; j++){
+        matrice[i][j] = 0;
+    }
     // On place un mur (TERRE) à sa droite (EST)
     // On le met à la hauteur de son corps (y=21)
-    matrice[21][22] = TERRE; 
+    for(int i=20; i<50; i++) for(int j=20; j<LARGEUR_TERRAIN; j++){
+        matrice[i][j] = TERRE;
+    }
 
     collision_decor(res, dino, matrice);
     
@@ -150,15 +165,15 @@ void test_chute_libre() {
     int res[4];
 
     // On s'assure que tout est VIDE (0) autour du dino
-    for(int i=48; i<55; i++) 
-        for(int j=48; j<55; j++) matrice[i][j] = 0; 
+    for(int i=20; i<100; i++) 
+        for(int j=20; j<100; j++) matrice[i][j] = 0; 
 
     collision_decor(res, dino, matrice);
 
     if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 0) {
         printf("Succes : Le dino est bien dans le vide, il peut tomber.\n");
     } else {
-        printf("Echec : Obstacle fantome detecte dans le ciel.\n");
+        printf("Echec : Obstacle fantome detecté dans le ciel.\n");
     }
 }
 
