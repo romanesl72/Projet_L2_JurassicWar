@@ -52,7 +52,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "fonctionsTirs_8h.html#a9737f3b07213a1c8233800e62382cde8",
-"testPlacement_8c.html"
+"testGrappin_8c.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

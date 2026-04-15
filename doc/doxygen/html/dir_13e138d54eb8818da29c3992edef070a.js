@@ -8,6 +8,7 @@ var dir_13e138d54eb8818da29c3992edef070a =
     [ "testBombeDinosTours.c", "testBombeDinosTours_8c.html", "testBombeDinosTours_8c" ],
     [ "testBombeDinosToursV2.c", "testBombeDinosToursV2_8c.html", "testBombeDinosToursV2_8c" ],
     [ "testCollisions.c", "testCollisions_8c.html", "testCollisions_8c" ],
+    [ "testConversionMatrice.c", "testConversionMatrice_8c.html", "testConversionMatrice_8c" ],
     [ "testDino.c", "testDino_8c.html", "testDino_8c" ],
     [ "testFonctionsChangementTour.c", "testFonctionsChangementTour_8c.html", "testFonctionsChangementTour_8c" ],
     [ "testFonctionsMenuPrinc.c", "testFonctionsMenuPrinc_8c.html", "testFonctionsMenuPrinc_8c" ],
