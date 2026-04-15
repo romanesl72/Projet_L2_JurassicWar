@@ -653,11 +653,11 @@ Grace à la capture d’écran ~\ref{fig:imageGdbGrappin} nous pouvons voir que 
 Lors du développement du module de placement des dinosaures, une erreur logique a été identifiée dans la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}. Alors que le nuage de points contient des coordonnées valides, le programme ne parvient pas à allouer les dix zones de spawn requises pour chaque équipe, déclenchant systématiquement le message d'alerte « Attention : Zones de spawn incomplètes ! » de sécurité après 5000 itérations.
 \\\\
 Ainsi, puisque le programme n'affiche aucune erreur mais que les dinosaures n'apparaissent pas (voir figure ~\ref{fig:ProblèmeGestionZones}), on utilise gdb pour observer l'exécution. En utilisant la commande display dino, on s'aperçoit que même si \textit{\mbox{dino.x}} est inférieur à \texttt{ LARGEUR\_TERRAIN/3}, ce qui correspond bien à la moitié gauche du terrain, le programme saute l'instruction d'ajout. En regardant la ligne de code source affichée par gdb, on réalise que le test porte sur  \textit{\mbox{dino.y}}. Comme  \textit{\mbox{dino.y}} représente la hauteur et non la largeur, la condition n'est jamais remplie si le point est trop haut ou trop bas sur la carte.
-\\\\
+
 \begin{figure}[ht]
 	\centering
         	\includegraphics[width=0.6\textwidth]{img/debuggage_generer_un_catalogue.png}
-        	\caption[Image du problème d'affichage des dinos]{Problème d'affichage de tout les dinos à cause de \textit{\mbox{generer\_catalogue\_depuis\_nuage}}}
+        	\caption[Image du problème d'affichage des dinos]{Problème d'affichage des dinosaures causé par la fonction \textit{\mbox{generer\_catalogue\_depuis\_nuage}}}
 	\label{fig:ProblèmeGestionZones}
 \end{figure}
 \textbf{Séquence des instructions de débogage :}
