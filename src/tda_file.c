@@ -7,12 +7,25 @@
  * @file tda_file.c
  * @brief fonction permettant la création d'une file
  * @author Solène Orieux
- * @date 25/03/2025
+ * @date 25/03/2026
  */
 
-// Utilisation de static pour encapsuler les variables dans ce fichier
-t_element_file* tete = NULL;
-t_element_file* queue = NULL;
+
+/**
+ * @brief tête de la file.
+ * @author Solène Orieux
+ * @date Crée le 25/03/2026
+ * @version 1.0
+*/
+static t_element_file* tete = NULL;
+
+/**
+ * @brief tête de la file.
+ * @author Solène Orieux
+ * @date Crée le 25/03/2026
+ * @version 1.0
+*/
+static t_element_file* queue = NULL;
 
 
 void initfile(void) {
