@@ -21,8 +21,10 @@ EXECUTABLES = ./main \
 ./testCollisions \
 ./testFonctionsChangementTour \
 ./testFonctionsMenuPrinc \
+./testFonctionsPageFinPartie \
 ./testFonctionsPagesInformations \
 ./testFonctionsRebonds \
+./testFonctionsStructJoueur \
 ./testFonctionsTuerDinos \
 ./testFonctionsVerification \
 ./testGrappin \
@@ -30,10 +32,6 @@ EXECUTABLES = ./main \
 ./testTirArmes \
 ./testTirsAffichageJeu
 
-
-
-
-OBJETS_VOL = test_vol.o chargerMatrice.o fonctionsMenuHIP.o fonctionsTirs.o fonctionsVerification.o fonctionsStructJoueur.o placer_dinos.o
 
 OBJETS_MAIN = main.o \
 chargerMatrice.o \
@@ -63,10 +61,34 @@ fonctionsAffichage.o
 OBJETS_COMMUNS = placer_dinos.o chargerMatrice.o tda_nuage.o fonctionsVerification.o
 OBJETS_COMMUNS2 = gestion_zones.o fonctionsStructJoueur.o fonctionsMenuHIP.o
 
-OBJETS_ARCHER = 			test_archer.o 					$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o
-OBJETS_AFFICHAGE_DINOS = testAffichageDinosMap.o placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
+OBJETS_ARCHER = test_archer.o 		$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o
+
+OBJETS_DEPLA = test_deplacement.o \
+$(OBJETS_COMMUNS) \
+$(OBJETS_COMMUNS2) \
+deplacement.o \
+fonctionsPageJeu.o \
+fonctionsChangementTour.o \
+regression.o \
+fonctionsAffichage.o \
+fonctionsTirs.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionSoin.o \
+fonctionsTuerDinos.o \
+fonctionsPagesInformations.o \
+collision_decor.o \
+fonctionsMenuPrinc.o \
+grappin.o \
+tda_file.o \
+fonctionsPageFinPartie.o
+
+
+OBJETS_AFFICHAGE_DINOS = 	testAffichageDinosMap.o 		placer_dinos.o gestion_zones.o tda_nuage.o fonctionsVerification.o chargerMatrice.o
 OBJETS_AFFICHAGE_HIP =		testAffichageMenuHIP.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2)
 OBJETS_TIRSAFFICHAGE = 		testTirsAffichageJeu.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsTirs.o fonctionsRebonds.o fonctionsPlacementBombe.o fonctionSoin.o
+
+OBJETS_VOL = test_vol.o chargerMatrice.o fonctionsMenuHIP.o fonctionsTirs.o fonctionsVerification.o fonctionsStructJoueur.o placer_dinos.o
 
 
 OBJETS_BOMBE_DINOS_TOURS = 	testBombeDinosTours.o 			$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsChangementTour.o fonctionsPlacementBombe.o fonctionsRebonds.o fonctionsTuerDinos.o
@@ -92,6 +114,37 @@ fonctionsPagesInformations.o \
 fonctionsMenuPrinc.o
 
 OBJETS_CHANGEMENT_TOUR = 	testFonctionsChangementTour.o 	placer_dinos.o chargerMatrice.o fonctionsChangementTour.o fonctionsStructJoueur.o
+
+OBJETS_PAGE_FIN_PARTIE = testFonctionsPageFinPartie.o \
+chargerMatrice.o \
+fonctionsStructJoueur.o \
+gestion_zones.o \
+placer_dinos.o \
+tda_nuage.o \
+fonctionsPageFinPartie.o \
+fonctionsPageJeu.o \
+fonctionsPagesInformations.o \
+fonctionsMenuHIP.o \
+fonctionsMenuPrinc.o \
+fonctionsVerification.o \
+fonctionsTirs.o \
+fonctionSoin.o \
+fonctionsPlacementBombe.o \
+fonctionsRebonds.o \
+fonctionsTuerDinos.o \
+collision_decor.o \
+fonctionsAffichage.o \
+grappin.o \
+tda_file.o \
+deplacement.o \
+regression.o \
+fonctionsChangementTour.o
+
+OBJETS_STRUCT_JOUEUR = testFonctionsStructJoueur.o \
+chargerMatrice.o \
+fonctionsStructJoueur.o \
+placer_dinos.o
+
 OBJETS_COLLISIONS = 		testCollisions.o 				placer_dinos.o testPlacement.o collision_decor.o chargerMatrice.o
 
 OBJETS_PAGES_INFOS = testFonctionsPagesInformations.o \
@@ -200,6 +253,9 @@ all: $(EXECUTABLES)
 ./test_archer: $(OBJETS_ARCHER)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./test_deplacement: $(OBJETS_DEPLA)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./test_vol: $(OBJETS_VOL)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
@@ -209,13 +265,13 @@ all: $(EXECUTABLES)
 ./testAffichageMenuHIP: $(OBJETS_AFFICHAGE_HIP)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./testTirsAffichageJeu: $(OBJETS_TIRSAFFICHAGE)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
 ./testBombeDinosTours: $(OBJETS_BOMBE_DINOS_TOURS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testBombeDinosToursV2: $(OBJETS_BOMBE_DINOS_TOURS_V2)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testCollisions: $(OBJETS_COLLISIONS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsChangementTour: $(OBJETS_CHANGEMENT_TOUR)
@@ -224,19 +280,16 @@ all: $(EXECUTABLES)
 ./testFonctionsMenuPrinc: $(OBJETS_MENU_PRINC)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testFonctionsPageFinPartie: $(OBJETS_PAGE_FIN_PARTIE)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testFonctionsPagesInformations: $(OBJETS_PAGES_INFOS)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./testCollisions: $(OBJETS_COLLISIONS)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
-./testDino: $(OBJETS_DINO)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
-./testPlacement: $(OBJETS_PLACEMENT)
-	gcc $^ -o $@ $(FLAGS_EDITION)
-
 ./testFonctionsRebonds: $(OBJETS_REBONDS)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testFonctionsStructJoueur: $(OBJETS_STRUCT_JOUEUR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testFonctionsTuerDinos: $(OBJETS_TUER_DINOS)
@@ -245,23 +298,28 @@ all: $(EXECUTABLES)
 ./testFonctionsVerification: $(OBJETS_VERIFICATION)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
+./testGrappin: $(OBJETS_GRAPPIN)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
 ./testRegression: $(OBJETS_REGRESSION)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
 ./testTirArmes: $(OBJETS_TIR)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./test_deplacement: test_deplacement.o deplacement.o \
-$(OBJETS_COMMUNS) $(OBJETS_COMMUNS2) fonctionsPageJeu.o \
-fonctionsChangementTour.o regression.o fonctionsAffichage.o \
-fonctionsTirs.o fonctionsPlacementBombe.o fonctionsRebonds.o \
-fonctionSoin.o fonctionsTuerDinos.o fonctionsPagesInformations.o \
-collision_decor.o fonctionsMenuPrinc.o \
-grappin.o tda_file.o fonctionsPageFinPartie.o 
+./testTirsAffichageJeu: $(OBJETS_TIRSAFFICHAGE)
 	gcc $^ -o $@ $(FLAGS_EDITION)
 
-./testGrappin: $(OBJETS_GRAPPIN)
+
+./testDino: $(OBJETS_DINO)
 	gcc $^ -o $@ $(FLAGS_EDITION)
+
+./testPlacement: $(OBJETS_PLACEMENT)
+	gcc $^ -o $@ $(FLAGS_EDITION)
+
+
+
+
 # -------------------   COMPILATION   -------------------
 
 %.o: $(REP_SRC)/%.c
